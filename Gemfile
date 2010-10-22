@@ -5,6 +5,10 @@ gem 'rails', '3.0.1'
 gem 'capistrano'
 gem 'devise'
 gem 'haml'
+gem 'netaddr', :require => 'cidr'
+gem 'rgl', :require => 'rgl/adjacency'
+gem 'rmagick', :require => 'RMagick'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'autotest-rails'
