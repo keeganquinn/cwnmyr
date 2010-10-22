@@ -1,0 +1,19 @@
+first:
+  id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  node_id: 1
+  name: 'First test'
+  application: 'page'
+  data: 'http://localhost/test1'
+  active: <%= true %>
+
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  node_id: 2
+  name: 'Second test'
+  application: 'page'
+  data: 'http://localhost/test2'
+  active: <%= true %>

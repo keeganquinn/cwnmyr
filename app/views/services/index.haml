@@ -1,0 +1,19 @@
+- @page_heading = t('services')
+
+%h2= t('manage services')
+
+%p.small= t('%d total') % Service.count
+
+= will_paginate @services
+
+%ul
+  - @services.each do |service|
+    %li{:id => "service_#{service.to_param}"}
+      = link_to h(service.to_param), service_path(service)
+      \-
+      = h(service.name)
+
+= will_paginate @services
+
+#new_service
+  %p= link_to_remote t('new service'), :url => new_service_path

@@ -1,0 +1,2 @@
+module NodeCommentHelper
+end

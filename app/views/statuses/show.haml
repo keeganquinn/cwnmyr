@@ -1,0 +1,19 @@
+%p.small= @status.expose? ? t('visible') : t('hidden')
+
+- unless @status.color.blank?
+  %p
+    = t('color')
+    \-
+    %span{:style => "color: ##{@status.color}"} &bull;
+
+= textilize @status.description
+
+%p.small
+  = t('created %s') % @status.created_at.to_s(:db)
+  %br/
+  = t('updated %s') % @status.updated_at.to_s(:db)
+
+%p
+  = link_to t('edit'), edit_status_path
+  \|
+  = link_to t('remove'), status_path, :method => :delete

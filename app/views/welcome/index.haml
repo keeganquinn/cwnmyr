@@ -1,0 +1,73 @@
+%h3= t :welcome
+
+%p
+  = app_name
+  \-
+  = t :tagline
+
+%p= t :front_page_description
+
+- unless logged_in?
+  %h3= t :join_us
+
+  %ul
+    %li= link_to t(:login), new_session_path
+    %li= link_to t(:register), new_user_path
+
+%h3= t :browse
+
+%p= t :front_page_browse_text
+
+%ul
+  %li
+    = link_to t(:zones), zones_path
+    %span.small
+      = surround '(', ')' do
+        = t :total_numbered, :count => Zone.count
+  %li
+    = link_to t(:users), users_path
+    %span.small
+      = surround '(', ')' do
+        = t :total_numbered, :count => User.count
+
+%p= link_to t(:server_configuration_files), configuration_path
+
+- if logged_in? and current_user.has_role?(Role.manager)
+  %h3= t :manage
+
+  %ul
+    %li
+      = link_to t(:statuses), statuses_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => Status.count
+    %li
+      = link_to t(:services), services_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => Service.count
+    %li
+      = link_to t(:host_types), host_types_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => HostType.count
+    %li
+      = link_to t(:host_property_types), host_property_types_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => HostPropertyType.count
+    %li
+      = link_to t(:interface_types), interface_types_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => InterfaceType.count
+    %li
+      = link_to t(:interface_property_types), interface_property_types_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => InterfacePropertyType.count
+    %li
+      = link_to t(:roles), roles_path
+      %span.small
+        = surround '(', ')' do
+          = t :total_numbered, :count => Role.count

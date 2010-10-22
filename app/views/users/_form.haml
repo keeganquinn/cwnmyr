@@ -1,0 +1,44 @@
+= error_messages_for :user
+
+%p
+  %label{:for => :login}= t('login')
+  %br/
+  - if @user.new_record?
+    = text_field :user, :login
+  - else
+    %b= h @user.login
+
+%p
+  %label{:for => :email}= t('email')
+  %br/
+  = text_field :user, :email
+
+%p
+  %label{:for => :displayname}= t('display name')
+  %br/
+  = text_field :user, :displayname
+
+%p
+  %label{:for => :firstname}= t('first name')
+  %br/
+  = text_field :user, :firstname
+
+%p
+  %label{:for => :lastname}= t('last name')
+  %br/
+  = text_field :user, :lastname
+
+%p
+  %label{:for => :password}= t('password')
+  %br/
+  = password_field :user, :password
+
+%p
+  %label{:for => :password_confirmation}= t('confirm password')
+  %br/
+  = password_field :user, :password_confirmation
+
+%p
+  %label{:for => :time_zone}= t('time zone')
+  %br/
+  = time_zone_select :user, :time_zone, TZInfo::Timezone.all.sort, :model => TZInfo::Timezone

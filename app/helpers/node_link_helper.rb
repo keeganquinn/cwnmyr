@@ -1,0 +1,2 @@
+module NodeLinkHelper
+end

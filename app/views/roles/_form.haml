@@ -1,0 +1,11 @@
+= error_messages_for :role
+
+%p
+  %label{:for => :code}= t('code')
+  %br/
+  = text_field :role, :code
+
+%p
+  %label{:for => :name}= t('name')
+  %br/
+  = text_field :role, :name

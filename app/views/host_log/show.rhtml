@@ -1,0 +1,18 @@
+<p>Subject: <%=h @host_log.subject %><br/>
+  From: <%=h @host_log.user.login %><br/>
+  Status: <%= @host_log.active? ? 'Active' : 'Inactive' %></p>
+
+<%= textilize @host_log.body %>
+
+<p class="small">Created <%= time_ago_in_words @host_log.created_at
+  %> ago.&nbsp; Last updated <%= time_ago_in_words @host_log.updated_at
+  %> ago.</p>
+
+
+<p>
+  <% if logged_in? -%>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => @host_log.id },
+      :confirm => 'Are you sure?' %> |
+    <%= link_to 'Edit', :action => 'edit', :id => @host_log.id %>
+  <% end -%>
+</p>

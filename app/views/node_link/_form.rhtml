@@ -1,0 +1,22 @@
+<%= error_messages_for 'node_link' %>
+
+<!--[form:node_link]-->
+<p><label for="node_link_name">Name</label>
+  <span class="required">*</span><br/>
+<%= text_field 'node_link', 'name'  %></p>
+
+<p><label for="node_link_data">Data</label>
+  <span class="required">*</span><br/>
+<%= text_field 'node_link', 'data'  %></p>
+
+<p><label for="node_link_application">Type</label><br/>
+<%= select 'node_link', 'application', LinkApplications %></p>
+
+<p><label for="node_link_active">Active</label><br/>
+<%= radio_button 'node_link', 'active', true %>True<br/>
+<%= radio_button 'node_link', 'active', false %>False</p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:node_link]-->
+

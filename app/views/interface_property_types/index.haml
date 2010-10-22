@@ -1,0 +1,19 @@
+- @page_heading = t('interface property types')
+
+%h2= t('manage interface property types')
+
+%p.small= t('%d total') % InterfacePropertyType.count
+
+= will_paginate @interface_property_types
+
+%ul
+  - @interface_property_types.each do |interface_property_type|
+    %li{:id => "interface_property_type_#{interface_property_type.to_param}"}
+      = link_to h(interface_property_type.to_param), interface_property_type_path(interface_property_type)
+      \-
+      = h(interface_property_type.name)
+
+= will_paginate @interface_property_types
+
+#new_interface_property_type
+  %p= link_to_remote t('new interface property type'), :url => new_interface_property_type_path

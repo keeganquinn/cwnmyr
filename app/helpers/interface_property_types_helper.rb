@@ -1,0 +1,2 @@
+module InterfacePropertyTypesHelper
+end

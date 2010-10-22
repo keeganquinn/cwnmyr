@@ -1,0 +1,10 @@
+<% form_tag :interface_id => @interface_point.interface.id do -%>
+  <%= render :partial => 'form' %>
+
+  <p><%= submit_tag "Create" %></p>
+<% end -%>
+
+<p><%= link_to 'Cancel', :controller => 'interface', :action => 'show',
+    :node_code => @interface_point.interface.host.node.code,
+    :hostname => @interface_point.interface.host.name,
+    :code => @interface_point.interface.code %></p>

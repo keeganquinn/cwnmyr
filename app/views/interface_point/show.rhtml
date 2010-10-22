@@ -1,0 +1,16 @@
+<%= textilize @interface_point.description %>
+
+<p>Latitude: <%=h @interface_point.latitude %></p>
+
+<p>Longitude: <%=h @interface_point.longitude %></p>
+
+<p>Height: <%=h @interface_point.height %></p>
+
+<p>Error: <%=h @interface_point.error %></p>
+
+<p class="small">Created <%= time_ago_in_words @interface_point.created_at
+  %> ago.&nbsp; Last updated <%= time_ago_in_words @interface_point.updated_at
+  %> ago.</p>
+
+
+<p><%= link_to 'Edit', :action => 'edit', :id => @interface_point.id %></p>

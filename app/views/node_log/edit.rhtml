@@ -1,0 +1,11 @@
+<% form_tag do -%>
+  <p><label for="node_log_user_id">User</label><br/>
+  <%= collection_select 'node_log', 'user_id', User.find(:all),
+    'id', 'login' %></p>
+
+  <%= render :partial => 'form' %>
+
+  <p><%= submit_tag 'Save' %></p>
+<% end -%>
+
+<p><%= link_to 'Cancel', :action => 'show', :id => @node_log.id %></p>

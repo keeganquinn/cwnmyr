@@ -1,0 +1,149 @@
+- @page_heading = t('user: %s') % h(@user.login)
+- @head_content = meta_link :atom, logs_user_path, t('log entries')
+- @head_content += meta_link :atom, comments_user_path, t('comments')
+- @head_content += meta_link :rdf, foaf_user_path, t('foaf'), 'meta'
+
+- unless @user.displayname.blank?
+  %p= t('display name: %s') % h(@user.displayname)
+
+- unless @user.firstname.blank? and @user.lastname.blank?
+  %p= t('real name: %s %s') % [ h(@user.firstname), h(@user.lastname) ]
+
+%p.small
+  = t('created %s') % @user.created_at.to_s(:db)
+  %br/
+  = t('updated %s') % @user.updated_at.to_s(:db)
+
+- unless @user.displayname.blank? or @user.fullname.blank?
+  %p.small= link_to t('foaf'), foaf_user_path
+
+- if logged_in? and authorized?(current_user)
+  %p
+    = link_to t('edit'), edit_user_path
+    \|
+    = link_to t('remove'), user_path, :method => :delete
+
+- if logged_in? and current_user.has_role?(Role.manager)
+  %h3= link_to t('roles'), roles_path
+
+  %ul#roles
+    - @user.roles.each do |role|
+      = render :partial => 'role', :locals => { :role => role }
+
+  = render :partial => 'role_form'
+
+- unless @user.zones.empty?
+  %h2= t('zones')
+  %p.small= t('%d total') % @user.zones.count
+
+  %ul
+    - @user.zones.each do |zone|
+      %li
+        = link_to h(zone.name), zone_path(zone)
+        %span.small
+          = surround '(', ')' do
+            = t(:nodes_numbered, :count => zone.nodes.count)
+
+- unless @user.nodes.empty?
+  %h2= t('nodes')
+  %p.small= t('%d total') % @user.nodes.count
+
+  %ul
+    - @user.nodes.each do |node|
+      %li
+        = link_to h(node.name), :controller => 'node', :action => 'show', :code => node.code
+        %span{:style => "color: ##{node.status.color}"} &larr;
+        %span.small
+          = surround '(', ')' do
+            = t(:hosts_numbered, :count => node.hosts.count)
+
+- unless @user.node_logs.empty?
+  %h2= t('node log entries')
+
+  %ul
+    - @user.node_logs.each do |node_log|
+      %li
+        = link_to node_log.created_at.to_s(:db), :controller => 'node_log', :action => 'show', :id => node_log
+        %span.small
+          = surround '(', ')' do
+            = h node_log.node.code
+          = h node_log.subject
+
+- unless @user.node_comments.empty?
+  %h2= t('node comments')
+
+  %ul
+    - @user.node_comments.each do |node_comment|
+      %li
+        = link_to node_comment.created_at.to_s(:db), :controller => 'node_comment', :action => 'show', :id => node_comment
+        %span.small
+          = surround '(', ')' do
+            = h node_comment.node.code
+          = h node_comment.subject
+
+- unless @user.host_logs.empty?
+  %h2= t('host log entries')
+
+  %ul
+    - @user.host_logs.each do |host_log|
+      %li
+        = link_to host_log.created_at.to_s(:db), :controller => 'host_log', :action => 'show', :id => host_log
+        %span.small
+          = surround '(', ')' do
+            = h host_log.host.name
+            @
+            = h host_log.host.node.code
+          = h host_log.subject
+
+- unless @user.host_type_comments.empty?
+  %h2= t('host type comments')
+
+  %ul
+    - @user.host_type_comments.each do |host_type_comment|
+      %li
+        = link_to host_type_comment.created_at.to_s(:db), :controller => 'host_type_comment', :action => 'show', :id => host_type_comment
+        %span.small
+          = surround '(', ')' do
+            = h host_type_comment.host_type.code
+          = h host_type_comment.subject
+
+- unless @user.logs.find_all_by_active(true).empty?
+  %h2= t('log entries')
+
+  %p.small= t('feed: %s') % link_to(t('atom'), logs_user_path)
+
+  %ul
+    - @user.logs.find_all_by_active(true).each do |user_log|
+      %li
+        = link_to user_log.created_at.to_s(:db), :controller => 'user_log', :action => 'show', :id => user_log
+        \-
+        = h user_log.subject
+
+- unless @user.comments.find_all_by_active(true).empty?
+  %h2= t('comments')
+
+  %p.small= t('feed: %s') % link_to(t('atom'), comments_user_path)
+
+  %ul
+    - @user.comments.find_all_by_active(true).each do |user_comment|
+      %li
+        = link_to user_comment.created_at.to_s(:db), :controller => 'user_comment', :action => 'show', :id => user_comment
+        \-
+        = h user_comment.subject
+
+- if logged_in? and current_user != @user
+  %p= link_to t('new comment'), :controller => 'user_comment', :action => 'new', :user_id => @user.id
+
+- unless @user.links.find_all_by_active(true).empty?
+  %h2= t('links')
+
+  %ul
+    - @user.links.find_all_by_active(true).each do |user_link|
+      %li
+        = link_to h(user_link.name), user_link.data
+
+- if !logged_in? or current_user.has_role?(Role.manager)
+  %div{:style => 'text-align: right;'}
+    - form_tag forgot_user_path do
+      = submit_tag t('send password reset email')
+

@@ -1,0 +1,17 @@
+# Notification command to notify by email.
+define command{
+        command_name    notify-by-email
+        command_line    /usr/bin/printf "%b" "* Nagios (Adhocracy-configured)\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $DATETIME$\n\nAdditional Info:\n\n$OUTPUT$" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ alert - $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+        }
+
+# Host check command to check to see if a host is "alive" (up) by pinging it.
+define command{
+        command_name    check-host-alive
+        command_line    /usr/lib/nagios/plugins/check_ping -H $HOSTADDRESS$ -w 99,99% -c 100,100% -p 1 
+        }
+
+# Service check command to check a device by pinging it.
+define command{
+        command_name    check_ping
+        command_line    /usr/lib/nagios/plugins/check_ping -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 5
+        }

@@ -1,0 +1,74 @@
+--
+$Id: README_FOR_APP 358 2007-05-14 21:32:53Z keegan $
+Copyright 2004-2007 Keegan Quinn
+++
+
+
+== Introduction
+
+Adhocracy is beta software.  Don't expect it to do anything other
+than give you a nasty headache.
+
+
+== Requirements
+
+* Rails
+* A database supported by Rails
+* GraphViz
+* A gem to interface Ruby with that database
+* RedCloth gem
+* cgi_multipart_eof_fix gem
+* ZenTest gem (optional; for running tests)
+* rcov gem (optional; for generating testing coverage reports)
+
+Adhocracy should run on any operating system which Rails supports.
+It is currently being developed on Apple Mac OS X 10.4.9, deployed
+on Debian GNU/Linux 'etch', and regularly tested on Microsoft Windows
+XP SP2.  It has previously been tested on Debian GNU/Linux 'sarge' and
+'unstable'.  (Reports of success or failure on other platforms would
+be welcome.)
+
+The software is developed and deployed on PostgreSQL (versions ranging
+from 7.4.16 to 8.2.4) but thanks to the database abstraction in Rails it
+should run on any modern database.  It is frequently tested on SQLite.
+(Reports of success or failure with other databases would be welcome.)
+
+
+== Setup
+
+Get Ruby and RubyGems working, then install all of the required gems.
+Generally it is recommended to install Rails as a gem as well.  Likewise
+install your database of choice.
+
+Unpack the Adhocracy distribution in your preferred place for running
+Rails applications.  There are many ways of running Rails applications
+which are well-documented all over the Internet; only bits which are
+specific to this project will be covered here.
+
+ tar xvfj adhocracy.tar.bz2
+
+Edit the file config/database.yml inside the Adhocracy directory and
+enter appropriate values for your chosen database into the section
+labeled 'production', at the bottom of the file.  The default values are
+for a PostgreSQL installation on the local host, with database and user
+both named 'adhoc', connected via IPv6 loopback.
+
+ cd adhocracy
+ vi config/database.yml
+
+At this point you are ready to create your database tables.  This is done
+using the Rake task "db:migrate".
+
+ rake RAILS_ENV=production db:migrate
+
+Now we can actually start a web server.  You can actually configure a Real
+Web Server (like Apache) for production at this point, but keep in mind that
+the first user to register for an account on your new Adhocracy instance
+will gain complete administrative control.
+
+ script/server -eproduction
+
+Pull up your favorite web browser and point it at http://0.0.0.0:3000/.  You
+should be looking at the front page of your new Adhocracy instance.  Create
+your account and have fun!
+

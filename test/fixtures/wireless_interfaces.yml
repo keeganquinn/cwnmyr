@@ -1,0 +1,17 @@
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  interface_id: 2
+  mode: 2
+  essid: 'second_test'
+  channel: 2
+  beamwidth_v: 7.0
+  beamwidth_h: 7.0
+  azimuth: 0.0
+  elevation: 0.0
+  error: 0.0
+  tx_power: 20.0
+  rx_sensitivity: -87.0
+  cable_loss: 1.5
+  antenna_gain: 24.0

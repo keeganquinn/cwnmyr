@@ -1,0 +1,163 @@
+#--
+# $Id: node_controller.rb 2746 2006-06-11 01:36:32Z keegan $
+# Copyright 2004-2006 Keegan Quinn
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#++
+
+class NodeController < ApplicationController
+  include ActionView::Helpers::TagHelper
+
+  before_filter :login_required, :except => [
+    :comment_feed, :log_feed, :graph, :show, :wl
+  ]
+
+  def index
+    redirect_to :controller => 'welcome'
+  end
+
+  def show
+    @node = Node.find_by_code(params[:code])
+
+    unless logged_in? or @node.expose?
+      redirect_to(:controller => 'welcome') and return
+    end
+
+    @page_heading = 'Node: ' + @node.name
+    @head_content = [
+      tag(:link, {
+            :rel => 'alternate',
+            :type => 'application/atom+xml',
+            :title => 'Node log feed (Atom)',
+            :href => url_for(:action => 'log_feed', :code => @node.code)
+          }),
+      tag(:link, {
+            :rel => 'alternate',
+            :type => 'application/atom+xml',
+            :title => 'Node comment feed (Atom)',
+            :href => url_for(:action => 'comment_feed', :code => @node.code)
+          })
+    ].join("\n")
+
+    markers = []
+    @node.hosts.each do |host|
+      if point = host.average_point
+        markers << GMarker.new([point[:latitude], point[:longitude]],
+                               :title => host.name,
+                               :info_window => "<a href=\"" +
+                                   url_for(:controller => 'host',
+                                           :action => 'show',
+                                           :node_code => @node.code,
+                                           :hostname => host.name) +
+                                   "\">" + host.name + "</a>")
+      end
+    end
+
+    unless markers.empty?
+      @map = GMap.new('node_map')
+      @map.overlay_init Clusterer.new(markers)
+      @map.center_zoom_init markers.first.point, 15
+    end
+  end
+
+  def new
+    @node = Node.new(params[:node])
+    @node.zone = Zone.find_by_code params[:zone_code]
+    @node.user = current_user
+
+    @page_heading = 'New node'
+
+    unless request.post?
+      @node.country = AH_DEFAULT_COUNTRY
+      @node.state = AH_DEFAULT_STATE
+      @node.city = AH_DEFAULT_CITY
+      return
+    end
+
+    if @node.save
+      flash[:notice] = 'Node was successfully created.'
+
+      redirect_to(:controller => 'zone',
+                  :action => 'show',
+                  :code => @node.zone.code)
+    end
+  end
+
+  def edit
+    @node = Node.find_by_code(params[:code])
+
+    @page_heading = 'Node: ' + @node.name
+
+    return unless request.post?
+
+    if @node.update_attributes(params[:node])
+      flash[:notice] = 'Node was successfully updated.'
+      redirect_to :action => 'show', :code => @node.code
+    end
+  end
+
+  def destroy
+    node = Node.find_by_code(params[:code])
+    zone = node.zone
+    node.destroy
+
+    flash[:notice] = 'Node was successfully destroyed.'
+
+    redirect_to(:controller => 'zone',
+                :action => 'show',
+                :code => zone.code)
+  end
+
+  def graph
+    node = Node.find_by_code(params[:code])
+
+    unless logged_in? or node.expose?
+      redirect_to(:controller => 'welcome') and return
+    end
+
+    send_data(node.graph.to_png,
+              :type => 'image/png', :disposition => 'inline')
+  end
+
+  def comment_feed
+    @node = Node.find_by_code(params[:code])
+
+    unless logged_in? or @node.expose?
+      redirect_to(:controller => 'welcome') and return
+    end
+
+    render :layout => false
+  end
+
+  def log_feed
+    @node = Node.find_by_code(params[:code])
+
+    unless logged_in? or @node.expose?
+      redirect_to(:controller => 'welcome') and return
+    end
+
+    render :layout => false
+  end
+
+  def wl
+    @node = Node.find_by_code(params[:code])
+
+    unless logged_in? or @node.expose?
+      redirect_to(:controller => 'welcome') and return
+    end
+
+    render :layout => false
+  end
+end

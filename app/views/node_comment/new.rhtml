@@ -1,0 +1,5 @@
+<% form_tag :node_id => @node_comment.node.id do -%>
+  <%= render :partial => 'form' %>
+
+  <p><%= submit_tag "Create" %></p>
+<% end -%>

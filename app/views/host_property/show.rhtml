@@ -1,0 +1,18 @@
+<p>Type: <tt><%=h @host_property.type.code %></tt></p>
+
+<p>Value: <pre>
+<%=h @host_property.value %>
+</pre><br/></p>
+
+<p class="small">Created <%= time_ago_in_words @host_property.created_at
+  %> ago.&nbsp; Last updated <%= time_ago_in_words @host_property.updated_at
+  %> ago.</p>
+
+
+<p>
+  <% if logged_in? -%>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => @host_property.id },
+      :confirm => 'Are you sure?' %> |
+    <%= link_to 'Edit', :action => 'edit', :id => @host_property.id %>
+  <% end -%>
+</p>

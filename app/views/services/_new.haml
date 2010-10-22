@@ -1,0 +1,9 @@
+%p
+  - form_tag services_path do
+    %label{:for => :code}= t('code')
+    = text_field :service, :code
+
+    %label{:for => :name}= t('name')
+    = text_field :service, :name
+
+    = submit_tag t('create')

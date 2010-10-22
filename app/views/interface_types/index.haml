@@ -1,0 +1,19 @@
+- @page_heading = t('interface types')
+
+%h2= t('manage interface types')
+
+%p.small= t('%d total') % InterfaceType.count
+
+= will_paginate @interface_types
+
+%ul
+  - @interface_types.each do |interface_type|
+    %li{:id => "interface_type_#{interface_type.to_param}"}
+      = link_to h(interface_type.to_param), interface_type_path(interface_type)
+      \-
+      = h interface_type.name
+
+= will_paginate @interface_types
+
+#new_interface_type
+  %p= link_to_remote t('new interface type'), :url => new_interface_type_path

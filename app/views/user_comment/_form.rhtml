@@ -1,0 +1,24 @@
+<%= error_messages_for 'user_comment' %>
+
+<!--[form:user_comment]-->
+<p><label for="user_comment_subject">Subject</label>
+  <span class="required">*</span><br/>
+<%= text_field 'user_comment', 'subject'  %></p>
+
+<p><label for="user_comment_body">Body</label>
+  <span class="required">*</span><br/>
+<%= text_area 'user_comment', 'body'  %></p>
+
+<p><label for="user_comment_rating">Rating</label><br/>
+<%= radio_button 'user_comment', 'rating', -1 %>Negative &nbsp;
+<%= radio_button 'user_comment', 'rating', 0 %>Neutral &nbsp;
+<%= radio_button 'user_comment', 'rating', 1 %>Positive</p>
+
+<p><label for="user_comment_active">Active</label><br/>
+<%= radio_button 'user_comment', 'active', true %>True<br/>
+<%= radio_button 'user_comment', 'active', false %>False</p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:user_comment]-->
+

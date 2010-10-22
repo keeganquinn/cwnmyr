@@ -1,0 +1,2 @@
+page.replace_html 'new_interface_property_type', :partial => 'new'
+page.visual_effect :highlight, 'new_interface_property_type'

@@ -1,0 +1,29 @@
+first:
+  id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  code: 'first_test'
+  name: 'First test'
+  protocol: 'tcp'
+  port: 1
+  expose: <%= true %>
+
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  code: 'second_test'
+  name: 'Second test'
+  protocol: 'tcp'
+  port: 2
+  expose: <%= true %>
+
+another:
+  id: 3
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  code: 'another_test'
+  name: 'Another test'
+  protocol: 'udp'
+  port: 3
+  expose: <%= true %>

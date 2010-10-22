@@ -1,0 +1,16 @@
+= error_messages_for :interface_property_type
+
+%p
+  %label{:for => :code}= t('code')
+  %br/
+  = text_field :interface_property_type, :code
+
+%p
+  %label{:for => :name}= t('name')
+  %br/
+  = text_field :interface_property_type, :name
+
+%p
+  %label{:for => :description}= t('description')
+  %br/
+  = text_area :interface_property_type, :description

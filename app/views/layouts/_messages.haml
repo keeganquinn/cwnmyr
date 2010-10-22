@@ -1,0 +1,8 @@
+- if flash[:notice]
+  %span{:style => 'color: green;'}= flash[:notice]
+
+- if flash[:message]
+  %span= flash[:message]
+
+- if flash[:warning]
+  %span{:style => 'color: red;'}= flash[:warning]

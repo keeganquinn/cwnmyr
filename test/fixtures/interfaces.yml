@@ -1,0 +1,46 @@
+first:
+  id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  host_id: 1
+  interface_type_id: 1
+  status_id: 1
+  code: 'first_test'
+  ipv4_masked_address: '192.168.1.1/24'
+  mac: '00:11:22:33:44:55'
+  name: 'First test'
+  description: 'First testing interface'
+  latency: 0.3
+  bandwidth: 100000.0
+
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  host_id: 2
+  interface_type_id: 2
+  status_id: 2
+  code: 'second_test'
+  ipv4_masked_address: '192.168.1.2/24'
+  ipv6_masked_address: '2001:618:400:3d7c:20c:6eff:fe6f:f2e3/64'
+  mac: '00:22:33:44:55:66'
+  name: 'Second test'
+  description: 'Second testing interface'
+  latency: 1.0
+  bandwidth: 5500.0
+
+another:
+  id: 3
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  host_id: 2
+  interface_type_id: 1
+  status_id: 1
+  code: 'another_test'
+  ipv4_masked_address: '192.168.2.1/24'
+  ipv6_masked_address: ''
+  mac: '22:33:44:55:66:77'
+  name: 'Another test'
+  description: 'Another testing interface'
+  latency: 0.1
+  bandwidth: 1000000.0

@@ -1,0 +1,19 @@
+%p.small= @service.expose? ? t('visible') : t('hidden')
+
+%p
+  - unless @service.protocol.blank?
+    = h @service.protocol.upcase
+  - unless @service.port.blank?
+    = t('port')
+    = h @service.port
+
+%p.small
+  = t('created %s') % @service.created_at.to_s(:db)
+  %br/
+  = t('updated %s') % @service.updated_at.to_s(:db)
+
+%p
+  = link_to t('edit'), edit_service_path
+  \|
+  = link_to t('remove'), service_path, :method => :delete
+

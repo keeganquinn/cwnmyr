@@ -1,0 +1,9 @@
+<% form_tag do %>
+  <%= render :partial => 'form' %>
+
+  <p><%= submit_tag 'Save' %></p>
+<% end %>
+
+<p><%= link_to 'Show', :action => 'show', :id => @user_link.id %> |
+  <%= link_to 'Destroy', :action => 'destroy', :id => @user_link.id %> |
+  <%= link_to 'Back', :controller => 'welcome' %></p>

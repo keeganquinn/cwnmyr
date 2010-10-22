@@ -1,0 +1,17 @@
+first:
+  id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  user_id: 1
+  subject: 'First test'
+  body: 'First testing log entry'
+  active: <%= true %>
+
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  user_id: 2
+  subject: 'Second test'
+  body: 'Second testing log entry'
+  active: <%= true %>

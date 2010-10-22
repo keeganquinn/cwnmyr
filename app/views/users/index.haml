@@ -1,0 +1,18 @@
+- @page_heading = t('users')
+
+%h2= t('find users')
+
+%p.small= t('%d total') % User.count
+
+= will_paginate @users
+
+%ul
+  - @users.each do |user|
+    %li{:id => "user_#{user.to_param}"}
+      = link_to h(user.to_param), user_path(user)
+      - unless user.displayname.blank?
+        %span.small
+          = surround '(', ')' do
+            = user.displayname
+
+= will_paginate @users

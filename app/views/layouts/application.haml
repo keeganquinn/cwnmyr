@@ -1,0 +1,47 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => 'http://www.w3.org/1999/xhtml', :lang => I18n.locale}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}/
+
+    %title
+      = "#{@page_heading} | " if @page_heading 
+      = t :cwnmyr
+
+    - if @map
+      = javascript_include_tag 'clusterer'
+      = GMap.header :host => request.host
+      = @map.to_html
+
+    = javascript_include_tag :defaults
+    = stylesheet_link_tag 'style'
+    = @head_content
+
+  %body
+    #wrap
+      #header
+        - if @page_heading
+          %h1= @page_heading
+        - else
+          %h1= link_to_unless_current t(:cwnmyr), welcome_path
+
+      #content
+        %p.nav= links_from_path
+
+        %p= render :partial => 'layouts/messages'
+
+        = yield
+
+    %p.small
+      %br/
+      - if logged_in?
+        = t :logged_in, :login => current_user.login
+        \|
+        = link_to_unless_current t(:profile), user_path(current_user)
+        \|
+        = link_to_unless_current t(:logout), destroy_session_path
+      - else
+        = link_to_unless_current t(:login), new_session_path
+        \|
+        = link_to_unless_current t(:register), new_user_path
+

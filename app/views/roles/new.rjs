@@ -1,0 +1,2 @@
+page.replace_html 'new_role', :partial => 'new'
+page.visual_effect :highlight, 'new_role'

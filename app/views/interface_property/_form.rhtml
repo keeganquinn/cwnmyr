@@ -1,0 +1,14 @@
+<%= error_messages_for 'interface_property' %>
+
+<!--[form:interface_property]-->
+<p><label for="interface_property_interface_property_type_id">Type</label><br/>
+<%= collection_select 'interface_property', 'interface_property_type_id',
+  InterfacePropertyType.find(:all, :order => 'name ASC'), 'id', 'name' %></p>
+
+<p><label for="interface_property_value">Value</label>
+  <span class="required">*</span><br/>
+<%= text_area 'interface_property', 'value', 'cols' => 60, 'rows' => 2 %></p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:interface_property]-->

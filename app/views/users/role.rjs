@@ -1,0 +1,15 @@
+id = "role_#{@role.to_param}"
+
+case @done
+when :push
+  page.select("##{id}").each { |value| value.remove }
+  page.insert_html :top, 'roles',
+    :partial => 'role', :locals => { :role => @role }
+  page.replace 'role_form', :partial => 'role_form'
+  page.visual_effect :highlight, id
+when :delete
+  page.visual_effect :switch_off, id
+  page.replace 'role_form', :partial => 'role_form'
+end
+
+flash.discard

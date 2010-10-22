@@ -1,0 +1,92 @@
+*** General ***
+
+sendmail = /usr/lib/sendmail
+imgcache = /var/www/smokeping
+imgurl   = ../smokeping
+datadir  = /var/lib/smokeping
+piddir   = /var/run/smokeping
+smokemail = /etc/smokeping/smokemail
+
+
+owner    = <%= SiteEmail %>
+contact  = <%= SiteEmail %>
+cgiurl   = <%= SiteLocator %>cgi-bin/smokeping.cgi
+mailhost = mail.<%= DnsDomain %>
+syslogfacility = local0
+
+
+*** Database ***
+
+step     = 300
+pings    = 20
+
+# consfn mrhb steps total
+AVERAGE  0.5   1  1008
+AVERAGE  0.5  12  4320
+    MIN  0.5  12  4320
+    MAX  0.5  12  4320
+AVERAGE  0.5 144   720
+    MAX  0.5 144   720
+    MIN  0.5 144   720
+
+
+*** Presentation ***
+
+template = /etc/smokeping/basepage.html
+
++ overview 
+
+width = 600
+height = 50
+range = 10h
+
++ detail
+
+width = 600
+height = 200
+unison_tolerance = 2
+
+"Last 3 Hours"    3h
+"Last 30 Hours"   30h
+"Last 10 Days"    10d
+"Last 400 Days"   400d
+
+
+*** Probes ***
+
++ FPing
+
+binary = /usr/bin/fping
+
+
+*** Targets ***
+
+probe = FPing
+
+menu = Adhocracy
+title = Network Latency Graph
+remark = Welcome to an Adhocracy-integrated SmokePing website.
+
+
+<% Zone.find_all_by_expose(true).each do |zone| -%>
++ <%= zone.code %>
+
+menu = <%= zone.name %>
+title = <%= zone.name %>
+
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+++ <%= node.code %>
+
+menu = <%= node.name %>
+title = <%= node.name %>
+
+<% if node.primary_host && node.primary_host.external_interface -%>
++++ <%= node.primary_host.name %>
+
+menu = <%= node.primary_host.name %>
+title = <%= node.primary_host.name %>
+host = <%= node.primary_host.external_interface.ipv4_address %>
+
+<% end -%>
+<% end -%>
+<% end -%>

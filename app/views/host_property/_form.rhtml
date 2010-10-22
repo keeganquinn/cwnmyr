@@ -1,0 +1,15 @@
+<%= error_messages_for 'host_property' %>
+
+<!--[form:host_property]-->
+<p><label for="host_property_host_property_type_id">Type</label><br/>
+<%= collection_select 'host_property', 'host_property_type_id',
+  HostPropertyType.find(:all, :order => 'name ASC'), 'id', 'name' %></p>
+
+<p><label for="host_property_value">Value</label>
+  <span class="required">*</span><br/>
+<%= text_area 'host_property', 'value', 'cols' => 60, 'rows' => 2 %></p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:host_property]-->
+

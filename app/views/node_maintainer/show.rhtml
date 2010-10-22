@@ -1,0 +1,18 @@
+<% if @node_maintainer.description.blank? -%>
+  <p>No description has been provided.</p>
+<% else -%>
+  <%= textilize @node_maintainer.description %>
+<% end -%>
+
+<p class="small">Created <%= time_ago_in_words @node_maintainer.created_at
+  %> ago.&nbsp; Last updated <%= time_ago_in_words @node_maintainer.updated_at
+  %> ago.</p>
+
+
+<p>
+  <% if logged_in? -%>
+    <%= link_to 'Destroy', { :action => 'destroy',
+      :id => @node_maintainer.id }, :confirm => 'Are you sure?' %> |
+    <%= link_to 'Edit', :action => 'edit', :id => @node_maintainer.id %>
+  <% end -%>
+</p>

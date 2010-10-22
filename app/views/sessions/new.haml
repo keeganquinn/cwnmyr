@@ -1,0 +1,18 @@
+%h2= t('login')
+
+%p= t('login page description')
+
+- form_tag session_path do
+  %p
+    %label{:for => :login}= t('login')
+    %br/
+    = text_field_tag :login
+
+  %p
+    %label{:for => :password}= t('password')
+    %br/
+    = password_field_tag :password
+
+  %p= submit_tag t('login')
+
+%p= link_to t('new user'), new_user_path

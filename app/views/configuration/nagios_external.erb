@@ -1,0 +1,116 @@
+# $Id: nagios_external.rhtml 2752 2006-06-15 22:40:27Z keegan $
+#
+# Generated <%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %> by <%= url_for :controller => 'welcome', :only_path => false %>
+
+
+<%= render :partial => 'nagios_timeperiod' %>
+
+<%= render :partial => 'nagios_command' %>
+
+<% contact_maintainers = [] -%>
+<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% if node.primary_host && node.primary_host.external_interface -%>
+<% node.maintainers.each do |maintainer| -%>
+<% unless contact_maintainers.include? maintainer.maintainer -%>
+<% contact_maintainers.push maintainer.maintainer -%>
+# <%= maintainer.maintainer.login %> is a node maintainer
+define contact{
+        contact_name                    <%= maintainer.maintainer.login %>
+        alias                           <%= maintainer.maintainer.login %>
+        service_notification_period     24x7
+        host_notification_period        24x7
+        service_notification_options    w,u,c,r
+        host_notification_options       d,r
+        service_notification_commands   notify-by-email
+        host_notification_commands      host-notify-by-email
+        email                           <%= maintainer.maintainer.email %>
+        }
+
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% contactgroup_maintainers = [] -%>
+<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% if node.primary_host && node.primary_host.external_interface -%>
+<% node.maintainers.each do |maintainer| -%>
+<% unless contactgroup_maintainers.include? maintainer.maintainer -%>
+<% contactgroup_maintainers.push maintainer.maintainer -%>
+# <%= maintainer.maintainer.login %> is a node maintainer
+define contactgroup{
+        contactgroup_name       <%= maintainer.maintainer.login %>
+        alias                   <%= maintainer.maintainer.login %>
+        members                 <%= maintainer.maintainer.login %>
+        }
+
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<%= render :partial => 'nagios_host_template' %>
+
+<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% if node.primary_host && node.primary_host.external_interface -%>
+# <%= node.code %>: <%= node.primary_host.name %>
+define host{
+        use                     generic-host            ; Name of host template to use
+        host_name               <%= node.primary_host.name %>.<%= node.code %>
+        alias                   <%= node.primary_host.name %>.<%= node.code %>
+        address                 <%= node.primary_host.external_interface.ipv4_address %>
+        check_command           check-host-alive
+        max_check_attempts      10
+        notification_interval   120
+        notification_period     24x7
+        notification_options    d,r
+        }
+
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% if node.primary_host && node.primary_host.external_interface -%>
+# <%= node.code %>: <%= node.primary_host.name %>
+define hostgroup{
+        hostgroup_name  <%= node.primary_host.name %>.<%= node.code %>
+        alias           <%= node.primary_host.name %>.<%= node.code %>
+        contact_groups  <% maintainers = 0 %><% node.maintainers.each do |maintainer| %><% maintainers += 1 %><% if maintainers > 1 %>,<% end %><%= maintainer.maintainer.login %><% end %>
+        members         <%= node.primary_host.name %>.<%= node.code %>
+        }
+
+<% end -%>
+<% end -%>
+<% end -%>
+
+<%= render :partial => 'nagios_service_template' %>
+
+<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% if node.primary_host && node.primary_host.external_interface -%>
+# <%= node.code %>: <%= node.primary_host.name %>
+define service{
+        use                             generic-service         ; Name of service template to use
+        host_name                       <%= node.primary_host.name %>.<%= node.code %>
+        service_description             PING
+        is_volatile                     0
+        check_period                    24x7
+        max_check_attempts              4
+        normal_check_interval           5
+        retry_check_interval            1
+        contact_groups                  <% maintainers = 0 %><% node.maintainers.each do |maintainer| %><% maintainers += 1 %><% if maintainers > 1 %>,<% end %><%= maintainer.maintainer.login %><% end %>
+        notification_interval           960
+        notification_period             24x7
+        check_command                   check_ping!100.0,20%!500.0,60%
+        }
+
+<% end -%>
+<% end -%>
+<% end -%>

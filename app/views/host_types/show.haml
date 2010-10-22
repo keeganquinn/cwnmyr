@@ -1,0 +1,39 @@
+- @page_heading = t('host type: %s') % h(@host_type.code)
+- @head_content = meta_link :atom, comments_host_type_path, t('comments')
+
+%p.small= @host_type.expose? ? t('visible') : t('hidden')
+
+%p.small
+  = t('created %s') % @host_type.created_at.to_s(:db)
+  %br/
+  = t('updated %s') % @host_type.updated_at.to_s(:db)
+
+= textilize @host_type.description
+
+%h2= t('overview')
+= textilize @host_type.overview
+
+%h2= t('instructions')
+= textilize @host_type.instructions
+
+%h2= t('comments')
+
+%p.small= t('feed: %s') % link_to(t('atom'), comments_host_type_path)
+
+%ul
+  - @host_type.comments.find(:all).each do |host_type_comment|
+    %li
+      = link_to host_type_comment.subject, :controller => 'host_type_comment', :action => 'show', :id => host_type_comment.id
+      %span.small
+        = surround '(', ')' do
+          = h host_type_comment.created_at.to_s(:db)
+          \-
+          = h host_type_comment.user.login
+
+- if logged_in?
+  %p= link_to t('new comment'), :controller => 'host_type_comment', :action => 'new', :host_type_id => @host_type.id
+
+  %p
+    = link_to t('edit'), edit_host_type_path
+    \|
+    = link_to t('remove'), host_type_path, :method => :delete

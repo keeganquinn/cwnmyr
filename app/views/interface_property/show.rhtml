@@ -1,0 +1,19 @@
+<p>Type: <tt><%=h @interface_property.type.code %></tt></p>
+
+<p>Value: <pre>
+<%=h @interface_property.value %>
+</pre><br/></p>
+
+<p class="small">Created <%= time_ago_in_words @interface_property.created_at
+  %> ago.&nbsp; Last updated <%=
+  time_ago_in_words @interface_property.updated_at %> ago.</p>
+
+
+<p>
+  <% if logged_in? -%>
+    <%= link_to 'Destroy',
+      { :action => 'destroy', :id => @interface_property.id },
+      :confirm => 'Are you sure?' %> |
+    <%= link_to 'Edit', :action => 'edit', :id => @interface_property.id %>
+  <% end -%>
+</p>

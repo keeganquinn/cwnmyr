@@ -1,0 +1,55 @@
+<% form_tag do %>
+  <% error_messages_for 'wireless_interface' -%>
+
+  <!--[form:wireless_interface]-->
+  <p><label for="wireless_interface_mode">Wireless mode</label><br/>
+  <%= select 'wireless_interface', 'mode', WirelessInterface.modes %></p>
+
+  <p><label for="wireless_interface_essid">ESSID</label><br/>
+  <%= text_field 'wireless_interface', 'essid' %></p>
+
+  <p><label for="wireless_interface_channel">Channel</label><br/>
+  <%= text_field 'wireless_interface', 'channel' %></p>
+
+  <p><label for="wireless_interface_tx_power">RF transmission
+    power</label><br/>
+  <%= text_field 'wireless_interface', 'tx_power' %> dBm</p>
+
+  <p><label for="wireless_interface_rx_sensitivity">RF receive
+    sensitivity</label><br/>
+  <%= text_field 'wireless_interface', 'rx_sensitivity' %> dBm</p>
+
+  <p><label for="wireless_interface_cable_loss">RF cable + connector
+    loss</label><br/>
+  <%= text_field 'wireless_interface', 'cable_loss' %> dB</p>
+
+  <p><label for="wireless_interface_antenna_gain">Antenna gain</label><br/>
+  <%= text_field 'wireless_interface', 'antenna_gain' %> dBi</p>
+
+  <p><label for="wireless_interface_beamwidth_v">Vertical
+    beamwidth</label><br/>
+  <%= text_field 'wireless_interface', 'beamwidth_v' %> degrees</p>
+
+  <p><label for="wireless_interface_beamwidth_h">Horizontal
+    beamwidth</label><br/>
+  <%= text_field 'wireless_interface', 'beamwidth_h' %> degrees</p>
+
+  <p><label for="wireless_interface_azimuth">Azimuth</label><br/>
+  <%= text_field 'wireless_interface', 'azimuth' %> degrees</p>
+
+  <p><label for="wireless_interface_elevation">Elevation</label><br/>
+  <%= text_field 'wireless_interface', 'elevation' %> meters above
+    sea level</p>
+
+  <p><label for="wireless_interface_error">Error</label><br/>
+  <%= text_field 'wireless_interface', 'error' %></p>
+
+  <!--[eoform:wireless_interface]-->
+
+  <p><%= submit_tag 'Save' %></p>
+<% end %>
+
+<p><%= link_to 'Cancel', :action => 'show',
+    :node_code => @interface.host.node.code,
+    :hostname => @interface.host.name,
+    :code => @interface.code %></p>

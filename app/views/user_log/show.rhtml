@@ -1,0 +1,16 @@
+<p class="small"><%= @user_log.active? ? 'Active' : 'Inactive' %></p>
+<p>log entry: <%=h @user_log.subject.downcase %></p>
+
+<%= textilize @user_log.body %>
+
+<p class="small">Created <%= time_ago_in_words @user_log.created_at
+  %> ago.&nbsp; Last updated <%= time_ago_in_words @user_log.updated_at
+  %> ago.</p>
+
+
+<% if current_user == @user_log.user -%>
+  <p><%= link_to 'Edit', :action => 'edit', :id => @user_log.id %> |
+    <%= link_to 'Destroy', { :action => 'destroy', :id => @user_log.id },
+      :confirm => 'Are you sure?' %> |
+    <%= link_to 'Back', :controller => 'welcome' %></p>
+<% end -%>

@@ -1,0 +1,2 @@
+module HostLogHelper
+end

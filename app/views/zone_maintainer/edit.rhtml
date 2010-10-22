@@ -1,0 +1,7 @@
+<% form_tag do -%>
+  <%= render :partial => 'form' %>
+
+  <p><%= submit_tag 'Save' %></p>
+<% end -%>
+
+<p><%= link_to 'Cancel', :action => 'show', :id => @zone_maintainer.id %></p>

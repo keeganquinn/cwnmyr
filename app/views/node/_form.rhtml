@@ -1,0 +1,58 @@
+<%= error_messages_for 'node' %>
+
+<!--[form:node]-->
+<p><label for="node_code">Code</label><br/>
+<%= text_field 'node', 'code', 'size' => 16, 'maxlength' => 64 %></p>
+
+<p><label for="node_name">Name</label>
+  <span class="required">*</span><br/>
+<%= text_field 'node', 'name' %></p>
+
+<p><label for="node_status">Status</label><br/>
+<%= collection_select 'node', 'status_id', Status.find_all_by_expose(true),
+  'id', 'name' %></p>
+
+<p><label for="node_description">Description</label><br/>
+<%= text_area 'node', 'description', 'cols' => 72, 'rows' => 12 %></p>
+
+<p><label for="node_address">Street address</label><br/>
+<%= text_area 'node', 'address', 'cols' => 40, 'rows' => 2 %></p>
+
+<p><label for="node_city">City</label><br/>
+<%= text_field 'node', 'city' %></p>
+
+<p><label for="node_state">State</label><br/>
+<%= text_field 'node', 'state', 'size' => 2, 'maxlength' => 2 %></p>
+
+<p><label for="node_postalcode">Zip or postal code</label><br/>
+<%= text_field 'node', 'postalcode', 'size' => 10, 'maxlength' => 16 %></p>
+
+<p><label for="node_country">Country</label><br/>
+<%= text_field 'node', 'country', 'size' => 2, 'maxlength' => 2 %></p>
+
+<p><label for="node_phone">Phone number</label><br/>
+<%= text_field 'node', 'phone', 'size' => 16, 'maxlength' => 32 %></p>
+
+<p><label for="node_email">Email address</label><br/>
+<%= text_field 'node', 'email', 'size' => 32, 'maxlength' => 128 %></p>
+
+<p><%= radio_button 'node', 'public', true %>Public accessible space<br/>
+  <%= radio_button 'node', 'public', false %>Private location</p>
+
+<p><label for="node_mailing_ok">Mailing list opt-in</label><br/>
+<%= radio_button 'node', 'mailing_ok', true %>Yes, I want to receive mail
+  related to this project.<br/>
+<%= radio_button 'node', 'mailing_ok', false %>No, I do not want to receive
+  mail related to this project.</p>
+
+<p><label for="node_legacy_number">Legacy node number</label><br/>
+<%= text_field 'node', 'legacy_number', 'size' => 8, 'maxlength' => 16 %></p>
+
+<p><label for="node_expose">Expose</label><br/>
+<%= radio_button 'node', 'expose', true %>True<br/>
+<%= radio_button 'node', 'expose', false %>False</p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:node]-->
+

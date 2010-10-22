@@ -1,0 +1,20 @@
+<p>Link: <a href="<%=h @node_link.data %>"><%=h @node_link.name %></a></p>
+
+<p>Type: <%= LinkApplications.index(@node_link.application).to_s %></p>
+
+<p class="small">
+  <% if current_user -%>
+    <%= @node_link.active? ? 'Active' : 'Inactive' %>.&nbsp;
+  <% end -%>
+  Created <%= time_ago_in_words @node_link.created_at %> ago.&nbsp;
+  Last updated <%= time_ago_in_words @node_link.updated_at %> ago.
+</p>
+
+
+<p>
+  <% if current_user -%>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => @node_link.id },
+      :confirm => 'Are you sure?' %> |
+  <% end -%>
+  <%= link_to 'Edit', :action => 'edit', :id => @node_link.id %>
+</p>

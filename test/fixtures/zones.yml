@@ -1,0 +1,16 @@
+first:
+  id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  code: 'first_test'
+  name: 'First test'
+  locality: 'Near the first testing location'
+  expose: <%= true %>
+
+second:
+  id: 2
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+  code: 'second_test'
+  name: 'Second test'
+  expose: <%= true %>

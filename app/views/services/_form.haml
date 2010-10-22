@@ -1,0 +1,30 @@
+= error_messages_for :service
+
+%p
+  %label{:for => :code}= t('code')
+  %br/
+  = text_field :service, :code
+
+%p
+  %label{:for => :name}= t('name')
+  %br/
+  = text_field :service, :name
+
+%p
+  %label{:for => :protocol}= t('protocol')
+  %br/
+  = radio_button :service, :protocol, 'tcp'
+  = t('tcp')
+  %br/
+  = radio_button :service, :protocol, 'udp'
+  = t('udp')
+
+%p
+  %label{:for => :port}= t('port')
+  %br/
+  = text_field :service, :port
+
+%p
+  %label{:for => :expose}= t('expose')
+  %br/
+  = check_box :service, :expose

@@ -1,0 +1,28 @@
+<%= error_messages_for 'interface_point' %>
+
+<!--[form:interface_point]-->
+<p><label for="interface_point_latitude">Latitude</label>
+  <span class="required">*</span><br/>
+<%= text_field 'interface_point', 'latitude'  %></p>
+
+<p><label for="interface_point_longitude">Longitude</label>
+  <span class="required">*</span><br/>
+<%= text_field 'interface_point', 'longitude'  %></p>
+
+<p><label for="interface_point_height">Height</label>
+  <span class="required">*</span><br/>
+<%= text_field 'interface_point', 'height'  %></p>
+
+<p><label for="interface_point_error">Error</label>
+  <span class="required">*</span><br/>
+<%= text_field 'interface_point', 'error'  %></p>
+
+<p><label for="interface_point_description">Description</label>
+  <span class="required">*</span><br/>
+<%= text_area 'interface_point', 'description',
+  'cols' => 60, 'rows' => 4 %></p>
+
+<p class="small"><span class="required">*</span> denotes a required field</p>
+
+<!--[eoform:interface_point]-->
+
