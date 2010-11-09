@@ -1,5 +1,0 @@
-= mime_test
-
-This Rails plugin includes a collection of methods to help with testing
-actions which handle alternative MIME content types.
-
