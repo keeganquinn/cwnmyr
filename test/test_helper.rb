@@ -19,7 +19,7 @@
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require 'rails/test_help'
 require 'authenticated_test_helper'
 
 class ActiveSupport::TestCase
