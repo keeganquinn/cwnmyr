@@ -1,15 +1,11 @@
 Cwnmyr::Application.routes.draw do
   resource :session do
-    member do
-      any :destroy
-    end
+    match :destroy, :on => :member
   end
 
   resources :host_property_types
   resources :host_types do
-    member do
-      get :comments
-    end
+    match :comments, :on => :member
   end
 
   resources :interface_property_types
@@ -18,13 +14,7 @@ Cwnmyr::Application.routes.draw do
   resources :services
   resources :statuses
   resources :users do
-    member do
-      get :foaf
-      any :role
-      get :comments
-      any :forgot
-      get :logs
-    end
+    match :foaf, :role, :comments, :forgot, :logs, :on => :member
   end
 
   resources :zones
@@ -33,8 +23,8 @@ Cwnmyr::Application.routes.draw do
   match 'interface/:action/:node_code/:hostname(/:code)(.:format)' => 'interface#index'
   match 'node/:action(/:code)(.:format)' => 'node#index'
 
-  match 'configuration/:action(.:format)' => 'configuration#index', :as => :configuration
+  match 'configuration/:action(.:format)' => 'configuration#index'
 
-  match '' => 'welcome#index', :as => :welcome
+  root :to => 'welcome#index'
   match '/:controller(/:action(/:id))(.:format)'
 end
