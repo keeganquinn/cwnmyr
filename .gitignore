@@ -1,6 +1,11 @@
+*~
+*#
+.#*
 .bundle
 config/database.yml
 db/*.sqlite3
 db/schema.rb
+doc/api
+doc/app
 log/*.log
 tmp/**/*
