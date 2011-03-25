@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '>=3.0'
 
 gem 'capistrano'
 gem 'devise'
@@ -13,7 +13,6 @@ gem 'will_paginate'
 group :development, :test do
   gem 'autotest-rails'
   gem 'cucumber-rails'
-  gem 'factory_girl'
   gem 'railroad'
   gem 'rspec-rails'
   gem 'sqlite3-ruby', :require => 'sqlite3'
