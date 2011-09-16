@@ -1,24 +1,26 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=3.0'
+gem 'rails'
 
 gem 'capistrano'
 gem 'devise'
 gem 'haml'
+gem 'jquery-rails'
+gem 'mysql2'
 gem 'netaddr', :require => 'cidr'
 gem 'rgl', :require => 'rgl/adjacency'
 gem 'rmagick', :require => 'RMagick'
 gem 'will_paginate'
 
-group :development, :test do
-  gem 'autotest-rails'
-  gem 'cucumber-rails'
-  gem 'railroad'
-  gem 'rspec-rails'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'webrat'
+group :assets do
+  gem 'coffee-rails'
+  gem 'sass-rails'
+  gem 'therubyracer'
+  gem 'uglifier'
 end
 
-group :production do
-  gem 'pg'
+group :development, :test do
+  gem 'autotest-rails'
+  gem 'rspec-rails'
+  gem 'simplecov', :require => false
 end
