@@ -1,6 +1,6 @@
 #--
-# $Id: 008_remove_roles_users_id_column.rb 2725 2006-06-07 09:45:12Z keegan $
-# Copyright 2006 Keegan Quinn
+# Database migration class for the User model, based on Devise
+# © 2011 Keegan Quinn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,12 +17,23 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #++
 
-class RemoveRolesUsersIdColumn < ActiveRecord::Migration
-  def self.up
-    remove_column(:roles_users, :id)
-  end
+# Database migration class for the User model, based on Devise.
+class DeviseCreateUsers < ActiveRecord::Migration
+  def change
+    create_table(:users) do |t|
+      t.database_authenticatable :null => false
+      t.recoverable
+      t.rememberable
+      t.trackable
+      t.confirmable
+      t.token_authenticatable
+      t.string :username, :limit => 64
+      t.timestamps
+    end
 
-  def self.down
-    add_column(:roles_users, :id, :integer)
+    add_index :users, :email,                :unique => true
+    add_index :users, :reset_password_token, :unique => true
+    add_index :users, :confirmation_token,   :unique => true
+    add_index :users, :authentication_token, :unique => true
   end
 end
