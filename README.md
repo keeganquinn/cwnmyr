@@ -1,8 +1,10 @@
 cwnmyr
 ======
 
-cwnmyr was a community wireless network management platform developed by
+cwnmyr is a community wireless network management platform developed by
 Keegan Quinn for the Personal Telco Project.
+
+See also: http://personaltelco.net/wiki/CwnmyrProject
 
 
 Status
@@ -14,6 +16,8 @@ as it stands, it is not currently usable.
 Any future work related to this project will likely be focused on tools to
 process structured text into things like configuration files and maps, to be
 used with existing wikis which already contain relevant data.
+
+As of November 2011, this work is in progress; see mkptpconfig.rb.
 
 
 History
