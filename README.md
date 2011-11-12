@@ -38,13 +38,13 @@ It gained a usable web interface and was put into production with some small
 degree of success.
 
 By 2010, the production installation had fallen into disuse and was taken
-down, but some work was done to update the code to Rails 3.0.
+down, but some work was done to update the code to Rails 3.0. During this
+time, the project was also relocated from a dusty Subversion repository
+to a Google Code project.
 
 In 2011, work was started on resurrecting the project using Rails 3.1,
-however after reappraising the software and its goals, Keegan no longer
-felt that the strict, heavily-structured approach which was taken with the
-original database design was appropriate. At this point, the code was
-stripped down to a few unique bits which may still be useful.
-
-A page about Adhocracy still exists in the Personal Telco Project wiki:
-http://wiki.personaltelco.net/Adhocracy
+and it was moved to a new GitHub project. However, after reappraising the
+software's design and its goals, Keegan no longer felt that the strict,
+heavily-structured approach which was taken with the original database
+design was appropriate. At this point, the code was stripped down to a
+few unique bits which may still be useful.
