@@ -1,0 +1,25 @@
+en:
+  cwnmyr: cwnmyr
+  tagline: Community Wireless Network Management System
+  sign_up: Sign Up
+  forgot: Forgot password?
+  sign_in: Sign In
+  sign_out: Sign Out
+  signed_in: Signed In
+  account: Account
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: Email Address
+        password: Password
+        password_confirmation: Password Confirmation
+  devise:
+    confirmations:
+      new:
+        title: Resend confirmation
+        submit: Resend confirmation instructions
+  welcome:
+    index:
+      description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network. 

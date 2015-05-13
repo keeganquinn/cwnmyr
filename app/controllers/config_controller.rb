@@ -1,6 +1,6 @@
 #--
-# $Id: configuration_controller.rb 410 2007-06-27 16:15:24Z keegan $
-# Copyright 2004-2009 Keegan Quinn
+# $Id: config_controller.rb 410 2007-06-27 16:15:24Z keegan $
+# Copyright 2004-2015 Keegan Quinn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +17,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #++
 
+
 # This controller allows the generation of configuration files.
-class ConfigurationController < ApplicationController
+class ConfigController < ApplicationController
   # Display a listing of available configuration files.
   def index
   end

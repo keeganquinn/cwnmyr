@@ -1,6 +1,6 @@
 #--
 # $Id: users_controller.rb 514 2007-07-18 18:25:55Z keegan $
-# Copyright 2004-2007 Keegan Quinn
+# Copyright 2004-2015 Keegan Quinn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,10 +17,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #++
 
+
 # This controller allows the management of User records.
 class UsersController < ApplicationController
   before_filter :load_user, :except => [ :index, :create, :new ]
-  before_filter :login_required, :only => [ :edit, :update, :destroy, :role ]
+  before_filter :authenticate_user!, :only => [ :edit, :update, :destroy, :role ]
 
   protected
 
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
 
   # Display a form to allow data for a new User to be provided.
   def new
-    return redirect_to(welcome_path) if logged_in?
+    return redirect_to(welcome_path) if user_signed_in?
 
     @user = User.new
   end

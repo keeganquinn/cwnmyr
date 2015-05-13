@@ -8,7 +8,7 @@
 <%= render :partial => 'nagios_command' %>
 
 <% contact_maintainers = [] -%>
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>
@@ -36,7 +36,7 @@ define contact{
 <% end -%>
 
 <% contactgroup_maintainers = [] -%>
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>
@@ -59,7 +59,7 @@ define contactgroup{
 
 <%= render :partial => 'nagios_host_template' %>
 
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>
@@ -81,7 +81,7 @@ define host{
 <% end -%>
 <% end -%>
 
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>
@@ -100,7 +100,7 @@ define hostgroup{
 
 <%= render :partial => 'nagios_service_template' %>
 
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>

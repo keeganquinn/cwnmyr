@@ -1,31 +1,19 @@
+# -*- coding: utf-8 -*-
+
 #--
 # user.rb: User model
-# © 2011 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# © 2015 Keegan Quinn
 #++
+
 
 # An instance of the User model represents a sentient being of some kind
 # who has been granted some degree of access to this system.
 #
-# HostLog, HostTypeComment, NodeComment, NodeLog, NodeMaintainer, Role,
-# UserComment, UserLink, UserLog and ZoneMaintainer instances can all be
-# associated with a User instance.
-#
-# Uses Devise as a basis for primary functionality.
+# Uses Devise as a basis for authentication functionality.
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :confirmable, :omniauthable
+
   has_many :host_logs
   has_many :host_type_comments
   has_many :node_comments
@@ -34,25 +22,19 @@ class User < ActiveRecord::Base
   has_many :nodes, :through => :node_maintainers, :foreign_key => 'user_id'
   has_and_belongs_to_many :roles, :uniq => true
   has_many :comments, :class_name => 'UserComment'
-  has_many :comments_on_others, :class_name => 'UserComment', :foreign_key => 'commenting_user_id'
+  has_many :comments_on_others, :class_name => 'UserComment',
+           :foreign_key => 'commenting_user_id'
   has_many :links, :class_name => 'UserLink'
   has_many :logs, :class_name => 'UserLog'
   has_many :zones, :through => :zone_maintainers
   has_many :zone_maintainers
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable, :confirmable
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :username
 
-  default_scope :order => 'username ASC'
-  scope :with_profile, where('username IS NOT NULL')
-
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :username
-
-  validates_length_of :username, :within => 3..40, :allow_nil => true
-  validates_uniqueness_of :username, :allow_nil => true
-  validates_format_of :username, :with => /\A[A-Za-z0-9]+\Z/, :allow_nil => true
+  # validates_length_of :username, :within => 3..40, :allow_nil => true
+  # validates_uniqueness_of :username, :allow_nil => true
+  # validates_format_of :username, :with => /\A[A-Za-z0-9]+\Z/, :allow_nil => true
 
   # This method returns an Array of all User instances who have either
   # given this User a positive Comment or have received a positive
@@ -78,7 +60,7 @@ class User < ActiveRecord::Base
   # This method returns true if the User has a relationship with any Role
   # whose code matches one of the role_codes.
   def has_role?(*role_codes)
-    roles.detect do |role| 
+    roles.detect do |role|
       role_codes.include?(role.code)
     end
   end
@@ -97,5 +79,11 @@ class User < ActiveRecord::Base
   # Find a User by a URI parameter.
   def self.find_by_param(param)
     self.find_by_username(param) || self.find(param)
+  end
+
+  protected
+
+  def password_required?
+    encrypted_password.blank? or not password.blank?
   end
 end

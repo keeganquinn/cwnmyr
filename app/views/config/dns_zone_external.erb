@@ -5,7 +5,7 @@ $TTL			86400
 
 			NS	ns1.<%= DnsDomain %>.
 
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 ; begin zone: <%= zone.code %> (<%= zone.name %>)
 
 <% zone.nodes.find_all_by_expose(true).each do |node| -%>

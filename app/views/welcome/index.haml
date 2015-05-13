@@ -1,18 +1,18 @@
-%h3= t :welcome
+%h3= t '.welcome'
 
 %p
-  = app_name
+  = t :cwnmyr
   \-
   = t :tagline
 
-%p= t :front_page_description
+%p= t '.description'
 
-- unless logged_in?
+- unless user_signed_in?
   %h3= t :join_us
 
   %ul
-    %li= link_to t(:login), new_session_path
-    %li= link_to t(:register), new_user_path
+    %li= link_to t(:sign_in), user_session_path
+    %li= link_to t(:sign_up), new_user_registration_path
 
 %h3= t :browse
 
@@ -30,9 +30,9 @@
       = surround '(', ')' do
         = t :total_numbered, :count => User.count
 
-%p= link_to t(:server_configuration_files), configuration_path
+%p= link_to t(:server_configuration_files), config_path
 
-- if logged_in? and current_user.has_role?(Role.manager)
+- if user_signed_in? and current_user.has_role?(Role.manager)
   %h3= t :manage
 
   %ul

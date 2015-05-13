@@ -68,7 +68,7 @@ title = Network Latency Graph
 remark = Welcome to an Adhocracy-integrated SmokePing website.
 
 
-<% Zone.find_all_by_expose(true).each do |zone| -%>
+<% Zone.exposed.each do |zone| -%>
 + <%= zone.code %>
 
 menu = <%= zone.name %>

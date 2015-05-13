@@ -1,6 +1,6 @@
 #--
 # $Id: zones_controller.rb 514 2007-07-18 18:25:55Z keegan $
-# Copyright 2004-2007 Keegan Quinn
+# Copyright 2004-2015 Keegan Quinn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,9 +17,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #++
 
+
 # This controller allows the management of Zone records.
 class ZonesController < ApplicationController
-  before_filter :login_required, :except => [ :index, :show ]
+  before_filter :authenticate_user!, :except => [ :index, :show ]
   before_filter :load_zone, :except => [ :index, :create, :new ]
 
   protected

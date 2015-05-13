@@ -2,7 +2,7 @@
 
 %h2= t('manage zones')
 
-%p.small= t('%d total') % Zone.count
+%p.small= Zone.count
 
 = will_paginate @zones
 
@@ -19,4 +19,4 @@
 = will_paginate @zones
 
 #new_zone
-  %p= link_to_remote t('new zone'), :url => new_zone_path
+  %p= link_to t('new zone'), new_zone_path

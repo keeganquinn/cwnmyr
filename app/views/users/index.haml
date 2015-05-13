@@ -2,7 +2,7 @@
 
 %h2= t('find users')
 
-%p.small= t('%d total') % User.count
+%p.small= User.count
 
 = will_paginate @users
 

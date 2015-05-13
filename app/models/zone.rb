@@ -17,23 +17,24 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #++
 
+
 # A Zone instance represents a physical area at a large scale.  It serves
 # as an organizational aid and the heirarchial root of the system when
 # browsing in the user interface.
 #
 # Node and ZoneMaintainer instances are dependencies.
 class Zone < ActiveRecord::Base
-  default_scope :order => 'name ASC'
+  default_scope { order('name ASC') }
+
+  scope :exposed, -> { where(expose: true) }
 
   has_many :nodes
-  has_many :maintainers, {
-    :class_name => 'ZoneMaintainer', :order => 'updated_at DESC'
-  }
+  has_many :maintainers, :class_name => 'ZoneMaintainer'
 
   validates_length_of :code, :minimum => 1
   validates_length_of :code, :maximum => 64
   validates_uniqueness_of :code
-  validates_format_of :code, :with => %r{^[-_a-zA-Z0-9]+$},
+  validates_format_of :code, :with => %r{\A[-_a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
     :if => Proc.new { |zone| zone.code && zone.code.size > 1 }
   validates_length_of :name, :minimum => 1
@@ -63,7 +64,7 @@ class Zone < ActiveRecord::Base
 
   protected
 
-  before_validation_on_create :set_defaults
+  # TODO FIXME before_validation_on_create :set_defaults
 
   # Set default values.
   def set_defaults
