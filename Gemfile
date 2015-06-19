@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
+gem 'therubyracer'
 
 gem 'devise'
 gem 'haml'
