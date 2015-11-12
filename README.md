@@ -7,17 +7,21 @@ Keegan Quinn for the Personal Telco Project.
 See also: http://personaltelco.net/wiki/CwnmyrProject
 
 
+Installation
+------------
+
+bundle
+rake db:migrate
+rails s
+
+
 Status
 ------
 
-The code has been stripped down to what may still be valuable components;
-as it stands, it is not currently usable.
+In flux. This code is being rebuilt to modern standards and to fit the
+current needs of the Personal Telco Project.
 
-Any future work related to this project will likely be focused on tools to
-process structured text into things like configuration files and maps, to be
-used with existing wikis which already contain relevant data.
 
-As of November 2011, this work is in progress; see mkptpconfig.rb.
 
 
 History
