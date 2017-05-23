@@ -1,6 +1,8 @@
 cwnmyr
 ======
 
+[![Build Status](https://quinn.tk/jenkins/job/cwnmyr/badge/icon)](https://quinn.tk/jenkins/job/cwnmyr/)
+
 cwnmyr is a community wireless network management platform developed by
 Keegan Quinn for the Personal Telco Project.
 
