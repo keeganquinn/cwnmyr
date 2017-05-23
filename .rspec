@@ -1,0 +1,6 @@
+--color
+--format documentation
+--require spec_helper
+--require rails_helper
+--format RspecJunitFormatter
+--out rspec.xml

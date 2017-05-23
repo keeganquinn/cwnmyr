@@ -1,53 +1,72 @@
 source 'https://rubygems.org'
-
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+ruby '2.3.3'
 gem 'rails'
-
-gem 'capistrano-rails', group: :development
-
-gem 'sqlite3'
-gem 'bootstrap-sass'
-gem 'sass-rails'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'therubyracer'
-
-gem 'devise'
-gem 'haml'
+gem 'pg'
+#gem 'redis'
+gem 'puma', '~> 3.0'
+gem 'foreman', github: 'timurb/foreman', branch: 'systemd-template-fix'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'omniauth'
-gem 'sdoc', group: :doc
-gem 'tzinfo'
-gem 'valid_email'
-gem 'will_paginate'
+gem 'turbolinks', '~> 5'
+gem 'jbuilder', '~> 2.5'
+group :development, :test do
+  gem 'byebug', platform: :mri
+end
+group :development do
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'administrate'
+gem 'bootstrap-sass'
+gem 'bourbon'
+gem 'devise'
+gem 'haml-rails'
+gem 'high_voltage'
+gem 'pundit'
+gem 'redcarpet'
+gem 'simple_form'
+gem 'oauth-plugin'
+group :development do
+  gem 'better_errors'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-foreman', github: 'koenpunt/capistrano-foreman'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'html2haml'
+  gem 'rails_layout'
+  gem 'rb-fchange', :require=>false
+  gem 'rb-fsevent', :require=>false
+  gem 'rb-inotify', :require=>false
+  gem 'spring-commands-rspec'
+end
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
+end
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end
 
 gem 'netaddr', :require => 'cidr'
 gem 'rgl', :require => 'rgl/adjacency'
 gem 'rmagick', :require => 'RMagick'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger
-  gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the
-  # background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
-  gem 'better_errors'
-  gem 'quiet_assets'
-  gem 'rails_layout'
-
-  gem 'autotest-rails'
-  gem 'rspec-rails'
-  gem 'simplecov', :require => false
-end
