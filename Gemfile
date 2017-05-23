@@ -34,7 +34,7 @@ gem 'high_voltage'
 gem 'pundit'
 gem 'redcarpet'
 gem 'simple_form'
-gem 'oauth-plugin'
+gem 'omniauth'
 group :development do
   gem 'better_errors'
   gem 'capistrano'
@@ -69,4 +69,4 @@ end
 
 gem 'netaddr', :require => 'cidr'
 gem 'rgl', :require => 'rgl/adjacency'
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick'
