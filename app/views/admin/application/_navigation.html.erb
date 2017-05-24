@@ -1,0 +1,10 @@
+<nav class="navigation" role="navigation">
+  <%= link_to 'cwnmyr', root_path, class: "navigation__link" %>
+  <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
+    <%= link_to(
+      display_resource_name(resource),
+      [namespace, resource.path],
+      class: "navigation__link navigation__link--#{nav_link_state(resource)}"
+    ) %>
+  <% end %>
+</nav>

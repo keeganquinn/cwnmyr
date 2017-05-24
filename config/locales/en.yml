@@ -7,6 +7,10 @@ en:
   sign_out: Sign Out
   signed_in: Signed In
   account: Account
+  create: Create
+  created: Created %s
+  updated: Updated %s
+  total_numbered: "%{count} total"
   activerecord:
     models:
       user: User
@@ -23,3 +27,6 @@ en:
   welcome:
     index:
       description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network. 
+  zones:
+    new:
+      heading: New Zone

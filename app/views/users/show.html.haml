@@ -1,0 +1,6 @@
+= 'user: %s' % h(@user.name)
+
+%p.small
+  = 'created %s' % @user.created_at.to_s(:db)
+  %br/
+  = 'updated %s' % @user.updated_at.to_s(:db)

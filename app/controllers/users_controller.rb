@@ -1,27 +1,8 @@
-#--
-# $Id: users_controller.rb 514 2007-07-18 18:25:55Z keegan $
-# Copyright 2004-2015 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
-
 # This controller allows the management of User records.
 class UsersController < ApplicationController
-  before_filter :load_user, :except => [ :index, :create, :new ]
-  before_filter :authenticate_user!, :only => [ :edit, :update, :destroy, :role ]
+  before_action :load_user, :except => [ :index, :create, :new ]
+  before_action :authenticate_user!, :only => [ :edit, :update, :destroy, :role ]
+  after_action :verify_authorized
 
   protected
 
@@ -29,7 +10,8 @@ class UsersController < ApplicationController
   # provided as a request parameter.  This method is usually called as a
   # before_filter.
   def load_user
-    @user = User.find_by_param(params[:id])
+    @user = User.find(params[:id])
+    authorize @user
     redirect_to(users_path) and return false unless @user
   end
 
@@ -50,7 +32,8 @@ class UsersController < ApplicationController
 
   # Display a list of User records.
   def index
-    @users = User.paginate :page => params[:page]
+    @users = User.all
+    authorize User
 
     respond_to do |format|
       format.html
@@ -148,11 +131,11 @@ class UsersController < ApplicationController
     return redirect_to(user_path) unless current_user.has_role?(Role.manager)
 
     respond_to do |format|
-      if @role = Role.find_by_param(params[:role])
+      if @role = Role.find(params[:role])
         format.html { redirect_to user_path }
         format.xml  { head :ok }
 
-        if @user.roles.find_by_param(params[:role])
+        if @user.roles.find(params[:role])
           @user.roles.delete @role
 
           flash[:message] = t('user role delete success')

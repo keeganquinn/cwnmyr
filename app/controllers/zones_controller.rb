@@ -1,27 +1,8 @@
-#--
-# $Id: zones_controller.rb 514 2007-07-18 18:25:55Z keegan $
-# Copyright 2004-2015 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
-
 # This controller allows the management of Zone records.
 class ZonesController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :index, :show ]
-  before_filter :load_zone, :except => [ :index, :create, :new ]
+  before_action :authenticate_user!, :except => [ :index, :show ]
+  before_action :load_zone, :except => [ :index, :create, :new ]
+  after_action :verify_authorized
 
   protected
 
@@ -69,7 +50,7 @@ class ZonesController < ApplicationController
 
   # Create a new Zone.
   def create
-    @zone = Zone.new(params[:zone])
+    @zone = Zone.new(zone_params)
 
     respond_to do |format|
       if @zone.save
@@ -110,5 +91,11 @@ class ZonesController < ApplicationController
       format.xml  { head :ok }
       format.js   { send_js "zone_#{@zone.to_param}" }
     end
+  end
+
+  private
+
+  def zone_params
+    params.require(:zone).permit(:code, :name, :expose)
   end
 end

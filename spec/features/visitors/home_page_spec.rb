@@ -10,7 +10,7 @@ feature 'Home page' do
   #   Then I see "Welcome"
   scenario 'visit the home page' do
     visit root_path
-    expect(page).to have_content 'Your Group When You Need It'
+    expect(page).to have_content 'Community Wireless Network'
   end
 
 end

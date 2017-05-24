@@ -1,21 +1,6 @@
-# -*- coding: utf-8 -*-
-
-#--
-# Database migration class for the User model, based on Devise
-# © 2015 Keegan Quinn
-#++
-
-
-# Database migration class for the User model, based on Devise.
-class DeviseCreateUsers < ActiveRecord::Migration
-  def self.up
-    create_table(:users) do |t|
-      # t.string :username, :limit => 64, null: false, default: ""
-      # t.string :displayname, :limit => 64, null: false, default: ""
-      # t.string :firstname, :limit => 64, null: false, default: ""
-      # t.string :lastname, :limit => 64, null: false, default: ""
-      # t.string :time_zone, :limit => 32
-
+class DeviseCreateUsers < ActiveRecord::Migration[5.0]
+  def change
+    create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -42,15 +27,16 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # Uncomment below if timestamps were not included in your original model.
       t.timestamps
+
+      ## Model stuff
+      t.string :name
+      t.integer :role
+      t.text :body
     end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
-  end
-
-  def self.down
-    drop_table :users
   end
 end

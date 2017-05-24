@@ -1,0 +1,33 @@
+%h3= t '.welcome'
+
+%p
+  = t :cwnmyr
+  \-
+  = t :tagline
+
+%p= t '.description'
+
+- unless user_signed_in?
+  %h3= t :join_us
+
+  %ul
+    %li= link_to t(:sign_in), user_session_path
+    %li= link_to t(:sign_up), new_user_registration_path
+
+%h3= t :browse
+
+%p= t :front_page_browse_text
+
+%ul
+  %li
+    = link_to t(:zones), zones_path
+    %span.small
+      = surround '(', ')' do
+        = t :total_numbered, :count => Zone.count
+  %li
+    = link_to t(:users), users_path
+    %span.small
+      = surround '(', ')' do
+        = t :total_numbered, :count => User.count
+
+%p= link_to t(:server_configuration_files), config_path
