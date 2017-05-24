@@ -5,14 +5,12 @@ class User < ApplicationRecord
   has_many :node_logs
   has_many :node_maintainers
   has_many :nodes, :through => :node_maintainers, :foreign_key => 'user_id'
-  has_and_belongs_to_many :roles, :uniq => true
+  has_and_belongs_to_many :groups, :uniq => true
   has_many :comments, :class_name => 'UserComment'
   has_many :comments_on_others, :class_name => 'UserComment',
            :foreign_key => 'commenting_user_id'
   has_many :links, :class_name => 'UserLink'
   has_many :logs, :class_name => 'UserLog'
-  has_many :zones, :through => :zone_maintainers
-  has_many :zone_maintainers
 
   enum role: [:user, :manager, :admin]
   after_initialize :set_default_role, :if => :new_record?

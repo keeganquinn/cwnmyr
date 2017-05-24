@@ -1,33 +1,14 @@
-#--
-# $Id: node.rb 361 2007-05-16 00:52:06Z keegan $
-# Copyright 2004-2007 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 #
 # This model includes dependencies on User, Status and Zone instances
 # and has relationships with NodeAuthorization, NodeComment, Host,
 # NodeLink, NodeLog and NodeMaintainer instances.
-class Node < ActiveRecord::Base
-  default_scope :order => 'zone_id, name ASC'
+class Node < ApplicationRecord
+  default_scope { order('zone_id, name ASC') }
 
-  belongs_to :user
-  belongs_to :status
+  #belongs_to :user
+  #belongs_to :status
   belongs_to :zone
   has_many :authorizations, :class_name => 'NodeAuthorization'
   has_many :comments, :class_name => 'NodeComment'
@@ -36,14 +17,11 @@ class Node < ActiveRecord::Base
   has_many :logs, :class_name => 'NodeLog'
   has_many :maintainers, :class_name => 'NodeMaintainer'
 
-  validates_presence_of :user_id
-  validates_presence_of :status_id
-  validates_presence_of :zone_id
   validates_length_of :code, :minimum => 1
   validates_length_of :code, :maximum => 64
   validates_uniqueness_of :code
   validates_format_of :code, {
-    :with => %r{^[-_a-zA-Z0-9]+$},
+    :with => %r{\A[-_a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.code && o.code.size > 1 }
   }
@@ -51,16 +29,14 @@ class Node < ActiveRecord::Base
   validates_length_of :name, :maximum => 128
   validates_uniqueness_of :name
   validates_format_of :email, {
-    :with => %r{^([\w\-\.\#\$%&!?*\'=(){}|~_]+)@([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+$},
+    :with => %r{\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)@([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z},
     :message => 'must be a valid email address',
     :if => Proc.new { |o| o.email && o.email.size > 1 }
   }
   validates_length_of :email, :maximum => 128, :allow_nil => true
 
-  # Converts the value of the +name+ attribute into a link-friendly
-  # String instance.
-  def stripped_name
-    self.name.gsub(/<[^>]*>/,'').to_url
+  def to_param
+    [id, code].join('-')
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this
@@ -125,17 +101,11 @@ class Node < ActiveRecord::Base
     }
   end
 
-  # Looks up an active flagged Node instance by the provided +code+.
-  def self.find_active_by_code(code)
-    self.find(:first, :conditions => [ "code = ? AND expose = ?", code, true ])
-  end
-
   protected
 
-  before_validation_on_create :set_defaults
+  before_validation :set_defaults, :on => :create
 
-  # Set default values.
   def set_defaults
-    self.code = self.stripped_name if self.code.blank?
+    self.code = name.parameterize if code.blank?
   end
 end

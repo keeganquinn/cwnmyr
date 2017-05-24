@@ -29,14 +29,16 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.timestamps
 
       ## Model stuff
+      t.string :code, limit: 64
       t.string :name
       t.integer :role
       t.text :body
     end
 
     add_index :users, :email,                unique: true
+    add_index :users, :code,                 unique: true
+    add_index :users, :name,                 unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
-    # add_index :users, :unlock_token,         unique: true
   end
 end

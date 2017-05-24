@@ -1,34 +1,15 @@
-#--
-# $Id: host.rb 361 2007-05-16 00:52:06Z keegan $
-# Copyright 2004-2007 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
 # Each Host instance represents a network device which is used at a Node.
 # It includes dependencies on a HostType instance and a Status instance.
 #
 # Other relationships include Interface, HostLog, HostProperty
 # and HostService instances.
-class Host < ActiveRecord::Base
-  default_scope :order => 'node_id, name ASC'
+class Host < ApplicationRecord
+  default_scope { order('node_id, name ASC') }
 
   belongs_to :node
-  belongs_to :type, :class_name => 'HostType', :foreign_key => 'host_type_id'
-  belongs_to :status
-  has_many :interfaces, :order => 'code ASC'
+  #belongs_to :type, :class_name => 'HostType', :foreign_key => 'host_type_id'
+  #belongs_to :status
+  has_many :interfaces
   has_many :logs, :class_name => 'HostLog', :foreign_key => 'host_id'
   has_many :properties, {
     :class_name => 'HostProperty',
@@ -37,13 +18,12 @@ class Host < ActiveRecord::Base
   has_many :services, :class_name => 'HostService', :foreign_key => 'host_id'
 
   validates_presence_of :node_id
-  validates_presence_of :host_type_id
-  validates_presence_of :status_id
+  #validates_presence_of :host_type_id
+  #validates_presence_of :status_id
   validates_length_of :name, :minimum => 1
   validates_length_of :name, :maximum => 64
   validates_uniqueness_of :name, :scope => :node_id
-  validates_uniqueness_of :name, :if => Proc.new { |o| o.top_level_hostname? }
-  validates_format_of :name, :with => %r{^[-a-zA-Z0-9]+$},
+  validates_format_of :name, :with => %r{\A[-a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.name.size > 1 }
 

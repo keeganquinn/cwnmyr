@@ -13,7 +13,9 @@ en:
   total_numbered: "%{count} total"
   activerecord:
     models:
-      user: User
+      user:
+        one: User
+        other: Users
     attributes:
       user:
         email: Email Address

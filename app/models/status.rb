@@ -1,26 +1,7 @@
-#--
-# $Id: status.rb 491 2007-07-09 14:14:13Z keegan $
-# Copyright 2004-2007 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
 # Each Status instance represents a generalized state which might apply
 # to any number of Node, Host or Interface instances.
-class Status < ActiveRecord::Base
-  default_scope :order => 'name ASC'
+class Status < ApplicationRecord
+  default_scope { order('name ASC') }
 
   has_many :nodes
   has_many :hosts
@@ -29,7 +10,7 @@ class Status < ActiveRecord::Base
   validates_length_of :code, :minimum => 1
   validates_length_of :code, :maximum => 64
   validates_uniqueness_of :code
-  validates_format_of :code, :with => %r{^[-_a-zA-Z0-9]+$},
+  validates_format_of :code, :with => %r{\A[-_a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.code && o.code.size > 1 }
   validates_length_of :name, :minimum => 1
