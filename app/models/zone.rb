@@ -28,6 +28,6 @@ class Zone < ApplicationRecord
   before_validation :set_defaults, :on => :create
 
   def set_defaults
-    self.code = name.parameterize if code.blank?
+    self.code = name.parameterize if code.blank? and name
   end
 end

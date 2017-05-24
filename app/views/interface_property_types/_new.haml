@@ -1,9 +1,0 @@
-%p
-  - form_tag interface_property_types_path do
-    %label{:for => :code}= t('code')
-    = text_field :interface_property_type, :code
-
-    %label{:for => :name}= t('name')
-    = text_field :interface_property_type, :name
-
-    = submit_tag t('create')

@@ -1,11 +1,14 @@
 require "administrate/base_dashboard"
 
-class ZoneDashboard < Administrate::BaseDashboard
+class ContactDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     code: Field::String,
     name: Field::String,
-    body: Field::Text,
+    hidden: Field::Boolean,
+    email: Field::String,
+    phone: Field::String,
+    notes: Field::Text,
     nodes: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -14,13 +17,17 @@ class ZoneDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :code,
     :name,
+    :hidden,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :code,
     :name,
-    :body,
+    :hidden,
+    :email,
+    :phone,
+    :notes,
     :nodes,
     :created_at,
     :updated_at,
@@ -29,10 +36,13 @@ class ZoneDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :code,
     :name,
-    :body,
+    :hidden,
+    :email,
+    :phone,
+    :notes,
   ].freeze
 
-  def display_resource(zone)
-    "Zone ##{zone.to_param}"
+  def display_resource(contact)
+    "Contact ##{contact.to_param}"
   end
 end

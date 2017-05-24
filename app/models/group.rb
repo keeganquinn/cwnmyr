@@ -10,7 +10,6 @@ class Group < ApplicationRecord
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.code.size > 1 }
   validates_length_of :name, :minimum => 1
-  validates_length_of :name, :maximum => 255
 
   def to_param
     [id, code].join('-')
@@ -21,6 +20,6 @@ class Group < ApplicationRecord
   before_validation :set_defaults, :on => :create
 
   def set_defaults
-    self.code = name.parameterize if code.blank?
+    self.code = name.parameterize if code.blank? and name
   end
 end

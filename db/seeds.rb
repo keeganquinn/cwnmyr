@@ -1,12 +1,26 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 admin = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << admin.email
+puts 'ADMIN USER: ' << admin.email
 
 user = CreateUserService.new.call
-puts 'CREATED NORMAL USER: ' << user.email
+puts 'NORMAL USER: ' << user.email
+
+group = Group.find_or_create_by(code: 'not', name: 'Network Operations Team')
+puts 'GROUP: ' << group.code
+
+hostType = HostType.find_or_create_by(code: 'test', name: 'Test Unit')
+puts 'HOST TYPE: ' << hostType.code
+
+interfaceType = InterfaceType.find_or_create_by(code: 'test', name: 'Test Port')
+puts 'INTERFACE TYPE: ' << interfaceType.code
+
+statusOk = Status.find_or_create_by(code: 'ok', name: 'Operational', color: 'green')
+puts 'STATUS: ' << statusOk.code
+
+statusPlanned = Status.find_or_create_by(code: 'planned', name: 'Planned', color: 'yellow')
+puts 'STATUS: ' << statusPlanned.code
+
+statusRetired = Status.find_or_create_by(code: 'retired', name: 'Retired', color: 'gray')
+puts 'STATUS: ' << statusRetired.code
+
+zone = Zone.find_or_create_by(code: 'pdx', name: 'P-Town')
+puts 'ZONE: ' << zone.code

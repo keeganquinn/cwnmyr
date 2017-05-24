@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :groups, :hosts, :nodes, :users, :zones
+    resources :contacts, :groups, :hosts, :host_properties, :host_types, :interfaces, :interface_properties, :interface_types, :nodes, :node_links, :statuses, :tags, :users, :user_links, :zones
     root to: "users#index"
   end
 

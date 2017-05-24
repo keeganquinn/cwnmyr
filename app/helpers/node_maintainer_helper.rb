@@ -1,2 +1,0 @@
-module NodeMaintainerHelper
-end

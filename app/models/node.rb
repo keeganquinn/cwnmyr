@@ -1,21 +1,14 @@
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
-#
-# This model includes dependencies on User, Status and Zone instances
-# and has relationships with NodeAuthorization, NodeComment, Host,
-# NodeLink, NodeLog and NodeMaintainer instances.
 class Node < ApplicationRecord
   default_scope { order('zone_id, name ASC') }
 
-  #belongs_to :user
-  #belongs_to :status
+  belongs_to :contact
+  belongs_to :status
   belongs_to :zone
-  has_many :authorizations, :class_name => 'NodeAuthorization'
-  has_many :comments, :class_name => 'NodeComment'
   has_many :hosts
-  has_many :links, :class_name => 'NodeLink'
-  has_many :logs, :class_name => 'NodeLog'
-  has_many :maintainers, :class_name => 'NodeMaintainer'
+  has_many :node_links
+  has_and_belongs_to_many :tags
 
   validates_length_of :code, :minimum => 1
   validates_length_of :code, :maximum => 64
@@ -26,14 +19,7 @@ class Node < ApplicationRecord
     :if => Proc.new { |o| o.code && o.code.size > 1 }
   }
   validates_length_of :name, :minimum => 1
-  validates_length_of :name, :maximum => 128
   validates_uniqueness_of :name
-  validates_format_of :email, {
-    :with => %r{\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)@([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z},
-    :message => 'must be a valid email address',
-    :if => Proc.new { |o| o.email && o.email.size > 1 }
-  }
-  validates_length_of :email, :maximum => 128, :allow_nil => true
 
   def to_param
     [id, code].join('-')
@@ -106,6 +92,6 @@ class Node < ApplicationRecord
   before_validation :set_defaults, :on => :create
 
   def set_defaults
-    self.code = name.parameterize if code.blank?
+    self.code = name.parameterize if code.blank? and name
   end
 end

@@ -1,38 +1,36 @@
 require "administrate/base_dashboard"
 
-class HostDashboard < Administrate::BaseDashboard
+class HostTypeDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    node: Field::BelongsTo,
+    code: Field::String,
     name: Field::String,
     body: Field::Text,
-    interfaces: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
-    :node,
+    :code,
     :name,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :node,
+    :code,
     :name,
     :body,
-    :interfaces,
     :created_at,
     :updated_at,
   ].freeze
 
   FORM_ATTRIBUTES = [
-    :node,
+    :code,
     :name,
     :body,
   ].freeze
 
-  def display_resource(host)
-    "Host ##{host.to_param}"
+  def display_resource(host_type)
+    "Host Type ##{host_type.to_param}"
   end
 end

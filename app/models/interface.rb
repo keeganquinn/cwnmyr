@@ -1,44 +1,12 @@
-#--
-# $Id: interface.rb 389 2007-05-27 08:15:27Z keegan $
-# Copyright 2004-2007 Keegan Quinn
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#++
-
 # An Interface instance represents a network interface or connection with
 # a relationship to a Host instance.
-#
-# It is further differentiated by InterfaceType and Status relationships as
-# well as the ability to track geospatial data via InterfacePoint instances
-# and configuration details via InterfaceProperty and WirelessInterface
-# instances.
-class Interface < ActiveRecord::Base
-  default_scope :order => 'host_id, status_id, code ASC'
+class Interface < ApplicationRecord
+  default_scope { order('host_id, status_id, code ASC') }
 
   belongs_to :host
-  belongs_to :type, {
-    :class_name => 'InterfaceType', :foreign_key => 'interface_type_id'
-  }
+  belongs_to :interface_type
   belongs_to :status
-  has_many :points, {
-    :class_name => 'InterfacePoint', :foreign_key => 'interface_id'
-  }
-  has_many :properties, {
-    :class_name => 'InterfaceProperty', :foreign_key => 'interface_id'
-  }
-  has_one :wireless_interface
+  has_many :interface_properties
 
   validates_presence_of :host_id
   validates_presence_of :interface_type_id
@@ -46,16 +14,14 @@ class Interface < ActiveRecord::Base
   validates_length_of :code, :minimum => 1
   validates_length_of :code, :maximum => 64
   validates_uniqueness_of :code, :scope => :host_id
-  validates_format_of :code, :with => %r{^[-_a-zA-Z0-9]+$},
+  validates_format_of :code, :with => %r{\A[-_a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.code && o.code.size > 1 }
 
   # TODO - look at using NetAddr::CIDR here
 
-  validates_each :ipv4_masked_address do |record, attr, value|
-    if value.blank?
-      record.errors.add attr, 'is missing'
-    else
+  validates_each :address_ipv4 do |record, attr, value|
+    unless value.blank?
       unless value =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
         record.errors.add attr, 'is not formatted correctly'
       else
@@ -67,7 +33,7 @@ class Interface < ActiveRecord::Base
       end
     end
   end
-  validates_each :ipv6_masked_address do |record, attr, value|
+  validates_each :address_ipv6 do |record, attr, value|
     unless value.blank?
       unless value =~ %r{^([:0-9a-fA-F]*):([:0-9a-fA-F]*):([:0-9a-fA-F]*)/(\d+)$}
         record.errors.add attr, 'is not formatted correctly'
@@ -78,12 +44,16 @@ class Interface < ActiveRecord::Base
       end
     end
   end
-  validates_format_of :mac,
-    :with => %r{^[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]$},
+  validates_format_of :address_mac,
+    :with => %r{\A[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]\z},
     :message => 'is not a valid MAC address',
-    :if => Proc.new { |o| o.mac && o.mac.size > 0 }
+    :if => Proc.new { |o| o.address_mac && o.address_mac.size > 0 }
   validates_length_of :name, :maximum => 128,
     :if => Proc.new { |o| o.name && o.name.size > 0 }
+
+  def to_param
+    [id, code].join('-')
+  end
 
   # Converts the values of the +code+ and +name+ attributes into a
   # link-friendly String instance.
@@ -91,39 +61,39 @@ class Interface < ActiveRecord::Base
     name.blank? ? '(' + code + ')' : '(' + code + ') ' + name
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into a
+  # Converts the value of the <tt>address_ipv4</tt> attribute into a
   # CIDR notation String instance.
   def ipv4_address
-    ipv4_masked_address =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
+    address_ipv4 =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
     $1 + '.' + $2 + '.' + $3 + '.' + $4
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into a
+  # Converts the value of the <tt>address_ipv4</tt> attribute into a
   # CIDR prefix length.
   def ipv4_prefix
-    ipv4_masked_address =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
+    address_ipv4 =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
     $5
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into an
+  # Converts the value of the <tt>address_ipv4</tt> attribute into an
   # Ipv4Calculator::Subnet instance.
   def ipv4_calculated_subnet
-    @ipv4_calculated_subnet ||= Ipv4Calculator::Subnet.new(ipv4_masked_address)
+    @ipv4_calculated_subnet ||= Ipv4Calculator::Subnet.new(address_ipv4)
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into an
+  # Converts the value of the <tt>address_ipv4</tt> attribute into an
   # IPv4 dotted-quad network address.
   def ipv4_network
     ipv4_calculated_subnet.network
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into an
+  # Converts the value of the <tt>address_ipv4</tt> attribute into an
   # IPv4 dotted-quad network mask.
   def ipv4_netmask
     ipv4_calculated_subnet.netmask
   end
 
-  # Converts the value of the <tt>ipv4_masked_address</tt> attribute into an
+  # Converts the value of the <tt>address_ipv4</tt> attribute into an
   # IPv4 dotted-quad broadcast address.
   def ipv4_broadcast
     ipv4_calculated_subnet.broadcast
@@ -145,7 +115,7 @@ class Interface < ActiveRecord::Base
         next if node_host == host
 
         node_host.interfaces.each do |interface|
-          if Ipv4Calculator::subnet_neighbor_match?(ipv4_masked_address, interface.ipv4_masked_address)
+          if Ipv4Calculator::subnet_neighbor_match?(address_ipv4, interface.address_ipv4)
             if interface.type.wireless && type.wireless
               if interface.wireless_interface && wireless_interface &&
                   (interface.wireless_interface.essid ==
@@ -196,5 +166,13 @@ class Interface < ActiveRecord::Base
       :height => height./(i),
       :error => error./(i)
     }
+  end
+
+  protected
+
+  before_validation :set_defaults, :on => :create
+
+  def set_defaults
+    self.code = name.parameterize if code.blank? and name
   end
 end

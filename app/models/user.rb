@@ -1,45 +1,35 @@
 class User < ApplicationRecord
-  has_many :host_logs
-  has_many :host_type_comments
-  has_many :node_comments
-  has_many :node_logs
-  has_many :node_maintainers
-  has_many :nodes, :through => :node_maintainers, :foreign_key => 'user_id'
   has_and_belongs_to_many :groups, :uniq => true
-  has_many :comments, :class_name => 'UserComment'
-  has_many :comments_on_others, :class_name => 'UserComment',
-           :foreign_key => 'commenting_user_id'
-  has_many :links, :class_name => 'UserLink'
-  has_many :logs, :class_name => 'UserLog'
-
+  has_many :user_links
   enum role: [:user, :manager, :admin]
-  after_initialize :set_default_role, :if => :new_record?
 
-  def set_default_role
-    self.role ||= :user
-  end
-
+  validates_length_of :code, maximum: 64
+  validates_uniqueness_of :code, allow_blank: true
+  validates_format_of :code, {
+    :with => %r{\A[-_a-zA-Z0-9]+\z},
+    :message => 'contains unacceptable characters',
+    :if => Proc.new { |o| o.code && o.code.size > 1 }
+  }
+  validates_uniqueness_of :name, allow_blank: true
+  validates_uniqueness_of :email
+  validates_format_of :email, {
+    :with => %r{\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)@([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z},
+    :message => 'must be a valid email address',
+    :if => Proc.new { |o| o.email && o.email.size > 1 }
+                      }
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
-  # This method returns an Array of all User instances who have either
-  # given this User a positive Comment or have received a positive
-  # Comment from this User.
-  def friends
-    friends = []
+  def to_param
+    [id, code].join('-')
+  end
 
-    comments.find_all_by_rating(1).each do |positive_comment|
-      unless friends.include? positive_comment.commenting_user
-        friends.push positive_comment.commenting_user
-      end
-    end
+  protected
 
-    comments_on_others.find_all_by_rating(1).each do |positive_comment|
-      unless friends.include? positive_comment.user
-        friends.push positive_comment.user
-      end
-    end
+  before_validation :set_defaults, :on => :create
 
-    friends
+  def set_defaults
+    self.code = name.parameterize if code.blank? and name
+    self.role ||= :user
   end
 end

@@ -27,6 +27,10 @@ class Host < ApplicationRecord
     :message => 'contains unacceptable characters',
     :if => Proc.new { |o| o.name.size > 1 }
 
+  def to_param
+    [id, name].join('-')
+  end
+
   # This method constructs an RGL::AdjacencyGraph instance based on this
   # Host instance, including related Interface instances and IPv4 neighbor
   # relationships.
