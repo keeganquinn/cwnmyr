@@ -29,7 +29,7 @@ feature 'User profile page', :devise do
   #   Then I do not see their email address
   scenario "user cannot see another user's email address" do
     me = FactoryGirl.create(:user)
-    other = FactoryGirl.create(:user, email: 'other@example.com')
+    other = FactoryGirl.create(:user, email: 'other@example.com', name: 'Other User')
     login_as(me, :scope => :user)
     Capybara.current_session.driver.header 'Referer', root_path
     visit user_path(other)
