@@ -5,8 +5,11 @@ class HostDashboard < Administrate::BaseDashboard
     id: Field::Number,
     node: Field::BelongsTo,
     name: Field::String,
+    host_type: Field::BelongsTo,
+    status: Field::BelongsTo,
     body: Field::Text,
     interfaces: Field::HasMany,
+    host_properties: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -14,14 +17,19 @@ class HostDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :node,
     :name,
+    :host_type,
+    :status,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :node,
     :name,
+    :host_type,
+    :status,
     :body,
     :interfaces,
+    :host_properties,
     :created_at,
     :updated_at,
   ].freeze
@@ -29,6 +37,8 @@ class HostDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :node,
     :name,
+    :host_type,
+    :status,
     :body,
   ].freeze
 

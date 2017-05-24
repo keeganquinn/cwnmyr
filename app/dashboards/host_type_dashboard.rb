@@ -6,6 +6,7 @@ class HostTypeDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     body: Field::Text,
+    hosts: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -20,6 +21,7 @@ class HostTypeDashboard < Administrate::BaseDashboard
     :code,
     :name,
     :body,
+    :hosts,
     :created_at,
     :updated_at,
   ].freeze

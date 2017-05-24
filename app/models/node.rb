@@ -3,7 +3,7 @@
 class Node < ApplicationRecord
   default_scope { order('zone_id, name ASC') }
 
-  belongs_to :contact
+  belongs_to :contact, optional: true
   belongs_to :status
   belongs_to :zone
   has_many :hosts

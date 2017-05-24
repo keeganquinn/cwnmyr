@@ -98,7 +98,7 @@ class InterfaceDashboard < Administrate::BaseDashboard
     :polarity,
   ].freeze
 
-  def display_resource(status)
-    "Status ##{status.to_param}"
+  def display_resource(interface)
+    "Interface ##{interface.to_param}"
   end
 end

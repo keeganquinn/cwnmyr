@@ -1,27 +1,14 @@
 # Each Host instance represents a network device which is used at a Node.
-# It includes dependencies on a HostType instance and a Status instance.
-#
-# Other relationships include Interface, HostLog, HostProperty
-# and HostService instances.
 class Host < ApplicationRecord
   default_scope { order('node_id, name ASC') }
 
   belongs_to :node
-  #belongs_to :type, :class_name => 'HostType', :foreign_key => 'host_type_id'
-  #belongs_to :status
+  belongs_to :host_type, optional: true
+  belongs_to :status
   has_many :interfaces
-  has_many :logs, :class_name => 'HostLog', :foreign_key => 'host_id'
-  has_many :properties, {
-    :class_name => 'HostProperty',
-    :foreign_key => 'host_id'
-  }
-  has_many :services, :class_name => 'HostService', :foreign_key => 'host_id'
+  has_many :host_properties
 
-  validates_presence_of :node_id
-  #validates_presence_of :host_type_id
-  #validates_presence_of :status_id
   validates_length_of :name, :minimum => 1
-  validates_length_of :name, :maximum => 64
   validates_uniqueness_of :name, :scope => :node_id
   validates_format_of :name, :with => %r{\A[-a-zA-Z0-9]+\z},
     :message => 'contains unacceptable characters',
