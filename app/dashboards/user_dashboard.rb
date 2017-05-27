@@ -3,7 +3,7 @@ require "administrate/base_dashboard"
 class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    email: Field::String,
+    email: Field::Email,
     encrypted_password: Field::String,
     reset_password_token: Field::String,
     reset_password_sent_at: Field::DateTime,
@@ -18,7 +18,7 @@ class UserDashboard < Administrate::BaseDashboard
     confirmation_token: Field::String,
     confirmed_at: Field::DateTime,
     confirmation_sent_at: Field::DateTime,
-    unconfirmed_email: Field::String,
+    unconfirmed_email: Field::Email,
     code: Field::String,
     name: Field::String,
     role: Field::String.with_options(searchable: false),

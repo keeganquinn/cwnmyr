@@ -6,7 +6,7 @@ class ContactDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     hidden: Field::Boolean,
-    email: Field::String,
+    email: Field::Email,
     phone: Field::String,
     notes: Field::Text,
     nodes: Field::HasMany,
@@ -15,9 +15,10 @@ class ContactDashboard < Administrate::BaseDashboard
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
-    :code,
     :name,
     :hidden,
+    :email,
+    :phone,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
