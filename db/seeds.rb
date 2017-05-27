@@ -8,7 +8,7 @@ group = Group.find_or_create_by(code: 'not', name: 'Network Operations Team')
 puts 'GROUP: ' << group.code
 
 
-hostType = HostType.find_or_create_by(code: 'test', name: 'Test Unit')
+hostType = HostType.find_or_create_by(code: 'test', name: 'Test Device')
 puts 'HOST TYPE: ' << hostType.code
 
 airrouter = HostType.find_or_create_by(code: 'airrouter', name: 'AirRouter')
@@ -63,8 +63,14 @@ wzr600dhp = HostType.find_or_create_by(code: 'wzr600dhp', name: 'WZR600DHP')
 puts 'HOST TYPE: ' << wzr600dhp.code
 
 
-interfaceType = InterfaceType.find_or_create_by(code: 'test', name: 'Test Port')
+interfaceType = InterfaceType.find_or_create_by(code: 'test', name: 'Test Interface')
 puts 'INTERFACE TYPE: ' << interfaceType.code
+
+pub = InterfaceType.find_or_create_by(code: 'pub', name: 'Public Network')
+puts 'INTERFACE TYPE: ' << pub.code
+
+priv = InterfaceType.find_or_create_by(code: 'priv', name: 'Private Network')
+puts 'INTERFACE TYPE: ' << priv.code
 
 
 statusActive = Status.find_or_create_by(code: 'active', name: 'Active', color: 'green')
