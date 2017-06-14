@@ -1,14 +1,14 @@
 $TTL			86400
 
-@			IN	SOA	ns1.<%= DnsDomain %>.	hostmaster.<%= DnsDomain %>.	(
+@			IN	SOA	ns1.<%= ENV["DOMAIN_NAME"] %>.	hostmaster.<%= ENV["DOMAIN_NAME"] %>.	(
 			<%= Time.now.strftime("%Y%m%d00") %> 10800 3600 604800 86400 )
 
-			NS	ns1.<%= DnsDomain %>.
+			NS	ns1.<%= ENV["DOMAIN_NAME"] %>.
 
-<% Zone.exposed.each do |zone| -%>
+<% Zone.all.each do |zone| -%>
 ; begin zone: <%= zone.code %> (<%= zone.name %>)
 
-<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% zone.nodes.each do |node| -%>
 ; begin node: <%= node.code %> (<%= node.name %>)
 <% node.hosts.each do |host| -%>
 <% if host.primary_interface -%>
@@ -16,9 +16,7 @@ $TTL			86400
 <% if host.external_interface -%>
 <%= node.code %>	CNAME	<%= host.name %>.<%= node.code %>
 <% end -%>
-<% if host.top_level_hostname? -%>
 <%= host.name %>	CNAME	<%= host.name %>.<%= node.code %>
-<% end -%>
 <% end -%>
 <% end -%>
 ; end node: <%= node.code %>

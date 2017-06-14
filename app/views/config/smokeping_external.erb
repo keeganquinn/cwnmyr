@@ -8,10 +8,10 @@ piddir   = /var/run/smokeping
 smokemail = /etc/smokeping/smokemail
 
 
-owner    = <%= SiteEmail %>
-contact  = <%= SiteEmail %>
-cgiurl   = <%= SiteLocator %>cgi-bin/smokeping.cgi
-mailhost = mail.<%= DnsDomain %>
+owner    = <%= ENV["DOMAIN_NAME"] %>
+contact  = <%= ENV["DOMAIN_NAME"] %>
+cgiurl   = <%= ENV["DOMAIN_NAME"] %>cgi-bin/smokeping.cgi
+mailhost = <%= ENV["DOMAIN_NAME"] %>
 syslogfacility = local0
 
 
@@ -34,7 +34,7 @@ AVERAGE  0.5 144   720
 
 template = /etc/smokeping/basepage.html
 
-+ overview 
++ overview
 
 width = 600
 height = 50
@@ -68,13 +68,13 @@ title = Network Latency Graph
 remark = Welcome to an Adhocracy-integrated SmokePing website.
 
 
-<% Zone.exposed.each do |zone| -%>
+<% Zone.all.each do |zone| -%>
 + <%= zone.code %>
 
 menu = <%= zone.name %>
 title = <%= zone.name %>
 
-<% zone.nodes.find_all_by_expose(true).each do |node| -%>
+<% zone.nodes.each do |node| -%>
 ++ <%= node.code %>
 
 menu = <%= node.name %>

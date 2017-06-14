@@ -1,0 +1,14 @@
+.container
+  %h1= t '.title'
+
+  %p= t '.description'
+
+  %ul
+    %li= link_to t(:external_dns_bind), :action => :dns_zone_external
+    %li= link_to t(:internal_dns_bind), :action => :dns_zone_internal
+    %li= link_to t(:external_smokeping), :action => :smokeping_external
+    %li= link_to t(:internal_smokeping), :action => :smokeping_internal
+    %li= link_to t(:external_nagios), :action => :nagios_external
+    %li= link_to t(:internal_nagios), :action => :nagios_internal
+
+  %p= link_to t(:return_home), root_path
