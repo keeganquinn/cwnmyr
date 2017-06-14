@@ -28,6 +28,12 @@ class NodesController < ApplicationController
       @map.overlay_init Clusterer.new(markers)
       @map.center_zoom_init markers.first.point, 15
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @node.to_json }
+      format.xml  { render :xml => @node.to_xml }
+    end
   end
 
   def new
