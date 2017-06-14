@@ -1,41 +1,13 @@
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
   before_action :authenticate_user!, :except => [
-    :comment_feed, :log_feed, :graph, :index, :show, :wl
+    :comment_feed, :log_feed, :graph, :show, :wl
   ]
   after_action :verify_authorized
 
-  def index
-    @nodes = Node.all
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @nodes.to_xml }
-    end
-  end
-
   def show
-    @node = Node.find_by_code(params[:code])
-
-    unless logged_in? or @node.expose?
-      redirect_to(:controller => 'welcome') and return
-    end
-
-    @page_heading = 'Node: ' + @node.name
-    @head_content = [
-      tag(:link, {
-            :rel => 'alternate',
-            :type => 'application/atom+xml',
-            :title => 'Node log feed (Atom)',
-            :href => url_for(:action => 'log_feed', :code => @node.code)
-          }),
-      tag(:link, {
-            :rel => 'alternate',
-            :type => 'application/atom+xml',
-            :title => 'Node comment feed (Atom)',
-            :href => url_for(:action => 'comment_feed', :code => @node.code)
-          })
-    ].join("\n")
+    @node = Node.find(params[:id])
+    authorize @node
 
     markers = []
     @node.hosts.each do |host|

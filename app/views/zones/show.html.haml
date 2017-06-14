@@ -1,43 +1,28 @@
-= textilize @zone.locality
+.container
+  %h1= @zone.name
 
-= zone_map
-
-%p.small
-  - if logged_in?
-    = @zone.expose? ? t('visible') : t('hidden')
+  %p.small
+    = t :code, code: @zone.code
     %br/
-  = t('created %s') % @zone.created_at.to_s(:db)
-  %br/
-  = t('updated %s') % @zone.updated_at.to_s(:db)
+    = t :created, date: @zone.created_at.to_s(:db)
+    %br/
+    = t :updated, date: @zone.updated_at.to_s(:db)
 
-- if logged_in?
-  %p
-    = link_to t('edit'), edit_zone_path
-    \|
-    = link_to t('remove'), zone_path, :method => :delete
+  = markdown @zone.body
 
-- unless @zone.nodes.empty? and !logged_in?
-  %h2= t('nodes')
-  %p.small= t('%d total') % @zone.nodes.count
+  = zone_map
+
+  %h2= Node.model_name.human(count: 2)
+
+  %p.small= t :total_numbered, count: @zone.nodes.count
 
   %ul
     - @zone.nodes.each do |node|
       %li
-        = link_to h(node.name), :controller => 'node', :action => 'show', :code => node.code
-        %span{:style => "color: ##{node.status.color}"} &larr;
+        = link_to h(node.name), url_for(node)
+        %span{style: "color: #{node.status.color}"} &larr;
         %span.small
           = surround '(', ')' do
-            = t(:hosts_numbered, :count => node.hosts.count)
-    - if logged_in?
-      %li= link_to t('new node'), :controller => 'node', :action => 'new', :zone_code => @zone
-
-- unless @zone.maintainers.empty? and !logged_in?
-  %h3= t('maintainers')
-  %p.small= t('%d total') % @zone.maintainers.count
-
-  %ul
-    - @zone.maintainers.each do |zone_maintainer|
-      %li
-        = link_to h(zone_maintainer.maintainer.login), :controller => 'zone_maintainer', :action => 'show', :id => zone_maintainer
-    - if logged_in?
-      %li= link_to t('add maintainer'), :controller => 'zone_maintainer', :action => 'new', :zone_id => @zone.id
+            = t :hosts_numbered, count: node.hosts.count
+    - if user_signed_in?
+      %li= link_to t('new node'), :controller => 'nodes', :action => 'new', :zone_code => @zone

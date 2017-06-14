@@ -1,33 +1,30 @@
-%h3= t '.welcome'
+.container
+  %h1= t '.title'
 
-%p
-  = t :cwnmyr
-  \-
-  = t :tagline
+  %p
+    = t :cwnmyr
+    \-
+    = t :tagline
 
-%p= t '.description'
+  %p= t '.description'
 
-- unless user_signed_in?
-  %h3= t :join_us
+  - unless user_signed_in?
+    %h2= t :join_us
+
+    %ul
+      %li= link_to t(:sign_in), user_session_path
+      %li= link_to t(:sign_up), new_user_registration_path
+
+  %h2= t :browse
+
+  %p= t '.browse_text'
 
   %ul
-    %li= link_to t(:sign_in), user_session_path
-    %li= link_to t(:sign_up), new_user_registration_path
+    - Zone.all.each do |zone|
+      %li
+        = link_to zone.name, url_for(zone)
+        %span.small
+          = surround '(', ')' do
+            = t :nodes_numbered, count: zone.nodes.count
 
-%h3= t :browse
-
-%p= t :front_page_browse_text
-
-%ul
-  %li
-    = link_to t(:zones), zones_path
-    %span.small
-      = surround '(', ')' do
-        = t :total_numbered, :count => Zone.count
-  %li
-    = link_to t(:users), users_path
-    %span.small
-      = surround '(', ')' do
-        = t :total_numbered, :count => User.count
-
-%p= link_to t(:server_configuration_files), config_path
+  %p= link_to t('config.index.title'), config_path

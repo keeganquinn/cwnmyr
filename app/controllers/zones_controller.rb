@@ -1,33 +1,11 @@
 # This controller allows the management of Zone records.
 class ZonesController < ApplicationController
-  before_action :authenticate_user!, :except => [ :index, :show ]
-  before_action :load_zone, :except => [ :index, :create, :new ]
+  before_action :authenticate_user!, :except => [ :show ]
   after_action :verify_authorized
 
-  protected
-
-  # Load a Zone record as an instance variable based on the identifier
-  # provided as a request parameter.  This method is usually called as a
-  # before_filter.
-  def load_zone
-    @zone = Zone.find_by_param(params[:id])
-    redirect_to(zones_path) and return false unless @zone
-  end
-
-  public
-
-  # Display a list of Zone records.
-  def index
-    @zones = Zone.paginate :page => params[:page]
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @zones.to_xml }
-    end
-  end
-
-  # Display a single Zone record.
   def show
+    @zone = Zone.find(params[:id])
+    authorize @zone
     respond_to do |format|
       format.html
       format.xml  { render :xml => @zone.to_xml }

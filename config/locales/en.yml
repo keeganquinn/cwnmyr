@@ -8,27 +8,54 @@ en:
   signed_in: Signed In
   account: Account
   create: Create
-  created: Created %s
-  updated: Updated %s
+  code: "Code: %{code}"
+  zone: "Zone: %{zone}"
+  status: "Status: %{status}"
+  created: "Created: %{date}"
+  updated: "Updated: %{date}"
   total_numbered: "%{count} total"
+  nodes_numbered:
+    one: "one node"
+    other: "%{count} nodes"
+  hosts_numbered:
+    one: "one host"
+    other: "%{count} hosts"
   activerecord:
     models:
+      host:
+        one: Host
+        other: Hosts
+      node:
+        one: Node
+        other: Nodes
+      node_link:
+        one: Node Link
+        other: Node Links
       user:
         one: User
         other: Users
+      zone:
+        one: Zone
+        other: Zones
     attributes:
       user:
         email: Email Address
         password: Password
         password_confirmation: Password Confirmation
+  config:
+    index:
+      title: Configuration Files
+      description: Generate configuration files for a variety of software from the data in this system.
   devise:
     confirmations:
       new:
         title: Resend confirmation
         submit: Resend confirmation instructions
-  welcome:
+  visitors:
     index:
-      description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network. 
+      title: Welcome
+      description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network.
+      browse_text: Select a zone.
   zones:
     new:
       heading: New Zone

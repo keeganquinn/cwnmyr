@@ -1,0 +1,46 @@
+.container
+  %h1= @node.name
+
+  %p.small
+    = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
+    %br/
+    = t :code, code: @node.code
+    %br/
+    = t :created, date: @node.created_at.to_s(:db)
+    %br/
+    = t :updated, date: @node.updated_at.to_s(:db)
+    %br/
+    %span{style: "color: #{@node.status.color}"}
+      = t :status, status: @node.status.name
+
+  = markdown @node.body
+
+  - if @node.address?
+    %p= @node.address
+
+  - if @map
+    = @map.div(:width => 320, :height => 240)
+
+  - if @node.hours?
+    %p= @node.hours
+
+  - if @node.notes?
+    = markdown @node.notes
+
+  %h2= NodeLink.model_name.human(count: 2)
+
+  %ul
+    - @node.node_links.each do |node_link|
+      %li
+        = node_link.name
+        = link_to node_link.url, node_link.url
+    - if current_user.try(:admin?) or @node.user == current_user
+      %li= link_to :create, url_for(@node)
+
+  %h2= Host.model_name.human(count: 2)
+
+  %ul
+    - @node.hosts.each do |host|
+      %li= host.name
+    - if current_user.try(:admin?) or @node.user == current_user
+      %li= link_to :create, url_for(@node)
