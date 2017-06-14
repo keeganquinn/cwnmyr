@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_and_belongs_to_many :groups, :uniq => true
+  has_many :nodes
   has_many :user_links
   enum role: [:user, :manager, :admin]
 

@@ -42,12 +42,8 @@ class Host < ApplicationRecord
     return nil if interfaces.empty?
     return interfaces.first if interfaces.size == 1
 
-    return nil unless t = InterfacePropertyType.find_by_code('primary')
-
     interfaces.each do |interface|
-      if property = interface.properties.find_by_interface_property_type_id(t.id)
-        return interface
-      end
+      return interface  # FIXME if interface is primary
     end
 
     return nil
@@ -58,12 +54,8 @@ class Host < ApplicationRecord
   def external_interface
     return nil if interfaces.empty?
 
-    return nil unless t = InterfacePropertyType.find_by_code('default_route')
-
     interfaces.each do |interface|
-      if property = interface.properties.find_by_interface_property_type_id(t.id)
-        return interface
-      end
+      return interface  # FIXME if interface is external
     end
 
     return nil
@@ -75,7 +67,7 @@ class Host < ApplicationRecord
     latitude, longitude, height, error, i = 0.0, 0.0, 0.0, 0.0, 0
 
     interfaces.each do |interface|
-      if point = interface.average_point
+      if point = interface.point
         i += 1
         latitude += point[:latitude]
         longitude += point[:longitude]

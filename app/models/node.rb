@@ -5,6 +5,7 @@ class Node < ApplicationRecord
 
   belongs_to :contact, optional: true
   belongs_to :status
+  belongs_to :user, optional: true
   belongs_to :zone
   has_many :hosts
   has_many :node_links

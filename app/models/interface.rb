@@ -65,6 +65,7 @@ class Interface < ApplicationRecord
   # CIDR notation String instance.
   def ipv4_address
     address_ipv4 =~ %r{^(\d+)\.(\d+)\.(\d+)\.(\d+)/(\d+)$}
+    return nil unless $1 and $2 and $3 and $4
     $1 + '.' + $2 + '.' + $3 + '.' + $4
   end
 
@@ -147,24 +148,13 @@ class Interface < ApplicationRecord
 
   # This method calculates the median average center point of this
   # Interface instance based on data from the InterfacePoint model.
-  def average_point
-    latitude, longitude, height, error, i = 0.0, 0.0, 0.0, 0.0, 0
-
-    points.each do |point|
-      i += 1
-      latitude += point.latitude
-      longitude += point.longitude
-      height += point.height
-      error += point.error
-    end
-
-    return nil if i == 0
-
+  def point
+    return nil unless latitude and longitude and altitude
     {
-      :latitude => latitude./(i),
-      :longitude => longitude./(i),
-      :height => height./(i),
-      :error => error./(i)
+      :latitude => latitude,
+      :longitude => longitude,
+      :height => altitude,
+      :error => 0
     }
   end
 
