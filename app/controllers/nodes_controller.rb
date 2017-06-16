@@ -36,6 +36,13 @@ class NodesController < ApplicationController
     end
   end
 
+  def markers
+    @node = Node.find(params[:id])
+    authorize @node
+
+    render :json => [{'lat': @node.latitude, 'lng': @node.longitude}]
+  end
+
   def new
     @node = Node.new(params[:node])
     @node.zone = Zone.find_by_code params[:zone_code]

@@ -68,6 +68,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'underscore-rails'
+gem 'gmaps4rails'
 gem 'netaddr', :require => 'cidr'
 gem 'rgl', :require => 'rgl/adjacency'
 gem 'rmagick'

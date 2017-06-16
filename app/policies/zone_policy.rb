@@ -13,4 +13,8 @@ class ZonePolicy
   def show?
     true
   end
+
+  def markers?
+    true
+  end
 end

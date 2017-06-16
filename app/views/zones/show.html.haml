@@ -10,7 +10,7 @@
 
   = markdown @zone.body
 
-  = zone_map
+  #map{"data-zone": @zone.to_param}
 
   %h2= Node.model_name.human(count: 2)
 

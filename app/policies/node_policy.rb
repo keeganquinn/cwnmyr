@@ -9,4 +9,8 @@ class NodePolicy
   def show?
     true
   end
+
+  def markers?
+    true
+  end
 end

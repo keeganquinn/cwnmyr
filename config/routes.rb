@@ -7,7 +7,18 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   devise_for :users
-  resources :nodes, :users, :zones
+  resources :users
+
+  resources :zones do
+    member do
+      get 'markers'
+    end
+  end
+  resources :nodes do
+    member do
+      get 'markers'
+    end
+  end
 
   get 'config' => 'config#index', as: :config
   get 'config/dns_zone_external' => 'config#dns_zone_external'

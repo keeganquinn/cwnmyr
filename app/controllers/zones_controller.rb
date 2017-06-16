@@ -23,4 +23,18 @@ class ZonesController < ApplicationController
       format.xml  { render :xml => @zone.to_xml }
     end
   end
+
+  def markers
+    @zone = Zone.find(params[:id])
+    authorize @zone
+
+    markers = []
+    @zone.nodes.each do |node|
+      if node.latitude and node.longitude
+        markers << {'lat': node.latitude, 'lng': node.longitude}
+      end
+    end
+
+    render :json => markers
+  end
 end

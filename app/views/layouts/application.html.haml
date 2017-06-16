@@ -6,6 +6,9 @@
     %meta{name: "description", content: "#{content_for?(:description) ? yield(:description) : t(:cwnmyr)}"}>
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
     = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}"
+    = javascript_include_tag '//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js'
+    = javascript_include_tag '//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js'
     = csrf_meta_tags
   %body
     %header
