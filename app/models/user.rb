@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   protected
 
-  before_validation :set_defaults, :on => :create
+  before_validation :set_defaults
 
   def set_defaults
     self.code = name.parameterize if code.blank? and name
