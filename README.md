@@ -19,8 +19,8 @@ Status
 This software is partially functional, with continued development ongoing.
 Several public-facing live instances of the app are now operational.
 
-Production deployment: https://cwnmyr.quinn.tk/
-Staging deployment: https://cwnmyr-staging.quinn.tk/
-Test deployment: https://cwnmyr.herokuapp.com/
+ * Production deployment: https://cwnmyr.quinn.tk/
+ * Staging deployment: https://cwnmyr-staging.quinn.tk/
+ * Test deployment: https://cwnmyr.herokuapp.com/
 
 Feedback, bug reports, and pull requests are very welcome.
