@@ -16,6 +16,11 @@ should work with any other DBMS supported by Rails.
 Status
 ------
 
-This software is being rewritten to meet current standards. It is not
-presently suitable for non-developer use. However, any feedback or input
-regarding the design would be appreciated.
+This software is partially functional, with continued development ongoing.
+Several public-facing live instances of the app are now operational.
+
+Production deployment: https://cwnmyr.quinn.tk/
+Staging deployment: https://cwnmyr-staging.quinn.tk/
+Test deployment: https://cwnmyr.herokuapp.com/
+
+Feedback, bug reports, and pull requests are very welcome.
