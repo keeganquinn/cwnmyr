@@ -44,25 +44,24 @@ class NodesController < ApplicationController
   end
 
   def new
-    @node = Node.new(params[:node])
-    @node.zone = Zone.find_by_code params[:zone_code]
+    @node = Node.new
+    authorize @node
+    @node.zone = Zone.find(params[:zone])
     @node.user = current_user
+  end
 
-    @page_heading = 'New node'
-
-    unless request.post?
-      @node.country = AH_DEFAULT_COUNTRY
-      @node.state = AH_DEFAULT_STATE
-      @node.city = AH_DEFAULT_CITY
-      return
-    end
+  def create
+    @node = Node.new(node_params)
+    authorize @node
+    @node.zone = Zone.find(params[:zone])
+    @node.user = current_user
 
     if @node.save
       flash[:notice] = 'Node was successfully created.'
 
-      redirect_to(:controller => 'zone',
-                  :action => 'show',
-                  :code => @node.zone.code)
+      redirect_to url_for(@node)
+    else
+      render :new
     end
   end
 
@@ -130,5 +129,11 @@ class NodesController < ApplicationController
     end
 
     render :layout => false
+  end
+
+  private
+
+  def node_params
+    params.require(:node).permit(:code, :name, :status_id, :body, :address)
   end
 end

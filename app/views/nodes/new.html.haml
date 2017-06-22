@@ -1,0 +1,7 @@
+.container
+  %h1= t '.title'
+
+  = form_tag nodes_path(zone: @node.zone) do
+    = render :partial => 'form'
+
+    = submit_tag t(:create)

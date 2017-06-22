@@ -13,6 +13,9 @@ en:
   status: "Status: %{status}"
   created: "Created: %{date}"
   updated: "Updated: %{date}"
+  errors:
+    one: "One error prevented this %{thing} from being saved:"
+    other: "%{count} errors prevented this %{thing} from being saved:"
   total_numbered: "%{count} total"
   nodes_numbered:
     one: "one node"
@@ -56,6 +59,6 @@ en:
       title: Welcome
       description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network.
       browse_text: Select a zone.
-  zones:
+  nodes:
     new:
-      heading: New Zone
+      title: New Node

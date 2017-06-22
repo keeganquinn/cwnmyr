@@ -25,4 +25,4 @@
           = surround '(', ')' do
             = t :hosts_numbered, count: node.hosts.count
     - if user_signed_in?
-      %li= link_to t('new node'), :controller => 'nodes', :action => 'new', :zone_code => @zone
+      %li= link_to t('new node'), :controller => 'nodes', :action => 'new', :zone => @zone

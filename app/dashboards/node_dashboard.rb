@@ -6,6 +6,7 @@ class NodeDashboard < Administrate::BaseDashboard
     zone: Field::BelongsTo,
     code: Field::String,
     name: Field::String,
+    user: Field::BelongsTo,
     status: Field::BelongsTo,
     body: Field::Text,
     address: Field::Text,
@@ -25,6 +26,7 @@ class NodeDashboard < Administrate::BaseDashboard
     :zone,
     :code,
     :name,
+    :user,
     :status,
   ].freeze
 
@@ -33,6 +35,7 @@ class NodeDashboard < Administrate::BaseDashboard
     :zone,
     :code,
     :name,
+    :user,
     :status,
     :body,
     :address,
@@ -52,6 +55,7 @@ class NodeDashboard < Administrate::BaseDashboard
     :zone,
     :code,
     :name,
+    :user,
     :status,
     :body,
     :address,

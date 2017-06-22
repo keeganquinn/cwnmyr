@@ -1,0 +1,37 @@
+- if @node.errors.any?
+  #error_explanation
+    %h2= t :errors, count: @node.errors.count, thing: Node.model_name.human
+
+    %ul
+      - @node.errors.full_messages.each do |msg|
+        %li= msg
+
+%p
+  %label{for: "node_code"}= Node.human_attribute_name('code')
+  %br/
+  = text_field 'node', 'code', size: 16, maxlength: 64
+
+%p
+  %label{for: "node_name"}= Node.human_attribute_name('name')
+  %span{class: "required"}= '*'
+  %br/
+  = text_field 'node', 'name'
+
+%p
+  %label{for: "node_status"}= Node.human_attribute_name('status')
+  %br/
+  = collection_select 'node', 'status_id', Status.all, 'id', 'name'
+
+%p
+  %label{for: "node_body"}= Node.human_attribute_name('body')
+  %br/
+  = text_area 'node', 'body', cols: 72, rows: 12
+
+%p
+  %label{for: "node_address"}= Node.human_attribute_name('address')
+  %br/
+  = text_area 'node', 'address', cols: 40, rows: 2
+
+%p{class: "small"}
+  %span{class: "required"}= '*'
+  denotes a required field

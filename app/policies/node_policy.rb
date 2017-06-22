@@ -13,4 +13,12 @@ class NodePolicy
   def markers?
     true
   end
+
+  def new?
+    @current_user
+  end
+
+  def create?
+    @current_user
+  end
 end
