@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
+  resources :hosts, :node_links, :markers
 
   resources :zones do
     member do

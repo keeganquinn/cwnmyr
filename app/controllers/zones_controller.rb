@@ -8,8 +8,8 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to visitors_path }
-      format.json { render :json => @zones.to_json }
-      format.xml  { render :xml => @zones.to_xml }
+      format.json { render json: @zones.to_json }
+      format.xml  { render xml: @zones.to_xml }
     end
   end
 
@@ -19,8 +19,8 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @zone.to_json }
-      format.xml  { render :xml => @zone.to_xml }
+      format.json { render json: @zone.to_json }
+      format.xml  { render xml: @zone.to_xml }
     end
   end
 
@@ -31,10 +31,10 @@ class ZonesController < ApplicationController
     markers = []
     @zone.nodes.each do |node|
       if node.latitude and node.longitude
-        markers << {'lat': node.latitude, 'lng': node.longitude}
+        markers << {lat: node.latitude, lng: node.longitude, marker_title: node.name, infowindow: render_to_string(partial: 'nodes/marker', locals: { node: node })}
       end
     end
 
-    render :json => markers
+    render json: markers
   end
 end

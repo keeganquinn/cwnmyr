@@ -20,8 +20,24 @@
 
 .form-group
   %label{for: "node_body"}= Node.human_attribute_name('body')
-  = text_area 'node', 'body', cols: 72, rows: 8, class: 'form-control'
+  = text_area 'node', 'body', rows: 8, class: 'form-control'
 
 .form-group
   %label{for: "node_address"}= Node.human_attribute_name('address')
-  = text_area 'node', 'address', cols: 40, rows: 4, class: 'form-control'
+  = text_field 'node', 'address', class: 'form-control'
+
+.form-group
+  %label{for: "node_latitude"}= Node.human_attribute_name('latitude')
+  = text_field 'node', 'latitude', class: 'form-control'
+
+.form-group
+  %label{for: "node_longitude"}= Node.human_attribute_name('longitude')
+  = text_field 'node', 'longitude', class: 'form-control'
+
+.form-group
+  %label{for: "node_hours"}= Node.human_attribute_name('hours')
+  = text_field 'node', 'hours', class: 'form-control'
+
+.form-group
+  %label{for: "node_notes"}= Node.human_attribute_name('notes')
+  = text_area 'node', 'notes', rows: 8, class: 'form-control'

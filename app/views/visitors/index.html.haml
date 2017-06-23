@@ -1,11 +1,6 @@
 .container
   %h1= t '.title'
 
-  %p
-    = t :cwnmyr
-    \-
-    = t :tagline
-
   %p= t '.description'
 
   - unless user_signed_in?
@@ -14,6 +9,8 @@
     %ul
       %li= link_to t(:sign_in), user_session_path
       %li= link_to t(:sign_up), new_user_registration_path
+
+  #map{"data-center": "disco"}
 
   %h2= t :browse
 

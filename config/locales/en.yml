@@ -8,11 +8,14 @@ en:
   signed_in: Signed In
   account: Account
   create: Create
+  edit: Edit
   update: Update
   cancel: Cancel
+  delete: Delete
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
   status: "Status: %{status}"
+  hours: "Hours: %{hours}"
   created: "Created: %{date}"
   updated: "Updated: %{date}"
   confirm_delete: "Are you sure you want to delete this %{thing}?"
@@ -35,8 +38,8 @@ en:
         one: Node
         other: Nodes
       node_link:
-        one: Node Link
-        other: Node Links
+        one: Link
+        other: Links
       user:
         one: User
         other: Users
@@ -71,5 +74,5 @@ en:
   visitors:
     index:
       title: Welcome
-      description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network.
+      description: Looking for a node?
       browse_text: Select a zone.

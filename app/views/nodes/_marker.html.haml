@@ -1,0 +1,11 @@
+= link_to node.name, url_for(node)
+
+%p.small
+  %span{style: "color: #{node.status.color}"}
+    = t :status, status: node.status.name
+
+- if node.address
+  %p= node.address
+
+- if node.hours?
+  %p= t :hours, hours: node.hours

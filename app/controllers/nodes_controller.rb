@@ -40,7 +40,7 @@ class NodesController < ApplicationController
     @node = Node.find(params[:id])
     authorize @node
 
-    render :json => [{'lat': @node.latitude, 'lng': @node.longitude}]
+    render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker', locals: { node: @node })}]
   end
 
   def new
@@ -134,6 +134,6 @@ class NodesController < ApplicationController
   private
 
   def node_params
-    params.require(:node).permit(:code, :name, :status_id, :body, :address)
+    params.require(:node).permit(:code, :name, :status_id, :body, :address, :latitude, :longitude, :hours, :notes)
   end
 end

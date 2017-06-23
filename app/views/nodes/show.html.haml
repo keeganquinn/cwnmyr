@@ -4,7 +4,7 @@
       %h1= @node.name
 
   .row
-    .col-md-8
+    .col-md-7
       = markdown @node.body
 
       - if @node.notes?
@@ -18,7 +18,11 @@
             = node_link.name
             = link_to node_link.url, node_link.url
         - if current_user.try(:admin?) or @node.user == current_user
-          %li#create_link= link_to :create, url_for(@node)
+          %li
+            = form_tag node_links_path(node: @node), class: 'form-inline' do
+              .form-group
+                %label.sr-only{for: "node_link_name"}= NodeLink.human_attribute_name('name')
+                = text_field 'node_link', 'name', class: 'form-control', placeholder: NodeLink.human_attribute_name('name')
 
       %h2= Host.model_name.human(count: 2)
 
@@ -26,22 +30,22 @@
         - @node.hosts.each do |host|
           %li= host.name
         - if current_user.try(:admin?) or @node.user == current_user
-          %li#create_host= link_to :create, url_for(@node)
+          %li
+            = form_tag hosts_path(node: @node), class: 'form-inline' do
+              .form-group
+                %label.sr-only{for: "host_name"}= Host.human_attribute_name('name')
+                = text_field 'host', 'name', class: 'form-control', placeholder: Host.human_attribute_name('name')
 
-    .col-md-4
+    .col-md-5
+      - if current_user.try(:admin?) or @node.user == current_user
+        %p
+          = link_to t(:edit), edit_node_path(@node), class: 'btn btn-warning'
+          = link_to t(:delete), url_for(@node), method: :delete, data: { confirm: t(:confirm_delete, thing: Node.model_name.human.downcase) }, class: 'btn btn-danger'
+
       %p.small
-        - if current_user.try(:admin?) or @node.user == current_user
-          = link_to t(:edit_node), edit_node_path(@node)
-          %br/
-          = link_to t(:delete_node), url_for(@node), method: :delete, data: { confirm: t(:confirm_delete, thing: Node.model_name.human.downcase) }
-          %br/
         = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
         %br/
         = t :code, code: @node.code
-        %br/
-        = t :created, date: @node.created_at.to_s(:db)
-        %br/
-        = t :updated, date: @node.updated_at.to_s(:db)
         %br/
         %span{style: "color: #{@node.status.color}"}
           = t :status, status: @node.status.name
@@ -50,6 +54,7 @@
         %p= @node.address
 
       - if @node.hours?
-        %p= @node.hours
+        %p= t :hours, hours: @node.hours
 
-      #map{"data-node": @node.to_param}
+      - if @node.latitude and @node.longitude
+        #map{"data-node": @node.to_param}

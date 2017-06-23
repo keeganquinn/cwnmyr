@@ -1,13 +1,6 @@
 .container
   %h1= h @zone.name
 
-  %p.small
-    = t :code, code: @zone.code
-    %br/
-    = t :created, date: @zone.created_at.to_s(:db)
-    %br/
-    = t :updated, date: @zone.updated_at.to_s(:db)
-
   = markdown @zone.body
 
   #map{"data-zone": @zone.to_param}
