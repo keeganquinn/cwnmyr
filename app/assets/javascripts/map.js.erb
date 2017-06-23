@@ -8,7 +8,7 @@ function displayMap (data) {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
       picture: {
-        url: window.location.protocol + '//' + window.location.host + '/assets/position_small.png',
+        url: window.location.protocol + '//' + window.location.host + '<%= asset_path('position_small.png') %>',
         width: 32,
         height: 32
       },
