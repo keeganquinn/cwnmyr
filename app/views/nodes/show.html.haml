@@ -5,6 +5,11 @@
 
   .row
     .col-md-7
+      - if current_user.try(:admin?) or @node.user == current_user
+        %p
+          = link_to t(:edit), edit_node_path(@node), class: 'btn btn-warning'
+          = link_to t(:delete), url_for(@node), method: :delete, data: { confirm: t(:confirm_delete, thing: Node.model_name.human.downcase) }, class: 'btn btn-danger'
+
       = markdown @node.body
 
       - if @node.notes?
@@ -17,31 +22,53 @@
           %li
             = node_link.name
             = link_to node_link.url, node_link.url
+            - if current_user.try(:admin?) or @node.user == current_user
+              = link_to url_for(node_link), method: :delete, data: { confirm: t(:confirm_delete, thing: NodeLink.model_name.human.downcase) } do
+                %span.glyphicon.glyphicon-remove/
         - if current_user.try(:admin?) or @node.user == current_user
           %li
             = form_tag node_links_path(node: @node), class: 'form-inline' do
+              - if @node_link and @node_link.errors.any?
+                #error_explanation
+                  = t :errors, count: @node_link.errors.count, thing: NodeLink.model_name.human.downcase
+                  %ul
+                    - @node_link.errors.full_messages.each do |msg|
+                      %li= msg
               .form-group
                 %label.sr-only{for: "node_link_name"}= NodeLink.human_attribute_name('name')
                 = text_field 'node_link', 'name', class: 'form-control', placeholder: NodeLink.human_attribute_name('name')
+              .form-group
+                %label.sr-only{for: "node_link_url"}= NodeLink.human_attribute_name('url')
+                = text_field 'node_link', 'url', class: 'form-control', placeholder: NodeLink.human_attribute_name('url')
+              = submit_tag t(:create), class: 'btn btn-primary'
 
       %h2= Host.model_name.human(count: 2)
 
       %ul
         - @node.hosts.each do |host|
-          %li= host.name
+          %li
+            = host.name
+            - if current_user.try(:admin?) or @node.user == current_user
+              = link_to url_for(host), method: :delete, data: { confirm: t(:confirm_delete, thing: Host.model_name.human.downcase) } do
+                %span.glyphicon.glyphicon-remove/
         - if current_user.try(:admin?) or @node.user == current_user
           %li
             = form_tag hosts_path(node: @node), class: 'form-inline' do
+              - if @host and @host.errors.any?
+                #error_explanation
+                  = t :errors, count: @host.errors.count, thing: Host.model_name.human.downcase
+                  %ul
+                    - @host.errors.full_messages.each do |msg|
+                      %li= msg
               .form-group
                 %label.sr-only{for: "host_name"}= Host.human_attribute_name('name')
                 = text_field 'host', 'name', class: 'form-control', placeholder: Host.human_attribute_name('name')
+              .form-group
+                %label.sr-only{for: "host_status_id"}= Host.human_attribute_name('status')
+                = collection_select 'host', 'status_id', Status.all, 'id', 'name', {}, { class: 'form-control' }
+              = submit_tag t(:create), class: 'btn btn-primary'
 
     .col-md-5
-      - if current_user.try(:admin?) or @node.user == current_user
-        %p
-          = link_to t(:edit), edit_node_path(@node), class: 'btn btn-warning'
-          = link_to t(:delete), url_for(@node), method: :delete, data: { confirm: t(:confirm_delete, thing: Node.model_name.human.downcase) }, class: 'btn btn-danger'
-
       %p.small
         = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
         %br/
