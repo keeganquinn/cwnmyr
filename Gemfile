@@ -69,6 +69,7 @@ group :test do
 end
 
 gem 'underscore-rails'
+gem 'geocoder'
 gem 'gmaps4rails'
 gem 'netaddr', :require => 'cidr'
 gem 'rgl', :require => 'rgl/adjacency'
