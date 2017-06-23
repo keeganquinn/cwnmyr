@@ -19,6 +19,9 @@ en:
   created: "Created: %{date}"
   updated: "Updated: %{date}"
   confirm_delete: "Are you sure you want to delete this %{thing}?"
+  create_success: "%{thing} has been successfully created."
+  update_success: "%{thing} has been successfully updated."
+  delete_success: "%{thing} has been successfully deleted."
   errors:
     one: "One error prevented this %{thing} from being saved:"
     other: "%{count} errors prevented this %{thing} from being saved:"
@@ -47,6 +50,8 @@ en:
         one: Zone
         other: Zones
     attributes:
+      node_link:
+        url: URL
       user:
         email: Email Address
         password: Password
@@ -63,14 +68,8 @@ en:
   nodes:
     new:
       title: New Node
-    create:
-      success: Node has been successfully created.
     edit:
       title: Edit Node
-    update:
-      success: Node has been successfully updated.
-    destroy:
-      success: Node has been successfully deleted.
   visitors:
     index:
       title: Welcome

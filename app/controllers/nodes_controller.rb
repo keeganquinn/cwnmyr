@@ -1,38 +1,23 @@
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
-  before_action :authenticate_user!, :except => [
-    :comment_feed, :log_feed, :graph, :show, :wl
+  before_action :authenticate_user!, except: [
+    :comment_feed, :log_feed, :graph, :index, :show, :wl
   ]
   after_action :verify_authorized
+
+  def index
+    authorize Node
+    redirect_to root_path
+  end
 
   def show
     @node = Node.find(params[:id])
     authorize @node
 
-    markers = []
-    @node.hosts.each do |host|
-      if point = host.average_point
-        markers << GMarker.new([point[:latitude], point[:longitude]],
-                               :title => host.name,
-                               :info_window => "<a href=\"" +
-                                   url_for(:controller => 'host',
-                                           :action => 'show',
-                                           :node_code => @node.code,
-                                           :hostname => host.name) +
-                                   "\">" + host.name + "</a>")
-      end
-    end
-
-    unless markers.empty?
-      @map = GMap.new('node_map')
-      @map.overlay_init Clusterer.new(markers)
-      @map.center_zoom_init markers.first.point, 15
-    end
-
     respond_to do |format|
       format.html
-      format.json { render :json => @node.to_json }
-      format.xml  { render :xml => @node.to_xml }
+      format.json { render json: @node.to_json }
+      format.xml  { render xml: @node.to_xml }
     end
   end
 
@@ -52,12 +37,12 @@ class NodesController < ApplicationController
 
   def create
     @node = Node.new(node_params)
-    authorize @node
     @node.zone = Zone.find(params[:zone])
     @node.user = current_user
+    authorize @node
 
     if @node.save
-      flash[:notice] = t('.success')
+      flash[:notice] = t(:create_success, thing: Node.model_name.human)
       redirect_to url_for(@node)
     else
       render :new
@@ -73,7 +58,7 @@ class NodesController < ApplicationController
     @node = Node.find(params[:id])
     authorize @node
     if @node.update_attributes(node_params)
-      flash[:notice] = t('.success')
+      flash[:notice] = t(:update_success, thing: Node.model_name.human)
       redirect_to url_for(@node)
     else
       render :edit
@@ -86,7 +71,7 @@ class NodesController < ApplicationController
     authorize node
     node.destroy
 
-    flash[:notice] = t('.success')
+    flash[:notice] = t(:delete_success, thing: Node.model_name.human)
     redirect_to url_for(zone)
   end
 
