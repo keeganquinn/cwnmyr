@@ -19,7 +19,7 @@ function displayMap (data) {
     }
   }
 
-  handler.buildMap({provider: {zoom: 17}, internal: {id: 'map'}}, function () {
+  handler.buildMap({provider: {minZoom: 11, zoom: 17}, internal: {id: 'map'}}, function () {
     var markers = handler.addMarkers(data)
     handler.bounds.extendWith(markers)
     if (markers.length > 1) {
