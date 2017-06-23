@@ -1,37 +1,27 @@
 - if @node.errors.any?
   #error_explanation
-    %h2= t :errors, count: @node.errors.count, thing: Node.model_name.human
+    = t :errors, count: @node.errors.count, thing: Node.model_name.human.downcase
 
     %ul
       - @node.errors.full_messages.each do |msg|
         %li= msg
 
-%p
+.form-group
   %label{for: "node_code"}= Node.human_attribute_name('code')
-  %br/
-  = text_field 'node', 'code', size: 16, maxlength: 64
+  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control'
 
-%p
+.form-group
   %label{for: "node_name"}= Node.human_attribute_name('name')
-  %span{class: "required"}= '*'
-  %br/
-  = text_field 'node', 'name'
+  = text_field 'node', 'name', class: 'form-control'
 
-%p
-  %label{for: "node_status"}= Node.human_attribute_name('status')
-  %br/
-  = collection_select 'node', 'status_id', Status.all, 'id', 'name'
+.form-group
+  %label{for: "node_status_id"}= Node.human_attribute_name('status')
+  = collection_select 'node', 'status_id', Status.all, 'id', 'name', {}, { class: 'form-control' }
 
-%p
+.form-group
   %label{for: "node_body"}= Node.human_attribute_name('body')
-  %br/
-  = text_area 'node', 'body', cols: 72, rows: 12
+  = text_area 'node', 'body', cols: 72, rows: 8, class: 'form-control'
 
-%p
+.form-group
   %label{for: "node_address"}= Node.human_attribute_name('address')
-  %br/
-  = text_area 'node', 'address', cols: 40, rows: 2
-
-%p{class: "small"}
-  %span{class: "required"}= '*'
-  denotes a required field
+  = text_area 'node', 'address', cols: 40, rows: 4, class: 'form-control'

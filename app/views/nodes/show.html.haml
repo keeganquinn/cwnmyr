@@ -18,7 +18,7 @@
             = node_link.name
             = link_to node_link.url, node_link.url
         - if current_user.try(:admin?) or @node.user == current_user
-          %li= link_to :create, url_for(@node)
+          %li#create_link= link_to :create, url_for(@node)
 
       %h2= Host.model_name.human(count: 2)
 
@@ -26,10 +26,15 @@
         - @node.hosts.each do |host|
           %li= host.name
         - if current_user.try(:admin?) or @node.user == current_user
-          %li= link_to :create, url_for(@node)
+          %li#create_host= link_to :create, url_for(@node)
 
     .col-md-4
       %p.small
+        - if current_user.try(:admin?) or @node.user == current_user
+          = link_to t(:edit_node), edit_node_path(@node)
+          %br/
+          = link_to t(:delete_node), url_for(@node), method: :delete, data: { confirm: t(:confirm_delete, thing: Node.model_name.human.downcase) }
+          %br/
         = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
         %br/
         = t :code, code: @node.code

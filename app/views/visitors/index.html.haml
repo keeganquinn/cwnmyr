@@ -22,9 +22,20 @@
   %ul
     - Zone.all.each do |zone|
       %li
-        = link_to zone.name, url_for(zone)
+        = link_to h(zone.name), url_for(zone)
         %span.small
           = surround '(', ')' do
             = t :nodes_numbered, count: zone.nodes.count
+
+  - if user_signed_in? and current_user.nodes.count > 0
+    %h2= t '.my_nodes'
+
+    %ul
+      - current_user.nodes.each do |node|
+        %li
+          = link_to h(node.name), url_for(node)
+          %span.small
+            = surround '(', ')' do
+              = t :hosts_numbered, count: node.hosts.count
 
   %p= link_to t('config.index.title'), config_path

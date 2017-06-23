@@ -57,8 +57,7 @@ class NodesController < ApplicationController
     @node.user = current_user
 
     if @node.save
-      flash[:notice] = 'Node was successfully created.'
-
+      flash[:notice] = t('.success')
       redirect_to url_for(@node)
     else
       render :new
@@ -66,28 +65,29 @@ class NodesController < ApplicationController
   end
 
   def edit
-    @node = Node.find_by_code(params[:code])
+    @node = Node.find(params[:id])
+    authorize @node
+  end
 
-    @page_heading = 'Node: ' + @node.name
-
-    return unless request.post?
-
-    if @node.update_attributes(params[:node])
-      flash[:notice] = 'Node was successfully updated.'
-      redirect_to :action => 'show', :code => @node.code
+  def update
+    @node = Node.find(params[:id])
+    authorize @node
+    if @node.update_attributes(node_params)
+      flash[:notice] = t('.success')
+      redirect_to url_for(@node)
+    else
+      render :edit
     end
   end
 
   def destroy
-    node = Node.find_by_code(params[:code])
+    node = Node.find(params[:id])
     zone = node.zone
+    authorize node
     node.destroy
 
-    flash[:notice] = 'Node was successfully destroyed.'
-
-    redirect_to(:controller => 'zone',
-                :action => 'show',
-                :code => zone.code)
+    flash[:notice] = t('.success')
+    redirect_to url_for(zone)
   end
 
   def graph

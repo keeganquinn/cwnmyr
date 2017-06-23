@@ -21,4 +21,19 @@ class NodePolicy
   def create?
     @current_user
   end
+
+  def edit?
+    return false if not @current_user
+    @current_user.try(:admin?) or @model.user == @current_user
+  end
+
+  def update?
+    return false if not @current_user
+    @current_user.try(:admin?) or @model.user == @current_user
+  end
+
+  def destroy?
+    return false if not @current_user
+    @current_user.try(:admin?) or @model.user == @current_user
+  end
 end

@@ -2,6 +2,7 @@
   %h1= t '.title'
 
   = form_tag nodes_path(zone: @node.zone) do
-    = render :partial => 'form'
+    = render partial: 'form'
 
-    = submit_tag t(:create)
+    = submit_tag t(:create), class: 'btn btn-primary'
+    = link_to t(:cancel), url_for(@node.zone), class: 'btn btn-warning'

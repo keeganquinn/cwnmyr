@@ -1,5 +1,5 @@
 .container
-  %h1= @zone.name
+  %h1= h @zone.name
 
   %p.small
     = t :code, code: @zone.code
@@ -25,4 +25,4 @@
           = surround '(', ')' do
             = t :hosts_numbered, count: node.hosts.count
     - if user_signed_in?
-      %li= link_to t('new node'), :controller => 'nodes', :action => 'new', :zone => @zone
+      %li= link_to t('.new_node'), new_node_path(zone: @zone)

@@ -8,11 +8,14 @@ en:
   signed_in: Signed In
   account: Account
   create: Create
+  update: Update
+  cancel: Cancel
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
   status: "Status: %{status}"
   created: "Created: %{date}"
   updated: "Updated: %{date}"
+  confirm_delete: "Are you sure you want to delete this %{thing}?"
   errors:
     one: "One error prevented this %{thing} from being saved:"
     other: "%{count} errors prevented this %{thing} from being saved:"
@@ -54,11 +57,17 @@ en:
       new:
         title: Resend confirmation
         submit: Resend confirmation instructions
+  nodes:
+    new:
+      title: New Node
+    create:
+      success: Node has been successfully created.
+    update:
+      success: Node has been successfully updated.
+    destroy:
+      success: Node has been successfully deleted.
   visitors:
     index:
       title: Welcome
       description: This service provides a complete platform for managing the organizational and technical aspects of a community wireless network.
       browse_text: Select a zone.
-  nodes:
-    new:
-      title: New Node
