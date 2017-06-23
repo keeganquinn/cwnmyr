@@ -62,6 +62,8 @@ en:
       title: New Node
     create:
       success: Node has been successfully created.
+    edit:
+      title: Edit Node
     update:
       success: Node has been successfully updated.
     destroy:
