@@ -6,6 +6,7 @@ require "uri"
 require_relative 'config/environment'
 
 
+user = User.first
 zone = Zone.find_by(code: 'pdx')
 
 uri = URI.parse("https://personaltelco.net/api/v0/nodes")
@@ -34,6 +35,7 @@ data['data'].each do |nodes|
       node.contact = contact
     end
 
+    node.user = user
     node.body = value['description']
     node.notes = value['notes']
     node.address = value['address']
