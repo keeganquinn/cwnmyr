@@ -42,3 +42,8 @@ body {
 .field_with_errors {
   @extend .has-error;
 }
+
+.vertical-align {
+    display: flex;
+    align-items: baseline;
+}

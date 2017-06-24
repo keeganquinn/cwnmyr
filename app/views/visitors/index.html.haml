@@ -1,38 +1,48 @@
 .container
-  %h1= t '.title'
+  .row.vertical-align
+    .col-sm-6
+      %h1= t '.title'
 
-  %p= t '.description'
+    .col-sm-6
+      %p= t '.description'
 
-  - unless user_signed_in?
-    %h2= t :join_us
+  .row
+    .col-xs-12
+      #map{"data-center": "disco"}
 
-    %ul
-      %li= link_to t(:sign_in), user_session_path
-      %li= link_to t(:sign_up), new_user_registration_path
+  .row
+    .col-sm-6
+      %h2= t :browse
 
-  #map{"data-center": "disco"}
+      %p= t '.browse_text'
 
-  %h2= t :browse
+      %ul
+        - Zone.all.each do |zone|
+          %li
+            = link_to h(zone.name), url_for(zone)
+            %span.small
+              = surround '(', ')' do
+                = t :nodes_numbered, count: zone.nodes.count
 
-  %p= t '.browse_text'
+    .col-sm-6
+      - unless user_signed_in?
+        %h2= t :join_us
 
-  %ul
-    - Zone.all.each do |zone|
-      %li
-        = link_to h(zone.name), url_for(zone)
-        %span.small
-          = surround '(', ')' do
-            = t :nodes_numbered, count: zone.nodes.count
+        %ul
+          %li= link_to t(:sign_in), user_session_path
+          %li= link_to t(:sign_up), new_user_registration_path
 
-  - if user_signed_in? and current_user.nodes.count > 0
-    %h2= t '.my_nodes'
+      - if user_signed_in? and current_user.nodes.count > 0
+        %h2= t '.my_nodes'
 
-    %ul
-      - current_user.nodes.each do |node|
-        %li
-          = link_to h(node.name), url_for(node)
-          %span.small
-            = surround '(', ')' do
-              = t :hosts_numbered, count: node.hosts.count
+        %ul
+          - current_user.nodes.each do |node|
+            %li
+              = link_to h(node.name), url_for(node)
+              %span.small
+                = surround '(', ')' do
+                  = t :hosts_numbered, count: node.hosts.count
 
-  %p= link_to t('config.index.title'), config_path
+  .row
+    .col-xs-12
+      %p= link_to t('config.index.title'), config_path
