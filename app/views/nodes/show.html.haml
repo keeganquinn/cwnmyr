@@ -89,6 +89,7 @@
 
       - if @node.latitude and @node.longitude
         #map{"data-node": @node.to_param}
-        = link_to t(:kml), markers_node_path(@node, format: :xml)
-        \|
-        = link_to t(:wl), wl_node_path(@node, format: :xml)
+        %span.text-muted.pull-right
+          = link_to t(:kml), markers_node_path(@node, format: :xml)
+          \|
+          = link_to t(:wl), wl_node_path(@node, format: :xml)

@@ -4,7 +4,8 @@
   = markdown @zone.body
 
   #map{"data-zone": @zone.to_param}
-  = link_to t(:kml), markers_zone_path(@zone, format: :xml)
+  %span.text-muted.pull-right
+    = link_to t(:kml), markers_zone_path(@zone, format: :xml)
 
   %h2= Node.model_name.human(count: 2)
 
