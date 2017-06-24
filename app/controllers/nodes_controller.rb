@@ -1,7 +1,7 @@
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
   before_action :authenticate_user!, except: [
-    :comment_feed, :log_feed, :graph, :index, :show, :wl
+    :comment_feed, :log_feed, :graph, :index, :show, :markers, :wl
   ]
   after_action :verify_authorized
 
