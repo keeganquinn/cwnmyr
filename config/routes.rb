@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
   resources :nodes do
     member do
+      get 'graph'
       get 'markers'
+      get 'wl'
     end
   end
 

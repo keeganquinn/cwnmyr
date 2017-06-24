@@ -14,10 +14,6 @@ class NodePolicy
     true
   end
 
-  def markers?
-    true
-  end
-
   def new?
     @current_user
   end
@@ -39,5 +35,17 @@ class NodePolicy
   def destroy?
     return false if not @current_user
     @current_user.try(:admin?) or @model.user == @current_user
+  end
+
+  def graph?
+    true
+  end
+
+  def markers?
+    true
+  end
+
+  def wl?
+    true
   end
 end

@@ -1,3 +1,5 @@
+require_dependency 'dot_diskless'
+
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
   before_action :authenticate_user!, except: [
@@ -19,13 +21,6 @@ class NodesController < ApplicationController
       format.json { render json: @node.to_json }
       format.xml  { render xml: @node.to_xml }
     end
-  end
-
-  def markers
-    @node = Node.find(params[:id])
-    authorize @node
-
-    render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker', locals: { node: @node })}]
   end
 
   def new
@@ -76,44 +71,28 @@ class NodesController < ApplicationController
   end
 
   def graph
-    node = Node.find_by_code(params[:code])
+    @node = Node.find(params[:id])
+    authorize @node
 
-    unless logged_in? or node.expose?
-      redirect_to(:controller => 'welcome') and return
-    end
-
-    send_data(node.graph.to_png,
-              :type => 'image/png', :disposition => 'inline')
+    send_data @node.graph.to_png, type: 'image/png', disposition: 'inline'
   end
 
-  def comment_feed
-    @node = Node.find_by_code(params[:code])
+  def markers
+    @node = Node.find(params[:id])
+    authorize @node
 
-    unless logged_in? or @node.expose?
-      redirect_to(:controller => 'welcome') and return
+    respond_to do |format|
+      format.html { redirect_to url_for(@node) }
+      format.json { render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker.html', locals: { node: @node })}] }
+      format.xml  { render layout: false }
     end
-
-    render :layout => false
-  end
-
-  def log_feed
-    @node = Node.find_by_code(params[:code])
-
-    unless logged_in? or @node.expose?
-      redirect_to(:controller => 'welcome') and return
-    end
-
-    render :layout => false
   end
 
   def wl
-    @node = Node.find_by_code(params[:code])
+    @node = Node.find(params[:id])
+    authorize @node
 
-    unless logged_in? or @node.expose?
-      redirect_to(:controller => 'welcome') and return
-    end
-
-    render :layout => false
+    render layout: false
   end
 
   private

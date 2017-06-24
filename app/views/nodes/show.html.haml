@@ -24,7 +24,7 @@
             = link_to node_link.url, node_link.url
             - if current_user.try(:admin?) or @node.user == current_user
               = link_to url_for(node_link), method: :delete, data: { confirm: t(:confirm_delete, thing: NodeLink.model_name.human.downcase) } do
-                %span.glyphicon.glyphicon-remove/
+                %span.glyphicon.glyphicon-remove
         - if current_user.try(:admin?) or @node.user == current_user
           %li
             = form_tag node_links_path(node: @node), class: 'form-inline' do
@@ -50,7 +50,7 @@
             = host.name
             - if current_user.try(:admin?) or @node.user == current_user
               = link_to url_for(host), method: :delete, data: { confirm: t(:confirm_delete, thing: Host.model_name.human.downcase) } do
-                %span.glyphicon.glyphicon-remove/
+                %span.glyphicon.glyphicon-remove
         - if current_user.try(:admin?) or @node.user == current_user
           %li
             = form_tag hosts_path(node: @node), class: 'form-inline' do
@@ -68,6 +68,9 @@
                 = collection_select 'host', 'status_id', Status.all, 'id', 'name', {}, { class: 'form-control' }
               = submit_tag t(:create), class: 'btn btn-primary'
 
+      %h2= t('.network_diagram')
+      %p= image_tag graph_node_path(@node)
+
     .col-md-5
       %p.small
         = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
@@ -79,9 +82,13 @@
 
       - if @node.address?
         %p= @node.address
+        %p= link_to t(:get_directions), "https://www.google.com/maps?saddr=My+Location&daddr=#{URI.encode(@node.address)}", target: :_blank
 
       - if @node.hours?
         %p= t :hours, hours: @node.hours
 
       - if @node.latitude and @node.longitude
         #map{"data-node": @node.to_param}
+        = link_to t(:kml), markers_node_path(@node, format: :xml)
+        \|
+        = link_to t(:wl), wl_node_path(@node, format: :xml)

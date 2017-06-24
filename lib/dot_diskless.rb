@@ -22,7 +22,7 @@ module RGL
       output = ''
 
       IO.popen("dot -T#{format}", 'r+') do |dot|
-        dot.write(to_dot_graph_custom.to_s)
+        dot.write(to_dot_graph.to_s)
         dot.close_write
         output = dot.read
       end
@@ -36,7 +36,7 @@ module RGL
         'fontsize' => '8'
       }
 
-      graph      = DOT::DOTSubgraph.new(params)
+      graph      = DOT::Subgraph.new(params)
 
       each_vertex do |v|
         name = v.to_s
@@ -50,17 +50,17 @@ module RGL
           shape = 'ellipse'
         end
 
-        graph << DOT::DOTNode.new('name'     => '"' + name + '"',
-                                  'fontsize' => fontsize,
-                                  'color'    => color,
-                                  'shape'    => shape,
-                                  'label'    => name)
+        graph << DOT::Node.new('name'     => '"' + name + '"',
+                               'fontsize' => fontsize,
+                               'color'    => color,
+                               'shape'    => shape,
+                               'label'    => name)
       end
 
       each_edge do |u,v|
-        graph << DOT::DOTEdge.new('from'     => '"'+ u.to_s + '"',
-                                  'to'       => '"'+ v.to_s + '"',
-                                  'fontsize' => 8)
+        graph << DOT::Edge.new('from'     => '"'+ u.to_s + '"',
+                               'to'       => '"'+ v.to_s + '"',
+                               'fontsize' => 8)
       end
 
       graph

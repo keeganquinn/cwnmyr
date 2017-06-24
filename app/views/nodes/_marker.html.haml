@@ -6,6 +6,7 @@
 
 - if node.address
   %p= node.address
+  %p= link_to t(:get_directions), "https://www.google.com/maps?saddr=My+Location&daddr=#{URI.encode(node.address)}", target: :_blank
 
 - if node.hours?
   %p= t :hours, hours: node.hours
