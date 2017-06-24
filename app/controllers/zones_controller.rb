@@ -38,7 +38,7 @@ class ZonesController < ApplicationController
         end
         render json: markers
       }
-      format.xml  { render layout: false }
+      format.kml  { render 'markers.xml', layout: false }
     end
   end
 end

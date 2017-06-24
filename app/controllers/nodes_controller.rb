@@ -84,7 +84,7 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to url_for(@node) }
       format.json { render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker.html', locals: { node: @node })}] }
-      format.xml  { render layout: false }
+      format.kml  { render 'markers.xml', layout: false }
     end
   end
 

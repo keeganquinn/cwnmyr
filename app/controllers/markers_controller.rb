@@ -16,7 +16,7 @@ class MarkersController < ApplicationController
         end
         render json: markers
       }
-      format.xml  { render layout: false }
+      format.kml  { render 'index.xml', layout: false }
     end
   end
 end

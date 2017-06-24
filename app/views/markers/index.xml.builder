@@ -19,7 +19,7 @@ xml.kml('xmlns': 'http://www.opengis.net/kml/2.2',
         end
 
         xml.Point do
-          xml.coordinates "#{node.latitude},#{node.longitude},0"
+          xml.coordinates "#{node.longitude},#{node.latitude},0"
         end
       end
     end

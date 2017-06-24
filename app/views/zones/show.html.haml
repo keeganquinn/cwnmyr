@@ -5,7 +5,7 @@
 
   #map{"data-zone": @zone.to_param}
   %span.text-muted.pull-right
-    = link_to t(:kml), markers_zone_path(@zone, format: :xml)
+    = link_to t(:kml), markers_zone_path(@zone, format: :kml)
 
   %h2= Node.model_name.human(count: 2)
 
