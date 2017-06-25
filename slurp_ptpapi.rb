@@ -39,8 +39,9 @@ data['data'].each do |nodes|
     node.body = value['description']
     node.notes = value['notes']
     node.address = value['address']
-    node.latitude = value['lat']
-    node.longitude = value['lon']
+    # These values are present in datamanager but we choose to geocode instead.
+    #node.latitude = value['lat']
+    #node.longitude = value['lon']
     node.save
 
     if value['hostname']

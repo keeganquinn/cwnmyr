@@ -23,7 +23,7 @@ class Node < ApplicationRecord
   validates_uniqueness_of :name
 
   geocoded_by :address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and not obj.latitude and not obj.longitude }
+  after_validation :geocode, if: ->(obj){ obj.address.present? and (obj.address_changed? or not obj.latitude or not obj.longitude) }
 
   def to_param
     [id, code].join('-')

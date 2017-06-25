@@ -98,6 +98,6 @@ class NodesController < ApplicationController
   private
 
   def node_params
-    params.require(:node).permit(:code, :name, :status_id, :body, :address, :latitude, :longitude, :hours, :notes)
+    params.require(:node).permit(:code, :name, :status_id, :body, :address, :hours, :notes)
   end
 end

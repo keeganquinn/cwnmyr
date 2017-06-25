@@ -59,8 +59,6 @@ class NodeDashboard < Administrate::BaseDashboard
     :status,
     :body,
     :address,
-    :latitude,
-    :longitude,
     :hours,
     :notes,
     :contact,
