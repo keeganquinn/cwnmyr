@@ -84,7 +84,11 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to url_for(@node) }
       format.json { render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker.html', locals: { node: @node })}] }
-      format.kml  { render 'markers.xml', layout: false }
+      format.kml  {
+        filename = "node-#{@node.to_param}.kml"
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        render 'markers.xml', layout: false
+      }
     end
   end
 

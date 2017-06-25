@@ -38,7 +38,11 @@ class ZonesController < ApplicationController
         end
         render json: markers
       }
-      format.kml  { render 'markers.xml', layout: false }
+      format.kml  {
+        filename = "zone-#{@zone.to_param}.kml"
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        render 'markers.xml', layout: false
+      }
     end
   end
 end
