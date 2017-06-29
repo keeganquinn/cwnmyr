@@ -53,6 +53,8 @@ en:
         one: Zone
         other: Zones
     attributes:
+      node:
+        body: Description
       node_link:
         url: URL
       user:
@@ -69,6 +71,13 @@ en:
         title: Resend confirmation
         submit: Resend confirmation instructions
   nodes:
+    form:
+      node_code_help: Identifier for the node. Should match the WikiWord.
+      node_name_help: The name of the hosting person or business.
+      node_body_help: A little bit of text about the person or business.
+      node_address_help: Address of node location.
+      node_hours_help: Hours that the location is publically accessible.
+      node_notes_help: Technical and miscellaneous notes related to the node.
     new:
       title: New Node
     edit:

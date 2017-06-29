@@ -8,11 +8,13 @@
 
 .form-group
   %label{for: "node_code"}= Node.human_attribute_name('code')
-  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control'
+  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control', 'aria-describedby': 'node_code_help'
+  %span.help-block#node_code_help= t '.node_code_help'
 
 .form-group
   %label{for: "node_name"}= Node.human_attribute_name('name')
-  = text_field 'node', 'name', class: 'form-control'
+  = text_field 'node', 'name', class: 'form-control', 'aria-describedby': 'node_name_help'
+  %span.help-block#node_name_help= t '.node_name_help'
 
 .form-group
   %label{for: "node_status_id"}= Node.human_attribute_name('status')
@@ -20,16 +22,20 @@
 
 .form-group
   %label{for: "node_body"}= Node.human_attribute_name('body')
-  = text_area 'node', 'body', rows: 8, class: 'form-control'
+  = text_area 'node', 'body', rows: 8, class: 'form-control', 'aria-describedby': 'node_body_help'
+  %span.help-block#node_body_help= t '.node_body_help'
 
 .form-group
   %label{for: "node_address"}= Node.human_attribute_name('address')
-  = text_field 'node', 'address', class: 'form-control'
+  = text_field 'node', 'address', class: 'form-control', 'aria-describedby': 'node_address_help'
+  %span.help-block#node_address_help= t '.node_address_help'
 
 .form-group
   %label{for: "node_hours"}= Node.human_attribute_name('hours')
-  = text_field 'node', 'hours', class: 'form-control'
+  = text_field 'node', 'hours', class: 'form-control', 'aria-describedby': 'node_hours_help'
+  %span.help-block#node_hours_help= t '.node_hours_help'
 
 .form-group
   %label{for: "node_notes"}= Node.human_attribute_name('notes')
-  = text_area 'node', 'notes', rows: 8, class: 'form-control'
+  = text_area 'node', 'notes', rows: 8, class: 'form-control', 'aria-describedby': 'node_notes_help'
+  %span.help-block#node_notes_help= t '.node_notes_help'
