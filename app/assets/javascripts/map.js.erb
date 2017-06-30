@@ -24,7 +24,7 @@ function displayMap (data) {
     handler.bounds.extendWith(markers)
     if (markers.length > 1) {
       handler.fitMapToBounds()
-    } else {
+    } else if (markers.length == 1) {
       handler.map.centerOn(markers[0])
     }
 
