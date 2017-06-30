@@ -50,9 +50,9 @@ group :development do
   gem 'guard-rspec'
   gem 'html2haml'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
   gem 'spring-commands-rspec'
 end
 group :development, :test do
@@ -65,12 +65,13 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'netaddr', :require => 'cidr'
-gem 'rgl', :require => 'rgl/adjacency'
+gem 'netaddr', require: 'cidr'
+gem 'rgl', require: 'rgl/adjacency'
 gem 'rmagick'
