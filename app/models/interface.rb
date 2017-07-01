@@ -1,8 +1,6 @@
 # An Interface instance represents a network interface or connection with
 # a relationship to a Host instance.
 class Interface < ApplicationRecord
-  default_scope { order('host_id, status_id, code ASC') }
-
   belongs_to :host
   belongs_to :interface_type
   belongs_to :status
@@ -11,12 +9,12 @@ class Interface < ApplicationRecord
   validates_presence_of :host_id
   validates_presence_of :interface_type_id
   validates_presence_of :status_id
-  validates_length_of :code, :minimum => 1
-  validates_length_of :code, :maximum => 64
-  validates_uniqueness_of :code, :scope => :host_id
-  validates_format_of :code, :with => %r{\A[-_a-zA-Z0-9]+\z},
-    :message => 'contains unacceptable characters',
-    :if => Proc.new { |o| o.code && o.code.size > 1 }
+  validates_length_of :code, minimum: 1
+  validates_length_of :code, maximum: 64
+  validates_uniqueness_of :code, scope: :host_id
+  validates_format_of :code, with: %r{\A[-_a-zA-Z0-9]+\z},
+    message: 'contains unacceptable characters',
+    if: Proc.new { |o| o.code && o.code.size > 1 }
 
   # TODO - look at using NetAddr::CIDR here
 
@@ -45,11 +43,11 @@ class Interface < ApplicationRecord
     end
   end
   validates_format_of :address_mac,
-    :with => %r{\A[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]\z},
-    :message => 'is not a valid MAC address',
-    :if => Proc.new { |o| o.address_mac && o.address_mac.size > 0 }
-  validates_length_of :name, :maximum => 128,
-    :if => Proc.new { |o| o.name && o.name.size > 0 }
+    with: %r{\A[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]\z},
+    message: 'is not a valid MAC address',
+    if: Proc.new { |o| o.address_mac && o.address_mac.size > 0 }
+  validates_length_of :name, maximum: 128,
+    if: Proc.new { |o| o.name && o.name.size > 0 }
 
   def to_param
     [id, code].join('-')
@@ -151,16 +149,16 @@ class Interface < ApplicationRecord
   def point
     return nil unless latitude and longitude and altitude
     {
-      :latitude => latitude,
-      :longitude => longitude,
-      :height => altitude,
-      :error => 0
+      latitude: latitude,
+      longitude: longitude,
+      height: altitude,
+      error: 0
     }
   end
 
   protected
 
-  before_validation :set_defaults, :on => :create
+  before_validation :set_defaults
 
   def set_defaults
     self.code = name.parameterize if code.blank? and name

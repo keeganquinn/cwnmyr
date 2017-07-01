@@ -1,18 +1,16 @@
 # Each Host instance represents a network device which is used at a Node.
 class Host < ApplicationRecord
-  default_scope { order('node_id, name ASC') }
-
   belongs_to :node
   belongs_to :host_type, optional: true
   belongs_to :status
   has_many :interfaces
   has_many :host_properties
 
-  validates_length_of :name, :minimum => 1
-  validates_uniqueness_of :name, :scope => :node_id
-  validates_format_of :name, :with => %r{\A[-a-zA-Z0-9]+\z},
-    :message => 'contains unacceptable characters',
-    :if => Proc.new { |o| o.name.size > 1 }
+  validates_length_of :name, minimum: 1
+  validates_uniqueness_of :name, scope: :node_id
+  validates_format_of :name, with: %r{\A[-a-zA-Z0-9]+\z},
+    message: 'contains unacceptable characters',
+    if: Proc.new { |o| o.name.size > 1 }
 
   def to_param
     [id, name].join('-')
@@ -79,10 +77,10 @@ class Host < ApplicationRecord
     return nil if i == 0
 
     {
-      :latitude => latitude./(i),
-      :longitude => longitude./(i),
-      :height => height./(i),
-      :error => error./(i)
+      latitude: latitude./(i),
+      longitude: longitude./(i),
+      height: height./(i),
+      error: error./(i)
     }
   end
 end

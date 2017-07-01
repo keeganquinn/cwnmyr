@@ -1,8 +1,6 @@
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
-  default_scope { order('zone_id, name ASC') }
-
   belongs_to :contact, optional: true
   belongs_to :status
   belongs_to :user, optional: true
@@ -11,21 +9,22 @@ class Node < ApplicationRecord
   has_many :node_links
   has_and_belongs_to_many :tags
 
-  validates_length_of :code, :minimum => 1
-  validates_length_of :code, :maximum => 64
+  validates_length_of :code, minimum: 1
+  validates_length_of :code, maximum: 64
   validates_uniqueness_of :code
   validates_format_of :code, {
-    :with => %r{\A[-_a-zA-Z0-9]+\z},
-    :message => 'contains unacceptable characters',
-    :if => Proc.new { |o| o.code && o.code.size > 1 }
+    with: %r{\A[-_a-zA-Z0-9]+\z},
+    message: 'contains unacceptable characters',
+    if: Proc.new { |o| o.code && o.code.size > 1 }
   }
-  validates_length_of :name, :minimum => 1
+  validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
 
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and (obj.address_changed? or not obj.latitude or not obj.longitude) }
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 
@@ -84,16 +83,16 @@ class Node < ApplicationRecord
     return nil if i == 0
 
     {
-      :latitude => latitude./(i),
-      :longitude => longitude./(i),
-      :height => height./(i),
-      :error => error./(i)
+      latitude: latitude./(i),
+      longitude: longitude./(i),
+      height: height./(i),
+      error: error./(i)
     }
   end
 
   protected
 
-  before_validation :set_defaults, :on => :create
+  before_validation :set_defaults
 
   def set_defaults
     self.code = name.parameterize if code.blank? and name
