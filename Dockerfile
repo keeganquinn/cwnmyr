@@ -15,13 +15,9 @@ RUN export PHANTOMJS="phantomjs-2.1.1-linux-x86_64" \
   && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin \
   && rm -rf /tmp/phantomjs
 
-# Set up user and path
-RUN useradd -m app && mkdir -p /srv/rails && chown app:app /srv/rails
-USER app
-WORKDIR /srv/rails
-
 # Add application
-ADD Gemfile /srv/rails/Gemfile
-ADD Gemfile.lock /srv/rails/Gemfile.lock
+WORKDIR /srv/rails
+COPY Gemfile /srv/rails/Gemfile
+COPY Gemfile.lock /srv/rails/Gemfile.lock
 RUN bundle install
-ADD . /srv/rails
+COPY . /srv/rails
