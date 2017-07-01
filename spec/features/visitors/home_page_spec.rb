@@ -10,7 +10,8 @@ feature 'Home page' do
   #   Then I see "Welcome"
   scenario 'visit the home page' do
     visit root_path
-    expect(page).to have_content 'Looking for a node?'
+    expect(page).to have_content('Looking for a node?')
+    expect(page).to have_selector("#map[data-center='disco']")
   end
 
 end
