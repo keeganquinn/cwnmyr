@@ -26,6 +26,7 @@ class UserDashboard < Administrate::BaseDashboard
     role: Field::String.with_options(searchable: false),
     body: Field::Text,
     groups: Field::HasMany,
+    nodes: Field::HasMany,
     user_links: Field::HasMany,
   }.freeze
 
@@ -58,6 +59,7 @@ class UserDashboard < Administrate::BaseDashboard
     :role,
     :body,
     :groups,
+    :nodes,
     :user_links,
   ].freeze
 
