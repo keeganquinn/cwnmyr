@@ -12,6 +12,7 @@ class InterfaceType < ApplicationRecord
   validates_length_of :name, maximum: 255
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 

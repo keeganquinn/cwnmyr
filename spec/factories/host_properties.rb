@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :host_property do
     host
-    key "key"
-    value "value"
+    sequence(:key) { |n| "key#{n}" }
+    sequence(:value) { |n| "value#{n}" }
   end
 end

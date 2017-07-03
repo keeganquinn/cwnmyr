@@ -3,7 +3,6 @@
 class UserLink < ApplicationRecord
   belongs_to :user
 
-  validates_presence_of :user_id
   validates_length_of :name, minimum: 1
   validates_length_of :url, minimum: 1
   validates_format_of :url,
@@ -12,6 +11,7 @@ class UserLink < ApplicationRecord
     if: Proc.new { |o| o.url and o.url.size > 1 }
 
   def to_param
+    return nil if not id
     [id, name.parameterize].join('-')
   end
 end

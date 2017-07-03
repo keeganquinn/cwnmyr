@@ -8,8 +8,13 @@ class Contact < ApplicationRecord
     message: 'contains unacceptable characters',
     if: Proc.new { |o| o.code.size > 1 }
   validates_length_of :name, minimum: 1
+  validates_format_of :email,
+    with: %r{\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)@([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z},
+    message: 'must be a valid email address',
+    if: Proc.new { |o| o.email && o.email.size > 1 }
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 

@@ -13,6 +13,7 @@ class Host < ApplicationRecord
     if: Proc.new { |o| o.name.size > 1 }
 
   def to_param
+    return nil if not id
     [id, name].join('-')
   end
 

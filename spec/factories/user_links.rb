@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user_link do
     user
-    name "Test Link"
+    sequence(:name) { |n| "Test Link ##{n}" }
     url "http://test.com"
   end
 end

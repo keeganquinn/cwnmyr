@@ -3,7 +3,11 @@
 class InterfaceProperty < ApplicationRecord
   belongs_to :interface
 
-  validates_presence_of :interface_id
   validates_length_of :key, minimum: 1
   validates_length_of :value, minimum: 1
+
+  def to_param
+    return nil if not id
+    [id, key].join('-')
+  end
 end

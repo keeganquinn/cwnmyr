@@ -3,11 +3,11 @@
 class HostProperty < ApplicationRecord
   belongs_to :host
 
-  validates_presence_of :host_id
   validates_length_of :key, minimum: 1
   validates_length_of :value, minimum: 1
 
   def to_param
+    return nil if not id
     [id, key].join('-')
   end
 end

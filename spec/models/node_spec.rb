@@ -19,4 +19,34 @@ describe Node do
   it { should respond_to(:longitude) }
   it { should respond_to(:hours) }
   it { should respond_to(:notes) }
+
+  it { should validate_length_of(:code) }
+  it { should validate_uniqueness_of(:code) }
+  it { should validate_length_of(:name) }
+  it { should validate_uniqueness_of(:name) }
+
+  it "is valid" do
+    expect(@node).to be_valid
+  end
+
+  it "#to_param returns nil" do
+    expect(@node.to_param).to be_nil
+  end
+
+  it "#to_param returns a string once saved" do
+    @node.save
+    expect(@node.to_param).to match "#{@node.id}"
+  end
+
+  it "generates a code if a name is provided" do
+    @node.name = 'Test Node'
+    expect(@node).to be_valid
+    expect(@node.code).to match 'test-node'
+  end
+
+  describe "network diagram" do
+    subject { @node.graph }
+
+    it { should respond_to(:to_png) }
+  end
 end

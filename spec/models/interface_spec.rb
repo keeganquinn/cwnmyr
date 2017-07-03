@@ -29,4 +29,19 @@ describe Interface do
   it { should respond_to(:azimuth) }
   it { should respond_to(:elevation) }
   it { should respond_to(:polarity) }
+
+  it { should validate_length_of(:code) }
+
+  it "is valid" do
+    expect(@interface).to be_valid
+  end
+
+  it "#to_param returns nil" do
+    expect(@interface.to_param).to be_nil
+  end
+
+  it "#to_param returns a string once saved" do
+    @interface.save
+    expect(@interface.to_param).to match "#{@interface.id}"
+  end
 end

@@ -1,3 +1,5 @@
+require_dependency 'dot_diskless'
+
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
@@ -12,11 +14,10 @@ class Node < ApplicationRecord
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code
-  validates_format_of :code, {
+  validates_format_of :code,
     with: %r{\A[-_a-zA-Z0-9]+\z},
     message: 'contains unacceptable characters',
     if: Proc.new { |o| o.code && o.code.size > 1 }
-  }
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
 
@@ -54,12 +55,8 @@ class Node < ApplicationRecord
     return nil if hosts.empty?
     return hosts.first if hosts.size == 1
 
-    return nil unless t = HostPropertyType.find_by_code('primary')
-
     hosts.each do |host|
-      if property = host.properties.find_by_host_property_type_id(t.id)
-        return host
-      end
+      return host  # FIXME if host is primary
     end
 
     return nil

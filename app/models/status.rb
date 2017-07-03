@@ -14,6 +14,7 @@ class Status < ApplicationRecord
   validates_length_of :name, minimum: 1
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 

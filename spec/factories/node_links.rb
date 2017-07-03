@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :node_link do
     node
-    name "Test Link"
+    sequence(:name) { |n| "Test Link ##{n}" }
     url "http://test.com"
   end
 end

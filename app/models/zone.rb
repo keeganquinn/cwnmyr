@@ -2,8 +2,6 @@
 # as an organizational aid and the heirarchial root of the system when
 # browsing in the user interface.
 class Zone < ApplicationRecord
-  scope :exposed, -> { where(expose: true) }
-
   has_many :nodes
 
   validates_length_of :code, minimum: 1
@@ -16,6 +14,7 @@ class Zone < ApplicationRecord
   validates_length_of :name, maximum: 64
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 

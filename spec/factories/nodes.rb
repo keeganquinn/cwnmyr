@@ -4,6 +4,7 @@ FactoryGirl.define do
     status
     user
     zone
-    name { "#{Faker::Company::name}" }
+    name { Faker::Company.name }
+    address { "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state} #{Faker::Address.zip}" }
   end
 end

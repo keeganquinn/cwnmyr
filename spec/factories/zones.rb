@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :zone do
-    name "Test Zone"
+    sequence(:name) { |n| "Test Zone ##{n}" }
   end
 end

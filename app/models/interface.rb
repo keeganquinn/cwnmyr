@@ -6,9 +6,6 @@ class Interface < ApplicationRecord
   belongs_to :status
   has_many :interface_properties
 
-  validates_presence_of :host_id
-  validates_presence_of :interface_type_id
-  validates_presence_of :status_id
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code, scope: :host_id
@@ -50,6 +47,7 @@ class Interface < ApplicationRecord
     if: Proc.new { |o| o.name && o.name.size > 0 }
 
   def to_param
+    return nil if not id
     [id, code].join('-')
   end
 
