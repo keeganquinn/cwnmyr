@@ -1,5 +1,5 @@
 describe NodeLink do
-  before(:each) { @node_link = FactoryGirl.build(:node_link) }
+  before(:each) { @node_link = build_stubbed(:node_link) }
 
   subject { @node_link }
 
@@ -15,12 +15,12 @@ describe NodeLink do
     expect(@node_link).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @node_link.id = nil
     expect(@node_link.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @node_link.save
-    expect(@node_link.to_param).to match "#{@node_link.id}"
+  it "#to_param returns a string" do
+    expect(@node_link.to_param).to match "^#{@node_link.id}-#{@node_link.name.parameterize}$"
   end
 end

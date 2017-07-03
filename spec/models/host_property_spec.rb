@@ -1,5 +1,5 @@
 describe HostProperty do
-  before(:each) { @host_property = FactoryGirl.build(:host_property) }
+  before(:each) { @host_property = build_stubbed(:host_property) }
 
   subject { @host_property }
 
@@ -15,12 +15,12 @@ describe HostProperty do
     expect(@host_property).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @host_property.id = nil
     expect(@host_property.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @host_property.save
-    expect(@host_property.to_param).to match "#{@host_property.id}"
+  it "#to_param returns a string" do
+    expect(@host_property.to_param).to match "^#{@host_property.id}-#{@host_property.key}$"
   end
 end

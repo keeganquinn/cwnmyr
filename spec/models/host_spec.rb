@@ -1,5 +1,5 @@
 describe Host do
-  before(:each) { @host = FactoryGirl.build(:host) }
+  before(:each) { @host = build_stubbed(:host) }
 
   subject { @host }
 
@@ -13,18 +13,23 @@ describe Host do
   it { should respond_to(:body) }
 
   it { should validate_length_of(:name) }
-  it { should validate_uniqueness_of(:name).scoped_to(:node_id) }
 
   it "is valid" do
     expect(@host).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @host.id = nil
     expect(@host.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @host.save
-    expect(@host.to_param).to match "#{@host.id}"
+  it "#to_param returns a string" do
+    expect(@host.to_param).to match "^#{@host.id}-#{@host.name}$"
+  end
+
+  describe "with database access" do
+    before(:each) { @host = build(:host) }
+
+    it { should validate_uniqueness_of(:name).scoped_to(:node_id) }
   end
 end

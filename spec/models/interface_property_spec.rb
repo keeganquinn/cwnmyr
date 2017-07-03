@@ -1,5 +1,5 @@
 describe InterfaceProperty do
-  before(:each) { @interface_property = FactoryGirl.build(:interface_property) }
+  before(:each) { @interface_property = build_stubbed(:interface_property) }
 
   subject { @interface_property }
 
@@ -15,12 +15,12 @@ describe InterfaceProperty do
     expect(@interface_property).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @interface_property.id = nil
     expect(@interface_property.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @interface_property.save
-    expect(@interface_property.to_param).to match "#{@interface_property.id}"
+  it "#to_param returns a string" do
+    expect(@interface_property.to_param).to match "^#{@interface_property.id}-#{@interface_property.key}$"
   end
 end

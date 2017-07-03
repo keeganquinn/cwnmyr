@@ -1,5 +1,5 @@
 describe User do
-  before(:each) { @user = FactoryGirl.build(:user) }
+  before(:each) { @user = build_stubbed(:user) }
 
   subject { @user }
 
@@ -13,33 +13,21 @@ describe User do
   it { should respond_to(:role) }
   it { should respond_to(:body) }
 
-  it { should validate_uniqueness_of(:email).case_insensitive }
   it { should allow_value("user@example.com").for(:email) }
   it { should_not allow_value("not-an-email").for(:email) }
   it { should validate_length_of(:code) }
-  it { should validate_uniqueness_of(:code).case_insensitive }
-  it { should validate_uniqueness_of(:name).case_insensitive }
-
-  it "#email returns a string" do
-    expect(@user.email).to match '.*@example.com'
-  end
 
   it "is valid" do
     expect(@user).to be_valid
   end
 
-  it "is not valid without a password" do
-    @user.password = nil
-    expect(@user).not_to be_valid
-  end
-
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @user.id = nil
     expect(@user.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @user.save
-    expect(@user.to_param).to match "#{@user.id}"
+  it "#to_param returns a string" do
+    expect(@user.to_param).to match "^#{@user.id}$"
   end
 
   it "generates a code if a name is provided" do
@@ -61,8 +49,7 @@ describe User do
     end
 
     it "#to_param returns a string" do
-      @user.save
-      expect(@user.to_param).to match "#{@user.id}-different"
+      expect(@user.to_param).to match "^#{@user.id}-different$"
     end
   end
 
@@ -75,5 +62,13 @@ describe User do
     @user.role = 'admin'
     expect(@user).to be_valid
     expect(@user.role).to match 'admin'
+  end
+
+  describe "with database access" do
+    before(:each) { @user = build(:user) }
+
+    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_uniqueness_of(:code).case_insensitive }
+    it { should validate_uniqueness_of(:name).case_insensitive }
   end
 end

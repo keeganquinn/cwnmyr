@@ -1,5 +1,5 @@
 describe Status do
-  before(:each) { @status = FactoryGirl.build(:status) }
+  before(:each) { @status = build_stubbed(:status) }
 
   subject { @status }
 
@@ -12,25 +12,30 @@ describe Status do
   it { should respond_to(:color) }
 
   it { should validate_length_of(:code) }
-  it { should validate_uniqueness_of(:code) }
   it { should validate_length_of(:name) }
 
   it "is valid" do
     expect(@status).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @status.id = nil
     expect(@status.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @status.save
-    expect(@status.to_param).to match "#{@status.id}"
+  it "#to_param returns a string" do
+    expect(@status.to_param).to match "^#{@status.id}-#{@status.code}$"
   end
 
   it "generates a code if a name is provided" do
     @status.name = 'Test Status'
     expect(@status).to be_valid
     expect(@status.code).to match 'test-status'
+  end
+
+  describe "with database access" do
+    before(:each) { @status = build(:status) }
+
+    it { should validate_uniqueness_of(:code) }
   end
 end

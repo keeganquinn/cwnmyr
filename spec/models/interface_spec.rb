@@ -1,5 +1,5 @@
 describe Interface do
-  before(:each) { @interface = FactoryGirl.build(:interface) }
+  before(:each) { @interface = build_stubbed(:interface) }
 
   subject { @interface }
 
@@ -36,12 +36,12 @@ describe Interface do
     expect(@interface).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @interface.id = nil
     expect(@interface.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @interface.save
-    expect(@interface.to_param).to match "#{@interface.id}"
+  it "#to_param returns a string" do
+    expect(@interface.to_param).to match "^#{@interface.id}-#{@interface.code}$"
   end
 end

@@ -1,5 +1,5 @@
 describe Node do
-  before(:each) { @node = FactoryGirl.build(:node) }
+  before(:each) { @node = build_stubbed(:node) }
 
   subject { @node }
 
@@ -21,21 +21,19 @@ describe Node do
   it { should respond_to(:notes) }
 
   it { should validate_length_of(:code) }
-  it { should validate_uniqueness_of(:code) }
   it { should validate_length_of(:name) }
-  it { should validate_uniqueness_of(:name) }
 
   it "is valid" do
     expect(@node).to be_valid
   end
 
-  it "#to_param returns nil" do
+  it "#to_param returns nil when unsaved" do
+    @node.id = nil
     expect(@node.to_param).to be_nil
   end
 
-  it "#to_param returns a string once saved" do
-    @node.save
-    expect(@node.to_param).to match "#{@node.id}"
+  it "#to_param returns a string" do
+    expect(@node.to_param).to match "^#{@node.id}-#{@node.code}$"
   end
 
   it "generates a code if a name is provided" do
@@ -48,5 +46,12 @@ describe Node do
     subject { @node.graph }
 
     it { should respond_to(:to_png) }
+  end
+
+  describe "with database access" do
+    before(:each) { @node = build(:node) }
+
+    it { should validate_uniqueness_of(:code) }
+    it { should validate_uniqueness_of(:name) }
   end
 end
