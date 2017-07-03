@@ -69,10 +69,24 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # ActionMailer Config
+  if ENV.include?("SMTP_HOST")
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: ENV.fetch("SMTP_HOST"),
+      port: 587,
+      domain: Rails.application.secrets.domain_name,
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV.fetch("SMTP_USER"),
+      password: ENV.fetch("SMTP_PASS")
+    }
+  else
+    config.action_mailer.delivery_method = :sendmail
+  end
+
   config.action_mailer.default_url_options = { host: Rails.application.secrets.domain_name, protocol: 'https' }
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
 
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
