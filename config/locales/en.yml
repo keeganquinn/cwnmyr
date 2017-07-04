@@ -9,6 +9,7 @@ en:
   sign_in: Sign In
   sign_out: Sign Out
   signed_in: Signed In
+  access_denied: Access denied.
   account: Account
   create: Create
   edit: Edit
