@@ -67,6 +67,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'simplecov', require: false
 end
 
 gem 'underscore-rails'
