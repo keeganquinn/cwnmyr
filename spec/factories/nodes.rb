@@ -5,6 +5,6 @@ FactoryGirl.define do
     user
     zone
     name { Faker::Company.name }
-    address { "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state} #{Faker::Address.zip}" }
+    address "709 W 27th St., Vancouver, WA 98660"
   end
 end
