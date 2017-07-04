@@ -22,16 +22,4 @@ class UserPolicy
     return false if @current_user == @user
     @current_user.admin?
   end
-
-  def status?
-    @current_user == @user
-  end
-
-  def queue?
-    @current_user == @user
-  end
-
-  def leave?
-    @current_user == @user
-  end
 end
