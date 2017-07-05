@@ -1,10 +1,6 @@
-require_dependency 'dot_diskless'
-
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
-  before_action :authenticate_user!, except: [
-    :comment_feed, :log_feed, :graph, :index, :show, :markers, :wl
-  ]
+  before_action :authenticate_user!, except: [:index, :show, :graph]
   after_action :verify_authorized
 
   def index
@@ -15,19 +11,13 @@ class NodesController < ApplicationController
   def show
     @node = Node.find(params[:id])
     authorize @node
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @node.to_json }
-      format.xml  { render xml: @node.to_xml }
-    end
   end
 
   def new
     @node = Node.new
-    authorize @node
     @node.zone = Zone.find(params[:zone])
     @node.user = current_user
+    authorize @node
   end
 
   def create
@@ -52,6 +42,7 @@ class NodesController < ApplicationController
   def update
     @node = Node.find(params[:id])
     authorize @node
+
     if @node.update_attributes(node_params)
       flash[:notice] = t(:update_success, thing: Node.model_name.human)
       redirect_to url_for(@node)
@@ -74,29 +65,12 @@ class NodesController < ApplicationController
     @node = Node.find(params[:id])
     authorize @node
 
-    send_data @node.graph.to_png, type: 'image/png', disposition: 'inline'
-  end
-
-  def markers
-    @node = Node.find(params[:id])
-    authorize @node
-
     respond_to do |format|
-      format.html { redirect_to url_for(@node) }
-      format.json { render json: [{lat: @node.latitude, lng: @node.longitude, marker_title: @node.name, infowindow: render_to_string(partial: 'marker.html', locals: { node: @node })}] }
-      format.kml  {
-        filename = "node-#{@node.to_param}.kml"
-        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
-        render 'markers.xml', layout: false
+      format.png {
+        send_data @node.graph.to_png, type: 'image/png', disposition: 'inline'
       }
+      format.any { redirect_to format: :png }
     end
-  end
-
-  def wl
-    @node = Node.find(params[:id])
-    authorize @node
-
-    render layout: false
   end
 
   private

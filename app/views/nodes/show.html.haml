@@ -88,8 +88,10 @@
         %p= t :hours, hours: @node.hours
 
       - if @node.latitude and @node.longitude
-        #map{"data-node": @node.to_param}
+        #map{"data-markers": node_path(@node, format: :json)}
         %span.text-muted.pull-right
-          = link_to t(:kml), markers_node_path(@node, format: :kml)
+          = link_to t(:json), node_path(@node, format: :json)
           \|
-          = link_to t(:wl), wl_node_path(@node, format: :xml)
+          = link_to t(:kml), node_path(@node, format: :kml)
+          \|
+          = link_to t(:xml), node_path(@node, format: :xml)

@@ -77,16 +77,4 @@ describe NodePolicy do
       expect(subject).to permit(nil)
     end
   end
-
-  permissions :markers? do
-    it "always allows access" do
-      expect(subject).to permit(nil)
-    end
-  end
-
-  permissions :wl? do
-    it "always allows access" do
-      expect(subject).to permit(nil)
-    end
-  end
 end

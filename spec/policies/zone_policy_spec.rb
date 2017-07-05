@@ -18,10 +18,4 @@ describe ZonePolicy do
       expect(subject).to permit(nil)
     end
   end
-
-  permissions :markers? do
-    it "always allows access" do
-      expect(subject).to permit(nil)
-    end
-  end
 end

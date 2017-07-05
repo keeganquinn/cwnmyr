@@ -7,19 +7,11 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   devise_for :users
-  resources :users
-  resources :hosts, :node_links, :markers
 
-  resources :zones do
-    member do
-      get 'markers'
-    end
-  end
+  resources :hosts, :node_links, :users, :zones
   resources :nodes do
     member do
       get 'graph'
-      get 'markers'
-      get 'wl'
     end
   end
 

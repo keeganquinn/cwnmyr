@@ -1,6 +1,9 @@
 /* global Gmaps */
 
 function displayMap (data) {
+  if (!data.nodes) {
+    return
+  }
   var handler = Gmaps.build('Google')
 
   function displayPosition (position) {
@@ -20,7 +23,7 @@ function displayMap (data) {
   }
 
   handler.buildMap({provider: {minZoom: 11, zoom: 17}, internal: {id: 'map'}}, function () {
-    var markers = handler.addMarkers(data)
+    var markers = handler.addMarkers(data.nodes)
     handler.bounds.extendWith(markers)
     if (markers.length > 1) {
       handler.fitMapToBounds()
@@ -44,19 +47,8 @@ $(document).ready(function () {
     return
   }
 
-  var node = mapDiv.data('node')
-  var zone = mapDiv.data('zone')
-  var path = null
-  if (node) {
-    path = '/nodes/' + node + '/markers'
-  } else if (zone) {
-    path = '/zones/' + zone + '/markers'
-  } else {
-    path = '/markers'
-  }
-
   $.ajax({
-    url: path,
+    url: mapDiv.data('markers'),
     dataType: 'json'
   }).done(displayMap).fail(handleError)
 })

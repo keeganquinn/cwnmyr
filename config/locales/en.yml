@@ -3,7 +3,8 @@ en:
   tagline: Community Wireless Network Management System
   get_directions: Get Directions
   kml: KML
-  wl: WL
+  json: JSON
+  xml: XML
   sign_up: Sign Up
   forgot: Forgot password?
   sign_in: Sign In

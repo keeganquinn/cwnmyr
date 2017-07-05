@@ -7,7 +7,7 @@ xml.kml('xmlns': 'http://www.opengis.net/kml/2.2',
     xml.tag! 'atom:link', href: root_url
     xml.description t(:tagline)
 
-    @nodes.each do |node|
+    Node.all.each do |node|
       next unless node.latitude and node.longitude
 
       xml.Placemark do

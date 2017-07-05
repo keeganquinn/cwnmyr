@@ -7,42 +7,14 @@ class ZonesController < ApplicationController
     authorize Zone
 
     respond_to do |format|
-      format.html { redirect_to root_path }
-      format.json { render json: @zones.to_json }
-      format.xml  { render xml: @zones.to_xml }
+      format.json
+      format.xml
+      format.any { redirect_to root_path }
     end
   end
 
   def show
     @zone = Zone.find(params[:id])
     authorize @zone
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @zone.to_json }
-      format.xml  { render xml: @zone.to_xml }
-    end
-  end
-
-  def markers
-    @zone = Zone.find(params[:id])
-    authorize @zone
-
-    respond_to do |format|
-      format.html { redirect_to url_for(@zone) }
-      format.json {
-        markers = []
-        @zone.nodes.each do |node|
-          next unless node.latitude and node.longitude
-          markers << {lat: node.latitude, lng: node.longitude, marker_title: node.name, infowindow: render_to_string(partial: 'nodes/marker.html', locals: { node: node })}
-        end
-        render json: markers
-      }
-      format.kml  {
-        filename = "zone-#{@zone.to_param}.kml"
-        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
-        render 'markers.xml', layout: false
-      }
-    end
   end
 end

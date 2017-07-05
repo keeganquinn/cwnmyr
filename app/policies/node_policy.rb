@@ -40,12 +40,4 @@ class NodePolicy
   def graph?
     true
   end
-
-  def markers?
-    true
-  end
-
-  def wl?
-    true
-  end
 end

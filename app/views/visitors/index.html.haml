@@ -8,9 +8,9 @@
 
   .row
     .col-xs-12
-      #map{"data-center": "disco"}
+      #map{"data-markers": root_path(format: :json), "data-center": "disco"}
       %span.text-muted.pull-right
-        = link_to t(:kml), markers_path(format: :kml)
+        = link_to t(:kml), root_path(format: :kml)
 
   .row
     .col-sm-6
