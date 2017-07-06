@@ -58,8 +58,11 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'rubocop-checkstyle_formatter', require: false
+  gem 'rubocop-rspec'
 end
 group :test do
   gem 'capybara'
