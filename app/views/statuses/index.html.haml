@@ -1,0 +1,5 @@
+%h1= t '.title'
+
+%ul
+  - @statuses.each do |status|
+    %li= link_to h(status.name), url_for(status)

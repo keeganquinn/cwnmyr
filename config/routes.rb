@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :hosts, :node_links, :users, :zones
+  resources :host_types, :hosts, :host_properties, :host_types, :interfaces, :interface_properties, :interface_types, :node_links, :users, :user_links, :statuses, :zones
   resources :nodes do
     member do
       get 'graph'

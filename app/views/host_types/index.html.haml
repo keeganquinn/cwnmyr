@@ -1,0 +1,5 @@
+%h1= t '.title'
+
+%ul
+  - @host_types.each do |host_type|
+    %li= link_to h(host_type.name), url_for(host_type)
