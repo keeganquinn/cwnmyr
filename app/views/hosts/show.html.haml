@@ -1,0 +1,23 @@
+%h1= h @host.name
+
+%p.small
+  %span{style: "color: #{@host.status.color}"}
+    = t :status, status: @host.status.name
+
+= markdown @host.body
+
+%h2= Interface.model_name.human(count: 2)
+
+%ul
+  - @host.interfaces.each do |interface|
+    %li
+      = link_to h(interface.name), url_for(interface)
+      %span{style: "color: #{host.status.color}"} &larr;
+      - if interface.essid
+        \-
+        = Interface.human_attribute_name('essid')
+        = h interface.essid
+      - if interface.channel
+        \-
+        = Interface.human_attribute_name('channel')
+        = h interface.channel
