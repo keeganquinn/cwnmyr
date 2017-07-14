@@ -1,3 +1,4 @@
+# Pundit access control policy for ZonesController.
 class ZonePolicy
   attr_reader :current_user, :model
 

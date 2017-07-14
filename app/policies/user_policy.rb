@@ -1,3 +1,4 @@
+# Pundit access control policy for UsersController.
 class UserPolicy
   attr_reader :current_user, :model
 

@@ -1,3 +1,4 @@
+# Pundit access control policy for HostsController.
 class HostPolicy
   attr_reader :current_user, :model
 
@@ -15,17 +16,17 @@ class HostPolicy
   end
 
   def create?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.node.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.node.user == @current_user
   end
 
   def update?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.node.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.node.user == @current_user
   end
 
   def destroy?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.node.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.node.user == @current_user
   end
 end

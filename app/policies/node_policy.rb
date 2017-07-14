@@ -1,3 +1,4 @@
+# Pundit access control policy for NodesController.
 class NodePolicy
   attr_reader :current_user, :model
 
@@ -23,18 +24,18 @@ class NodePolicy
   end
 
   def edit?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.user == @current_user
   end
 
   def update?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.user == @current_user
   end
 
   def destroy?
-    return false if not @current_user
-    @current_user.try(:admin?) or @model.user == @current_user
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.user == @current_user
   end
 
   def graph?
