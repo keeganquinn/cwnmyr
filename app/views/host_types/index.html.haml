@@ -1,4 +1,4 @@
-%h1= t '.title'
+%h1= HostType.model_name.human(count: 2)
 
 %ul
   - @host_types.each do |host_type|

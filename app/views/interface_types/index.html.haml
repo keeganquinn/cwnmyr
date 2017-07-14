@@ -1,4 +1,4 @@
-%h1= t '.title'
+%h1= InterfaceType.model_name.human(count: 2)
 
 %ul
   - @interface_types.each do |interface_type|

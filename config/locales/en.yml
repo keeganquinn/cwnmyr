@@ -42,12 +42,21 @@ en:
       host:
         one: Host
         other: Hosts
+      host_type:
+        one: Host Type
+        other: Host Types
+      interface_type:
+        one: Interface Type
+        other: Interface Types
       node:
         one: Node
         other: Nodes
       node_link:
         one: Link
         other: Links
+      status:
+        one: Status
+        other: Statuses
       user:
         one: User
         other: Users
