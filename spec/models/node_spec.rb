@@ -35,7 +35,7 @@ describe Node do
   end
 
   it '#directions_url returns a string' do
-    expect(node.directions_url).to match "^https://"
+    expect(node.directions_url).to match '^https://'
   end
 
   it 'generates a code if a name is provided' do
