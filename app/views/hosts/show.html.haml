@@ -1,7 +1,7 @@
 %h1= h @host.name
 
 %p.small
-  %span{style: "color: #{@host.status.color}"}
+  %span{ class: @host.status.color }
     = t :status, status: @host.status.name
 
 = markdown @host.body
@@ -12,7 +12,7 @@
   - @host.interfaces.each do |interface|
     %li
       = link_to h(interface.name), url_for(interface)
-      %span{style: "color: #{host.status.color}"} &larr;
+      %span{ class: interface.status.color } &larr;
       - if interface.essid
         \-
         = Interface.human_attribute_name('essid')

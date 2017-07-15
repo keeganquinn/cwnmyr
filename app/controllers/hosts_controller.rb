@@ -1,5 +1,6 @@
+# This controller allows management of Host records.
 class HostsController < ApplicationController
-  before_filter :authenticate_user!, only: [ :create, :edit, :destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy]
   after_action :verify_authorized
 
   def index
@@ -10,65 +11,42 @@ class HostsController < ApplicationController
   def show
     @host = Host.find(params[:id])
     authorize @host
-
-    respond_to do |format|
-      format.html { redirect_to url_for(@host.node) }
-      format.json { render json: @host.to_json }
-      format.xml  { render xml: @host.to_xml }
-    end
   end
 
   def create
     @host = Host.new(host_params)
-    @host.node = Node.find(params[:node])
     authorize @host
-
-    if @host.save
-      flash[:notice] = t(:create_success, thing: Host.model_name.human)
-      redirect_to url_for(@host.node)
-    else
-      @node = @host.node
-      render 'nodes/show'
-    end
+    save_and_respond @host, :created, :create_success
   end
 
   def update
     @host = Host.find(params[:id])
+    @host.assign_attributes(host_params)
     authorize @host
-    if @host.update_attributes(host_params)
-      flash[:notice] = t(:update_success, thing: Host.model_name.human)
-      redirect_to url_for(@host.node)
-    else
-      @node = @host.node
-      render 'nodes/show'
-    end
+    save_and_respond @host, :ok, :update_success
   end
 
   def destroy
-    host = Host.find(params[:id])
-    node = host.node
-    authorize host
-    host.destroy
-
-    flash[:notice] = t(:delete_success, thing: Host.model_name.human)
-    redirect_to url_for(node)
+    @host = Host.find(params[:id])
+    authorize @host
+    destroy_and_respond @host, @host.node
   end
 
   def graph
-    host = Node.find_by_code(params[:node_code]).hosts.find_by_name(params[:hostname])
+    @host = Host.find(params[:id])
+    authorize @host
 
-    send_data(host.graph.to_png,
-              :type => 'image/png', :disposition => 'inline')
-  end
-
-  def feed
-    @host = Node.find_by_code(params[:node_code]).hosts.find_by_name(params[:hostname])
-    render :layout => false
+    respond_to do |format|
+      format.png do
+        send_data @host.graph.to_png, type: 'image/png', disposition: 'inline'
+      end
+      format.any { redirect_to format: :png }
+    end
   end
 
   private
 
   def host_params
-    params.require(:host).permit(:name, :status_id)
+    params.require(:host).permit(:node_id, :name, :status_id)
   end
 end

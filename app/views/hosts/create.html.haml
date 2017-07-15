@@ -1,0 +1,9 @@
+.container
+  %h1= t '.title'
+
+  = form_tag url_for(@host), method: :post do
+    = render partial: 'form', locals: { host: @host }
+
+    = hidden_field 'host', 'node_id'
+    = submit_tag t(:create), id: 'host_create', class: 'btn btn-primary'
+    = link_to t(:cancel), root_path, class: 'btn btn-warning'

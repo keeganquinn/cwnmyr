@@ -14,19 +14,28 @@ class Node < ApplicationRecord
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code
-  validates_format_of :code,
-    with: %r{\A[-_a-zA-Z0-9]+\z},
-    message: 'contains unacceptable characters',
-    if: Proc.new { |o| o.code && o.code.size > 1 }
+  validates_format_of :code, with: /\A[-_a-zA-Z0-9]+\z/,
+                             message: 'contains unacceptable characters',
+                             if: proc { |o| o.code && o.code.size > 1 }
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
 
+  before_validation :set_defaults
+
   geocoded_by :address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and (obj.address_changed? or not obj.latitude or not obj.longitude) }
+  after_validation :geocode, if: :should_geocode?
+
+  def should_geocode?
+    address.present? && (address_changed? || !latitude || !longitude)
+  end
 
   def to_param
-    return nil if not id
+    return unless id
     [id, code].join('-')
+  end
+
+  def directions_url
+    "https://www.google.com/maps?saddr=My+Location&daddr=#{URI.encode(address)}"
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this
@@ -52,46 +61,15 @@ class Node < ApplicationRecord
   # This method retrieves the primary Host instance which is related
   # to this Node instance, or +nil+ if there is none.
   def primary_host
-    return nil if hosts.empty?
+    return if hosts.empty?
     return hosts.first if hosts.size == 1
 
     hosts.each do |host|
-      return host  # FIXME if host is primary
+      return host # FIXME: if host is primary
     end
-
-    return nil
   end
-
-  # This method calculates the median average center point of this Node
-  # instance based on data from the Host#average_point method.
-  def average_point
-    latitude, longitude, height, error, i = 0.0, 0.0, 0.0, 0.0, 0
-
-    hosts.each do |host|
-      if point = host.average_point
-        i += 1
-        latitude += point[:latitude]
-        longitude += point[:longitude]
-        height += point[:height]
-        error += point[:error]
-      end
-    end
-
-    return nil if i == 0
-
-    {
-      latitude: latitude./(i),
-      longitude: longitude./(i),
-      height: height./(i),
-      error: error./(i)
-    }
-  end
-
-  protected
-
-  before_validation :set_defaults
 
   def set_defaults
-    self.code = name.parameterize if code.blank? and name
+    self.code = name.parameterize if code.blank? && name
   end
 end

@@ -1,0 +1,16 @@
+- if node_link.errors.any?
+  .error-explanation
+    = t :errors, count: node_link.errors.count,
+        thing: NodeLink.model_name.human.downcase
+
+    %ul
+      - node_link.errors.full_messages.each do |msg|
+        %li= msg
+
+.form-group
+  %label{ for: 'node_link_name' }= NodeLink.human_attribute_name('name')
+  = text_field 'node_link', 'name', class: 'form-control'
+
+.form-group
+  %label{ for: 'node_link_url' }= NodeLink.human_attribute_name('url')
+  = text_field 'node_link', 'url', class: 'form-control'

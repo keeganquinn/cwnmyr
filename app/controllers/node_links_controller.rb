@@ -1,5 +1,6 @@
+# This controller allows management of NodeLink records.
 class NodeLinksController < ApplicationController
-  before_filter :authenticate_user!, only: [ :create, :edit, :destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy]
   after_action :verify_authorized
 
   def index
@@ -10,53 +11,30 @@ class NodeLinksController < ApplicationController
   def show
     @node_link = NodeLink.find(params[:id])
     authorize @node_link
-
-    respond_to do |format|
-      format.html { redirect_to url_for(@node_link.node) }
-      format.json { render json: @node_link.to_json }
-      format.xml  { render xml: @node_link.to_xml }
-    end
   end
 
   def create
     @node_link = NodeLink.new(node_link_params)
-    @node_link.node = Node.find(params[:node])
     authorize @node_link
-
-    if @node_link.save
-      flash[:notice] = t(:create_success, thing: NodeLink.model_name.human)
-      redirect_to url_for(@node_link.node)
-    else
-      @node = @node_link.node
-      render 'nodes/show'
-    end
+    save_and_respond @node_link, :created, :create_success
   end
 
   def update
     @node_link = NodeLink.find(params[:id])
+    @node_link.assign_attributes(node_link_params)
     authorize @node_link
-    if @node_link.update_attributes(node_link_params)
-      flash[:notice] = t(:update_success, thing: NodeLink.model_name.human)
-      redirect_to url_for(@node_link.node)
-    else
-      @node = @node_link.node
-      render 'nodes/show'
-    end
+    save_and_respond @node_link, :ok, :update_success
   end
 
   def destroy
-    node_link = NodeLink.find(params[:id])
-    node = node_link.node
-    authorize node_link
-    node_link.destroy
-
-    flash[:notice] = t(:delete_success, thing: NodeLink.model_name.human)
-    redirect_to url_for(node)
+    @node_link = NodeLink.find(params[:id])
+    authorize @node_link
+    destroy_and_respond @node_link, @node_link.node
   end
 
   private
 
   def node_link_params
-    params.require(:node_link).permit(:name, :url)
+    params.require(:node_link).permit(:node_id, :name, :url)
   end
 end

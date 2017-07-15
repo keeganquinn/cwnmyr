@@ -1,5 +1,5 @@
 - if @node.errors.any?
-  #error_explanation
+  .error-explanation
     = t :errors, count: @node.errors.count, thing: Node.model_name.human.downcase
 
     %ul

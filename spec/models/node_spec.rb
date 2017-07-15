@@ -34,6 +34,10 @@ describe Node do
     expect(node.to_param).to match "^#{node.id}-#{node.code}$"
   end
 
+  it '#directions_url returns a string' do
+    expect(node.directions_url).to match "^https://"
+  end
+
   it 'generates a code if a name is provided' do
     node.name = 'Test Node'
     node.validate

@@ -67,11 +67,11 @@ section {
 .authform fieldset {
   @extend .well;
 }
-#error_explanation:not(:empty) {
+.error-explanation:not(:empty) {
   @extend .alert;
   @extend .alert-danger;
 }
-#error_explanation h2 {
+.error-explanation h2 {
   font-size: 16px;
 }
 .button-xs {

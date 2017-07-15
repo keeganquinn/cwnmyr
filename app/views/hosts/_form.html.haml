@@ -1,0 +1,28 @@
+- if host.errors.any?
+  .error-explanation
+    = t :errors, count: host.errors.count,
+        thing: Host.model_name.human.downcase
+
+    %ul
+      - host.errors.full_messages.each do |msg|
+        %li= msg
+
+.form-group
+  %label{ for: 'host_name' }= Host.human_attribute_name('name')
+  = text_field 'host', 'name', class: 'form-control',
+               'aria-describedby': 'host-name-help'
+  %span.help-block#host-name-help= t '.host_name_help'
+
+.form-group
+  %label{ for: 'host_host_type_id' }= Host.human_attribute_name('host_type')
+  = collection_select 'host', 'host_type_id', HostType.all, 'id', 'name', {},
+                      class: 'form-control'
+
+.form-group
+  %label{ for: 'host_status_id' }= Host.human_attribute_name('status')
+  = collection_select 'host', 'status_id', Status.all, 'id', 'name', {},
+                      class: 'form-control'
+
+.form-group
+  %label{ for: 'host_body' }= Host.human_attribute_name('body')
+  = text_area 'host', 'body', rows: 8, class: 'form-control'
