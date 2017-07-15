@@ -48,6 +48,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'haml_lint', require: false
   gem 'html2haml'
   gem 'rails_layout'
   gem 'rb-fchange', require: false

@@ -47,7 +47,7 @@ db/*.sqlite3
 /cache
 /capybara*
 /capybara-*.html
-/checkstyle-result.xml
+/checkstyle-*.xml
 /gems
 /specifications
 /rspec.xml
