@@ -1,7 +1,7 @@
 set :stage, :staging
 set :rails_env, 'production'
 
-server 'scrap.quinn.tk', user: 'deploy', roles: %w{web app db}, primary: true
+server 'scrap.quinn.tk', user: 'deploy', roles: %w[web app db], primary: true
 set :deploy_to, '/srv/rails/cwnmyr'
 
 set :foreman_export_format, 'systemd'

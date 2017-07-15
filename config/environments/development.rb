@@ -1,5 +1,6 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -43,25 +44,24 @@ Rails.application.configure do
   config.assets.debug = true
 
   # ActionMailer Config
-  if ENV.include?("SMTP_HOST")
+  if ENV.include?('SMTP_HOST')
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address: ENV.fetch("SMTP_HOST"),
+      address: ENV.fetch('SMTP_HOST'),
       port: 587,
       domain: Rails.application.secrets.domain_name,
-      authentication: "plain",
+      authentication: 'plain',
       enable_starttls_auto: true,
-      user_name: ENV.fetch("SMTP_USER"),
-      password: ENV.fetch("SMTP_PASS")
+      user_name: ENV.fetch('SMTP_USER'),
+      password: ENV.fetch('SMTP_PASS')
     }
   else
     config.action_mailer.delivery_method = :sendmail
   end
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
