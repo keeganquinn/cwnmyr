@@ -1,39 +1,35 @@
 describe Group do
-  before(:each) { @group = build_stubbed(:group) }
+  subject(:group) { build_stubbed(:group) }
 
-  subject { @group }
+  it { is_expected.to have_and_belong_to_many(:users) }
 
-  it { should have_and_belong_to_many(:users) }
+  it { is_expected.to respond_to(:code) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:body) }
 
-  it { should respond_to(:code) }
-  it { should respond_to(:name) }
-  it { should respond_to(:body) }
+  it { is_expected.to validate_length_of(:code) }
+  it { is_expected.to validate_length_of(:name) }
 
-  it { should validate_length_of(:code) }
-  it { should validate_length_of(:name) }
+  it { is_expected.to be_valid }
 
-  it "is valid" do
-    expect(@group).to be_valid
+  it '#to_param returns nil when unsaved' do
+    group.id = nil
+    expect(group.to_param).to be_nil
   end
 
-  it "#to_param returns nil when unsaved" do
-    @group.id = nil
-    expect(@group.to_param).to be_nil
+  it '#to_param returns a string' do
+    expect(group.to_param).to match "^#{group.id}-#{group.code}$"
   end
 
-  it "#to_param returns a string" do
-    expect(@group.to_param).to match "^#{@group.id}-#{@group.code}$"
+  it 'generates a code if a name is provided' do
+    group.name = 'Test User'
+    group.validate
+    expect(group.code).to match 'test-user'
   end
 
-  it "generates a code if a name is provided" do
-    @group.name = 'Test User'
-    expect(@group).to be_valid
-    expect(@group.code).to match 'test-user'
-  end
+  describe 'with database access' do
+    subject(:group) { build(:group) }
 
-  describe "with database access" do
-    before(:each) { @group = build(:group) }
-
-    it { should validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code) }
   end
 end

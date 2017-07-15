@@ -1,41 +1,37 @@
 describe Status do
-  before(:each) { @status = build_stubbed(:status) }
+  subject(:status) { build_stubbed(:status) }
 
-  subject { @status }
+  it { is_expected.to have_many(:nodes) }
+  it { is_expected.to have_many(:hosts) }
+  it { is_expected.to have_many(:interfaces) }
 
-  it { should have_many(:nodes) }
-  it { should have_many(:hosts) }
-  it { should have_many(:interfaces) }
+  it { is_expected.to respond_to(:code) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:color) }
 
-  it { should respond_to(:code) }
-  it { should respond_to(:name) }
-  it { should respond_to(:color) }
+  it { is_expected.to validate_length_of(:code) }
+  it { is_expected.to validate_length_of(:name) }
 
-  it { should validate_length_of(:code) }
-  it { should validate_length_of(:name) }
+  it { is_expected.to be_valid }
 
-  it "is valid" do
-    expect(@status).to be_valid
+  it '#to_param returns nil when unsaved' do
+    status.id = nil
+    expect(status.to_param).to be_nil
   end
 
-  it "#to_param returns nil when unsaved" do
-    @status.id = nil
-    expect(@status.to_param).to be_nil
+  it '#to_param returns a string' do
+    expect(status.to_param).to match "^#{status.id}-#{status.code}$"
   end
 
-  it "#to_param returns a string" do
-    expect(@status.to_param).to match "^#{@status.id}-#{@status.code}$"
+  it 'generates a code if a name is provided' do
+    status.name = 'Test Status'
+    status.validate
+    expect(status.code).to match 'test-status'
   end
 
-  it "generates a code if a name is provided" do
-    @status.name = 'Test Status'
-    expect(@status).to be_valid
-    expect(@status.code).to match 'test-status'
-  end
+  describe 'with database access' do
+    subject(:status) { build(:status) }
 
-  describe "with database access" do
-    before(:each) { @status = build(:status) }
-
-    it { should validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code) }
   end
 end

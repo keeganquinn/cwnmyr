@@ -1,26 +1,24 @@
 describe HostProperty do
-  before(:each) { @host_property = build_stubbed(:host_property) }
+  subject(:host_property) { build_stubbed(:host_property) }
 
-  subject { @host_property }
+  it { is_expected.to belong_to(:host) }
 
-  it { should belong_to(:host) }
+  it { is_expected.to respond_to(:key) }
+  it { is_expected.to respond_to(:value) }
 
-  it { should respond_to(:key) }
-  it { should respond_to(:value) }
+  it { is_expected.to validate_length_of(:key) }
+  it { is_expected.to validate_length_of(:value) }
 
-  it { should validate_length_of(:key) }
-  it { should validate_length_of(:value) }
+  it { is_expected.to be_valid }
 
-  it "is valid" do
-    expect(@host_property).to be_valid
+  it '#to_param returns nil when unsaved' do
+    host_property.id = nil
+    expect(host_property.to_param).to be_nil
   end
 
-  it "#to_param returns nil when unsaved" do
-    @host_property.id = nil
-    expect(@host_property.to_param).to be_nil
-  end
-
-  it "#to_param returns a string" do
-    expect(@host_property.to_param).to match "^#{@host_property.id}-#{@host_property.key}$"
+  it '#to_param returns a string' do
+    expect(host_property.to_param).to(
+      match "^#{host_property.id}-#{host_property.key}$"
+    )
   end
 end

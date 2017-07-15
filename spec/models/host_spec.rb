@@ -1,35 +1,31 @@
 describe Host do
-  before(:each) { @host = build_stubbed(:host) }
+  subject(:host) { build_stubbed(:host) }
 
-  subject { @host }
+  it { is_expected.to belong_to(:node) }
+  it { is_expected.to belong_to(:host_type) }
+  it { is_expected.to belong_to(:status) }
+  it { is_expected.to have_many(:interfaces) }
+  it { is_expected.to have_many(:host_properties) }
 
-  it { should belong_to(:node) }
-  it { should belong_to(:host_type) }
-  it { should belong_to(:status) }
-  it { should have_many(:interfaces) }
-  it { should have_many(:host_properties) }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:body) }
 
-  it { should respond_to(:name) }
-  it { should respond_to(:body) }
+  it { is_expected.to validate_length_of(:name) }
 
-  it { should validate_length_of(:name) }
+  it { is_expected.to be_valid }
 
-  it "is valid" do
-    expect(@host).to be_valid
+  it '#to_param returns nil when unsaved' do
+    host.id = nil
+    expect(host.to_param).to be_nil
   end
 
-  it "#to_param returns nil when unsaved" do
-    @host.id = nil
-    expect(@host.to_param).to be_nil
+  it '#to_param returns a string' do
+    expect(host.to_param).to match "^#{host.id}-#{host.name}$"
   end
 
-  it "#to_param returns a string" do
-    expect(@host.to_param).to match "^#{@host.id}-#{@host.name}$"
-  end
+  describe 'with database access' do
+    subject(:host) { build(:host) }
 
-  describe "with database access" do
-    before(:each) { @host = build(:host) }
-
-    it { should validate_uniqueness_of(:name).scoped_to(:node_id) }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:node_id) }
   end
 end
