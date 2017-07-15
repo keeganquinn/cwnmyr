@@ -1,4 +1,4 @@
-feature 'Interface Type show action' do
+feature 'Interface Type show page' do
   let(:interface_type) { create :interface_type }
 
   scenario 'view the interface type page' do
