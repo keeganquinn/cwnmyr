@@ -7,9 +7,8 @@ puts 'NORMAL USER: ' << user.email
 group = Group.find_or_create_by(code: 'not', name: 'Network Operations Team')
 puts 'GROUP: ' << group.code
 
-
-hostType = HostType.find_or_create_by(code: 'test', name: 'Test Device')
-puts 'HOST TYPE: ' << hostType.code
+host_type = HostType.find_or_create_by(code: 'test', name: 'Test Device')
+puts 'HOST TYPE: ' << host_type.code
 
 airrouter = HostType.find_or_create_by(code: 'airrouter', name: 'AirRouter')
 puts 'HOST TYPE: ' << airrouter.code
@@ -62,9 +61,9 @@ puts 'HOST TYPE: ' << wndr3800.code
 wzr600dhp = HostType.find_or_create_by(code: 'wzr600dhp', name: 'WZR600DHP')
 puts 'HOST TYPE: ' << wzr600dhp.code
 
-
-interfaceType = InterfaceType.find_or_create_by(code: 'test', name: 'Test Interface')
-puts 'INTERFACE TYPE: ' << interfaceType.code
+interface_type = InterfaceType.find_or_create_by code: 'test',
+                                                 name: 'Test Interface'
+puts 'INTERFACE TYPE: ' << interface_type.code
 
 pub = InterfaceType.find_or_create_by(code: 'pub', name: 'Public Network')
 puts 'INTERFACE TYPE: ' << pub.code
@@ -72,25 +71,30 @@ puts 'INTERFACE TYPE: ' << pub.code
 priv = InterfaceType.find_or_create_by(code: 'priv', name: 'Private Network')
 puts 'INTERFACE TYPE: ' << priv.code
 
+status_active = Status.find_or_create_by(code: 'active', name: 'Active',
+                                         color: 'green')
+puts 'STATUS: ' << status_active.code
 
-statusActive = Status.find_or_create_by(code: 'active', name: 'Active', color: 'green')
-puts 'STATUS: ' << statusActive.code
+status_pending = Status.find_or_create_by(code: 'pending', name: 'Pending',
+                                          color: 'yellow')
+puts 'STATUS: ' << status_pending.code
 
-statusPending = Status.find_or_create_by(code: 'pending', name: 'Pending', color: 'yellow')
-puts 'STATUS: ' << statusPending.code
+status_inactive = Status.find_or_create_by(code: 'inactive', name: 'Inactive',
+                                           color: 'red')
+puts 'STATUS: ' << status_inactive.code
 
-statusInactive = Status.find_or_create_by(code: 'inactive', name: 'Inactive', color: 'red')
-puts 'STATUS: ' << statusInactive.code
+status_retired = Status.find_or_create_by(code: 'retired', name: 'Retired',
+                                          color: 'gray')
+puts 'STATUS: ' << status_retired.code
 
-statusRetired = Status.find_or_create_by(code: 'retired', name: 'Retired', color: 'gray')
-puts 'STATUS: ' << statusRetired.code
+status_not_ptp = Status.find_or_create_by(code: 'not_ptp_managed',
+                                          name: 'Not PTP Managed',
+                                          color: 'brown')
+puts 'STATUS: ' << status_not_ptp.code
 
-statusNotPtpManaged = Status.find_or_create_by(code: 'not_ptp_managed', name: 'Not PTP Managed', color: 'brown')
-puts 'STATUS: ' << statusNotPtpManaged.code
-
-statusTest = Status.find_or_create_by(code: 'test', name: 'Testing', color: 'orange')
-puts 'STATUS: ' << statusTest.code
-
+status_test = Status.find_or_create_by(code: 'test', name: 'Testing',
+                                       color: 'orange')
+puts 'STATUS: ' << status_test.code
 
 zone = Zone.find_or_create_by(code: 'pdx', name: 'P-Town')
 puts 'ZONE: ' << zone.code
