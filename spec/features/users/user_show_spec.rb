@@ -13,7 +13,7 @@ feature 'User profile page', :devise do
   scenario 'user sees own profile' do
     login_as(current_user, scope: :user)
     visit user_path(current_user)
-    expect(page).to have_content CGI.escape_html(current_user.name)
+    expect(page).to have_content current_user.name
   end
 
   # Scenario: User cannot see another user's profile
