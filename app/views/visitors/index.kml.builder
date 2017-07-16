@@ -8,7 +8,7 @@ xml.kml('xmlns': 'http://www.opengis.net/kml/2.2',
     xml.description t(:tagline)
 
     Node.all.each do |node|
-      next unless node.latitude and node.longitude
+      next unless node.latitude && node.longitude
 
       xml.Placemark do
         xml.name node.name

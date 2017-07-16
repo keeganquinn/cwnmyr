@@ -8,7 +8,7 @@
 
   .row
     .col-xs-12
-      #map{"data-markers": root_path(format: :json), "data-center": "disco"}
+      #map{ 'data-markers': root_path(format: :json), 'data-center': 'disco' }
       %span.text-muted.pull-right
         = link_to t(:kml), root_path(format: :kml)
 
@@ -34,7 +34,7 @@
           %li= link_to t(:sign_in), user_session_path
           %li= link_to t(:sign_up), new_user_registration_path
 
-      - if user_signed_in? and current_user.nodes.count > 0
+      - if user_signed_in? && current_user.nodes.count.positive?
         %h2= t '.my_nodes'
 
         %ul

@@ -1,5 +1,0 @@
-%li{:id => "role_#{role.to_param}"}
-  = link_to role.name, role_path(role)
-  %span.small
-    = surround '(', ')' do
-      = link_to_remote t('remove'), :url => role_user_path(:role => role)

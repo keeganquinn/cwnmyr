@@ -1,15 +1,15 @@
 %p
-  %label{:for => :email}= User.human_attribute_name('email')
+  %label{ for: :email }= User.human_attribute_name('email')
   %br/
   = text_field :user, :email
 
 %p
-  %label{:for => :password}= User.human_attribute_name('password')
+  %label{ for: :password }= User.human_attribute_name('password')
   %br/
   = password_field :user, :password
 
 %p
-  %label{:for => :password_confirmation}
+  %label{ for: :password_confirmation }
     = User.human_attribute_name('password_confirmation')
   %br/
   = password_field :user, :password_confirmation

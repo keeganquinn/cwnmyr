@@ -1,5 +1,0 @@
-#role_form
-  - unless @user.other_roles.empty?
-    - form_remote_tag :url => role_user_path do
-      = select_tag :role, option_tags_from_records(@user.other_roles)
-      = submit_tag t('add role')

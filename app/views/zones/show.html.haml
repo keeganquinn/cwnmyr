@@ -3,7 +3,7 @@
 
   = markdown @zone.body
 
-  #map{"data-markers": zone_path(@zone, format: :json)}
+  #map{ 'data-markers': zone_path(@zone, format: :json) }
   %span.text-muted.pull-right
     = link_to t(:json), zone_path(@zone, format: :json)
     \|
@@ -19,7 +19,7 @@
     - @zone.nodes.each do |node|
       %li
         = link_to h(node.name), url_for(node)
-        %span{style: "color: #{node.status.color}"} &larr;
+        %span{ class: node.status.color } &larr;
         %span.small
           = surround '(', ')' do
             = t :hosts_numbered, count: node.hosts.count

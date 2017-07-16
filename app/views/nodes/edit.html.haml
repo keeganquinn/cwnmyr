@@ -2,7 +2,7 @@
   %h1= t '.title'
 
   = form_tag url_for(@node), method: :put do
-    = render partial: 'form'
+    = render partial: 'form', locals: { node: @node }
 
     = submit_tag t(:update), class: 'btn btn-primary'
     = link_to t(:cancel), url_for(@node), class: 'btn btn-warning'

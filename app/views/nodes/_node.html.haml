@@ -1,12 +1,12 @@
 = link_to node.name, url_for(node)
 
 %p.small
-  %span{style: "color: #{node.status.color}"}
+  %span{ class: node.status.color }
     = t :status, status: node.status.name
 
 - if node.address
   %p= node.address
-  %p= link_to t(:get_directions), "https://www.google.com/maps?saddr=My+Location&daddr=#{URI.encode(node.address)}", target: :_blank
+  %p= link_to t(:get_directions), node.directions_url, target: :_blank
 
 - if node.hours?
   %p= t :hours, hours: node.hours

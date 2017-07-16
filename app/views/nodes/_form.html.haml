@@ -1,41 +1,48 @@
-- if @node.errors.any?
+- if node.errors.any?
   .error-explanation
-    = t :errors, count: @node.errors.count, thing: Node.model_name.human.downcase
+    = t :errors, count: node.errors.count, thing: Node.model_name.human.downcase
 
     %ul
-      - @node.errors.full_messages.each do |msg|
+      - node.errors.full_messages.each do |msg|
         %li= msg
 
 .form-group
-  %label{for: "node_code"}= Node.human_attribute_name('code')
-  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control', 'aria-describedby': 'node_code_help'
-  %span.help-block#node_code_help= t '.node_code_help'
+  %label{ for: 'node_code' }= Node.human_attribute_name('code')
+  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control',
+                               'aria-describedby': 'node-code-help'
+  %span.help-block#node-code-help= t '.node_code_help'
 
 .form-group
-  %label{for: "node_name"}= Node.human_attribute_name('name')
-  = text_field 'node', 'name', class: 'form-control', 'aria-describedby': 'node_name_help'
-  %span.help-block#node_name_help= t '.node_name_help'
+  %label{ for: 'node_name' }= Node.human_attribute_name('name')
+  = text_field 'node', 'name', class: 'form-control',
+                               'aria-describedby': 'node-name-help'
+  %span.help-block#node-name-help= t '.node_name_help'
 
 .form-group
-  %label{for: "node_status_id"}= Node.human_attribute_name('status')
-  = collection_select 'node', 'status_id', Status.all, 'id', 'name', {}, { class: 'form-control' }
+  %label{ for: 'node_status_id' }= Node.human_attribute_name('status')
+  = collection_select 'node', 'status_id', Status.all, 'id', 'name', {},
+                      class: 'form-control'
 
 .form-group
-  %label{for: "node_body"}= Node.human_attribute_name('body')
-  = text_area 'node', 'body', rows: 8, class: 'form-control', 'aria-describedby': 'node_body_help'
-  %span.help-block#node_body_help= t '.node_body_help'
+  %label{ for: 'node_body' }= Node.human_attribute_name('body')
+  = text_area 'node', 'body', rows: 8, class: 'form-control',
+                              'aria-describedby': 'node-body-help'
+  %span.help-block#node-body-help= t '.node_body_help'
 
 .form-group
-  %label{for: "node_address"}= Node.human_attribute_name('address')
-  = text_field 'node', 'address', class: 'form-control', 'aria-describedby': 'node_address_help'
-  %span.help-block#node_address_help= t '.node_address_help'
+  %label{ for: 'node_address' }= Node.human_attribute_name('address')
+  = text_field 'node', 'address', class: 'form-control',
+                                  'aria-describedby': 'node-address-help'
+  %span.help-block#node-address-help= t '.node_address_help'
 
 .form-group
-  %label{for: "node_hours"}= Node.human_attribute_name('hours')
-  = text_field 'node', 'hours', class: 'form-control', 'aria-describedby': 'node_hours_help'
-  %span.help-block#node_hours_help= t '.node_hours_help'
+  %label{ for: 'node_hours' }= Node.human_attribute_name('hours')
+  = text_field 'node', 'hours', class: 'form-control',
+                                'aria-describedby': 'node-hours-help'
+  %span.help-block#node-hours-help= t '.node_hours_help'
 
 .form-group
-  %label{for: "node_notes"}= Node.human_attribute_name('notes')
-  = text_area 'node', 'notes', rows: 8, class: 'form-control', 'aria-describedby': 'node_notes_help'
-  %span.help-block#node_notes_help= t '.node_notes_help'
+  %label{ for: 'node_notes' }= Node.human_attribute_name('notes')
+  = text_area 'node', 'notes', rows: 8, class: 'form-control',
+                               'aria-describedby': 'node-notes-help'
+  %span.help-block#node-notes-help= t '.node_notes_help'

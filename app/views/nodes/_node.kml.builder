@@ -7,6 +7,6 @@ xml.Placemark do
   end
 
   xml.Point do
-     xml.coordinates "#{node.longitude},#{node.latitude},0"
+    xml.coordinates "#{node.longitude},#{node.latitude},0"
   end
 end
