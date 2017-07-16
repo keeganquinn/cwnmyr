@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Interface model.
 class InterfaceDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -29,73 +30,24 @@ class InterfaceDashboard < Administrate::BaseDashboard
     polarity: Field::String,
     interface_properties: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :host,
-    :code,
-    :name,
-    :interface_type,
-    :status,
+  COLLECTION_ATTRIBUTES = %i[host code name interface_type status].freeze
+
+  SHOW_PAGE_ATTRIBUTES = %i[
+    host code name interface_type status body
+    address_ipv4 address_ipv6 address_mac latitude longitude altitude
+    essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
+    beamwidth_h beamwidth_v azimuth elevation polarity interface_properties
+    created_at updated_at
   ].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :host,
-    :code,
-    :name,
-    :interface_type,
-    :status,
-    :body,
-    :address_ipv4,
-    :address_ipv6,
-    :address_mac,
-    :latitude,
-    :longitude,
-    :altitude,
-    :essid,
-    :security_psk,
-    :channel,
-    :tx_power,
-    :rx_sensitivity,
-    :cable_loss,
-    :antenna_gain,
-    :beamwidth_h,
-    :beamwidth_v,
-    :azimuth,
-    :elevation,
-    :polarity,
-    :interface_properties,
-    :created_at,
-    :updated_at,
-  ].freeze
-
-  FORM_ATTRIBUTES = [
-    :host,
-    :code,
-    :name,
-    :interface_type,
-    :status,
-    :body,
-    :address_ipv4,
-    :address_ipv6,
-    :address_mac,
-    :latitude,
-    :longitude,
-    :altitude,
-    :essid,
-    :security_psk,
-    :channel,
-    :tx_power,
-    :rx_sensitivity,
-    :cable_loss,
-    :antenna_gain,
-    :beamwidth_h,
-    :beamwidth_v,
-    :azimuth,
-    :elevation,
-    :polarity,
+  FORM_ATTRIBUTES = %i[
+    host code name interface_type status body
+    address_ipv4 address_ipv6 address_mac latitude longitude altitude
+    essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
+    beamwidth_h beamwidth_v azimuth elevation polarity
   ].freeze
 
   def display_resource(interface)

@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the User model.
 class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -27,51 +28,21 @@ class UserDashboard < Administrate::BaseDashboard
     body: Field::Text,
     groups: Field::HasMany,
     nodes: Field::HasMany,
-    user_links: Field::HasMany,
+    user_links: Field::HasMany
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :email,
-    :name,
-    :role,
+  COLLECTION_ATTRIBUTES = %i[email name role].freeze
+
+  SHOW_PAGE_ATTRIBUTES = %i[
+    email encrypted_password reset_password_token reset_password_sent_at
+    remember_created_at sign_in_count current_sign_in_at last_sign_in_at
+    current_sign_in_ip last_sign_in_ip created_at updated_at
+    confirmation_token confirmed_at confirmation_sent_at unconfirmed_email
+    code name role body groups nodes user_links
   ].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :email,
-    :encrypted_password,
-    :reset_password_token,
-    :reset_password_sent_at,
-    :remember_created_at,
-    :sign_in_count,
-    :current_sign_in_at,
-    :last_sign_in_at,
-    :current_sign_in_ip,
-    :last_sign_in_ip,
-    :created_at,
-    :updated_at,
-    :confirmation_token,
-    :confirmed_at,
-    :confirmation_sent_at,
-    :unconfirmed_email,
-    :code,
-    :name,
-    :role,
-    :body,
-    :groups,
-    :nodes,
-    :user_links,
-  ].freeze
-
-  FORM_ATTRIBUTES = [
-    :email,
-    :password,
-    :password_confirmation,
-    :name,
-    :role,
-    :body,
-    :groups,
-  ].freeze
+  FORM_ATTRIBUTES = %i[email password password_confirmation
+                       name role body groups].freeze
 
   def display_resource(user)
     "User ##{user.to_param}"

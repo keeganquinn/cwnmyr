@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Contact model.
 class ContactDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -11,37 +12,15 @@ class ContactDashboard < Administrate::BaseDashboard
     notes: Field::Text,
     nodes: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :name,
-    :hidden,
-    :email,
-    :phone,
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[name hidden email phone].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :hidden,
-    :email,
-    :phone,
-    :notes,
-    :nodes,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name hidden email phone notes nodes
+                            created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-    :hidden,
-    :email,
-    :phone,
-    :notes,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name hidden email phone notes].freeze
 
   def display_resource(contact)
     "Contact ##{contact.to_param}"

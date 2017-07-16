@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the InterfaceType model.
 class InterfaceTypeDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -8,29 +9,14 @@ class InterfaceTypeDashboard < Administrate::BaseDashboard
     body: Field::Text,
     interfaces: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :body,
-    :interfaces,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body interfaces].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-    :body,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name body].freeze
 
   def display_resource(interface_type)
     "Interface Type ##{interface_type.to_param}"

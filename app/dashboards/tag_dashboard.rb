@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Tag model.
 class TagDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -7,27 +8,14 @@ class TagDashboard < Administrate::BaseDashboard
     name: Field::String,
     nodes: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :nodes,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name nodes created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name].freeze
 
   def display_resource(tag)
     "Tag ##{tag.to_param}"

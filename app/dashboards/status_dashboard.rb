@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Status model.
 class StatusDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -10,32 +11,14 @@ class StatusDashboard < Administrate::BaseDashboard
     hosts: Field::HasMany,
     interfaces: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :code,
-    :name,
-    :color
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[code name color].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :color,
-    :nodes,
-    :hosts,
-    :interfaces,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name color nodes hosts interfaces].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-    :color,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name color].freeze
 
   def display_resource(status)
     "Status ##{status.to_param}"

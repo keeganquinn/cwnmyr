@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Zone model.
 class ZoneDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -8,29 +9,14 @@ class ZoneDashboard < Administrate::BaseDashboard
     body: Field::Text,
     nodes: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :body,
-    :nodes,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body nodes created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-    :body,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name body].freeze
 
   def display_resource(zone)
     "Zone ##{zone.to_param}"

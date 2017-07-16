@@ -12,7 +12,7 @@ describe NodeDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(18)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(17)
   end
 
   it 'defines form attributes' do

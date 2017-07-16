@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Node model.
 class NodeDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -19,50 +20,18 @@ class NodeDashboard < Administrate::BaseDashboard
     node_links: Field::HasMany,
     tags: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :zone,
-    :code,
-    :name,
-    :user,
-    :status,
+  COLLECTION_ATTRIBUTES = %i[zone code name user status].freeze
+
+  SHOW_PAGE_ATTRIBUTES = %i[
+    zone code name user status body address latitude longitude hours
+    notes contact hosts node_links tags created_at updated_at
   ].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :zone,
-    :code,
-    :name,
-    :user,
-    :status,
-    :body,
-    :address,
-    :latitude,
-    :longitude,
-    :hours,
-    :notes,
-    :contact,
-    :hosts,
-    :node_links,
-    :tags,
-    :created_at,
-    :updated_at,
-  ].freeze
-
-  FORM_ATTRIBUTES = [
-    :zone,
-    :code,
-    :name,
-    :user,
-    :status,
-    :body,
-    :address,
-    :hours,
-    :notes,
-    :contact,
-    :tags,
+  FORM_ATTRIBUTES = %i[
+    zone code name user status body address hours notes contact tags
   ].freeze
 
   def display_resource(node)

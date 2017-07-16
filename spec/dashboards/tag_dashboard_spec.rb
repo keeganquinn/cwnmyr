@@ -12,7 +12,7 @@ describe TagDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(6)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(5)
   end
 
   it 'defines form attributes' do

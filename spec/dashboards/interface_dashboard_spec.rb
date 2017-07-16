@@ -12,7 +12,7 @@ describe InterfaceDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(28)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(27)
   end
 
   it 'defines form attributes' do

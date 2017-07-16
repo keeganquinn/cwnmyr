@@ -1,5 +1,6 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
+# Administrate Dashboard for the Group model.
 class GroupDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
@@ -8,30 +9,14 @@ class GroupDashboard < Administrate::BaseDashboard
     body: Field::Text,
     users: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = [
-    :code,
-    :name,
-  ].freeze
+  COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :code,
-    :name,
-    :body,
-    :users,
-    :created_at,
-    :updated_at,
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body users created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = [
-    :code,
-    :name,
-    :body,
-    :users,
-  ].freeze
+  FORM_ATTRIBUTES = %i[code name body users].freeze
 
   def display_resource(group)
     "Group ##{group.to_param}"
