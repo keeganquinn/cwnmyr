@@ -1,10 +1,15 @@
+# Service to create a default non-privileged user.
 class CreateUserService
+  USER_ATTRS = {
+    name: Rails.application.secrets.user_name,
+    password: Rails.application.secrets.user_password,
+    password_confirmation: Rails.application.secrets.user_password
+  }.freeze
+
   def call
-    user = User.find_or_create_by!(email: Rails.application.secrets.user_email) do |user|
-      user.name = Rails.application.secrets.user_name
-      user.password = Rails.application.secrets.user_password
-      user.password_confirmation = Rails.application.secrets.user_password
-      user.confirm
+    User.find_or_create_by! email: Rails.application.secrets.user_email do |u|
+      u.assign_attributes USER_ATTRS
+      u.confirm
     end
   end
 end
