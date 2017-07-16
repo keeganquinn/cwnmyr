@@ -1,4 +1,4 @@
+# Visitors controller. This controller serves the default root page.
 class VisitorsController < ApplicationController
-  def index
-  end
+  def index; end
 end

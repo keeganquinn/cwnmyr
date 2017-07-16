@@ -1,6 +1,6 @@
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :graph]
+  before_action :authenticate_user!, except: %i[index show graph]
   after_action :verify_authorized
 
   def index
@@ -66,9 +66,9 @@ class NodesController < ApplicationController
     authorize @node
 
     respond_to do |format|
-      format.png {
+      format.png do
         send_data @node.graph.to_png, type: 'image/png', disposition: 'inline'
-      }
+      end
       format.any { redirect_to format: :png }
     end
   end
@@ -76,6 +76,8 @@ class NodesController < ApplicationController
   private
 
   def node_params
-    params.require(:node).permit(:code, :name, :status_id, :body, :address, :hours, :notes)
+    params.require(:node).permit(
+      :code, :name, :status_id, :body, :address, :hours, :notes
+    )
   end
 end

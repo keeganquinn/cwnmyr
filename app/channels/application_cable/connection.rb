@@ -1,4 +1,6 @@
 module ApplicationCable
+  # Connection represents an authenticated user with an active cable connection
+  # to the system.
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
 

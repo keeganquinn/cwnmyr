@@ -1,4 +1,5 @@
 module Admin
+  # Administrate controller for the User model.
   class UsersController < Admin::ApplicationController
     def update
       if params[:user][:password].blank?
