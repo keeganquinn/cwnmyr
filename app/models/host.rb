@@ -8,12 +8,13 @@ class Host < ApplicationRecord
 
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name, scope: :node_id
-  validates_format_of :name, with: %r{\A[-a-zA-Z0-9]+\z},
-    message: 'contains unacceptable characters',
-    if: Proc.new { |o| o.name.size > 1 }
+  validates_format_of :name,
+                      with: /\A[-a-zA-Z0-9]+\z/,
+                      message: 'contains unacceptable characters',
+                      if: proc { |o| o.name.size > 1 }
 
   def to_param
-    return nil if not id
+    return unless id
     [id, name].join('-')
   end
 
@@ -42,10 +43,8 @@ class Host < ApplicationRecord
     return interfaces.first if interfaces.size == 1
 
     interfaces.each do |interface|
-      return interface  # FIXME if interface is primary
+      return interface # FIXME: if interface is primary
     end
-
-    return nil
   end
 
   # This method retrieves the external Interface instance which is related
@@ -54,34 +53,7 @@ class Host < ApplicationRecord
     return nil if interfaces.empty?
 
     interfaces.each do |interface|
-      return interface  # FIXME if interface is external
+      return interface # FIXME: if interface is external
     end
-
-    return nil
-  end
-
-  # This method calculates the median average center point of this Host
-  # instance based on data from the Interface#average_point method.
-  def average_point
-    latitude, longitude, height, error, i = 0.0, 0.0, 0.0, 0.0, 0
-
-    interfaces.each do |interface|
-      if point = interface.point
-        i += 1
-        latitude += point[:latitude]
-        longitude += point[:longitude]
-        height += point[:height]
-        error += point[:error]
-      end
-    end
-
-    return nil if i == 0
-
-    {
-      latitude: latitude./(i),
-      longitude: longitude./(i),
-      height: height./(i),
-      error: error./(i)
-    }
   end
 end

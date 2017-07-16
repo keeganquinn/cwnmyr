@@ -1,4 +1,4 @@
-# This class is parent to all other controllers in the application.
+# This class is parent to all controllers in the application.
 class ApplicationController < ActionController::Base
   include ExceptionHandler
   include Response

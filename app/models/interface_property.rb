@@ -7,7 +7,7 @@ class InterfaceProperty < ApplicationRecord
   validates_length_of :value, minimum: 1
 
   def to_param
-    return nil if not id
+    return unless id
     [id, key].join('-')
   end
 end
