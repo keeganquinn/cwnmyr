@@ -29,8 +29,8 @@ module ApplicationHelper
   def markdown(text)
     return unless text
 
-    renderer = Redcarpet::Render::HTML.new(MARKDOWN_OPTIONS)
-    markdown = Redcarpet::Markdown.new(renderer, MARKDOWN_EXTENSIONS)
+    renderer = Redcarpet::Render::HTML.new(MARKDOWN_OPTIONS.dup)
+    markdown = Redcarpet::Markdown.new(renderer, MARKDOWN_EXTENSIONS.dup)
 
     markdown.render(text).html_safe
   end
