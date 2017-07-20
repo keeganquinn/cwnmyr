@@ -54,4 +54,7 @@ WORKDIR /srv/rails
 COPY Gemfile /srv/rails/Gemfile
 COPY Gemfile.lock /srv/rails/Gemfile.lock
 RUN bundle install
+COPY package.json /srv/rails/package.json
+COPY yarn.lock /srv/rails/yarn.lock
+RUN yarn install
 COPY . /srv/rails
