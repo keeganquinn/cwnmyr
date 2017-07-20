@@ -1,6 +1,9 @@
 {
   "name": "cwnmyr",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "engines": {
     "node": "8.1.4"
   },
@@ -40,6 +43,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4",
     "webpack-dev-server": "^2.5.1"
   }
 }
