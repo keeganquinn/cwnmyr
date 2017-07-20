@@ -4,6 +4,7 @@ FactoryGirl.define do
     name { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }
     email { "#{name.parameterize}@example.com" }
     password 'please123'
+    body { Faker::Lorem.paragraphs }
 
     trait :admin do
       role 'admin'

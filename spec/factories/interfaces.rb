@@ -4,5 +4,6 @@ FactoryGirl.define do
     status
     host
     sequence(:name) { |n| "Test Interface ##{n}" }
+    body { Faker::Lorem.paragraphs }
   end
 end
