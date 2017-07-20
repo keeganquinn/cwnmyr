@@ -50,6 +50,7 @@ db/*.sqlite3
 /checkstyle-*.xml
 /gems
 /specifications
+/junit.xml
 /rspec.xml
 rerun.txt
 pickle-email-*.html
