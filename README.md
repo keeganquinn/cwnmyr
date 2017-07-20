@@ -11,9 +11,12 @@ developed to meet the needs of the Personal Telco Project.
 
 See also: http://personaltelco.net/wiki/CwnmyrProject
 
-This is a Rails application in pure Ruby, developed with PostgreSQL as a
-database. It can be run in any server or container that supports Rails, and
-should work with any other DBMS supported by Rails.
+This is a Rails application, developed with PostgreSQL as a database. It can
+be run in any server or container that supports Rails, and should work with
+any other DBMS supported by Rails.
+
+In addition to the Ruby and JavaScript dependencies, which are described in
+Gemfile and package.json, GraphViz must be installed.
 
 
 Status

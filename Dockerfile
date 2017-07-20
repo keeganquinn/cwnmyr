@@ -1,10 +1,22 @@
-FROM ruby:2.3.3
+FROM debian:stable
 MAINTAINER Keegan Quinn <keeganquinn@gmail.com>
 
-# Install Debian packages
+# Install Debian main packages
 RUN apt-get update -qq \
   && apt-get install -y --no-install-recommends \
-    build-essential graphviz libpq-dev nodejs \
+    autoconf bison build-essential ca-certificates curl git gnupg graphviz \
+    libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
+    libffi-dev libgdbm-dev libpq-dev libmagickwand-dev \
+  && apt-get clean
+
+# Add node and yarn sources, install additional packages
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | \
+  tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq \
+  && apt-get install -y --no-install-recommends \
+    nodejs yarn \
   && apt-get clean
 
 # Install phantomjs
@@ -14,6 +26,28 @@ RUN export PHANTOMJS="phantomjs-2.1.1-linux-x86_64" \
   | tar -xj --strip-components=1 -C /tmp/phantomjs \
   && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin \
   && rm -rf /tmp/phantomjs
+
+# Install rbenv, ruby-build, build a Ruby
+RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv
+RUN git clone \
+  https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN /root/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:$PATH
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+RUN echo 'eval "$(rbenv init -)"' >> .bashrc
+RUN rbenv install -s 2.4.1 \
+  && rbenv global 2.4.1 \
+  && gem install bundler
+
+# Configure bundler to install gems out of tree
+ENV GEM_HOME /usr/local/bundle
+ENV BUNDLE_PATH="$GEM_HOME" \
+  BUNDLE_BIN="$GEM_HOME/bin" \
+  BUNDLE_SILENCE_ROOT_WARNING=1 \
+  BUNDLE_APP_CONFIG="$GEM_HOME"
+ENV PATH $BUNDLE_BIN:$PATH
+RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
+  && chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
 
 # Add application
 WORKDIR /srv/rails

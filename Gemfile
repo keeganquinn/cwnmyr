@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.3'
+ruby '2.4.1'
 gem 'rails'
 
 gem 'foreman'
@@ -29,6 +29,7 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker'
 
 gem 'geocoder'
 gem 'gmaps4rails'
