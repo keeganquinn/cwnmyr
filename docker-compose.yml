@@ -8,6 +8,7 @@ web:
   command: bundle exec foreman start
   volumes:
     - .:/srv/rails
+    - /srv/rails/node_modules
   ports:
     - "3000:3000"
   environment:
