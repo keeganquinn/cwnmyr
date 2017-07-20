@@ -2,13 +2,48 @@
   "name": "cwnmyr",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "lint": "eslint app",
+    "test": "jest --coverage"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "targets": {
+            "browsers": "> 1%",
+            "uglify": true
+          },
+          "useBuiltIns": true
+        }
+      ]
+    ],
+    "plugins": [
+      "syntax-dynamic-import",
+      [
+        "transform-class-properties",
+        {
+          "spec": true
+        }
+      ]
+    ]
   },
   "jest": {
     "roots": [
-      "app/javascript"
+      "app/assets"
     ],
     "testResultsProcessor": "./node_modules/jest-junit"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": "standard",
+    "plugins": [
+      "standard",
+      "promise"
+    ]
   },
   "engines": {
     "node": "8.1.4"
@@ -21,6 +56,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "bootstrap-sass": "^3.3.7",
     "coffee-loader": "^0.7.3",
     "coffee-script": "^1.12.7",
     "compression-webpack-plugin": "^1.0.0",
@@ -35,6 +71,7 @@
     "postcss-smart-import": "^0.7.5",
     "precss": "^2.0.0",
     "rails-erb-loader": "^5.0.2",
+    "rails-ujs": "^5.1.2",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",

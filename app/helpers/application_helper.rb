@@ -1,15 +1,14 @@
 # This module includes helper methods for use in views.
 module ApplicationHelper
   JS_INCLUDES = [
-    "//maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}",
-    '//cdn.rawgit.com/mahnunchik/markerclustererplus/' \
-      'master/dist/markerclusterer.min.js',
-    '//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/' \
-      'master/infobox/src/infobox_packed.js'
+    '//maps.googleapis.com/maps/api/js' \
+      "?key=#{ENV['GMAPS_API_KEY']}&callback=initMap".html_safe
   ].freeze
 
   def remote_javascript_includes
-    JS_INCLUDES.map { |js| javascript_include_tag js } .join.html_safe
+    JS_INCLUDES.map do |js|
+      javascript_include_tag js, async: true, defer: true
+    end .join.html_safe
   end
 
   MARKDOWN_OPTIONS = {
