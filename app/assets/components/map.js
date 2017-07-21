@@ -6,7 +6,7 @@ function displayMap (data) {
   }
 
   var mapDiv = document.getElementById('map')
-  var map = new google.maps.Map(mapDiv, {
+  var gMap = new google.maps.Map(mapDiv, {
     maxZoom: 18,
     minZoom: 11,
     zoom: 17
@@ -20,31 +20,31 @@ function displayMap (data) {
     }
     bounds.extend(new google.maps.LatLng(node.lat, node.lng))
     let marker = new google.maps.Marker({
-      map: map,
+      map: gMap,
       position: new google.maps.LatLng(node.lat, node.lng),
       title: node.name
     })
     marker.addListener('click', function () {
       infoWindow.setContent(node.infowindow)
-      infoWindow.open(map, marker)
+      infoWindow.open(gMap, marker)
     })
   }
-  map.fitBounds(bounds)
-  map.panToBounds(bounds)
+  gMap.fitBounds(bounds)
+  gMap.panToBounds(bounds)
 
   function displayPosition (position) {
     var marker = new google.maps.Marker({
       icon: require('images/position_small.png'),
-      map: map,
+      map: gMap,
       position: new google.maps.LatLng(
         position.coords.latitude, position.coords.longitude)
     })
     marker.addListener('click', function () {
       infoWindow.setContent('You Are Here')
-      infoWindow.open(map, marker)
+      infoWindow.open(gMap, marker)
     })
     if (mapDiv.dataset.center) {
-      map.setCenter(marker.position)
+      gMap.setCenter(marker.position)
     }
   }
 
