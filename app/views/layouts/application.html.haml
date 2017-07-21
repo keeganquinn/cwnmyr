@@ -3,7 +3,7 @@
   %head
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     %title= content_for?(:title) ? yield(:title) : t(:cwnmyr)
-    = stylesheet_pack_tag 'application'
+    = stylesheet_pack_tag 'main'
     = csrf_meta_tags
   %body
     %header
@@ -15,5 +15,5 @@
       .container
         %span.text-muted.pull-right
           cwnmyr-0.1
-    = javascript_pack_tag 'application'
+    = javascript_pack_tag 'main'
     = remote_javascript_includes
