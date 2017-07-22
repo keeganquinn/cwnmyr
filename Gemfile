@@ -39,6 +39,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
+  gem 'capistrano-yarn'
   gem 'capistrano3-puma'
   gem 'guard-bundler'
   gem 'guard-rails'
