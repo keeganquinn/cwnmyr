@@ -13,6 +13,7 @@ class Status < ApplicationRecord
                       message: 'contains unacceptable characters',
                       if: proc { |o| o.code && o.code.size > 1 }
   validates_length_of :name, minimum: 1
+  validates_length_of :color, minimum: 1
 
   before_validation :set_defaults
 

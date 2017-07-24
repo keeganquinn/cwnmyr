@@ -11,6 +11,7 @@ describe Status do
 
   it { is_expected.to validate_length_of(:code) }
   it { is_expected.to validate_length_of(:name) }
+  it { is_expected.to validate_length_of(:color) }
 
   it { is_expected.to be_valid }
 
