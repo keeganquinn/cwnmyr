@@ -48,4 +48,9 @@ feature 'Node show page', :devise do
     click_button 'host_create'
     expect(page).to have_content 'spechost'
   end
+
+  it 'allows the node to be deleted' do
+    click_link 'Delete'
+    expect(page).to have_content node.zone.name
+  end
 end
