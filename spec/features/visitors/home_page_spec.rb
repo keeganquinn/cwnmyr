@@ -5,6 +5,6 @@
 feature 'Home page' do
   before { visit root_path }
 
-  it { expect(page).to have_content 'Looking for a node?' }
+  it { expect(page).to have_content 'Welcome' }
   it { expect(page).to have_selector "#map[data-center='disco']" }
 end
