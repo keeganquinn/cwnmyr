@@ -1,11 +1,11 @@
-# $Id: nagios_internal.rhtml 2738 2006-06-10 08:35:28Z keegan $
+# Nagios configuration file (internal) for zone: <%= @zone.name %>
 #
-# Generated <%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %> by <%= url_for :controller => 'visitors', :only_path => false %>
+# Generated <%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %> by <%= root_url %>
 
 
-<%= render :partial => 'nagios_timeperiod' %>
+<%= render partial: 'conf/nagios_timeperiod' %>
 
-<%= render :partial => 'nagios_command' %>
+<%= render partial: 'conf/nagios_command' %>
 
 <% contact_maintainers = [] -%>
 <% Zone.all.each do |zone| -%>
@@ -53,7 +53,7 @@ define contactgroup{
 <% end -%>
 <% end -%>
 
-<%= render :partial => 'nagios_host_template' %>
+<%= render partial: 'conf/nagios_host_template' %>
 
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
@@ -94,7 +94,7 @@ define hostgroup{
 <% end -%>
 <% end -%>
 
-<%= render :partial => 'nagios_service_template' %>
+<%= render partial: 'conf/nagios_service_template' %>
 
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>

@@ -5,6 +5,12 @@ en:
   kml: KML
   json: JSON
   xml: XML
+  dns_zone_external: BIND DNS Zone (External)
+  dns_zone_internal: BIND DNS Zone (Internal)
+  nagios_external: Nagios Configuration (External)
+  nagios_internal: Nagios Configuration (Internal)
+  smokeping_external: SmokePing Configuration (External)
+  smokeping_internal: SmokePing Configuration (Internal)
   sign_up: Sign Up
   forgot: Forgot password?
   sign_in: Sign In
@@ -72,10 +78,6 @@ en:
         email: Email Address
         password: Password
         password_confirmation: Password Confirmation
-  config:
-    index:
-      title: Configuration Files
-      description: Generate configuration files for a variety of software from the data in this system.
   devise:
     confirmations:
       new:
@@ -95,6 +97,10 @@ en:
       title: Edit Node
     show:
       network_diagram: Network Diagram
+  zones:
+    show:
+      conf: Configuration Files
+      conf_description: Generate configuration files for a variety of network software from the data in this zone.
   visitors:
     index:
       title: Welcome

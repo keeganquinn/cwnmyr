@@ -25,3 +25,21 @@
             = t :hosts_numbered, count: node.hosts.count
     - if user_signed_in?
       %li= link_to t('.new_node'), new_node_path(zone: @zone)
+
+  %h2= t '.conf'
+
+  %p= t '.conf_description'
+
+  %ul
+    %li= link_to t(:dns_zone_external),
+      conf_zone_path(@zone, svc: 'dns_zone_external')
+    %li= link_to t(:dns_zone_internal),
+      conf_zone_path(@zone, svc: 'dns_zone_internal')
+    %li= link_to t(:nagios_external),
+      conf_zone_path(@zone, svc: 'nagios_external')
+    %li= link_to t(:nagios_internal),
+      conf_zone_path(@zone, svc: 'nagios_internal')
+    %li= link_to t(:smokeping_external),
+      conf_zone_path(@zone, svc: 'smokeping_external')
+    %li= link_to t(:smokeping_internal),
+      conf_zone_path(@zone, svc: 'smokeping_internal')

@@ -5,10 +5,9 @@ $TTL			86400
 
 			NS	ns1.<%= ENV["DOMAIN_NAME"] %>.
 
-<% Zone.all.each do |zone| -%>
-; begin zone: <%= zone.code %> (<%= zone.name %>)
+; begin zone: <%= @zone.code %> (<%= @zone.name %>)
 
-<% zone.nodes.each do |node| -%>
+<% @zone.nodes.each do |node| -%>
 ; begin node: <%= node.code %> (<%= node.name %>)
 <% if node.primary_host && node.primary_host.external_interface -%>
 <%= node.code %>	A	<%= node.primary_host.external_interface.ipv4_address %>
@@ -17,7 +16,6 @@ $TTL			86400
 ; end node: <%= node.code %>
 
 <% end -%>
-; end zone: <%= zone.code %>
+; end zone: <%= @zone.code %>
 
-<% end -%>
 ; end of file

@@ -44,7 +44,3 @@
               %span.small
                 = surround '(', ')' do
                   = t :hosts_numbered, count: node.hosts.count
-
-  .row
-    .col-xs-12
-      %p= link_to t('config.index.title'), config_path

@@ -14,4 +14,8 @@ class ZonePolicy
   def show?
     true
   end
+
+  def conf?
+    true
+  end
 end
