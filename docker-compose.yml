@@ -5,10 +5,10 @@ db:
 
 web:
   build: .
-  command: bundle exec foreman start
+  command: foreman start
   volumes:
     - .:/srv/rails
-    - /srv/rails/node_modules
+    - node_modules:/srv/rails/node_modules
   ports:
     - "3000:3000"
   environment:
