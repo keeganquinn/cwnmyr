@@ -6,7 +6,7 @@
 
 build=${BUILD_NUMBER:-"current"}
 compose=(docker-compose -p cwnmyr)
-exec=("${compose[@]}" exec web)
+exec=("${compose[@]}" exec -T web)
 
 set -ex
 
