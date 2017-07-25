@@ -84,4 +84,10 @@ RSpec.configure do |config|
   # Devise/Warden integration.
   config.include Warden::Test::Helpers
   config.after(:each) { Warden.test_reset! }
+
+  if ENV['BUILD_NUMBER']
+    config.before(:example, :focus) do
+      raise 'This example was committed to version control with `:focus`'
+    end
+  end
 end
