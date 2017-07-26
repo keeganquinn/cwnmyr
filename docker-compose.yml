@@ -1,18 +1,20 @@
-db:
-  image: postgres
-  ports:
-    - "5432"
+version: '3.1'
 
-web:
-  build: .
-  command: foreman start
-  volumes:
-    - .:/srv/rails
-    - node_modules:/srv/rails/node_modules
-  ports:
-    - "3000:3000"
-  environment:
-    - DB_USERNAME=postgres
-    - DB_PASSWORD=
-  links:
-    - db
+services:
+  db:
+    image: postgres
+
+  web:
+    build: .
+    command: foreman start
+    volumes:
+      - .:/srv/rails
+      - /srv/rails/node_modules
+    ports:
+      - '3000:3000'
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=
+    depends_on:
+      - db
