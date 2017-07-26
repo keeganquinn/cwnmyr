@@ -1,6 +1,7 @@
 # An Interface instance represents a network interface or connection with
 # a relationship to a Host instance.
 class Interface < ApplicationRecord
+  has_paper_trail
   belongs_to :host
   belongs_to :interface_type
   belongs_to :status

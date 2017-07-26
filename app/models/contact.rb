@@ -1,5 +1,6 @@
 # A Contact is a person of interest related to one or more Nodes.
 class Contact < ApplicationRecord
+  has_paper_trail
   has_many :nodes
 
   validates_length_of :code, minimum: 1

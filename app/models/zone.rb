@@ -2,6 +2,7 @@
 # as an organizational aid and the heirarchial root of the system when
 # browsing in the user interface.
 class Zone < ApplicationRecord
+  has_paper_trail
   has_many :nodes
 
   validates_length_of :code, minimum: 1

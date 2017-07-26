@@ -1,6 +1,7 @@
 # A UserLink instance represents a hypertext link which is related to
 # a particular User instance.
 class UserLink < ApplicationRecord
+  has_paper_trail
   belongs_to :user
 
   validates_length_of :name, minimum: 1

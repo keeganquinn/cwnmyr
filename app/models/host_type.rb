@@ -1,6 +1,7 @@
 # Each HostType instance represents a type of Host.  Commentary can
 # be provided by means of HostTypeComment instances.
 class HostType < ApplicationRecord
+  has_paper_trail
   has_many :hosts
 
   validates_length_of :code, minimum: 1

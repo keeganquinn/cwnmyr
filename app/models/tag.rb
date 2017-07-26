@@ -1,5 +1,6 @@
 # A Tag represents a general characteristic associated with a Node.
 class Tag < ApplicationRecord
+  has_paper_trail
   has_and_belongs_to_many :nodes
 
   validates_length_of :code, minimum: 1

@@ -1,6 +1,7 @@
 # Each Status instance represents a generalized state which might apply
 # to any number of Node, Host or Interface instances.
 class Status < ApplicationRecord
+  has_paper_trail
   has_many :nodes
   has_many :hosts
   has_many :interfaces

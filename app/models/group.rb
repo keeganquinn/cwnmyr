@@ -1,5 +1,6 @@
 # A Group of Users may work together to manage Nodes as a team.
 class Group < ApplicationRecord
+  has_paper_trail
   has_and_belongs_to_many :users, uniq: true
 
   validates_length_of :code, minimum: 1

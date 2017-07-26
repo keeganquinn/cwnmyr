@@ -3,6 +3,7 @@ require_dependency 'dot_diskless'
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
+  has_paper_trail
   belongs_to :contact, optional: true
   belongs_to :status
   belongs_to :user, optional: true

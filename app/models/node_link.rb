@@ -1,6 +1,7 @@
 # A NodeLink instance represents a hypertext link which is related to
 # a particular Node instance.
 class NodeLink < ApplicationRecord
+  has_paper_trail
   belongs_to :node
 
   validates_length_of :name, minimum: 1

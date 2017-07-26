@@ -1,5 +1,6 @@
 # Each Host instance represents a network device which is used at a Node.
 class Host < ApplicationRecord
+  has_paper_trail
   belongs_to :node
   belongs_to :host_type, optional: true
   belongs_to :status

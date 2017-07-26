@@ -1,5 +1,6 @@
 # A User is a person who can log in to the system.
 class User < ApplicationRecord
+  has_paper_trail
   has_and_belongs_to_many :groups, uniq: true
   has_many :nodes
   has_many :user_links

@@ -1,5 +1,6 @@
 # Each InterfaceType instance represents a type of Interface.
 class InterfaceType < ApplicationRecord
+  has_paper_trail
   has_many :interfaces
 
   validates_length_of :code, minimum: 1
