@@ -90,7 +90,7 @@
                            class: 'btn btn-primary'
 
       %h2= t('.network_diagram')
-      %p= image_tag graph_node_path(@node)
+      %p= image_tag graph_node_path(@node, format: :png)
 
     .col-md-5
       %p.small
