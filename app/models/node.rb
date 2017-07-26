@@ -42,20 +42,8 @@ class Node < ApplicationRecord
   # This method constructs an RGL::AdjacencyGraph instance based on this
   # Node instance, including related Interface instances and IPv4 neighbor
   # relationships.
-  def graph
-    g = RGL::AdjacencyGraph.new
-
-    hosts.each do |host|
-      host.interfaces.each do |interface|
-        g.add_edge(host.name, host.name + ': ' + interface.code)
-
-        interface.ipv4_neighbors.each do |neighbor|
-          g.add_edge(host.name + ': ' + interface.code,
-                     neighbor.host.name + ': ' + neighbor.code)
-        end
-      end
-    end
-
+  def graph(g = RGL::AdjacencyGraph.new)
+    hosts.each { |host| host.graph g }
     g
   end
 
