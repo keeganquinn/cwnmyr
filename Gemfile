@@ -26,7 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 
 gem 'geocoder'
-gem 'netaddr', require: 'cidr'
+gem 'netaddr'
 gem 'rgl', require: 'rgl/adjacency'
 gem 'rmagick'
 

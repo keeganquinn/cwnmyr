@@ -1,5 +1,5 @@
 describe Interface do
-  subject(:interface) { build_stubbed(:interface) }
+  subject(:interface) { build_stubbed :interface }
 
   it { is_expected.to belong_to(:host) }
   it { is_expected.to belong_to(:interface_type) }
@@ -29,6 +29,10 @@ describe Interface do
   it { is_expected.to respond_to(:polarity) }
 
   it { is_expected.to validate_length_of(:code) }
+  it { is_expected.to allow_value('10.11.23.3/24').for(:address_ipv4) }
+  it { is_expected.not_to allow_value('junk').for(:address_ipv4) }
+  it { is_expected.to allow_value('::1/128').for(:address_ipv6) }
+  it { is_expected.not_to allow_value('junk').for(:address_ipv6) }
 
   it { is_expected.to be_valid }
 
@@ -39,5 +43,27 @@ describe Interface do
 
   it '#to_param returns a string' do
     expect(interface.to_param).to match "^#{interface.id}-#{interface.code}$"
+  end
+
+  describe 'IPv4 neighbors' do
+    let(:network) { create :interface_type }
+    let!(:local) do
+      create :interface, interface_type: network, address_ipv4: '10.11.23.2/24'
+    end
+    let!(:remote) do
+      create :interface, interface_type: network, address_ipv4: '10.11.23.3/24'
+    end
+
+    it 'are on the same network' do
+      expect(local.interface_type).to eq(remote.interface_type)
+    end
+
+    it 'share an interface type' do
+      expect(local.interface_type.interfaces).to include(remote)
+    end
+
+    it 'are detected' do
+      expect(local.ipv4_neighbors).to include(remote)
+    end
   end
 end

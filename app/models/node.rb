@@ -58,17 +58,6 @@ class Node < ApplicationRecord
     g
   end
 
-  # This method retrieves the primary Host instance which is related
-  # to this Node instance, or +nil+ if there is none.
-  def primary_host
-    return if hosts.empty?
-    return hosts.first if hosts.size == 1
-
-    hosts.each do |host|
-      return host # FIXME: if host is primary
-    end
-  end
-
   def set_defaults
     self.code = name.parameterize if code.blank? && name
   end
