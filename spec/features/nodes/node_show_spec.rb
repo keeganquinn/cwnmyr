@@ -3,7 +3,7 @@ feature 'Node show page', :devise do
   let(:node) { create :node, user: current_user }
 
   before do
-    login_as current_user, scope: :user
+    login_as current_user
     visit node_path(node)
   end
 
@@ -47,6 +47,11 @@ feature 'Node show page', :devise do
     fill_in 'host_name', with: 'spechost'
     click_button 'host_create'
     expect(page).to have_content 'spechost'
+  end
+
+  it 'allows the node to be edited' do
+    click_link 'Edit'
+    expect(page).to have_content 'Edit Node'
   end
 
   it 'allows the node to be deleted' do

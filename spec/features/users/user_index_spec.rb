@@ -9,7 +9,7 @@ feature 'User index page', :devise do
   #   Then I see my own name
   scenario 'user sees own name' do
     user = FactoryGirl.create(:user, :admin)
-    login_as(user, scope: :user)
+    login_as user
     visit users_path
     expect(page).to have_content user.name
   end

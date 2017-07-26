@@ -6,7 +6,7 @@ feature 'User edit', :devise do
   let(:current_user) { create(:user) }
   let(:other_user) { create(:user) }
 
-  before { login_as(current_user, scope: :user) }
+  before { login_as current_user }
 
   # Scenario: User changes email address
   #   Given I am signed in

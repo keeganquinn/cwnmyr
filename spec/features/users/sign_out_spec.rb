@@ -10,7 +10,7 @@ feature 'Sign out', :devise do
   #   When I sign out
   #   Then I see a signed out message
   scenario 'user signs out successfully' do
-    login_as(current_user, scope: :user)
+    login_as current_user
     visit root_path
     click_link 'Sign Out'
     expect(page).to have_content I18n.t 'devise.sessions.signed_out'

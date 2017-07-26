@@ -11,7 +11,7 @@ feature 'User profile page', :devise do
   #   When I visit the user profile page
   #   Then I see my own email address
   scenario 'user sees own profile' do
-    login_as(current_user, scope: :user)
+    login_as current_user
     visit user_path(current_user)
     expect(page).to have_content current_user.name
   end
@@ -21,7 +21,7 @@ feature 'User profile page', :devise do
   #   When I visit another user's profile
   #   Then I do not see their email address
   scenario "user cannot see another user's email address" do
-    login_as(current_user, scope: :user)
+    login_as current_user
     Capybara.current_session.driver.header 'Referer', root_path
     visit user_path(other_user)
     expect(page).not_to have_content other_user.email

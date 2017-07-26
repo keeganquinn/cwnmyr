@@ -3,7 +3,7 @@ feature 'Node edit page', :devise do
   let(:node) { create :node, user: current_user }
 
   before do
-    login_as current_user, scope: :user
+    login_as current_user
     visit edit_node_path(node)
   end
 

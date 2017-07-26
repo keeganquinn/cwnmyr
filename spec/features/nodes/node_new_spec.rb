@@ -4,7 +4,7 @@ feature 'Node new page', :devise do
 
   before do
     create :status
-    login_as current_user, scope: :user
+    login_as current_user
     visit new_node_path(zone: zone)
   end
 
