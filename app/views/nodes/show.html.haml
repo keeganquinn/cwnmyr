@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      %h1= @node.name
+      %h1= h @node.name
 
   .row
     .col-md-7
@@ -59,7 +59,7 @@
       %ul
         - @node.hosts.each do |host|
           %li
-            = host.name
+            = link_to host.name, url_for(host)
             - if current_user.try(:admin?) || @node.user == current_user
               = link_to url_for(host), method: :delete,
                         data: { confirm: t(:confirm_delete,
