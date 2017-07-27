@@ -1,3 +1,5 @@
+require_dependency 'dot_diskless'
+
 # An Interface instance represents a network interface or connection with
 # a relationship to a Host instance.
 class Interface < ApplicationRecord

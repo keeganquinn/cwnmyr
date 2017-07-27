@@ -1,3 +1,5 @@
+require_dependency 'dot_diskless'
+
 # Each Host instance represents a network device which is used at a Node.
 class Host < ApplicationRecord
   has_paper_trail
