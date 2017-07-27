@@ -1,7 +1,7 @@
 .container
   %h1= t '.title'
 
-  = form_tag do
+  = form_tag hosts_path do
     = render partial: 'form', locals: { host: @host }
 
     = hidden_field 'host', 'node_id'

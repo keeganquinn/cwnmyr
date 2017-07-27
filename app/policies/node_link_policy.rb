@@ -15,7 +15,17 @@ class NodeLinkPolicy
     true
   end
 
+  def new?
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.node.user == @current_user
+  end
+
   def create?
+    return false unless @current_user
+    @current_user.try(:admin?) || @model.node.user == @current_user
+  end
+
+  def edit?
     return false unless @current_user
     @current_user.try(:admin?) || @model.node.user == @current_user
   end

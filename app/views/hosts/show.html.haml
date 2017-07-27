@@ -1,23 +1,39 @@
-%h1= h @host.name
+.container
+  .row
+    .col-md-12
+      %h1= h @host.name
 
-%p.small
-  %span{ class: @host.status.color }
-    = t :status, status: @host.status.name
+  .row
+    .col-md-12
+      - if current_user.try(:admin?) || @host.node.user == current_user
+        %p
+          = link_to t(:edit), edit_host_path(@host), class: 'btn btn-warning'
+          = link_to t(:delete), url_for(@host), method: :delete,
+                    data: { confirm: t(:confirm_delete,
+                            thing: Host.model_name.human.downcase) },
+                    class: 'btn btn-danger'
 
-= markdown @host.body
+      %p.small
+        %span{ class: @host.status.color }
+          = t :status, status: @host.status.name
 
-%h2= Interface.model_name.human(count: 2)
+      = markdown @host.body
 
-%ul
-  - @host.interfaces.each do |interface|
-    %li
-      = link_to h(interface.name), url_for(interface)
-      %span{ class: interface.status.color } &larr;
-      - if interface.essid
-        \-
-        = Interface.human_attribute_name('essid')
-        = h interface.essid
-      - if interface.channel
-        \-
-        = Interface.human_attribute_name('channel')
-        = h interface.channel
+      %h2= t('.network_diagram')
+      %p= image_tag graph_host_path(@host, format: :png)
+
+      %h2= Interface.model_name.human(count: 2)
+
+      %ul
+        - @host.interfaces.each do |interface|
+          %li
+            = link_to h(interface.name), url_for(interface)
+            %span{ class: interface.status.color } &larr;
+            - if interface.essid
+              \-
+              = Interface.human_attribute_name('essid')
+              = h interface.essid
+            - if interface.channel
+              \-
+              = Interface.human_attribute_name('channel')
+              = h interface.channel

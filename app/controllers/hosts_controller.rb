@@ -1,6 +1,6 @@
 # This controller allows management of Host records.
 class HostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, except: %i[index show graph]
   after_action :verify_authorized
 
   def index
@@ -13,10 +13,20 @@ class HostsController < ApplicationController
     authorize @host
   end
 
+  def new
+    @host = Host.new node_id: params[:node]
+    authorize @host
+  end
+
   def create
     @host = Host.new(host_params)
     authorize @host
     save_and_respond @host, :created, :create_success
+  end
+
+  def edit
+    @host = Host.find(params[:id])
+    authorize @host
   end
 
   def update

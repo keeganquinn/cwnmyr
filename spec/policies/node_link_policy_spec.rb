@@ -12,7 +12,7 @@ describe NodeLinkPolicy do
     it { is_expected.to permit nil }
   end
 
-  permissions :create?, :update?, :destroy? do
+  permissions :new?, :create?, :edit?, :update?, :destroy? do
     it { is_expected.not_to permit nil, node_link }
     it { is_expected.not_to permit other_user, node_link }
     it { is_expected.to permit current_user, node_link }

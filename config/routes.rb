@@ -10,9 +10,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :host_types, :hosts, :host_properties, :host_types,
+  resources :host_types, :host_properties, :host_types,
             :interfaces, :interface_properties, :interface_types,
             :node_links, :users, :user_links, :statuses
+  resources :hosts do
+    member do
+      get 'graph'
+    end
+  end
   resources :nodes do
     member do
       get 'graph'

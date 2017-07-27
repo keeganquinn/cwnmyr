@@ -83,6 +83,11 @@ en:
       new:
         title: Resend confirmation
         submit: Resend confirmation instructions
+  hosts:
+    new:
+      title: New Host
+    edit:
+      title: Edit Host
   nodes:
     form:
       node_code_help: Identifier for the node. Should match the WikiWord.
@@ -97,6 +102,11 @@ en:
       title: Edit Node
     show:
       network_diagram: Network Diagram
+  node_links:
+    new:
+      title: New Link
+    edit:
+      title: Edit Link
   zones:
     show:
       conf: Configuration Files
