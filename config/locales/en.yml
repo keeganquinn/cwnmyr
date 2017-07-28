@@ -5,6 +5,7 @@ en:
   kml: KML
   json: JSON
   xml: XML
+  eg: "(eg. %{ex})"
   dns_zone_external: BIND DNS Zone (External)
   dns_zone_internal: BIND DNS Zone (Internal)
   nagios_external: Nagios Configuration (External)
@@ -25,6 +26,9 @@ en:
   delete: Delete
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
+  node: "Node: %{node}"
+  host: "Host: %{host}"
+  interface: "Interface: %{interface}"
   status: "Status: %{status}"
   hours: "Hours: %{hours}"
   created: "Created: %{date}"
@@ -70,6 +74,10 @@ en:
         one: Zone
         other: Zones
     attributes:
+      interface:
+        address_ipv4: CIDR-masked IPv4 address
+        address_ipv6: CIDR-masked IPv6 address
+        address_mac: BSSID/MAC address
       node:
         body: Description
       node_link:
@@ -88,6 +96,14 @@ en:
       title: New Host
     edit:
       title: Edit Host
+  interfaces:
+    form:
+      interface_address_ipv4_example: '10.11.12.1/24'
+      interface_address_ipv6_example: '2001:618::6eff:fe6f:f2e3:20c/64'
+    new:
+      title: New Interface
+    edit:
+      title: Edit Interface
   nodes:
     form:
       node_code_help: Identifier for the node. Should match the WikiWord.

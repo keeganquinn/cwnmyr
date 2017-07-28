@@ -13,7 +13,7 @@ describe InterfacePolicy do
     it { is_expected.to permit nil }
   end
 
-  permissions :create?, :update?, :destroy? do
+  permissions :new?, :create?, :edit?, :update?, :destroy? do
     it { is_expected.not_to permit nil, interface }
     it { is_expected.not_to permit other_user, interface }
     it { is_expected.to permit current_user, interface }

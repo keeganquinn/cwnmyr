@@ -14,6 +14,10 @@
                     class: 'btn btn-danger'
 
       %p.small
+        = link_to t(:zone, zone: @host.node.zone.name), url_for(@host.node.zone)
+        %br/
+        = link_to t(:node, node: @host.node.name), url_for(@host.node)
+        %br/
         %span{ class: @host.status.color }
           = t :status, status: @host.status.name
 

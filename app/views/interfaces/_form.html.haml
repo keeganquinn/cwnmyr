@@ -1,0 +1,52 @@
+- if interface.errors.any?
+  .error-explanation
+    = t :errors, count: interface.errors.count,
+        thing: Interface.model_name.human.downcase
+
+    %ul
+      - interface.errors.full_messages.each do |msg|
+        %li= msg
+
+.form-group
+  %label{ for: 'interface_code' }= Interface.human_attribute_name('code')
+  = text_field 'interface', 'code', class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_interface_type_id' }
+    = Interface.human_attribute_name('interface_type')
+  = collection_select 'interface', 'interface_type_id', InterfaceType.all,
+                      'id', 'name', {}, class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_status_id' }= Interface.human_attribute_name('status')
+  = collection_select 'interface', 'status_id', Status.all, 'id', 'name', {},
+                      class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_address_ipv6' }
+    = Interface.human_attribute_name('address_ipv6')
+  = text_field 'interface', 'address_ipv6', class: 'form-control',
+               'aria-describedby': 'interface-address-ipv6-help'
+  %span.help-block#interface-address-ipv6-help
+    = t :eg, ex: t('.interface_address_ipv6_example')
+
+.form-group
+  %label{ for: 'interface_address_ipv4' }
+    = Interface.human_attribute_name('address_ipv4')
+  = text_field 'interface', 'address_ipv4', class: 'form-control',
+               'aria-describedby': 'interface-address-ipv4-help'
+  %span.help-block#interface-address-ipv4-help
+    = t :eg, ex: t('.interface_address_ipv4_example')
+
+.form-group
+  %label{ for: 'interface_address_mac' }
+    = Interface.human_attribute_name('address_mac')
+  = text_field 'interface', 'address_mac', class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_name' }= Interface.human_attribute_name('name')
+  = text_field 'interface', 'name', class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_body' }= Interface.human_attribute_name('body')
+  = text_area 'interface', 'body', rows: 8, class: 'form-control'

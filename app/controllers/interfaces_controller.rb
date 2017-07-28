@@ -1,6 +1,6 @@
 # This controller allows management of Interface records.
 class InterfacesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, except: %i[index show]
   after_action :verify_authorized
 
   def index
@@ -13,10 +13,20 @@ class InterfacesController < ApplicationController
     authorize @interface
   end
 
+  def new
+    @interface = Interface.new host_id: params[:host]
+    authorize @interface
+  end
+
   def create
     @interface = Interface.new(interface_params)
     authorize @interface
     save_and_respond @interface, :created, :create_success
+  end
+
+  def edit
+    @interface = Interface.find(params[:id])
+    authorize @interface
   end
 
   def update
