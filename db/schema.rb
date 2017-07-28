@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "contacts", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.boolean "hidden"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_contacts_on_name", unique: true
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "groups", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.text "body"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
-  create_table "groups_users", force: :cascade do |t|
+  create_table "groups_users", id: :serial, force: :cascade do |t|
     t.integer "group_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
-  create_table "host_properties", force: :cascade do |t|
+  create_table "host_properties", id: :serial, force: :cascade do |t|
     t.integer "host_id"
     t.string "key"
     t.string "value"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["key"], name: "index_host_properties_on_key"
   end
 
-  create_table "host_types", force: :cascade do |t|
+  create_table "host_types", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.text "body"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_host_types_on_name", unique: true
   end
 
-  create_table "hosts", force: :cascade do |t|
+  create_table "hosts", id: :serial, force: :cascade do |t|
     t.integer "node_id"
     t.string "name"
     t.integer "host_type_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["status_id"], name: "index_hosts_on_status_id"
   end
 
-  create_table "interface_properties", force: :cascade do |t|
+  create_table "interface_properties", id: :serial, force: :cascade do |t|
     t.integer "interface_id"
     t.string "key"
     t.string "value"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["key"], name: "index_interface_properties_on_key"
   end
 
-  create_table "interface_types", force: :cascade do |t|
+  create_table "interface_types", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.text "body"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_interface_types_on_name", unique: true
   end
 
-  create_table "interfaces", force: :cascade do |t|
+  create_table "interfaces", id: :serial, force: :cascade do |t|
     t.integer "host_id"
     t.string "code"
     t.string "name"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["status_id"], name: "index_interfaces_on_status_id"
   end
 
-  create_table "node_links", force: :cascade do |t|
+  create_table "node_links", id: :serial, force: :cascade do |t|
     t.integer "node_id"
     t.string "name"
     t.string "url"
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["node_id"], name: "index_node_links_on_node_id"
   end
 
-  create_table "nodes", force: :cascade do |t|
+  create_table "nodes", id: :serial, force: :cascade do |t|
     t.integer "zone_id"
     t.string "code", limit: 64
     t.string "name"
@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["zone_id"], name: "index_nodes_on_zone_id"
   end
 
-  create_table "nodes_tags", force: :cascade do |t|
+  create_table "nodes_tags", id: :serial, force: :cascade do |t|
     t.integer "node_id"
     t.integer "tag_id"
     t.datetime "created_at", null: false
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["tag_id"], name: "index_nodes_tags_on_tag_id"
   end
 
-  create_table "statuses", force: :cascade do |t|
+  create_table "statuses", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.string "color"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.datetime "created_at", null: false
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "user_links", force: :cascade do |t|
+  create_table "user_links", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.string "url"
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["user_id"], name: "index_user_links_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "zones", force: :cascade do |t|
+  create_table "zones", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
     t.text "body"
