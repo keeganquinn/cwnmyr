@@ -37,7 +37,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-foreman',
       github: 'koenpunt/capistrano-foreman', branch: 'systemd'
-  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
