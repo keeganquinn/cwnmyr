@@ -34,7 +34,7 @@ function displayMap (data) {
 
   function displayPosition (position) {
     var marker = new google.maps.Marker({
-      icon: require('!file-loader!images/position_small.png'),
+      icon: require('images/position_small.png'),
       map: gMap,
       position: new google.maps.LatLng(
         position.coords.latitude, position.coords.longitude)
@@ -77,6 +77,6 @@ function initMap () {
   xmlhttp.send()
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener('DOMContentLoaded', function (event) {
   initMap()
 })
