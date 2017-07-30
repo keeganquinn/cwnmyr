@@ -1,7 +1,7 @@
 /* global google */
 
 function displayMap (data) {
-  if (!data.nodes || !data.nodes.values) {
+  if (!data.nodes) {
     return
   }
 
@@ -14,7 +14,7 @@ function displayMap (data) {
   var bounds = new google.maps.LatLngBounds()
   var infoWindow = new google.maps.InfoWindow()
 
-  for (let node of data.nodes.values()) {
+  for (let node of data.nodes) {
     if (!node.lat || !node.lng) {
       continue
     }
@@ -77,4 +77,6 @@ function initMap () {
   xmlhttp.send()
 }
 
-window.initMap = initMap
+document.addEventListener("DOMContentLoaded", function (event) {
+  initMap()
+})

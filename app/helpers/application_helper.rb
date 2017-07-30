@@ -2,7 +2,7 @@
 module ApplicationHelper
   JS_INCLUDES = [
     '//maps.googleapis.com/maps/api/js' \
-      "?key=#{ENV['GMAPS_API_KEY']}&callback=initMap".html_safe
+      "?key=#{ENV['GMAPS_API_KEY']}".html_safe
   ].freeze
 
   def remote_javascript_includes
