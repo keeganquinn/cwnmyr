@@ -12,7 +12,6 @@ feature 'Interface show page' do
   it { expect(page).to have_content interface.code }
 
   it 'allows the interface to be edited' do
-    print page.body
     click_link 'Edit'
     expect(page).to have_content 'Edit Interface'
   end
