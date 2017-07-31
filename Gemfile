@@ -47,7 +47,7 @@ group :development do
   gem 'guard-rspec'
   gem 'haml_lint', require: false
   gem 'html2haml'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'rails_layout'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
