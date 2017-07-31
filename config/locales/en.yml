@@ -55,6 +55,9 @@ en:
       host_type:
         one: Host Type
         other: Host Types
+      interface:
+        one: Interface
+        other: Interfaces
       interface_type:
         one: Interface Type
         other: Interface Types

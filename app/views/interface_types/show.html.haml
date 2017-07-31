@@ -1,3 +1,14 @@
-%h1= h @interface_type.name
+.container
+  .row
+    .col-md-12
+      %h1= h @interface_type.name
 
-= @interface_type.code
+  .row
+    .col-md-12
+      %p= h @interface_type.code
+
+      %h2= Interface.model_name.human(count: 2)
+
+      %ul
+        - @interface_type.interfaces.sort_by(&:ipv4_cidr).each do |interface|
+          %li= link_to interface.address_ipv4, url_for(interface)
