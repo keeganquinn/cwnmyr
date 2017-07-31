@@ -1,4 +1,4 @@
-feature 'Node Link new page', :devise do
+feature 'Node Link new page' do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
 
@@ -16,7 +16,7 @@ feature 'Node Link new page', :devise do
     expect(page).to have_content 'Spec Link'
   end
 
-  it 'shows ar error if node link creation fails' do
+  it 'shows an error if node link creation fails' do
     click_button 'Create'
     expect(page).to have_content 'errors prevented this link'
   end

@@ -1,4 +1,4 @@
-feature 'Contacts admin interface', :devise do
+feature 'Contacts admin interface' do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

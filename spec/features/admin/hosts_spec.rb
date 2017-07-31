@@ -1,4 +1,4 @@
-feature 'Hosts admin interface', :devise do
+feature 'Hosts admin interface' do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

@@ -1,4 +1,4 @@
-feature 'Node Links admin interface', :devise do
+feature 'Node Links admin interface' do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

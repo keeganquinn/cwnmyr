@@ -1,4 +1,4 @@
-feature 'Node new page', :devise do
+feature 'Node new page' do
   let(:current_user) { create :user }
   let(:zone) { create :zone }
 

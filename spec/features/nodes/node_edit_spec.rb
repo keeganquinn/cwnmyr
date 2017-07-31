@@ -1,4 +1,4 @@
-feature 'Node edit page', :devise do
+feature 'Node edit page' do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
 

@@ -1,4 +1,4 @@
-feature 'Host new page', :devise do
+feature 'Host new page' do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
 
