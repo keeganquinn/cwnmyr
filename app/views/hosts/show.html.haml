@@ -5,7 +5,7 @@
 
   .row
     .col-md-12
-      - if current_user.try(:admin?) || @host.node.user == current_user
+      - if policy(@host).update?
         %p
           = link_to t(:edit), edit_host_path(@host), class: 'btn btn-warning'
           = link_to t(:delete), url_for(@host), method: :delete,

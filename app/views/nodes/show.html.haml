@@ -5,7 +5,7 @@
 
   .row
     .col-md-7
-      - if current_user.try(:admin?) || @node.user == current_user
+      - if policy(@node).update?
         %p
           = link_to t(:edit), edit_node_path(@node), class: 'btn btn-warning'
           = link_to t(:delete), url_for(@node), method: :delete,
@@ -25,12 +25,12 @@
           %li
             = node_link.name
             = link_to node_link.url, node_link.url
-            - if current_user.try(:admin?) || @node.user == current_user
+            - if policy(@node).update?
               = link_to url_for(node_link), method: :delete,
                         data: { confirm: t(:confirm_delete,
                                 thing: NodeLink.model_name.human.downcase) } do
                 %span.glyphicon.glyphicon-remove
-        - if current_user.try(:admin?) || @node.user == current_user
+        - if policy(@node).update?
           %li
             = form_tag node_links_path, class: 'form-inline' do
               - if @node_link && @node_link.errors.any?
@@ -60,12 +60,12 @@
         - @node.hosts.each do |host|
           %li
             = link_to host.name, url_for(host)
-            - if current_user.try(:admin?) || @node.user == current_user
+            - if policy(@node).update?
               = link_to url_for(host), method: :delete,
                         data: { confirm: t(:confirm_delete,
                                 thing: Host.model_name.human.downcase) } do
                 %span.glyphicon.glyphicon-remove
-        - if current_user.try(:admin?) || @node.user == current_user
+        - if policy(@node).update?
           %li
             = form_tag hosts_path, class: 'form-inline' do
               - if @host && @host.errors.any?

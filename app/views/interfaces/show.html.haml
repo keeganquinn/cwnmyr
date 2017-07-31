@@ -9,7 +9,7 @@
 
   .row
     .col-md-12
-      - if current_user.try(:admin?) || @interface.host.node.user == current_user
+      - if policy(@interface).update?
         %p
           = link_to t(:edit), edit_interface_path(@interface),
                     class: 'btn btn-warning'
