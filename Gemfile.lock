@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/elabs/pundit.git
+  revision: ac2a25d93ccd044ac3ea777a70ffd5e31db10d3a
+  specs:
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: https://github.com/koenpunt/capistrano-foreman.git
   revision: 4877b4e6672cef5cf3ccdf38250a98326a49506d
   branch: systemd
@@ -8,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
-  revision: e58e6890ce36c766ef26814613700e1fc8337dfd
+  revision: 8fcbdb08fdbe286adf02adf7cae0440d06a7c69a
   branch: rails-5
   specs:
     shoulda-matchers (3.1.2)
@@ -271,8 +278,6 @@ GEM
       slop (~> 3.4)
     public_suffix (2.0.5)
     puma (3.9.1)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -471,7 +476,7 @@ DEPENDENCIES
   pg
   poltergeist
   puma (~> 3.0)
-  pundit
+  pundit!
   rails
   rails-controller-testing
   rails_layout

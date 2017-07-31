@@ -18,7 +18,7 @@ gem 'dotenv-rails'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth'
-gem 'pundit'
+gem 'pundit', github: 'elabs/pundit'
 gem 'redcarpet'
 gem 'sass-rails', '~> 5.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
