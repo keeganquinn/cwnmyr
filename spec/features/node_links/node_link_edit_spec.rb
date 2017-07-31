@@ -19,6 +19,6 @@ feature 'Node Link edit page' do
   it 'shows an error if node link update fails' do
     fill_in 'node_link_name', with: ''
     click_button 'Update'
-    expect(page).to have_content 'error prevented this link'
+    expect(page).to have_content 'error prevented this node link'
   end
 end

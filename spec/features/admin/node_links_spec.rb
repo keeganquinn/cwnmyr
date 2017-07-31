@@ -26,6 +26,6 @@ feature 'Node Links admin interface' do
     end
 
     it { expect(current_path).to eq(admin_node_links_path) }
-    it { expect(page).to have_content 'Links' }
+    it { expect(page).to have_content 'Node Links' }
   end
 end

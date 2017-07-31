@@ -18,6 +18,6 @@ feature 'Node Link new page' do
 
   it 'shows an error if node link creation fails' do
     click_button 'Create'
-    expect(page).to have_content 'errors prevented this link'
+    expect(page).to have_content 'errors prevented this node link'
   end
 end

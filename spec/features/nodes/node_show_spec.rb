@@ -20,7 +20,7 @@ feature 'Node show page' do
     fill_in 'node_link_name', with: 'Invalid Link'
     fill_in 'node_link_url', with: 'Not a URL'
     click_button 'node_link_create'
-    expect(page).to have_content 'error prevented this link'
+    expect(page).to have_content 'error prevented this node link'
   end
 
   it 'allows the error to be corrected after a failed link create' do

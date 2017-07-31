@@ -65,14 +65,17 @@ en:
         one: Node
         other: Nodes
       node_link:
-        one: Link
-        other: Links
+        one: Node Link
+        other: Node Links
       status:
         one: Status
         other: Statuses
       user:
         one: User
         other: Users
+      user_link:
+        one: User Link
+        other: User Links
       zone:
         one: Zone
         other: Zones
@@ -122,6 +125,11 @@ en:
     show:
       network_diagram: Network Diagram
   node_links:
+    new:
+      title: New Link
+    edit:
+      title: Edit Link
+  user_links:
     new:
       title: New Link
     edit:
