@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-12
+      %h1= h @user_link.name
+
+  .row
+    .col-md-12
+      - if policy(@user_link).update?
+        %p
+          = link_to t(:edit), edit_user_link_path(@user_link),
+                    class: 'btn btn-warning'
+          = link_to t(:delete), url_for(@user_link), method: :delete,
+                    data: { confirm: t(:confirm_delete,
+                            thing: UserLink.model_name.human.downcase) },
+                    class: 'btn btn-danger'
+
+      = @user_link.url

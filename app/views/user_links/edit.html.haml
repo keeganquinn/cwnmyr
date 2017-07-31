@@ -1,0 +1,8 @@
+.container
+  %h1= t '.title'
+
+  = form_tag url_for(@user_link), method: :put do
+    = render partial: 'form', locals: { user_link: @user_link }
+
+    = submit_tag t(:update), id: 'user_link_update', class: 'btn btn-primary'
+    = link_to t(:cancel), url_for(@user_link), class: 'btn btn-warning'

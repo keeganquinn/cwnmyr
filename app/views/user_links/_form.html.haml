@@ -1,0 +1,16 @@
+- if user_link.errors.any?
+  .error-explanation
+    = t :errors, count: user_link.errors.count,
+        thing: UserLink.model_name.human.downcase
+
+    %ul
+      - user_link.errors.full_messages.each do |msg|
+        %li= msg
+
+.form-group
+  %label{ for: 'user_link_name' }= UserLink.human_attribute_name('name')
+  = text_field 'user_link', 'name', class: 'form-control'
+
+.form-group
+  %label{ for: 'user_link_url' }= UserLink.human_attribute_name('url')
+  = text_field 'user_link', 'url', class: 'form-control'
