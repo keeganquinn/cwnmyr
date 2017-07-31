@@ -26,6 +26,14 @@
               = surround '(', ')' do
                 = t :nodes_numbered, count: zone.nodes.count
 
+      %h2= t :additional_data
+
+      %ul
+        %li= link_to HostType.model_name.human(count: 2), host_types_path
+        %li= link_to InterfaceType.model_name.human(count: 2),
+          interface_types_path
+        %li= link_to Status.model_name.human(count: 2), statuses_path
+
     .col-sm-6
       - unless user_signed_in?
         %h2= t :join_us
