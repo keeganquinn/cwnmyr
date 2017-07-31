@@ -8,7 +8,6 @@ class HostTypesController < ApplicationController
   end
 
   def show
-    @host_type = HostType.find(params[:id])
-    authorize @host_type
+    @host_type = authorize HostType.find(params[:id])
   end
 end

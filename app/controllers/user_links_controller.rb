@@ -4,42 +4,36 @@ class UserLinksController < ApplicationController
   after_action :verify_authorized
 
   def show
-    @user_link = UserLink.find(params[:id])
-    authorize @user_link
+    @user_link = authorize UserLink.find(params[:id])
   end
 
   def new
-    @user_link = UserLink.new user_id: params[:user]
-    authorize @user_link
+    @user_link = authorize UserLink.new(user_id: current_user.id)
   end
 
   def create
-    @user_link = UserLink.new(user_link_params)
-    authorize @user_link
+    @user_link = authorize UserLink.new(safe_params)
     save_and_respond @user_link, :created, :create_success
   end
 
   def edit
-    @user_link = UserLink.find(params[:id])
-    authorize @user_link
+    @user_link = authorize UserLink.find(params[:id])
   end
 
   def update
-    @user_link = UserLink.find(params[:id])
-    @user_link.assign_attributes(user_link_params)
-    authorize @user_link
+    @user_link = authorize UserLink.find(params[:id])
+    @user_link.assign_attributes(safe_params)
     save_and_respond @user_link, :ok, :update_success
   end
 
   def destroy
-    @user_link = UserLink.find(params[:id])
-    authorize @user_link
+    @user_link = authorize UserLink.find(params[:id])
     destroy_and_respond @user_link, @user_link.user
   end
 
   private
 
-  def user_link_params
+  def safe_params
     params.require(:user_link).permit(:user_id, :name, :url)
   end
 end

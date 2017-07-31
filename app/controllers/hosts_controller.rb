@@ -4,42 +4,35 @@ class HostsController < ApplicationController
   after_action :verify_authorized
 
   def show
-    @host = Host.find(params[:id])
-    authorize @host
+    @host = authorize Host.find(params[:id])
   end
 
   def new
-    @host = Host.new node_id: params[:node]
-    authorize @host
+    @host = authorize Host.new(node_id: params[:node])
   end
 
   def create
-    @host = Host.new(host_params)
-    authorize @host
+    @host = authorize Host.new(safe_params)
     save_and_respond @host, :created, :create_success
   end
 
   def edit
-    @host = Host.find(params[:id])
-    authorize @host
+    @host = authorize Host.find(params[:id])
   end
 
   def update
-    @host = Host.find(params[:id])
-    @host.assign_attributes(host_params)
-    authorize @host
+    @host = authorize Host.find(params[:id])
+    @host.assign_attributes(safe_params)
     save_and_respond @host, :ok, :update_success
   end
 
   def destroy
-    @host = Host.find(params[:id])
-    authorize @host
+    @host = authorize Host.find(params[:id])
     destroy_and_respond @host, @host.node
   end
 
   def graph
-    @host = Host.find(params[:id])
-    authorize @host
+    @host = authorize Host.find(params[:id])
 
     respond_to do |format|
       format.png do
@@ -51,7 +44,7 @@ class HostsController < ApplicationController
 
   private
 
-  def host_params
+  def safe_params
     params.require(:host).permit(:node_id, :name, :status_id)
   end
 end

@@ -14,19 +14,11 @@ class ZonesController < ApplicationController
   end
 
   def show
-    @zone = Zone.find(params[:id])
-    authorize @zone
+    @zone = authorize Zone.find(params[:id])
   end
 
   def conf
-    @zone = Zone.find(params[:id])
-    authorize @zone
-    render conf_tpl
-  end
-
-  protected
-
-  def conf_tpl
-    "conf/#{params[:svc].tr('^A-Za-z0-9_', '')}.text"
+    @zone = authorize Zone.find(params[:id])
+    render "conf/#{params[:svc].tr('^A-Za-z0-9_', '')}.text"
   end
 end

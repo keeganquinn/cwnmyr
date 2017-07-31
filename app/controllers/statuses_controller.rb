@@ -8,7 +8,6 @@ class StatusesController < ApplicationController
   end
 
   def show
-    @status = Status.find(params[:id])
-    authorize @status
+    @status = authorize Status.find(params[:id])
   end
 end

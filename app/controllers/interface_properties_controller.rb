@@ -4,32 +4,28 @@ class InterfacePropertiesController < ApplicationController
   after_action :verify_authorized
 
   def show
-    @interface_property = InterfaceProperty.find(params[:id])
-    authorize @interface_property
+    @interface_property = authorize InterfaceProperty.find(params[:id])
   end
 
   def create
-    @interface_property = InterfaceProperty.new(interface_property_params)
-    authorize @interface_property
+    @interface_property = authorize InterfaceProperty.new(safe_params)
     save_and_respond @interface_property, :created, :create_success
   end
 
   def update
-    @interface_property = InterfaceProperty.find(params[:id])
-    @interface_property.assign_attributes(interface_property_params)
-    authorize @interface_property
+    @interface_property = authorize InterfaceProperty.find(params[:id])
+    @interface_property.assign_attributes(safe_params)
     save_and_respond @interface_property, :ok, :update_success
   end
 
   def destroy
-    @interface_property = InterfaceProperty.find(params[:id])
-    authorize @interface_property
+    @interface_property = authorize InterfaceProperty.find(params[:id])
     destroy_and_respond @interface_property, @interface_property.interface
   end
 
   private
 
-  def interface_property_params
+  def safe_params
     params.require(:interface_property).permit(:interface_id, :key, :value)
   end
 end

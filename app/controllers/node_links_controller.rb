@@ -4,42 +4,36 @@ class NodeLinksController < ApplicationController
   after_action :verify_authorized
 
   def show
-    @node_link = NodeLink.find(params[:id])
-    authorize @node_link
+    @node_link = authorize NodeLink.find(params[:id])
   end
 
   def new
-    @node_link = NodeLink.new node_id: params[:node]
-    authorize @node_link
+    @node_link = authorize NodeLink.new(node_id: params[:node])
   end
 
   def create
-    @node_link = NodeLink.new(node_link_params)
-    authorize @node_link
+    @node_link = authorize NodeLink.new(safe_params)
     save_and_respond @node_link, :created, :create_success
   end
 
   def edit
-    @node_link = NodeLink.find(params[:id])
-    authorize @node_link
+    @node_link = authorize NodeLink.find(params[:id])
   end
 
   def update
-    @node_link = NodeLink.find(params[:id])
-    @node_link.assign_attributes(node_link_params)
-    authorize @node_link
+    @node_link = authorize NodeLink.find(params[:id])
+    @node_link.assign_attributes(safe_params)
     save_and_respond @node_link, :ok, :update_success
   end
 
   def destroy
-    @node_link = NodeLink.find(params[:id])
-    authorize @node_link
+    @node_link = authorize NodeLink.find(params[:id])
     destroy_and_respond @node_link, @node_link.node
   end
 
   private
 
-  def node_link_params
+  def safe_params
     params.require(:node_link).permit(:node_id, :name, :url)
   end
 end

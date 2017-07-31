@@ -8,7 +8,6 @@ class InterfaceTypesController < ApplicationController
   end
 
   def show
-    @interface_type = InterfaceType.find(params[:id])
-    authorize @interface_type
+    @interface_type = authorize InterfaceType.find(params[:id])
   end
 end
