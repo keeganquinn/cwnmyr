@@ -4,61 +4,35 @@ class NodesController < ApplicationController
   after_action :verify_authorized
 
   def show
-    @node = Node.find(params[:id])
-    authorize @node
+    @node = authorize Node.find(params[:id])
   end
 
   def new
-    @node = Node.new
-    @node.zone = Zone.find(params[:zone])
-    @node.user = current_user
-    authorize @node
+    @node = authorize Node.new(user_id: current_user.id, zone_id: params[:zone])
   end
 
   def create
-    @node = Node.new(node_params)
-    @node.zone = Zone.find(params[:zone])
-    @node.user = current_user
-    authorize @node
-
-    if @node.save
-      flash[:notice] = t(:create_success, thing: Node.model_name.human)
-      redirect_to url_for(@node)
-    else
-      render :new
-    end
+    @node = authorize Node.new(safe_params)
+    save_and_respond @node, :created, :create_success
   end
 
   def edit
-    @node = Node.find(params[:id])
-    authorize @node
+    @node = authorize Node.find(params[:id])
   end
 
   def update
-    @node = Node.find(params[:id])
-    authorize @node
-
-    if @node.update_attributes(node_params)
-      flash[:notice] = t(:update_success, thing: Node.model_name.human)
-      redirect_to url_for(@node)
-    else
-      render :edit
-    end
+    @node = authorize Node.find(params[:id])
+    @node.assign_attributes(safe_params)
+    save_and_respond @node, :ok, :update_success
   end
 
   def destroy
-    node = Node.find(params[:id])
-    zone = node.zone
-    authorize node
-    node.destroy
-
-    flash[:notice] = t(:delete_success, thing: Node.model_name.human)
-    redirect_to url_for(zone)
+    @node = authorize Node.find(params[:id])
+    destroy_and_respond @node, @node.zone
   end
 
   def graph
-    @node = Node.find(params[:id])
-    authorize @node
+    @node = authorize Node.find(params[:id])
 
     respond_to do |format|
       format.png do
@@ -70,9 +44,10 @@ class NodesController < ApplicationController
 
   private
 
-  def node_params
+  def safe_params
     params.require(:node).permit(
-      :code, :name, :status_id, :body, :address, :hours, :notes
+      :user_id, :zone_id, :code, :name, :status_id, :body, :address,
+      :hours, :notes
     )
   end
 end
