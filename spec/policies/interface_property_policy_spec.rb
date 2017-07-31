@@ -12,8 +12,10 @@ describe InterfacePropertyPolicy do
     build_stubbed :interface_property, interface: interface
   end
 
-  permissions :index?, :show? do
-    it { is_expected.to permit nil }
+  permissions :show? do
+    let(:interface_property) { create :interface_property }
+
+    it { is_expected.to permit nil, interface_property }
   end
 
   permissions :create?, :update?, :destroy? do

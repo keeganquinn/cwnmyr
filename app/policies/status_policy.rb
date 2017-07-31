@@ -1,17 +1,6 @@
 # Pundit access control policy for StatusesController.
-class StatusPolicy
-  attr_reader :current_user, :model
-
-  def initialize(current_user, model)
-    @current_user = current_user
-    @model = model
-  end
-
+class StatusPolicy < ApplicationPolicy
   def index?
-    true
-  end
-
-  def show?
     true
   end
 end

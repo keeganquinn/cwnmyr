@@ -1,22 +1,13 @@
 describe UserPolicy do
   subject { described_class }
 
-  let(:current_user) { build_stubbed :user }
-  let(:other_user) { build_stubbed :user }
-  let(:admin) { build_stubbed :user, :admin }
-
   permissions :index? do
-    it { is_expected.not_to permit current_user }
-    it { is_expected.to permit admin }
+    it { is_expected.to permit nil }
   end
 
   permissions :show? do
-    it { is_expected.not_to permit nil }
-    it { is_expected.to permit current_user }
-  end
+    let(:user) { create :user }
 
-  permissions :update?, :destroy? do
-    it { is_expected.not_to permit current_user, current_user }
-    it { is_expected.to permit admin, current_user }
+    it { is_expected.to permit nil, user }
   end
 end

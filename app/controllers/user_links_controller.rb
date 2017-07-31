@@ -1,15 +1,15 @@
 # This controller allows management of UserLink records.
 class UserLinksController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, except: %i[show]
   after_action :verify_authorized
-
-  def index
-    authorize UserLink
-    redirect_to root_path
-  end
 
   def show
     @user_link = UserLink.find(params[:id])
+    authorize @user_link
+  end
+
+  def new
+    @user_link = UserLink.new user_id: params[:user]
     authorize @user_link
   end
 
@@ -17,6 +17,11 @@ class UserLinksController < ApplicationController
     @user_link = UserLink.new(user_link_params)
     authorize @user_link
     save_and_respond @user_link, :created, :create_success
+  end
+
+  def edit
+    @user_link = UserLink.find(params[:id])
+    authorize @user_link
   end
 
   def update

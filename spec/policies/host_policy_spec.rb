@@ -8,8 +8,10 @@ describe HostPolicy do
   let(:node) { build_stubbed :node, user: current_user }
   let(:host) { build_stubbed :host, node: node }
 
-  permissions :index?, :show?, :graph? do
-    it { is_expected.to permit nil }
+  permissions :show?, :graph? do
+    let(:host) { create :host }
+
+    it { is_expected.to permit nil, host }
   end
 
   permissions :new?, :create?, :edit?, :update?, :destroy? do

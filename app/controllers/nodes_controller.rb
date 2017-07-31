@@ -1,12 +1,7 @@
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show graph]
+  before_action :authenticate_user!, except: %i[show graph]
   after_action :verify_authorized
-
-  def index
-    authorize Node
-    redirect_to root_path
-  end
 
   def show
     @node = Node.find(params[:id])

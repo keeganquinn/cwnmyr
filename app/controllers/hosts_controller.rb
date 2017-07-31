@@ -1,12 +1,7 @@
 # This controller allows management of Host records.
 class HostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show graph]
+  before_action :authenticate_user!, except: %i[show graph]
   after_action :verify_authorized
-
-  def index
-    authorize Host
-    redirect_to root_path
-  end
 
   def show
     @host = Host.find(params[:id])

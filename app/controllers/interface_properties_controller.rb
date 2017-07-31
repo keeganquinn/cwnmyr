@@ -1,12 +1,7 @@
 # This controller allows management of InterfaceProperty records.
 class InterfacePropertiesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, except: %i[show]
   after_action :verify_authorized
-
-  def index
-    authorize InterfaceProperty
-    redirect_to root_path
-  end
 
   def show
     @interface_property = InterfaceProperty.find(params[:id])

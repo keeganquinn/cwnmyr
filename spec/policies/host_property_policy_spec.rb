@@ -9,8 +9,10 @@ describe HostPropertyPolicy do
   let(:host) { build_stubbed :host, node: node }
   let(:host_property) { build_stubbed :host_property, host: host }
 
-  permissions :index?, :show? do
-    it { is_expected.to permit nil }
+  permissions :show? do
+    let(:host_property) { create :host_property }
+
+    it { is_expected.to permit nil, host_property }
   end
 
   permissions :create?, :update?, :destroy? do

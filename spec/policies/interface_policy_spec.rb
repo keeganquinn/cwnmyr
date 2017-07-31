@@ -9,8 +9,10 @@ describe InterfacePolicy do
   let(:host) { build_stubbed :host, node: node }
   let(:interface) { build_stubbed :interface, host: host }
 
-  permissions :index?, :show? do
-    it { is_expected.to permit nil }
+  permissions :show? do
+    let(:interface) { create :interface }
+
+    it { is_expected.to permit nil, interface }
   end
 
   permissions :new?, :create?, :edit?, :update?, :destroy? do

@@ -8,8 +8,10 @@ describe NodeLinkPolicy do
   let(:node) { build_stubbed :node, user: current_user }
   let(:node_link) { build_stubbed :node_link, node: node }
 
-  permissions :index?, :show? do
-    it { is_expected.to permit nil }
+  permissions :show? do
+    let(:node_link) { create :node_link }
+
+    it { is_expected.to permit nil, node_link }
   end
 
   permissions :new?, :create?, :edit?, :update?, :destroy? do

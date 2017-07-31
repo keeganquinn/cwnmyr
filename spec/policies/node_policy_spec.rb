@@ -7,16 +7,13 @@ describe NodePolicy do
 
   let(:node) { build_stubbed :node, user: current_user }
 
-  permissions :index?, :show?, :graph? do
-    it { is_expected.to permit nil }
+  permissions :show?, :graph? do
+    let(:node) { create :node }
+
+    it { is_expected.to permit nil, node }
   end
 
-  permissions :new?, :create? do
-    it { is_expected.not_to permit nil }
-    it { is_expected.to permit current_user }
-  end
-
-  permissions :edit?, :update?, :destroy? do
+  permissions :new?, :create?, :edit?, :update?, :destroy? do
     it { is_expected.not_to permit nil, node }
     it { is_expected.not_to permit other_user, node }
     it { is_expected.to permit current_user, node }

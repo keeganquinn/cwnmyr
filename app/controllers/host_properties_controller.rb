@@ -1,12 +1,7 @@
 # This controller allows management of HostProperty records.
 class HostPropertiesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, except: %i[show]
   after_action :verify_authorized
-
-  def index
-    authorize HostProperty
-    redirect_to root_path
-  end
 
   def show
     @host_property = HostProperty.find(params[:id])

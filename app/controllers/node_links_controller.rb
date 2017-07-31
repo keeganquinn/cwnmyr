@@ -1,12 +1,7 @@
 # This controller allows management of NodeLink records.
 class NodeLinksController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[show]
   after_action :verify_authorized
-
-  def index
-    authorize NodeLink
-    redirect_to root_path
-  end
 
   def show
     @node_link = NodeLink.find(params[:id])

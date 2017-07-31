@@ -7,8 +7,10 @@ describe UserLinkPolicy do
 
   let(:user_link) { build_stubbed :user_link, user: current_user }
 
-  permissions :index?, :show? do
-    it { is_expected.to permit nil }
+  permissions :show? do
+    let(:user_link) { create :user_link }
+
+    it { is_expected.to permit nil, user_link }
   end
 
   permissions :create?, :update?, :destroy? do

@@ -1,12 +1,7 @@
 # This controller allows management of Interface records.
 class InterfacesController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[show]
   after_action :verify_authorized
-
-  def index
-    authorize Interface
-    redirect_to root_path
-  end
 
   def show
     @interface = Interface.find(params[:id])
