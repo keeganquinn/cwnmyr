@@ -40,7 +40,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
-  gem 'capistrano-yarn'
   gem 'capistrano3-puma'
   gem 'guard-bundler'
   gem 'guard-rails'
