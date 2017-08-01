@@ -8,7 +8,7 @@ class InterfacesController < ApplicationController
   end
 
   def new
-    @interface = authorize Interface.new(host_id: params[:host])
+    @interface = authorize Interface.new(host_id: params[:host_id])
   end
 
   def create

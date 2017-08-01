@@ -41,3 +41,5 @@
               \-
               = Interface.human_attribute_name('channel')
               = h interface.channel
+        - if policy(@host).update?
+          %li= link_to t(:create), new_interface_path(host_id: @host)
