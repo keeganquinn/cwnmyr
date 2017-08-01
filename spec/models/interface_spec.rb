@@ -45,6 +45,14 @@ describe Interface do
     expect(interface.to_param).to match "^#{interface.id}-#{interface.code}$"
   end
 
+  it '#ipv4_cidr returns nil without an address' do
+    expect(interface.ipv4_cidr).to be_nil
+  end
+
+  it '#ipv4_neighbors returns an empty list without an address' do
+    expect(interface.ipv4_neighbors).to be_empty
+  end
+
   describe 'IPv4 neighbors' do
     let(:network) { create :interface_type }
     let!(:local) do

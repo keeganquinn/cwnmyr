@@ -57,12 +57,13 @@ class Interface < ApplicationRecord
   # Converts the value of the <tt>address_ipv4</tt> attribute into an
   # NetAddr::CIDR instance.
   def ipv4_cidr
-    NetAddr::CIDR.create address_ipv4
+    NetAddr::CIDR.create address_ipv4 unless address_ipv4.blank?
   end
 
   # Finds neighboring Interface instances based on IPv4 network
   # configuration data.
   def ipv4_neighbors
+    return [] unless ipv4_cidr
     interface_type.interfaces.where.not(id: id).select do |other|
       ipv4_cidr.network == other.ipv4_cidr.network
     end
