@@ -7,9 +7,17 @@ class HostPropertiesController < ApplicationController
     @host_property = authorize HostProperty.find(params[:id])
   end
 
+  def new
+    @host_property = authorize HostProperty.new(host_id: params[:host_id])
+  end
+
   def create
     @host_property = authorize HostProperty.new(safe_params)
     save_and_respond @host_property, :created, :create_success
+  end
+
+  def edit
+    @host_property = authorize HostProperty.find(params[:id])
   end
 
   def update

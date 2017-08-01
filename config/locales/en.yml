@@ -102,6 +102,11 @@ en:
       title: New Host
     edit:
       title: Edit Host
+  host_properties:
+    new:
+      title: New Host Property
+    edit:
+      title: Edit Host Property
   interfaces:
     form:
       interface_address_ipv4_example: '10.11.12.1/24'

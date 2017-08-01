@@ -1,0 +1,17 @@
+- if host_property.errors.any?
+  .error-explanation
+    = t :errors, count: host_property.errors.count,
+        thing: HostProperty.model_name.human.downcase
+
+    %ul
+      - host_property.errors.full_messages.each do |msg|
+        %li= msg
+
+.form-group
+  %label{ for: 'host_property_key' }= HostProperty.human_attribute_name('key')
+  = text_field 'host_property', 'key', class: 'form-control'
+
+.form-group
+  %label{ for: 'host_property_value' }
+    = HostProperty.human_attribute_name('value')
+  = text_field 'host_property', 'value', class: 'form-control'
