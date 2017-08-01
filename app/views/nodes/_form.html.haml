@@ -1,10 +1,4 @@
-- if node.errors.any?
-  .error-explanation
-    = t :errors, count: node.errors.count, thing: Node.model_name.human.downcase
-
-    %ul
-      - node.errors.full_messages.each do |msg|
-        %li= msg
+= render partial: 'shared/form_errors', locals: { record: node }
 
 .form-group
   %label{ for: 'node_code' }= Node.human_attribute_name('code')

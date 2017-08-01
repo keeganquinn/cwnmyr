@@ -1,11 +1,4 @@
-- if interface.errors.any?
-  .error-explanation
-    = t :errors, count: interface.errors.count,
-        thing: Interface.model_name.human.downcase
-
-    %ul
-      - interface.errors.full_messages.each do |msg|
-        %li= msg
+= render partial: 'shared/form_errors', locals: { record: interface }
 
 .form-group
   %label{ for: 'interface_code' }= Interface.human_attribute_name('code')

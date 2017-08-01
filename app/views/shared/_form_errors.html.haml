@@ -1,0 +1,8 @@
+- if record.errors.any?
+  .error-explanation
+    = t :errors, count: record.errors.count,
+      thing: record.model_name.human.downcase
+
+    %ul
+      - record.errors.full_messages.each do |msg|
+        %li= msg

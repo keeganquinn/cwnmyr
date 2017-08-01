@@ -1,11 +1,4 @@
-- if user_link.errors.any?
-  .error-explanation
-    = t :errors, count: user_link.errors.count,
-        thing: UserLink.model_name.human.downcase
-
-    %ul
-      - user_link.errors.full_messages.each do |msg|
-        %li= msg
+= render partial: 'shared/form_errors', locals: { record: user_link }
 
 .form-group
   %label{ for: 'user_link_name' }= UserLink.human_attribute_name('name')

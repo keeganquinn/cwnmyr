@@ -9,14 +9,7 @@
 
   .row
     .col-md-12
-      - if policy(@interface).update?
-        %p
-          = link_to t(:edit), edit_interface_path(@interface),
-                    class: 'btn btn-warning'
-          = link_to t(:delete), url_for(@interface), method: :delete,
-                    data: { confirm: t(:confirm_delete,
-                            thing: Interface.model_name.human.downcase) },
-                    class: 'btn btn-danger'
+      = render partial: 'shared/edit_delete', locals: { record: @interface }
 
       %p.small
         = link_to t(:zone, zone: @interface.host.node.zone.name),
@@ -56,7 +49,17 @@
           - @interface.ipv4_neighbors.each do |neighbor|
             %li= link_to neighbor, url_for(neighbor)
 
-      -# property stuff
+      %h2= InterfaceProperty.model_name.human(count: 2)
+
+      %ul
+        - @interface.interface_properties.each do |interface_property|
+          %li
+            = link_to h(interface_property.key), url_for(interface_property)
+            &larr;
+            = h interface_property.value
+        - if policy(@interface).update?
+          %li= link_to t(:create),
+            new_interface_property_path(interface: @interface)
 
       -# radio stuff
 

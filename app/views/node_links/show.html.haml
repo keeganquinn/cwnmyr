@@ -5,13 +5,6 @@
 
   .row
     .col-md-12
-      - if policy(@node_link).update?
-        %p
-          = link_to t(:edit), edit_node_link_path(@node_link),
-                    class: 'btn btn-warning'
-          = link_to t(:delete), url_for(@node_link), method: :delete,
-                    data: { confirm: t(:confirm_delete,
-                            thing: NodeLink.model_name.human.downcase) },
-                    class: 'btn btn-danger'
+      = render partial: 'shared/edit_delete', locals: { record: @node_link }
 
       %p= link_to @node_link.url, @node_link.url

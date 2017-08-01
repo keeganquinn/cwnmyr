@@ -5,13 +5,7 @@
 
   .row
     .col-md-7
-      - if policy(@node).update?
-        %p
-          = link_to t(:edit), edit_node_path(@node), class: 'btn btn-warning'
-          = link_to t(:delete), url_for(@node), method: :delete,
-                    data: { confirm: t(:confirm_delete,
-                            thing: Node.model_name.human.downcase) },
-                    class: 'btn btn-danger'
+      = render partial: 'shared/edit_delete', locals: { record: @node }
 
       = markdown @node.body
 

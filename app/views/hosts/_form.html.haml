@@ -1,11 +1,4 @@
-- if host.errors.any?
-  .error-explanation
-    = t :errors, count: host.errors.count,
-        thing: Host.model_name.human.downcase
-
-    %ul
-      - host.errors.full_messages.each do |msg|
-        %li= msg
+= render partial: 'shared/form_errors', locals: { record: host }
 
 .form-group
   %label{ for: 'host_name' }= Host.human_attribute_name('name')

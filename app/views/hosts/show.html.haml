@@ -5,13 +5,7 @@
 
   .row
     .col-md-12
-      - if policy(@host).update?
-        %p
-          = link_to t(:edit), edit_host_path(@host), class: 'btn btn-warning'
-          = link_to t(:delete), url_for(@host), method: :delete,
-                    data: { confirm: t(:confirm_delete,
-                            thing: Host.model_name.human.downcase) },
-                    class: 'btn btn-danger'
+      = render partial: 'shared/edit_delete', locals: { record: @host }
 
       %p.small
         = link_to t(:zone, zone: @host.node.zone.name), url_for(@host.node.zone)
@@ -43,3 +37,14 @@
               = h interface.channel
         - if policy(@host).update?
           %li= link_to t(:create), new_interface_path(host_id: @host)
+
+      %h2= HostProperty.model_name.human(count: 2)
+
+      %ul
+        - @host.host_properties.each do |host_property|
+          %li
+            = link_to h(host_property.key), url_for(host_property)
+            &larr;
+            = h host_property.value
+        - if policy(@host).update?
+          %li= link_to t(:create), new_host_property_path(host_id: @host)
