@@ -14,4 +14,4 @@
                             thing: NodeLink.model_name.human.downcase) },
                     class: 'btn btn-danger'
 
-      = @node_link.url
+      %p= link_to @node_link.url, @node_link.url

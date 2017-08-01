@@ -23,7 +23,7 @@
       %ul
         - @node.node_links.each do |node_link|
           %li
-            = node_link.name
+            = link_to node_link.name, url_for(node_link)
             = link_to node_link.url, node_link.url
             - if policy(@node).update?
               = link_to url_for(node_link), method: :delete,
