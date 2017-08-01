@@ -7,9 +7,19 @@ class InterfacePropertiesController < ApplicationController
     @interface_property = authorize InterfaceProperty.find(params[:id])
   end
 
+  def new
+    @interface_property = authorize(
+      InterfaceProperty.new(interface_id: params[:interface])
+    )
+  end
+
   def create
     @interface_property = authorize InterfaceProperty.new(safe_params)
     save_and_respond @interface_property, :created, :create_success
+  end
+
+  def edit
+    @interface_property = authorize InterfaceProperty.find(params[:id])
   end
 
   def update

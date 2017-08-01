@@ -1,0 +1,11 @@
+= render partial: 'shared/form_errors', locals: { record: interface_property }
+
+.form-group
+  %label{ for: 'interface_property_key' }
+    = InterfaceProperty.human_attribute_name('key')
+  = text_field 'interface_property', 'key', class: 'form-control'
+
+.form-group
+  %label{ for: 'interface_property_value' }
+    = InterfaceProperty.human_attribute_name('value')
+  = text_field 'interface_property', 'value', class: 'form-control'

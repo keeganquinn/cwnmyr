@@ -1,0 +1,11 @@
+.container
+  %h1= t '.title'
+
+  = form_tag url_for(@interface_property), method: :put do
+    = render partial: 'form',
+      locals: { interface_property: @interface_property }
+
+    = submit_tag t(:update), id: 'interface_property_update',
+      class: 'btn btn-primary'
+    = link_to t(:cancel), url_for(@interface_property.interface),
+      class: 'btn btn-warning'

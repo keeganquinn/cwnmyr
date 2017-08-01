@@ -52,12 +52,18 @@ en:
       host:
         one: Host
         other: Hosts
+      host_property:
+        one: Host Property
+        other: Host Properties
       host_type:
         one: Host Type
         other: Host Types
       interface:
         one: Interface
         other: Interfaces
+      interface_property:
+        one: Interface Property
+        other: Interface Properties
       interface_type:
         one: Interface Type
         other: Interface Types
@@ -115,6 +121,11 @@ en:
       title: New Interface
     edit:
       title: Edit Interface
+  interface_properties:
+    new:
+      title: New Interface Property
+    edit:
+      title: Edit Interface Property
   nodes:
     form:
       node_code_help: Identifier for the node. Should match the WikiWord.

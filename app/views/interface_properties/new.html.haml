@@ -1,0 +1,12 @@
+.container
+  %h1= t '.title'
+
+  = form_tag interface_properties_path do
+    = render partial: 'form',
+      locals: { interface_property: @interface_property }
+
+    = hidden_field 'interface_property', 'interface_id'
+    = submit_tag t(:create), id: 'interface_property_create',
+      class: 'btn btn-primary'
+    = link_to t(:cancel), url_for(@interface_property.interface),
+      class: 'btn btn-warning'
