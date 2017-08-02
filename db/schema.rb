@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726053303) do
+ActiveRecord::Schema.define(version: 20170802003309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,13 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.string "email"
     t.string "phone"
     t.string "notes"
+    t.integer "user_id"
+    t.integer "group_id"
     t.index ["code"], name: "index_contacts_on_code", unique: true
+    t.index ["group_id"], name: "index_contacts_on_group_id"
     t.index ["hidden"], name: "index_contacts_on_hidden"
     t.index ["name"], name: "index_contacts_on_name", unique: true
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "groups", id: :serial, force: :cascade do |t|
@@ -159,8 +163,10 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "group_id"
     t.index ["code"], name: "index_nodes_on_code", unique: true
     t.index ["contact_id"], name: "index_nodes_on_contact_id"
+    t.index ["group_id"], name: "index_nodes_on_group_id"
     t.index ["name"], name: "index_nodes_on_name", unique: true
     t.index ["status_id"], name: "index_nodes_on_status_id"
     t.index ["zone_id"], name: "index_nodes_on_zone_id"
@@ -181,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170726053303) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "default_display"
     t.index ["code"], name: "index_statuses_on_code", unique: true
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end

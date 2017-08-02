@@ -2,6 +2,7 @@ describe User do
   subject(:user) { build_stubbed(:user) }
 
   it { is_expected.to have_and_belong_to_many(:groups) }
+  it { is_expected.to have_many(:contacts) }
   it { is_expected.to have_many(:nodes) }
   it { is_expected.to have_many(:user_links) }
 

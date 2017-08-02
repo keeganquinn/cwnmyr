@@ -30,6 +30,7 @@ data['data'].each do |nodes|
       contact.email = value['email']
       contact.phone = value['phone']
       contact.notes = value['role']
+      contact.user = user
       contact.save
       node.contact = contact
     end

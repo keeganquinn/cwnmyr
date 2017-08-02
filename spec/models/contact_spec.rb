@@ -2,6 +2,8 @@ describe Contact do
   subject(:contact) { build_stubbed(:contact) }
 
   it { is_expected.to have_many(:nodes) }
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:group) }
 
   it { is_expected.to respond_to(:code) }
   it { is_expected.to respond_to(:name) }

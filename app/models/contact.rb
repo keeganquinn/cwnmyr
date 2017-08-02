@@ -2,6 +2,8 @@
 class Contact < ApplicationRecord
   has_paper_trail
   has_many :nodes
+  belongs_to :user
+  belongs_to :group, optional: true
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
