@@ -1,1 +1,4 @@
-json.nodes Node.all, partial: 'nodes/node.json', as: :node
+json.statuses Status.all do |status|
+  json.partial! 'statuses/status.json', status: status
+  json.nodes status.nodes, partial: 'nodes/node.json', as: :node
+end

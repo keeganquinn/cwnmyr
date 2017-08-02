@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def remote_javascript_includes
     JS_INCLUDES.map do |js|
-      javascript_include_tag js, async: true, defer: true
+      javascript_include_tag js
     end .join.html_safe
   end
 

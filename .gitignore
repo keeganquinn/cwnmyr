@@ -1,5 +1,6 @@
 # Must always be local
 /.bundle/
+/jest_*/
 /node_modules/
 /public/assets/
 /tmp/*
