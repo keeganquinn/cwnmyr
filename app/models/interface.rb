@@ -6,7 +6,6 @@ class Interface < ApplicationRecord
   has_paper_trail
   belongs_to :host
   belongs_to :interface_type
-  belongs_to :status
   has_many :interface_properties
 
   validates_length_of :code, minimum: 1

@@ -12,10 +12,5 @@
                       class: 'form-control'
 
 .form-group
-  %label{ for: 'host_status_id' }= Host.human_attribute_name('status')
-  = collection_select 'host', 'status_id', Status.all, 'id', 'name', {},
-                      class: 'form-control'
-
-.form-group
   %label{ for: 'host_body' }= Host.human_attribute_name('body')
   = text_area 'host', 'body', rows: 8, class: 'form-control'

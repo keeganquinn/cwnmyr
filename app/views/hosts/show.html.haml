@@ -11,9 +11,6 @@
         = link_to t(:zone, zone: @host.node.zone.name), url_for(@host.node.zone)
         %br/
         = link_to t(:node, node: @host.node.name), url_for(@host.node)
-        %br/
-        %span{ class: @host.status.color }
-          = t :status, status: @host.status.name
 
       = markdown @host.body
 
@@ -26,7 +23,6 @@
         - @host.interfaces.each do |interface|
           %li
             = link_to h(interface.name), url_for(interface)
-            %span{ class: interface.status.color } &larr;
             - if interface.essid
               \-
               = Interface.human_attribute_name('essid')

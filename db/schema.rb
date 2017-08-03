@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802003309) do
+ActiveRecord::Schema.define(version: 20170803143845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,14 +74,12 @@ ActiveRecord::Schema.define(version: 20170802003309) do
     t.integer "node_id"
     t.string "name"
     t.integer "host_type_id"
-    t.integer "status_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["host_type_id"], name: "index_hosts_on_host_type_id"
     t.index ["name"], name: "index_hosts_on_name"
     t.index ["node_id"], name: "index_hosts_on_node_id"
-    t.index ["status_id"], name: "index_hosts_on_status_id"
   end
 
   create_table "interface_properties", id: :serial, force: :cascade do |t|
@@ -109,7 +107,6 @@ ActiveRecord::Schema.define(version: 20170802003309) do
     t.string "code"
     t.string "name"
     t.integer "interface_type_id"
-    t.integer "status_id"
     t.text "body"
     t.string "address_ipv4"
     t.string "address_ipv6"
@@ -135,7 +132,6 @@ ActiveRecord::Schema.define(version: 20170802003309) do
     t.index ["host_id"], name: "index_interfaces_on_host_id"
     t.index ["interface_type_id"], name: "index_interfaces_on_interface_type_id"
     t.index ["name"], name: "index_interfaces_on_name"
-    t.index ["status_id"], name: "index_interfaces_on_status_id"
   end
 
   create_table "node_links", id: :serial, force: :cascade do |t|

@@ -74,11 +74,6 @@
                   = Host.human_attribute_name('name')
                 = text_field 'host', 'name', class: 'form-control',
                              placeholder: Host.human_attribute_name('name')
-              .form-group
-                %label.sr-only{ for: 'host_status_id' }
-                  = Host.human_attribute_name('status')
-                = collection_select 'host', 'status_id', Status.all,
-                                    'id', 'name', {}, class: 'form-control'
               = hidden_field 'host', 'node_id', value: @node.to_param
               = submit_tag t(:create), id: 'host_create',
                            class: 'btn btn-primary'

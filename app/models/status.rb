@@ -3,8 +3,6 @@
 class Status < ApplicationRecord
   has_paper_trail
   has_many :nodes
-  has_many :hosts
-  has_many :interfaces
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64

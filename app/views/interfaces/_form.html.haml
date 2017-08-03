@@ -11,11 +11,6 @@
                       'id', 'name', {}, class: 'form-control'
 
 .form-group
-  %label{ for: 'interface_status_id' }= Interface.human_attribute_name('status')
-  = collection_select 'interface', 'status_id', Status.all, 'id', 'name', {},
-                      class: 'form-control'
-
-.form-group
   %label{ for: 'interface_address_ipv6' }
     = Interface.human_attribute_name('address_ipv6')
   = text_field 'interface', 'address_ipv6', class: 'form-control',

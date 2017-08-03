@@ -3,7 +3,6 @@ describe Host do
 
   it { is_expected.to belong_to(:node) }
   it { is_expected.to belong_to(:host_type) }
-  it { is_expected.to belong_to(:status) }
   it { is_expected.to have_many(:interfaces) }
   it { is_expected.to have_many(:host_properties) }
 

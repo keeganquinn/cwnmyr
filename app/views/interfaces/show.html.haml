@@ -19,9 +19,6 @@
                            url_for(@interface.host.node)
         %br/
         = link_to t(:host, host: @interface.host.name), url_for(@interface.host)
-        %br/
-        %span{ class: @interface.status.color }
-          = t :status, status: @interface.status.name
 
       = markdown @interface.body
 

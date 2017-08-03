@@ -35,7 +35,7 @@ class InterfacesController < ApplicationController
 
   def safe_params
     params.require(:interface).permit(
-      :host_id, :code, :name, :interface_type_id, :status_id, :body,
+      :host_id, :code, :name, :interface_type_id, :body,
       :address_ipv4, :address_ipv6, :address_mac,
       :latitude, :longitude, :altitude,
       :essid, :security_psk, :channel, :tx_power, :rx_sensitivity,

@@ -5,7 +5,6 @@ class Host < ApplicationRecord
   has_paper_trail
   belongs_to :node
   belongs_to :host_type, optional: true
-  belongs_to :status
   has_many :interfaces
   has_many :host_properties
 

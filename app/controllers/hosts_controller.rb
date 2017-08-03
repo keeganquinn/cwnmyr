@@ -45,6 +45,6 @@ class HostsController < ApplicationController
   private
 
   def safe_params
-    params.require(:host).permit(:node_id, :name, :status_id)
+    params.require(:host).permit(:node_id, :name, :host_type_id, :body)
   end
 end

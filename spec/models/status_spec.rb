@@ -2,8 +2,6 @@ describe Status do
   subject(:status) { build_stubbed(:status) }
 
   it { is_expected.to have_many(:nodes) }
-  it { is_expected.to have_many(:hosts) }
-  it { is_expected.to have_many(:interfaces) }
 
   it { is_expected.to respond_to(:code) }
   it { is_expected.to respond_to(:name) }

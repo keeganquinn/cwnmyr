@@ -8,7 +8,6 @@ class InterfaceDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     interface_type: Field::BelongsTo,
-    status: Field::BelongsTo,
     body: Field::Text,
     address_ipv4: Field::String,
     address_ipv6: Field::String,
@@ -33,10 +32,10 @@ class InterfaceDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[host code name interface_type status].freeze
+  COLLECTION_ATTRIBUTES = %i[host code name interface_type].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    host code name interface_type status body
+    host code name interface_type body
     address_ipv4 address_ipv6 address_mac latitude longitude altitude
     essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
     beamwidth_h beamwidth_v azimuth elevation polarity interface_properties
@@ -44,7 +43,7 @@ class InterfaceDashboard < Administrate::BaseDashboard
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    host code name interface_type status body
+    host code name interface_type body
     address_ipv4 address_ipv6 address_mac latitude longitude altitude
     essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
     beamwidth_h beamwidth_v azimuth elevation polarity

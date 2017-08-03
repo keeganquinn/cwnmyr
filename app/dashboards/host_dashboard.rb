@@ -7,7 +7,6 @@ class HostDashboard < Administrate::BaseDashboard
     node: Field::BelongsTo,
     name: Field::String,
     host_type: Field::BelongsTo,
-    status: Field::BelongsTo,
     body: Field::Text,
     interfaces: Field::HasMany,
     host_properties: Field::HasMany,
@@ -15,12 +14,12 @@ class HostDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[node name host_type status].freeze
+  COLLECTION_ATTRIBUTES = %i[node name host_type].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[node name host_type status body interfaces
+  SHOW_PAGE_ATTRIBUTES = %i[node name host_type body interfaces
                             host_properties created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = %i[node name host_type status body].freeze
+  FORM_ATTRIBUTES = %i[node name host_type body].freeze
 
   def display_resource(host)
     "Host ##{host.to_param}"

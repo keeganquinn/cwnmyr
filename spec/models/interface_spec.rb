@@ -3,7 +3,6 @@ describe Interface do
 
   it { is_expected.to belong_to(:host) }
   it { is_expected.to belong_to(:interface_type) }
-  it { is_expected.to belong_to(:status) }
   it { is_expected.to have_many(:interface_properties) }
 
   it { is_expected.to respond_to(:code) }
