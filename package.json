@@ -37,7 +37,8 @@
   },
   "eslintConfig": {
     "env": {
-      "browser": true
+      "browser": true,
+      "jest": true
     },
     "extends": "standard",
     "plugins": [
