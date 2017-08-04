@@ -28,6 +28,7 @@ gem 'webpacker'
 gem 'geocoder'
 gem 'netaddr'
 gem 'paper_trail'
+gem 'paperclip'
 gem 'rgl', require: 'rgl/adjacency'
 gem 'rmagick'
 
