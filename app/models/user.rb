@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def set_defaults
-    self.code = name.parameterize if code.blank? && name
+    self.code = name.parameterize if name
     self.role ||= :user
   end
 end

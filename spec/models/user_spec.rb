@@ -40,11 +40,11 @@ describe User do
       user.validate
     end
 
-    it { expect(user.code).to match 'different' }
+    it { expect(user.code).to match 'test-user' }
     it { expect(user.name).to match 'Test User' }
 
     it '#to_param returns a string' do
-      expect(user.to_param).to match "^#{user.id}-different$"
+      expect(user.to_param).to match "^#{user.id}-test-user$"
     end
   end
 
@@ -63,7 +63,6 @@ describe User do
     subject(:user) { build(:user) }
 
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
-    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 end
