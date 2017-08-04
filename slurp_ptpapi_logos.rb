@@ -22,6 +22,7 @@ data['data'].each do |nodes|
     node = Node.find_by(code: key)
     logo = "https://personaltelco.net/splash/images/nodes/#{value['logo']}"
     print node, logo, "\n"
+    next unless node
     node.logo = URI.parse(logo)
     node.save
   end
