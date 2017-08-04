@@ -3,6 +3,7 @@
 /jest_*/
 /node_modules/
 /public/assets/
+/public/system/
 /tmp/*
 /vendor/bundle/
 /vendor/ruby/

@@ -18,6 +18,7 @@ describe Node do
   it { is_expected.to respond_to(:longitude) }
   it { is_expected.to respond_to(:hours) }
   it { is_expected.to respond_to(:notes) }
+  it { is_expected.to respond_to(:logo) }
 
   it { is_expected.to validate_length_of(:code) }
   it { is_expected.to validate_length_of(:name) }

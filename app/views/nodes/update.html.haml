@@ -1,7 +1,7 @@
 .container
   %h1= t '.title'
 
-  = form_tag url_for(@node), method: :put do
+  = form_tag url_for(@node), method: :put, multipart: true do
     = render partial: 'form', locals: { node: @node }
 
     = submit_tag t(:update), class: 'btn btn-primary'

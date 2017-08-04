@@ -47,7 +47,7 @@ class NodesController < ApplicationController
   def safe_params
     params.require(:node).permit(
       :user_id, :zone_id, :code, :name, :status_id, :body, :address,
-      :hours, :notes
+      :hours, :notes, :logo
     )
   end
 end

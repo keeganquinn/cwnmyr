@@ -40,3 +40,7 @@
   = text_area 'node', 'notes', rows: 8, class: 'form-control',
                                'aria-describedby': 'node-notes-help'
   %span.help-block#node-notes-help= t '.node_notes_help'
+
+.form-group
+  %label{ for: 'node_logo' }= Node.human_attribute_name('logo')
+  = file_field 'node', 'logo', class: 'form-control'

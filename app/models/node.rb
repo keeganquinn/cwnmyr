@@ -12,6 +12,8 @@ class Node < ApplicationRecord
   has_many :hosts
   has_many :node_links
   has_and_belongs_to_many :tags
+  has_attached_file :logo
+  validates_attachment_content_type :logo, content_type: /\Aimage/
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64

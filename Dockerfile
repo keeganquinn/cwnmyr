@@ -4,7 +4,8 @@ MAINTAINER Keegan Quinn <keeganquinn@gmail.com>
 # Install Debian main packages
 RUN apt-get update -qq \
   && apt-get install -y --no-install-recommends \
-    autoconf bison build-essential ca-certificates curl git gnupg graphviz \
+    autoconf bison build-essential ca-certificates curl \
+    file git gnupg graphviz imagemagick \
     libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
     libffi-dev libgdbm-dev libpq-dev libmagickwand-dev \
   && apt-get clean
