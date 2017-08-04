@@ -1,5 +1,5 @@
 .container
-  %h1= t '.title'
+  %h1= t :edit_h, thing: UserLink.model_name.human
 
   = form_tag url_for(@user_link), method: :put do
     = render partial: 'form', locals: { user_link: @user_link }

@@ -12,7 +12,7 @@ feature 'Node Link show page' do
 
   it 'allows the node link to be edited' do
     click_link 'Edit'
-    expect(page).to have_content 'Edit Link'
+    expect(page).to have_content 'Edit Node Link'
   end
 
   it 'allows the node link to be deleted' do

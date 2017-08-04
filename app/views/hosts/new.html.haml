@@ -1,5 +1,5 @@
 .container
-  %h1= t '.title'
+  %h1= t :new_h, thing: Host.model_name.human
 
   = form_tag hosts_path do
     = render partial: 'form', locals: { host: @host }

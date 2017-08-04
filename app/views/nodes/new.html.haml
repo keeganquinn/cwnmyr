@@ -1,5 +1,5 @@
 .container
-  %h1= t '.title'
+  %h1= t :new_h, thing: Node.model_name.human
 
   = form_tag nodes_path do
     = render partial: 'form', locals: { node: @node }

@@ -6,7 +6,7 @@ feature 'User Link new page' do
     visit new_user_link_path(user: current_user)
   end
 
-  it { expect(page).to have_content 'New Link' }
+  it { expect(page).to have_content 'New User Link' }
 
   it 'allows a user link to be created' do
     fill_in 'user_link_name', with: 'Spec Link'

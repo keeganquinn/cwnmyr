@@ -33,6 +33,8 @@ en:
   hours: "Hours: %{hours}"
   created: "Created: %{date}"
   updated: "Updated: %{date}"
+  new_h: "New %{thing}"
+  edit_h: "Edit %{thing}"
   confirm_delete: "Are you sure you want to delete this %{thing}?"
   create_success: "%{thing} has been successfully created."
   update_success: "%{thing} has been successfully updated."
@@ -98,34 +100,17 @@ en:
         email: Email Address
         password: Password
         password_confirmation: Password Confirmation
+      user_link:
+        url: URL
   devise:
     confirmations:
       new:
         title: Resend confirmation
         submit: Resend confirmation instructions
-  hosts:
-    new:
-      title: New Host
-    edit:
-      title: Edit Host
-  host_properties:
-    new:
-      title: New Host Property
-    edit:
-      title: Edit Host Property
   interfaces:
     form:
       interface_address_ipv4_example: '10.11.12.1/24'
       interface_address_ipv6_example: '2001:618::6eff:fe6f:f2e3:20c/64'
-    new:
-      title: New Interface
-    edit:
-      title: Edit Interface
-  interface_properties:
-    new:
-      title: New Interface Property
-    edit:
-      title: Edit Interface Property
   nodes:
     form:
       node_code_help: Identifier for the node. Should match the WikiWord.
@@ -134,22 +119,8 @@ en:
       node_address_help: Address of node location.
       node_hours_help: Hours that the location is publically accessible.
       node_notes_help: Technical and miscellaneous notes related to the node.
-    new:
-      title: New Node
-    edit:
-      title: Edit Node
     show:
       network_diagram: Network Diagram
-  node_links:
-    new:
-      title: New Link
-    edit:
-      title: Edit Link
-  user_links:
-    new:
-      title: New Link
-    edit:
-      title: Edit Link
   zones:
     show:
       conf: Configuration Files

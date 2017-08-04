@@ -8,7 +8,7 @@ feature 'Node Link edit page' do
     visit edit_node_link_path(node_link)
   end
 
-  it { expect(page).to have_content 'Edit Link' }
+  it { expect(page).to have_content 'Edit Node Link' }
 
   it 'allows a node link to be updated' do
     fill_in 'node_link_name', with: 'A Different Name'

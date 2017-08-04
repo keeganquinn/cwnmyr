@@ -7,7 +7,7 @@ feature 'Node Link new page' do
     visit new_node_link_path(node: node)
   end
 
-  it { expect(page).to have_content 'New Link' }
+  it { expect(page).to have_content 'New Node Link' }
 
   it 'allows a node link to be created' do
     fill_in 'node_link_name', with: 'Spec Link'

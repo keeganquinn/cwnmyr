@@ -1,5 +1,5 @@
 .container
-  %h1= t '.title'
+  %h1= t :edit_h, thing: NodeLink.model_name.human
 
   = form_tag url_for(@node_link), method: :put do
     = render partial: 'form', locals: { node_link: @node_link }

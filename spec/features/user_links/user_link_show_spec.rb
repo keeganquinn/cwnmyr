@@ -11,7 +11,7 @@ feature 'User Link show page' do
 
   it 'allows the user link to be edited' do
     click_link 'Edit'
-    expect(page).to have_content 'Edit Link'
+    expect(page).to have_content 'Edit User Link'
   end
 
   it 'allows the user link to be deleted' do

@@ -1,5 +1,5 @@
 .container
-  %h1= t '.title'
+  %h1= t :edit_h, thing: InterfaceProperty.model_name.human
 
   = form_tag url_for(@interface_property), method: :put do
     = render partial: 'form',

@@ -7,7 +7,7 @@ feature 'User Link edit page' do
     visit edit_user_link_path(user_link)
   end
 
-  it { expect(page).to have_content 'Edit Link' }
+  it { expect(page).to have_content 'Edit User Link' }
 
   it 'allows a user link to be updated' do
     fill_in 'user_link_name', with: 'A Different Name'
