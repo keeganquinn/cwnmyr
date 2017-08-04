@@ -81,7 +81,7 @@
       %h2= t('.network_diagram')
       %p= image_tag graph_node_path(@node, format: :png)
 
-      - if @node.logo
+      - unless @node.logo.blank?
         = image_tag @node.logo.url
 
     .col-md-5
