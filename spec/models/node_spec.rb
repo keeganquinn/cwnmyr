@@ -9,6 +9,7 @@ describe Node do
   it { is_expected.to have_many(:hosts) }
   it { is_expected.to have_many(:node_links) }
   it { is_expected.to have_and_belong_to_many(:tags) }
+  it { is_expected.to have_attached_file(:logo) }
 
   it { is_expected.to respond_to(:code) }
   it { is_expected.to respond_to(:name) }
@@ -18,7 +19,6 @@ describe Node do
   it { is_expected.to respond_to(:longitude) }
   it { is_expected.to respond_to(:hours) }
   it { is_expected.to respond_to(:notes) }
-  it { is_expected.to respond_to(:logo) }
 
   it { is_expected.to validate_length_of(:code) }
   it { is_expected.to validate_length_of(:name) }
