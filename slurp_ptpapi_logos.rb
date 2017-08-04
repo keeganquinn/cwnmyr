@@ -3,9 +3,6 @@ require 'uri'
 
 require_relative 'config/environment'
 
-user = User.first
-zone = Zone.find_by(code: 'pdx')
-
 uri = URI.parse('https://personaltelco.net/api/v0/nodes')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
