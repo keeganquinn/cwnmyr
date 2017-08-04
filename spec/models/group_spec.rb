@@ -32,6 +32,6 @@ describe Group do
   describe 'with database access' do
     subject(:group) { build(:group) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

@@ -73,4 +73,14 @@ describe Interface do
       expect(local.ipv4_neighbors).to include(remote)
     end
   end
+
+  describe 'with database access' do
+    subject(:interface) { build(:interface) }
+
+    it do
+      is_expected.to(
+        validate_uniqueness_of(:code).scoped_to(:host_id).case_insensitive
+      )
+    end
+  end
 end

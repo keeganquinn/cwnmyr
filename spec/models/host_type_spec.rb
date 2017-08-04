@@ -30,6 +30,6 @@ describe HostType do
   describe 'with database access' do
     subject(:host_type) { build(:host_type) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

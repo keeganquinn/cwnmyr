@@ -29,6 +29,6 @@ describe Tag do
   describe 'with database access' do
     subject(:tag) { build(:tag) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

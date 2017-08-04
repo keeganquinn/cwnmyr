@@ -25,6 +25,10 @@ describe Host do
   describe 'with database access' do
     subject(:host) { build(:host) }
 
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:node_id) }
+    it do
+      is_expected.to(
+        validate_uniqueness_of(:name).scoped_to(:node_id).case_insensitive
+      )
+    end
   end
 end

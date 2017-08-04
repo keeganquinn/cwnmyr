@@ -37,6 +37,6 @@ describe Contact do
   describe 'with database access' do
     subject(:contact) { build(:contact) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

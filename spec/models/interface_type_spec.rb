@@ -32,6 +32,6 @@ describe InterfaceType do
   describe 'with database access' do
     subject(:interface_type) { build(:interface_type) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

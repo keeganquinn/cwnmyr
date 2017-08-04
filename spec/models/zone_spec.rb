@@ -30,6 +30,6 @@ describe Zone do
   describe 'with database access' do
     subject(:zone) { build(:zone) }
 
-    it { is_expected.to validate_uniqueness_of(:code) }
+    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 end

@@ -9,7 +9,7 @@ class Host < ApplicationRecord
   has_many :host_properties
 
   validates_length_of :name, minimum: 1
-  validates_uniqueness_of :name, scope: :node_id
+  validates_uniqueness_of :name, scope: :node_id, case_sensitive: false
   validates_format_of :name,
                       with: /\A[-a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
