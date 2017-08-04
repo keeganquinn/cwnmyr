@@ -1,5 +1,10 @@
-%h1= HostType.model_name.human(count: 2)
+.container
+  .row
+    .col-md-12
+      %h1= HostType.model_name.human(count: 2)
 
-%ul
-  - @host_types.each do |host_type|
-    %li= link_to h(host_type.name), url_for(host_type)
+  .row
+    .col-md-12
+      %ul
+        - @host_types.each do |host_type|
+          %li= link_to h(host_type.name), url_for(host_type)

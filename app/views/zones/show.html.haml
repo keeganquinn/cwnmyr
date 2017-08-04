@@ -16,7 +16,7 @@
   %p.small= t :total_numbered, count: @zone.nodes.count
 
   %ul
-    - @zone.nodes.each do |node|
+    - @zone.nodes.order(name: :asc).each do |node|
       %li
         = link_to h(node.name), url_for(node)
         %span{ class: node.status.color } &larr;

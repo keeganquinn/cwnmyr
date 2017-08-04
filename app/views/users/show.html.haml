@@ -1,6 +1,25 @@
-= h @user.name
+.container
+  .row
+    .col-md-12
+      %h1= h @user.name
 
-%p.small
-  = t :created, date: @user.created_at.to_s(:db)
-  %br/
-  = t :updated, date: @user.updated_at.to_s(:db)
+  .row
+    .col-md-12
+      %p.small
+        = t :created, date: @user.created_at.to_s(:db)
+        %br/
+        = t :updated, date: @user.updated_at.to_s(:db)
+
+      %h2= Node.model_name.human(count: 2)
+
+      %ul
+        - @user.nodes.order(name: :asc).each do |node|
+          %li= link_to node.name, url_for(node)
+
+      %h2= UserLink.model_name.human(count: 2)
+
+      %ul
+        - @user.user_links.each do |user_link|
+          %li= link_to user_link.name, url_for(user_link)
+        - if policy(@user).update?
+          %li= link_to t('.new_link'), new_user_link_path(user: @user)

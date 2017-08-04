@@ -1,5 +1,10 @@
-%h1= Status.model_name.human(count: 2)
+.container
+  .row
+    .col-md-12
+      %h1= Status.model_name.human(count: 2)
 
-%ul
-  - @statuses.each do |status|
-    %li= link_to h(status.name), url_for(status)
+  .row
+    .col-md-12
+      %ul
+        - @statuses.each do |status|
+          %li= link_to h(status.name), url_for(status)

@@ -11,11 +11,11 @@
         = link_to t(:zone, zone: @host.node.zone.name), url_for(@host.node.zone)
         %br/
         = link_to t(:node, node: @host.node.name), url_for(@host.node)
+        - if @host.host_type
+          %br/
+          = link_to @host.host_type.name, url_for(@host.host_type)
 
       = markdown @host.body
-
-      %h2= t('.network_diagram')
-      %p= image_tag graph_host_path(@host, format: :png)
 
       %h2= Interface.model_name.human(count: 2)
 
@@ -44,3 +44,6 @@
             = h host_property.value
         - if policy(@host).update?
           %li= link_to t(:create), new_host_property_path(host_id: @host)
+
+      %h2= t('.network_diagram')
+      %p= image_tag graph_host_path(@host, format: :png)

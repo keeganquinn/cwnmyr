@@ -1,3 +1,14 @@
-%h1= h @status.name
+.container
+  .row
+    .col-md-12
+      %h1= h @status.name
 
-= @status.code
+  .row
+    .col-md-12
+      %p= h @status.code
+
+      %h2= Node.model_name.human(count: 2)
+
+      %ul
+        - @status.nodes.order(name: :asc).each do |node|
+          %li= link_to node.name, url_for(node)

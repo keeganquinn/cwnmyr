@@ -4,7 +4,11 @@
       %h1= h @node_link.name
 
   .row
-    .col-md-12
+    .col-md-7
       = render partial: 'shared/edit_delete', locals: { record: @node_link }
 
       %p= link_to @node_link.url, @node_link.url
+
+    .col-md-5
+      %p.small
+        = link_to @node_link.node.name, url_for(@node_link.node)

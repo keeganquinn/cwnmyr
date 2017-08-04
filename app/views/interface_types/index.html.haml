@@ -1,5 +1,10 @@
-%h1= InterfaceType.model_name.human(count: 2)
+.container
+  .row
+    .col-md-12
+      %h1= InterfaceType.model_name.human(count: 2)
 
-%ul
-  - @interface_types.each do |interface_type|
-    %li= link_to h(interface_type.name), url_for(interface_type)
+  .row
+    .col-md-12
+      %ul
+        - @interface_types.each do |interface_type|
+          %li= link_to h(interface_type.name), url_for(interface_type)

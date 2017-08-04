@@ -4,7 +4,11 @@
       %h1= h @host_property.key
 
   .row
-    .col-md-12
+    .col-md-7
       = render partial: 'shared/edit_delete', locals: { record: @host_property }
 
       %p= h @host_property.value
+
+    .col-md-5
+      %p.small
+        = link_to @host_property.host.name, url_for(@host_property.host)

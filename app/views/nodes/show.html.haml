@@ -7,6 +7,9 @@
     .col-md-7
       = render partial: 'shared/edit_delete', locals: { record: @node }
 
+      - unless @node.logo.blank?
+        = image_tag @node.logo.url
+
       = markdown @node.body
 
       - if @node.notes?
@@ -81,15 +84,15 @@
       %h2= t('.network_diagram')
       %p= image_tag graph_node_path(@node, format: :png)
 
-      - unless @node.logo.blank?
-        = image_tag @node.logo.url
-
     .col-md-5
       %p.small
         = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
         %br/
         = t :code, code: @node.code
         %br/
+        - if @node.user.name
+          = link_to @node.user.name, url_for(@node.user)
+          %br/
         %span{ class: @node.status.color }
           = t :status, status: @node.status.name
 

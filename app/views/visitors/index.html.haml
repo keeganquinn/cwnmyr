@@ -46,7 +46,7 @@
         %h2= t '.my_nodes'
 
         %ul
-          - current_user.nodes.each do |node|
+          - current_user.nodes.order(name: :asc).each do |node|
             %li
               = link_to h(node.name), url_for(node)
               %span.small

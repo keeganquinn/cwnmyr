@@ -4,8 +4,13 @@
       %h1= h @interface_property.key
 
   .row
-    .col-md-12
+    .col-md-7
       = render partial: 'shared/edit_delete',
         locals: { record: @interface_property }
 
       %p= h @interface_property.value
+
+    .col-md-5
+      %p.small
+        = link_to @interface_property.interface.code,
+          url_for(@interface_property.interface)

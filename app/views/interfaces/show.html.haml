@@ -19,6 +19,10 @@
                            url_for(@interface.host.node)
         %br/
         = link_to t(:host, host: @interface.host.name), url_for(@interface.host)
+        - if @interface.interface_type
+          %br/
+          = link_to @interface.interface_type.name,
+            url_for(@interface.interface_type)
 
       = markdown @interface.body
 
