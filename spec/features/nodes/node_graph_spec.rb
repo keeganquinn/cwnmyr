@@ -1,7 +1,7 @@
 feature 'Node network diagram' do
   let(:node) { create :node }
   let(:host) { create :host, node: node }
-  let(:network) { create :interface_type }
+  let(:network) { create :interface_type, allow_neighbors: true }
 
   scenario 'PNG data is returned' do
     create :interface,
