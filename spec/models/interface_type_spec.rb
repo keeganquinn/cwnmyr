@@ -9,6 +9,10 @@ describe InterfaceType do
 
   it { is_expected.to validate_length_of(:code) }
   it { is_expected.to validate_length_of(:name) }
+  it { is_expected.to allow_value('10.11.23.3/24').for(:network_ipv4) }
+  it { is_expected.not_to allow_value('junk').for(:network_ipv4) }
+  it { is_expected.to allow_value('::1/128').for(:network_ipv6) }
+  it { is_expected.not_to allow_value('junk').for(:network_ipv6) }
 
   it { is_expected.to be_valid }
 

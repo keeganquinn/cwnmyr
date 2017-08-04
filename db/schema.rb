@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804053642) do
+ActiveRecord::Schema.define(version: 20170804105722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(version: 20170804053642) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "network_ipv4"
+    t.string "network_ipv6"
+    t.boolean "allow_neighbors"
     t.index ["code"], name: "index_interface_types_on_code", unique: true
     t.index ["name"], name: "index_interface_types_on_name", unique: true
   end

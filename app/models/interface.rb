@@ -62,7 +62,7 @@ class Interface < ApplicationRecord
   # Finds neighboring Interface instances based on IPv4 network
   # configuration data.
   def ipv4_neighbors
-    return [] unless ipv4_cidr
+    return [] unless ipv4_cidr && interface_type.allow_neighbors
     interface_type.interfaces.where.not(id: id).select do |other|
       ipv4_cidr.network == other.ipv4_cidr.network
     end

@@ -13,6 +13,26 @@ class InterfaceType < ApplicationRecord
   validates_length_of :name, minimum: 1
   validates_length_of :name, maximum: 255
 
+  validates_each :network_ipv4 do |record, attr, value|
+    unless value.blank?
+      begin
+        NetAddr::CIDR.create value
+      rescue
+        record.errors.add attr, 'is not formatted correctly'
+      end
+    end
+  end
+
+  validates_each :network_ipv6 do |record, attr, value|
+    unless value.blank?
+      begin
+        NetAddr::CIDR.create value
+      rescue
+        record.errors.add attr, 'is not formatted correctly'
+      end
+    end
+  end
+
   before_validation :set_defaults
 
   def to_param

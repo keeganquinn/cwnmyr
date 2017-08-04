@@ -53,7 +53,7 @@ describe Interface do
   end
 
   describe 'IPv4 neighbors' do
-    let(:network) { create :interface_type }
+    let(:network) { create :interface_type, allow_neighbors: true }
     let!(:local) do
       create :interface, interface_type: network, address_ipv4: '10.11.23.2/24'
     end

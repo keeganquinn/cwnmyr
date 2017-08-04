@@ -7,6 +7,9 @@ class InterfaceTypeDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     body: Field::Text,
+    network_ipv4: Field::String,
+    network_ipv6: Field::String,
+    allow_neighbors: Field::Boolean,
     interfaces: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -14,9 +17,11 @@ class InterfaceTypeDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[code name body interfaces].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body interfaces network_ipv4 network_ipv6
+                            allow_neighbors].freeze
 
-  FORM_ATTRIBUTES = %i[code name body].freeze
+  FORM_ATTRIBUTES = %i[code name body network_ipv4 network_ipv6
+                       allow_neighbors].freeze
 
   def display_resource(interface_type)
     "Interface Type ##{interface_type.to_param}"
