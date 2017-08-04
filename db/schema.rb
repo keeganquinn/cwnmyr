@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804011714) do
+ActiveRecord::Schema.define(version: 20170804053642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,14 @@ ActiveRecord::Schema.define(version: 20170804011714) do
     t.index ["host_id"], name: "index_interfaces_on_host_id"
     t.index ["interface_type_id"], name: "index_interfaces_on_interface_type_id"
     t.index ["name"], name: "index_interfaces_on_name"
+  end
+
+  create_table "logos", force: :cascade do |t|
+    t.integer "node_id"
+    t.string "style"
+    t.binary "file_contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "node_links", id: :serial, force: :cascade do |t|

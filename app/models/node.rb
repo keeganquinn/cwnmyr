@@ -12,7 +12,7 @@ class Node < ApplicationRecord
   has_many :hosts
   has_many :node_links
   has_and_belongs_to_many :tags
-  has_attached_file :logo
+  has_attached_file :logo, storage: :database
   validates_attachment_content_type :logo, content_type: /\Aimage/
 
   validates_length_of :code, minimum: 1

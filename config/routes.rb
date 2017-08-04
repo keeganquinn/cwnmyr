@@ -28,4 +28,6 @@ Rails.application.routes.draw do
       get 'conf'
     end
   end
+
+  get 'nodes/logos/:id', to: 'nodes#logos'
 end

@@ -29,6 +29,7 @@ gem 'geocoder'
 gem 'netaddr'
 gem 'paper_trail'
 gem 'paperclip'
+gem 'paperclip_database', github: 'pwnall/paperclip_database', branch: 'rails5'
 gem 'rgl', require: 'rgl/adjacency'
 gem 'rmagick'
 
