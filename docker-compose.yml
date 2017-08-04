@@ -6,7 +6,7 @@ services:
 
   web:
     build: .
-    command: foreman start
+    command: foreman start -f Procfile.dev
     volumes:
       - .:/srv/rails
       - /srv/rails/node_modules
