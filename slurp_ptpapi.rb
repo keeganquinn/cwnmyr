@@ -35,6 +35,11 @@ data['data'].each do |nodes|
       node.contact = contact
     end
 
+    unless value['logo'].blank?
+      logo = "https://personaltelco.net/splash/images/nodes/#{value['logo']}"
+      node.logo = URI.parse(logo)
+    end
+
     node.user = user
     node.body = value['description']
     node.notes = value['notes']
@@ -46,7 +51,7 @@ data['data'].each do |nodes|
 
     if value['hostname']
       host = Host.find_or_create_by(
-        node: node, status: status, name: value['hostname']
+        node: node, name: value['hostname']
       )
       print '-> Host: ', value['hostname'], ' @ ', host.id, "\n"
 
@@ -84,7 +89,7 @@ data['data'].each do |nodes|
       if value['pubaddr'] && value['pubmasklen']
         pub = InterfaceType.find_by(code: 'pub')
         interface = Interface.find_or_create_by(
-          host: host, interface_type: pub, status: status,
+          host: host, interface_type: pub,
           name: 'Public Network',
           address_ipv4: "#{value['pubaddr']}/#{value['pubmasklen']}"
         )
@@ -95,7 +100,7 @@ data['data'].each do |nodes|
       if value['privaddr'] && value['privmasklen']
         priv = InterfaceType.find_by(code: 'priv')
         interface = Interface.find_or_create_by(
-          host: host, interface_type: priv, status: status,
+          host: host, interface_type: priv,
           name: 'Private Network',
           address_ipv4: "#{value['privaddr']}/#{value['privmasklen']}"
         )
@@ -132,7 +137,5 @@ data['data'].each do |nodes|
       )
       print '-> Link: ', value['wikiurl'], ' @ ', wiki.id, "\n"
     end
-
-    # TODO: fetch and store the logo somewhere
   end
 end
