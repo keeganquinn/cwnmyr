@@ -3,4 +3,8 @@ class UserPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def update?
+    @record == @user
+  end
 end

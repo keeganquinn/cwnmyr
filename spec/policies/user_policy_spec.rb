@@ -10,4 +10,11 @@ describe UserPolicy do
 
     it { is_expected.to permit nil, user }
   end
+
+  permissions :update? do
+    let(:user) { build_stubbed :user }
+
+    it { is_expected.not_to permit nil, user }
+    it { is_expected.to permit user, user }
+  end
 end
