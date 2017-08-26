@@ -7,6 +7,8 @@ class CreateUserService
   }.freeze
 
   def call
+    return User.user.first if User.user.count > 0
+
     User.find_or_create_by! email: Rails.application.secrets.user_email do |u|
       u.assign_attributes USER_ATTRS
       u.confirm

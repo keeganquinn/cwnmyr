@@ -7,6 +7,8 @@ class CreateAdminService
   }.freeze
 
   def call
+    return User.admin.first if User.admin.count > 0
+
     User.find_or_create_by! email: Rails.application.secrets.admin_email do |u|
       u.assign_attributes ADMIN_ATTRS
       u.confirm
