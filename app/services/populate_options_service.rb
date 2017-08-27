@@ -26,11 +26,11 @@ class PopulateOptionsService
   ].freeze
   INTERFACE_TYPES = [
     { code: 'test', name: 'Test Interface' },
-    { code: 'pub', name: 'Public Network' },
+    { code: 'pub', name: 'Public Network', allow_neighbors: true },
     { code: 'priv', name: 'Private Network' }
   ].freeze
   STATUSES = [
-    { code: 'active', name: 'Active', color: 'green' },
+    { code: 'active', name: 'Active', color: 'green', default_display: true },
     { code: 'pending', name: 'Pending', color: 'yellow' },
     { code: 'inactive', name: 'Inactive', color: 'red' },
     { code: 'retired', name: 'Retired', color: 'gray' },
