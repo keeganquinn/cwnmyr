@@ -7,8 +7,8 @@ class UserLink < ApplicationRecord
   validates_length_of :name, minimum: 1
   validates_length_of :url, minimum: 1
   validates_format_of :url,
-                      with: %r{https?://([-\w\.]+)+(:\d+)?
-                            (/([\w/_\.]*(\?\S+)?)?)?}x,
+                      with: %r{\Ahttps?://([-\w\.]+)+(:\d+)?
+                            (/([\w/_\.]*(\?\S+)?)?)?\z}x,
                       message: 'must be a valid HTTP URI.',
                       if: proc { |o| o.url && o.url.size > 1 }
 
