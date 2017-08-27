@@ -8,22 +8,22 @@ describe PopulateOptionsService do
   end
 
   it 'creates group records' do
-    expect(Group.count).to be > 0
+    expect(Group.count).to be_positive
   end
 
   it 'creates host type records' do
-    expect(HostType.count).to be > 0
+    expect(HostType.count).to be_positive
   end
 
   it 'creates interface type records' do
-    expect(InterfaceType.count).to be > 0
+    expect(InterfaceType.count).to be_positive
   end
 
   it 'creates status records' do
-    expect(Status.count).to be > 0
+    expect(Status.count).to be_positive
   end
 
   it 'creates zone records' do
-    expect(Zone.count).to be > 0
+    expect(Zone.count).to be_positive
   end
 end
