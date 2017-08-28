@@ -3,6 +3,10 @@ class ImportLegacyDataService
   SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'.freeze
   LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'.freeze
 
+  def initialize(data = nil)
+    @data = data
+  end
+
   def user
     User.admin.first
   end
@@ -12,6 +16,10 @@ class ImportLegacyDataService
   end
 
   def nodes
+    @data ||= fetch
+  end
+
+  def fetch
     uri = URI.parse(SOURCE_URI)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
