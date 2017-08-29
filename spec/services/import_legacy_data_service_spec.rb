@@ -26,6 +26,12 @@ describe ImportLegacyDataService do
       'pubmasklen' => '24',
       'privaddr' => '192.168.0.1',
       'privmasklen' => '24'
+    }, {
+      'node' => 'BadLogoSpec',
+      'nodename' => 'Spec Node With Broken Logo Link',
+      'status' => 'active',
+      'description' => 'Gets imported even though the logo is a 404',
+      'logo' => 'InvalidLogoPath.png'
     }
   ].freeze
 
