@@ -46,6 +46,10 @@
       "promise"
     ]
   },
+  "engines": {
+    "node": "8.4.0",
+    "yarn": "0.27.5"
+  },
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
