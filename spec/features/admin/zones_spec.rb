@@ -1,4 +1,4 @@
-feature 'Zones admin interface' do
+describe 'Zones admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

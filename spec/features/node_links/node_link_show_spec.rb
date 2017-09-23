@@ -1,4 +1,4 @@
-feature 'Node Link show page' do
+describe 'Node Link show page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
   let(:node_link) { create :node_link, node: node }

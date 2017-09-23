@@ -14,13 +14,13 @@ class Interface < ApplicationRecord
   validates_format_of :code,
                       with: /\A[-_a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
-                      if: proc { |o| o.code && o.code.size > 1 }
+                      allow_blank: true
 
   validates_each :address_ipv4 do |record, attr, value|
     unless value.blank?
       begin
         NetAddr::CIDR.create value
-      rescue
+      rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
     end
@@ -30,7 +30,7 @@ class Interface < ApplicationRecord
     unless value.blank?
       begin
         NetAddr::CIDR.create value
-      rescue
+      rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
     end
@@ -41,10 +41,10 @@ class Interface < ApplicationRecord
                             :[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]
                             :[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]\z/x,
                       message: 'is not a valid MAC address',
-                      if: proc { |o| o.address_mac && !o.address_mac.empty? }
+                      allow_blank: true
   validates_length_of :name,
                       maximum: 128,
-                      if: proc { |o| o.name && !o.name.empty? }
+                      allow_blank: true
 
   before_validation :set_defaults
 

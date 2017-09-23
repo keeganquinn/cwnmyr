@@ -2,14 +2,14 @@
 #   As a user
 #   I want to sign in
 #   So I can visit protected areas of the site
-feature 'Sign in', :devise do
+describe 'Sign in', :devise, type: :feature do
   let(:current_user) { create(:user) }
 
   # Scenario: User cannot sign in if not registered
   #   Given I do not exist as a user
   #   When I sign in with valid credentials
   #   Then I see an invalid credentials message
-  scenario 'user cannot sign in if not registered' do
+  it 'user cannot sign in if not registered' do
     signin('test@example.com', 'please123')
     expect(page).to have_content I18n.t 'devise.failure.not_found_in_database',
                                         authentication_keys: 'email'
@@ -20,7 +20,7 @@ feature 'Sign in', :devise do
   #   And I am not signed in
   #   When I sign in with valid credentials
   #   Then I see a success message
-  scenario 'user can sign in with valid credentials' do
+  it 'user can sign in with valid credentials' do
     signin(current_user.email, current_user.password)
     expect(page).to have_content I18n.t 'devise.sessions.signed_in'
   end
@@ -30,7 +30,7 @@ feature 'Sign in', :devise do
   #   And I am not signed in
   #   When I sign in with a wrong email
   #   Then I see an invalid email message
-  scenario 'user cannot sign in with wrong email' do
+  it 'user cannot sign in with wrong email' do
     signin('invalid@email.com', current_user.password)
     expect(page).to have_content I18n.t 'devise.failure.not_found_in_database',
                                         authentication_keys: 'email'
@@ -41,7 +41,7 @@ feature 'Sign in', :devise do
   #   And I am not signed in
   #   When I sign in with a wrong password
   #   Then I see an invalid password message
-  scenario 'user cannot sign in with wrong password' do
+  it 'user cannot sign in with wrong password' do
     signin(current_user.email, 'invalidpass')
     expect(page).to have_content I18n.t 'devise.failure.invalid',
                                         authentication_keys: 'email'

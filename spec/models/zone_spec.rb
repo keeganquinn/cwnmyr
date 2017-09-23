@@ -23,7 +23,7 @@ describe Zone do
 
   it 'generates a code if a name is provided' do
     zone.name = 'Test Zone'
-    is_expected.to be_valid
+    zone.validate
     expect(zone.code).to match 'test-zone'
   end
 

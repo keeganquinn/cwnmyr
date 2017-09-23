@@ -9,7 +9,7 @@ class InterfaceType < ApplicationRecord
   validates_format_of :code,
                       with: /\A[-_a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
-                      if: proc { |o| o.code.size > 1 }
+                      allow_blank: true
   validates_length_of :name, minimum: 1
   validates_length_of :name, maximum: 255
 
@@ -17,7 +17,7 @@ class InterfaceType < ApplicationRecord
     unless value.blank?
       begin
         NetAddr::CIDR.create value
-      rescue
+      rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
     end
@@ -27,7 +27,7 @@ class InterfaceType < ApplicationRecord
     unless value.blank?
       begin
         NetAddr::CIDR.create value
-      rescue
+      rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
     end

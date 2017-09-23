@@ -1,9 +1,9 @@
-feature 'Node network diagram' do
+describe 'Node network diagram', type: :feature do
   let(:node) { create :node }
   let(:host) { create :host, node: node }
   let(:network) { create :interface_type, allow_neighbors: true }
 
-  scenario 'PNG data is returned' do
+  it 'PNG data is returned' do
     create :interface,
            host: host, interface_type: network, address_ipv4: '10.11.23.2/24'
     create :interface, interface_type: network, address_ipv4: '10.11.23.3/24'
@@ -12,7 +12,7 @@ feature 'Node network diagram' do
     expect(page.response_headers['Content-Type']).to eq 'image/png'
   end
 
-  scenario 'other requests are redirected' do
+  it 'other requests are redirected' do
     visit graph_node_path(node)
     expect(current_path).to eq graph_node_path(node, format: :png)
   end

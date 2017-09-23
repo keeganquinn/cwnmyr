@@ -59,7 +59,7 @@ class ImportLegacyDataService
     unless value['logo'].blank?
       begin
         node.logo = URI.parse("#{LOGO_BASE}/#{value['logo']}")
-      rescue
+      rescue OpenURI::HTTPError
         nil
       end
     end

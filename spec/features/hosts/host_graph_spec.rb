@@ -1,8 +1,8 @@
-feature 'Host network diagram' do
+describe 'Host network diagram', type: :feature do
   let(:host) { create :host }
   let(:network) { create :interface_type }
 
-  scenario 'PNG data is returned' do
+  it 'PNG data is returned' do
     create :interface,
            host: host, interface_type: network, address_ipv4: '10.11.23.2/24'
     create :interface, interface_type: network, address_ipv4: '10.11.23.3/24'
@@ -11,7 +11,7 @@ feature 'Host network diagram' do
     expect(page.response_headers['Content-Type']).to eq 'image/png'
   end
 
-  scenario 'other requests are redirected' do
+  it 'other requests are redirected' do
     visit graph_host_path(host)
     expect(current_path).to eq graph_host_path(host, format: :png)
   end

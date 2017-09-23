@@ -1,4 +1,4 @@
-feature 'Node Links admin interface' do
+describe 'Node Links admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

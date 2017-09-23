@@ -1,4 +1,4 @@
-feature 'Interface show page' do
+describe 'Interface show page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
   let(:host) { create :host, node: node }

@@ -11,13 +11,13 @@ class Contact < ApplicationRecord
   validates_format_of :code,
                       with: /\A[-_a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
-                      if: proc { |o| o.code.size > 1 }
+                      allow_blank: true
   validates_length_of :name, minimum: 1
   validates_format_of :email,
                       with: /\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)
                             @([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z/x,
                       message: 'must be a valid email address',
-                      if: proc { |o| o.email && o.email.size > 1 }
+                      allow_blank: true
 
   before_validation :set_defaults
 

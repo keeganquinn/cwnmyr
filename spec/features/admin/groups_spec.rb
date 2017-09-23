@@ -1,4 +1,4 @@
-feature 'Groups admin interface' do
+describe 'Groups admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

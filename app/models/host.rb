@@ -13,7 +13,7 @@ class Host < ApplicationRecord
   validates_format_of :name,
                       with: /\A[-a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
-                      if: proc { |o| o.name.size > 1 }
+                      allow_blank: true
 
   def to_param
     return unless id

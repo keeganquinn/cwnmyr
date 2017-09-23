@@ -1,4 +1,4 @@
-feature 'Contacts admin interface' do
+describe 'Contacts admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

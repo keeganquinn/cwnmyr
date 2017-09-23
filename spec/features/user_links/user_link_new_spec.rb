@@ -1,4 +1,4 @@
-feature 'User Link new page' do
+describe 'User Link new page', type: :feature do
   let(:current_user) { create :user }
 
   before do

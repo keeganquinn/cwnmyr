@@ -1,4 +1,4 @@
-feature 'Interfaces admin interface' do
+describe 'Interfaces admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

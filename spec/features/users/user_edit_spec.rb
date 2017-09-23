@@ -2,7 +2,7 @@
 #   As a user
 #   I want to edit my user profile
 #   So I can change my email address
-feature 'User edit', :devise do
+describe 'User edit', :devise, type: :feature do
   let(:current_user) { create(:user) }
   let(:other_user) { create(:user) }
 

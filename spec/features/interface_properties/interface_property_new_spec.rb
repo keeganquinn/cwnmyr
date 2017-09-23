@@ -1,4 +1,4 @@
-feature 'Interface Property new page' do
+describe 'Interface Property new page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
   let(:host) { create :host, node: node }

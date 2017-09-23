@@ -2,7 +2,7 @@
 #   As a user
 #   I want to visit my user profile page
 #   So I can see my personal account data
-feature 'User profile page', :devise do
+describe 'User profile page', :devise, type: :feature do
   let(:current_user) { create(:user) }
   let(:other_user) { create(:user) }
 
@@ -10,7 +10,7 @@ feature 'User profile page', :devise do
   #   Given I am signed in
   #   When I visit the user profile page
   #   Then I see my own email address
-  scenario 'user sees own profile' do
+  it 'user sees own profile' do
     login_as current_user
     visit user_path(current_user)
     expect(page).to have_content current_user.name
@@ -20,7 +20,7 @@ feature 'User profile page', :devise do
   #   Given I am signed in
   #   When I visit another user's profile
   #   Then I do not see their email address
-  scenario "user cannot see another user's email address" do
+  it "user cannot see another user's email address" do
     login_as current_user
     Capybara.current_session.driver.header 'Referer', root_path
     visit user_path(other_user)

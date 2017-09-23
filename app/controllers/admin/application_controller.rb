@@ -6,7 +6,7 @@ module Admin
 
     def authenticate_admin
       redirect_to new_user_session_path, alert: t(:access_denied) \
-        unless current_user && current_user.admin?
+        unless current_user&.admin?
     end
 
     def records_per_page

@@ -1,4 +1,4 @@
-feature 'Hosts admin interface' do
+describe 'Hosts admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
 

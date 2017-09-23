@@ -10,7 +10,7 @@ class UserLink < ApplicationRecord
                       with: %r{\Ahttps?://([-\w\.]+)+(:\d+)?
                             (/([\w/_\.]*(\?\S+)?)?)?\z}x,
                       message: 'must be a valid HTTP URI.',
-                      if: proc { |o| o.url && o.url.size > 1 }
+                      allow_blank: true
 
   def to_param
     return unless id

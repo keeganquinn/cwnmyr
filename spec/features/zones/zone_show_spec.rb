@@ -1,4 +1,4 @@
-feature 'Zone show page' do
+describe 'Zone show page', type: :feature do
   let(:zone) { create :zone }
 
   before { visit zone_path(zone) }

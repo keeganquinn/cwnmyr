@@ -3,6 +3,8 @@ require_dependency 'dot_diskless'
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
+  DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='.freeze
+
   has_paper_trail
   belongs_to :contact, optional: true
   belongs_to :status
@@ -20,7 +22,7 @@ class Node < ApplicationRecord
   validates_uniqueness_of :code, case_sensitive: false
   validates_format_of :code, with: /\A[-_a-zA-Z0-9]+\z/,
                              message: 'contains unacceptable characters',
-                             if: proc { |o| o.code && o.code.size > 1 }
+                             allow_blank: true
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
 
@@ -39,7 +41,7 @@ class Node < ApplicationRecord
   end
 
   def directions_url
-    "https://www.google.com/maps?saddr=My+Location&daddr=#{URI.encode(address)}"
+    "#{DIR_URL}#{URI.encode_www_form_component(address)}"
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this

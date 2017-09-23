@@ -1,4 +1,4 @@
-feature 'Node new page' do
+describe 'Node new page', type: :feature do
   let(:current_user) { create :user }
   let(:zone) { create :zone }
 
