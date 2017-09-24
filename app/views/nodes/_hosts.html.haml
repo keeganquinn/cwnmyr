@@ -1,0 +1,29 @@
+%h2= Host.model_name.human(count: 2)
+
+%ul
+  - node.hosts.each do |host|
+    %li
+      = link_to host.name, url_for(host)
+      - if policy(node).update?
+        = link_to url_for(host), method: :delete,
+                  data: { confirm: t(:confirm_delete,
+                          thing: Host.model_name.human.downcase) } do
+          %span.glyphicon.glyphicon-remove
+  - if policy(node).update?
+    %li
+      = form_tag hosts_path, class: 'form-inline' do
+        - if host&.errors&.any?
+          .error-explanation
+            = t :errors, count: host.errors.count,
+                thing: Host.model_name.human.downcase
+            %ul
+              - host.errors.full_messages.each do |msg|
+                %li= msg
+        .form-group
+          %label.sr-only{ for: 'host_name' }
+            = Host.human_attribute_name('name')
+          = text_field 'host', 'name', class: 'form-control',
+                       placeholder: Host.human_attribute_name('name')
+        = hidden_field 'host', 'node_id', value: node.to_param
+        = submit_tag t(:create), id: 'host_create',
+                     class: 'btn btn-primary'
