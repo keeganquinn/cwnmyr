@@ -31,20 +31,25 @@ class PopulateOptionsService
   ].freeze
   STATUSES = [
     { code: 'active', name: 'Active', color: 'green', default_display: true },
-    { code: 'pending', name: 'Pending', color: 'yellow' },
+    { code: 'pending', name: 'Pending', color: 'blue' },
     { code: 'inactive', name: 'Inactive', color: 'red' },
-    { code: 'retired', name: 'Retired', color: 'gray' },
+    { code: 'retired', name: 'Retired', color: 'purple' },
     { code: 'not_ptp_managed', name: 'Not PTP Managed', color: 'brown' },
     { code: 'test', name: 'Testing', color: 'orange' }
   ].freeze
 
   def call
     [
-      *GROUPS.map { |vals| Group.find_or_create_by(vals) },
-      *HOST_TYPES.map { |vals| HostType.find_or_create_by(vals) },
-      *INTERFACE_TYPES.map { |vals| InterfaceType.find_or_create_by(vals) },
-      *STATUSES.map { |vals| Status.find_or_create_by(vals) },
-      *ZONES.map { |vals| Zone.find_or_create_by(vals) }
+      *GROUPS.map { |vals| make_one Group, vals },
+      *HOST_TYPES.map { |vals| make_one HostType, vals },
+      *INTERFACE_TYPES.map { |vals| make_one InterfaceType, vals },
+      *STATUSES.map { |vals| make_one Status, vals },
+      *ZONES.map { |vals| make_one Zone, vals }
     ]
+  end
+
+  def make_one(klass, vals)
+    item = klass.find_or_create_by code: vals[:code]
+    item.update_attributes vals
   end
 end
