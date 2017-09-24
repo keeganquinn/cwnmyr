@@ -7,4 +7,7 @@
     .col-md-12
       %ul
         - @statuses.each do |status|
-          %li= link_to h(status.name), url_for(status)
+          %li
+            = link_to h(status.name), url_for(status)
+            = status_color(status) do
+              &larr;

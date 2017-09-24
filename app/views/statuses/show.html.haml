@@ -5,7 +5,10 @@
 
   .row
     .col-md-12
-      %p= h @status.code
+      %p
+        = status_color(@status) do
+          = h @status.code
+          &larr;
 
       %h2= Node.model_name.human(count: 2)
 

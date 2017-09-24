@@ -132,10 +132,14 @@ MapBuilder.prototype.renderStatus = function (status) {
   statusBox.checked = status.default_display
   statusBox.onchange()
 
+  let statusLabel = document.createElement('span')
+  statusLabel.setAttribute('style', 'color: ' + status.color + ';')
+  statusLabel.append(status.name)
+
   let statusDiv = document.createElement('div')
   statusDiv.append(statusBox)
   statusDiv.append(' ')
-  statusDiv.append(status.name)
+  statusDiv.append(statusLabel)
 
   this.statusCtrl.append(statusDiv)
 
@@ -154,6 +158,7 @@ MapBuilder.prototype.renderNode = function (node) {
 
   let me = this
   let marker = new google.maps.Marker({
+    icon: node.icon,
     map: this.gMap,
     position: new google.maps.LatLng(node.lat, node.lng),
     title: node.name

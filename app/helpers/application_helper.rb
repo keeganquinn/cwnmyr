@@ -33,4 +33,10 @@ module ApplicationHelper
 
     markdown.render(text).html_safe
   end
+
+  def status_color(status)
+    content_tag :span, style: "color: #{status.color};" do
+      yield
+    end
+  end
 end
