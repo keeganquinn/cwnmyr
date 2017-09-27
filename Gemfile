@@ -35,6 +35,7 @@ gem 'rmagick'
 
 group :development do
   gem 'better_errors'
+  gem 'brakeman', require: false
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-foreman',
