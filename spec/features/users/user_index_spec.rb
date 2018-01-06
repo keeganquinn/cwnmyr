@@ -8,7 +8,7 @@ describe 'User index page', :devise, type: :feature do
   #   When I visit the user index page
   #   Then I see my own name
   it 'user sees own name' do
-    user = FactoryGirl.create(:user, :admin)
+    user = FactoryBot.create(:user, :admin)
     login_as user
     visit users_path
     expect(page).to have_content user.name

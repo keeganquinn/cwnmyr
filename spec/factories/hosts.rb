@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :host do
     node
     sequence(:name) { |n| "test#{n}" }

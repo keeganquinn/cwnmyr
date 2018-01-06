@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     confirmed_at { Time.now }
     name { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }

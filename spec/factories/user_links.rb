@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user_link do
     user
     sequence(:name) { |n| "Test Link ##{n}" }

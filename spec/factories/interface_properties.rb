@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :interface_property do
     interface
     sequence(:key) { |n| "key#{n}" }

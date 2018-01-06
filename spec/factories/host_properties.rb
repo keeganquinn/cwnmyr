@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :host_property do
     host
     sequence(:key) { |n| "key#{n}" }
