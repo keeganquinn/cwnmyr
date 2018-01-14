@@ -8,7 +8,7 @@ ruby '2.4.1'
 gem 'rails'
 
 gem 'foreman'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
 gem 'administrate'
