@@ -4,6 +4,15 @@
 
 set -e
 
+[ -d .bundle ] || mkdir -p .bundle
+[ -f .bundle/config ] || (
+    echo '---'
+    echo 'BUNDLE_PATH: "vendor"'
+    echo 'BUNDLE_DISABLE_SHARED_GEMS: "true"'
+    echo 'BUNDLE_WITHOUT: "production"'
+) > .bundle/config
+
+
 bundle install
 bundle exec cap staging deploy
 
