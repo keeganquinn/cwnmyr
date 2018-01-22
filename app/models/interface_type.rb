@@ -16,7 +16,7 @@ class InterfaceType < ApplicationRecord
   validates_each :network_ipv4 do |record, attr, value|
     unless value.blank?
       begin
-        NetAddr::CIDR.create value
+        NetAddr::IPv4Net.parse value
       rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
@@ -26,7 +26,7 @@ class InterfaceType < ApplicationRecord
   validates_each :network_ipv6 do |record, attr, value|
     unless value.blank?
       begin
-        NetAddr::CIDR.create value
+        NetAddr::IPv6Net.parse value
       rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end

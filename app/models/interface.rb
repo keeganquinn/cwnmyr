@@ -19,7 +19,7 @@ class Interface < ApplicationRecord
   validates_each :address_ipv4 do |record, attr, value|
     unless value.blank?
       begin
-        NetAddr::CIDR.create value
+        NetAddr::IPv4Net.parse value
       rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
@@ -29,7 +29,7 @@ class Interface < ApplicationRecord
   validates_each :address_ipv6 do |record, attr, value|
     unless value.blank?
       begin
-        NetAddr::CIDR.create value
+        NetAddr::IPv6Net.parse value
       rescue NetAddr::ValidationError
         record.errors.add attr, 'is not formatted correctly'
       end
@@ -54,9 +54,14 @@ class Interface < ApplicationRecord
   end
 
   # Converts the value of the <tt>address_ipv4</tt> attribute into an
-  # NetAddr::CIDR instance.
+  # NetAddr::IPv4Net instance.
   def ipv4_cidr
-    NetAddr::CIDR.create address_ipv4 unless address_ipv4.blank?
+    NetAddr::IPv4Net.parse address_ipv4 unless address_ipv4.blank?
+  end
+
+  # Extract the network address from the NetAddr representation.
+  def ipv4_net
+    ipv4_cidr.network.to_s
   end
 
   # Finds neighboring Interface instances based on IPv4 network
@@ -64,7 +69,7 @@ class Interface < ApplicationRecord
   def ipv4_neighbors
     return [] unless ipv4_cidr && interface_type.allow_neighbors
     interface_type.interfaces.where.not(id: id).select do |other|
-      ipv4_cidr.network == other.ipv4_cidr.network
+      ipv4_net == other.ipv4_net
     end
   end
 
