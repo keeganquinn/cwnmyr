@@ -37,3 +37,5 @@ bundle exec rake spec BUILD_NUMBER="${build}" || true
 [ "${build}" != "current" ] && {
     ./cc-test-reporter after-build --exit-code $?
 }
+
+exit 0
