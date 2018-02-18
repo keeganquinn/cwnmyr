@@ -41,7 +41,7 @@ bundle exec rake db:create db:environment:set db:schema:load RAILS_ENV=test
 bundle exec rake spec BUILD_NUMBER="${build}" || true
 
 [ "${build}" != "current" ] && {
-    ./cc-test-reporter after-build --debug --exit-code 0
+    ./cc-test-reporter after-build --exit-code 0
 }
 
 exit 0
