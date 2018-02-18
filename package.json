@@ -60,7 +60,7 @@
     "babel-preset-env": "^1.6.0",
     "bootstrap-sass": "^3.3.7",
     "coffee-loader": "^0.9.0",
-    "coffee-script": "^1.12.7",
+    "coffeescript": "^1.12.7",
     "compression-webpack-plugin": "^1.0.0",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
