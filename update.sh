@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Update script for cwnmyr. Intended for developer use.
+# Update script. Intended for developer use.
 
 set -e
 
