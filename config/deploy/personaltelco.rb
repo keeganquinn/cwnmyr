@@ -1,6 +1,6 @@
 set :stage, :production
 
-server 'drei.personaltelco.net',
+server 'turn.personaltelco.net',
        user: 'deploy', roles: %w[web app db], primary: true
 set :deploy_to, '/srv/rails/cwnmyr'
 
