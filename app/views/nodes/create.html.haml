@@ -1,7 +1,7 @@
 .container
   %h1= t :new_h, thing: Node.model_name.human
 
-  = form_tag nodes_path do
+  = form_tag nodes_path, multipart: true do
     = render partial: 'form', locals: { node: @node }
 
     = hidden_field 'node', 'user_id'
