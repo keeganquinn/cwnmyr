@@ -1,8 +1,8 @@
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "~bootstrap/scss/bootstrap.scss";
 
 // make all images responsive by default
 img {
-  @extend .img-responsive;
+  @extend .img-fluid;
   }
 // override for the 'Home' navigation link
 .navbar-brand {
@@ -27,8 +27,7 @@ section {
   margin: 0 auto;
 }
 .authform form {
-  @extend .well;
-  @extend .well-lg;
+  @extend .card;
   padding-bottom: 40px;
 }
 .authform .right {
@@ -39,7 +38,7 @@ section {
   @extend .btn-primary;
 }
 .authform fieldset {
-  @extend .well;
+  @extend .card;
 }
 .error-explanation:not(:empty) {
   @extend .alert;
@@ -47,11 +46,6 @@ section {
 }
 .error-explanation h2 {
   font-size: 16px;
-}
-.button-xs {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-xs;
 }
 
 html {
@@ -77,7 +71,7 @@ body {
 }
 
 .field_with_errors {
-  @extend .has-error;
+  @extend .is-invalid;
 }
 
 .vertical-align {
