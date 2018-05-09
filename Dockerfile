@@ -31,7 +31,7 @@ RUN export PHANTOMJS="phantomjs-2.1.1-linux-x86_64" \
 # Install rbenv, ruby-build, build a Ruby
 RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv
 RUN cd /root/.rbenv && git pull && \
-  git reset --hard b943955dbf10c436a8d4c7c36fd4216a34ef2b33
+  git reset --hard c8ba27fd07e4bf3c444df301e5fb2a5fcdacaf9d
 RUN git clone \
   https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build
 RUN /root/.rbenv/plugins/ruby-build/install.sh
