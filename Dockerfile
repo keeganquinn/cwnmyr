@@ -8,6 +8,7 @@ RUN apt-get update -qq \
     file git gnupg graphviz imagemagick \
     libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
     libffi-dev libgdbm-dev libpq-dev libmagickwand-dev \
+    postgresql-client \
   && apt-get clean
 
 # Add node and yarn sources, install additional packages

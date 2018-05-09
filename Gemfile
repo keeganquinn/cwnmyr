@@ -39,6 +39,7 @@ group :development do
   gem 'brakeman', require: false
   gem 'capistrano'
   gem 'capistrano-bundler'
+  gem 'capistrano-db-tasks', require: false
   gem 'capistrano-foreman',
       github: 'koenpunt/capistrano-foreman', branch: 'systemd'
   gem 'capistrano-rails'

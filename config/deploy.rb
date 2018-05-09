@@ -1,3 +1,5 @@
+require 'capistrano-db-tasks'
+
 set :application, 'cwnmyr'
 set :repo_url, 'https://github.com/keeganquinn/cwnmyr.git'
 
@@ -12,6 +14,24 @@ rbenv_sudo_prefix = fetch(:rbenv_sudo_prefix,
 fetch(:rbenv_sudo_bins).each do |command|
   SSHKit.config.command_map.prefix[command.to_sym].unshift(rbenv_sudo_prefix)
 end
+
+namespace :db do
+  desc 'Fetches remote database and stores it.'
+  task :fetch do
+    on roles(:db) do
+      remote_db = Database::Remote.new(self)
+
+      begin
+        remote_db.dump.download('db/live.sql.gz')
+      ensure
+        remote_db.clean_dump_if_needed
+      end
+    end
+  end
+end
+
+desc 'Create a database backup remote database data'
+task backup: 'db:remote:backup'
 
 namespace :deploy do
   desc 'Symlink environment'
@@ -31,6 +51,8 @@ namespace :foreman do
     end
   end
 end
+
+before :'deploy:migrate', :'db:fetch'
 
 after :'deploy:symlink:linked_dirs', :'deploy:symlink_env'
 after :'foreman:export', :'foreman:fix_perms'
