@@ -2,7 +2,6 @@ cwnmyr
 ======
 
 [![Build Status](https://quinn.tk/jenkins/job/cwnmyr/badge/icon)](https://quinn.tk/jenkins/job/cwnmyr/)
-[![Dependency Status](https://gemnasium.com/badges/github.com/keeganquinn/cwnmyr.svg)](https://gemnasium.com/github.com/keeganquinn/cwnmyr)
 [![Code Climate](https://codeclimate.com/github/keeganquinn/cwnmyr/badges/gpa.svg)](https://codeclimate.com/github/keeganquinn/cwnmyr)
 [![Documentation Status](http://inch-ci.org/github/keeganquinn/cwnmyr.svg?branch=master)](http://inch-ci.org/github/keeganquinn/cwnmyr)
 
