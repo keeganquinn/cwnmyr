@@ -27,8 +27,11 @@ section {
   margin: 0 auto;
 }
 .authform form {
-  @extend .card;
-  padding-bottom: 40px;
+    @extend .card;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 .authform .right {
   float: right !important;
@@ -38,7 +41,10 @@ section {
   @extend .btn-primary;
 }
 .authform fieldset {
-  @extend .card;
+    @extend .card;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
 }
 .error-explanation:not(:empty) {
   @extend .alert;

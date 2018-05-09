@@ -7,9 +7,9 @@
       %p= t '.description'
 
   .row
-    .col-xs-12
+    .col-lg-12
       #map{ 'data-markers': root_path(format: :json), 'data-center': 'disco' }
-      %span.text-muted.pull-right
+      %span.text-muted.float-right
         = link_to t(:kml), root_path(format: :kml)
 
   .row
