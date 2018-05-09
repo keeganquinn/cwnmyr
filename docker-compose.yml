@@ -16,5 +16,6 @@ services:
       - DB_HOST=db
       - DB_USERNAME=postgres
       - DB_PASSWORD=
+      - PORT=3000
     depends_on:
       - db
