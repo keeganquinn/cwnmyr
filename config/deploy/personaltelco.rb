@@ -1,4 +1,5 @@
-set :stage, :production
+set :stage, :personaltelco
+set :rails_env, :production
 
 server 'turn.personaltelco.net',
        user: 'deploy', roles: %w[web app db], primary: true
