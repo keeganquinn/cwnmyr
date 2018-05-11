@@ -24,11 +24,8 @@ echo "RET to go live, C-c to cancel."
 read -r
 
 bundle exec cap production deploy
-bundle exec cap personaltelco deploy
 
 echo
-echo "Deployed live sites:"
-echo "https://cwnmyr.quinn.tk/"
-echo "https://cwnmyr.personaltelco.net/"
+echo "Deployed live site: https://cwnmyr.personaltelco.net/"
 
 exit 0
