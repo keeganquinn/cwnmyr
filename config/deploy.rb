@@ -5,6 +5,8 @@ set :repo_url, 'https://github.com/keeganquinn/cwnmyr.git'
 
 set :rbenv_ruby, File.read('.ruby-version').strip
 
+set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
+
 # Quick and dirty rbenv-sudo support. Contrib to capistrano-rbenv gem?
 set :rbenv_sudo_bins, ['foreman']
 
