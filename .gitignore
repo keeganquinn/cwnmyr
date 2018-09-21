@@ -25,6 +25,7 @@
 
 # Working files and data
 /.env
+/db/live.sql
 /db/live.sql.gz
 /db/*.sqlite3
 /db/*.sqlite3-journal

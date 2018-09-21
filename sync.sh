@@ -17,5 +17,7 @@ ssh-add -l >/dev/null || ssh-add
 
 bundle install
 bundle exec cap production db:fetch
-docker-compose run web rake db:drop db:create
-gzcat db/live.sql.gz | docker-compose run web rails db
+
+gunzip db/live.sql.gz
+
+docker-compose run web ./restore.sh
