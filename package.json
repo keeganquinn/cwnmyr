@@ -76,5 +76,8 @@
     "jest": "^23.6.0",
     "jest-junit": "^5.2.0",
     "webpack-dev-server": "^3.1.10"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   }
 }
