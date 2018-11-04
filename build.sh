@@ -23,7 +23,7 @@ rm -rf checkstyle-*.xml coverage junit.xml rspec.xml log/* public/assets tmp/*
     trap report INT TERM
 }
 
-node_modules/.bin/jest || true
+node_modules/.bin/jest --coverage --coverageReporters cobertura || true
 
 node_modules/.bin/eslint \
     app --format node_modules/eslint-formatter-checkstyle-* \
