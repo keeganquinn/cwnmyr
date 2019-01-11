@@ -31,16 +31,16 @@ RUN export PHANTOMJS="phantomjs-2.1.1-linux-x86_64" \
 
 # Install rbenv, ruby-build, build a Ruby
 RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv
-RUN cd /root/.rbenv && git pull && \
-  git reset --hard c8ba27fd07e4bf3c444df301e5fb2a5fcdacaf9d
+RUN cd /root/.rbenv && git pull && git reset --hard 59785f6
 RUN git clone \
   https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN cd /root/.rbenv/plugins/ruby-build && git pull && git reset --hard 095d9db
 RUN /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
 RUN echo 'eval "$(rbenv init -)"' >> .bashrc
-RUN rbenv install -s 2.5.3 \
-  && rbenv global 2.5.3 \
+RUN rbenv install -s 2.6.0 \
+  && rbenv global 2.6.0 \
   && gem install bundler
 
 # Configure bundler to install gems out of tree
