@@ -2,7 +2,7 @@ describe VerifyGeocodeService do
   subject(:service) { described_class }
 
   it 'reports nodes which were not geocoded' do
-    node = create :node, address: '123 Nowhere Drive, Not A Real Place, Neptune'
+    node = create :node, address: 'Nowhere, Not A Real Place, Neptune'
     expect(service.new.call[0]).to(
       eq "#{node.id} #{node.code}: not geocoded: #{node.address}"
     )
