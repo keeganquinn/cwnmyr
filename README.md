@@ -24,10 +24,8 @@ Status
 This software is partially functional, with continued development ongoing.
 Several public-facing live instances of the app are now operational.
 
- * Personal Telco instance: https://cwnmyr.personaltelco.net/
- * Production deployment: https://cwnmyr.quinn.tk/
+ * Personal Telco live instance: https://cwnmyr.personaltelco.net/
  * Staging deployment: https://cwnmyr-staging.quinn.tk/
- * Test deployment: https://cwnmyr.herokuapp.com/
 
 Feedback, bug reports, and pull requests are very welcome.
 
