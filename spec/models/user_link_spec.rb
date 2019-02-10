@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UserLink do
   subject(:user_link) { build_stubbed(:user_link) }
 

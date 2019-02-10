@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe HostType do
   subject(:host_type) { build_stubbed(:host_type) }
 

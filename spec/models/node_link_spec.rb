@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe NodeLink do
   subject(:node_link) { build_stubbed(:node_link) }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe HostTypeDashboard do
   subject(:dashboard) { described_class }
 

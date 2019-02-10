@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This module includes helper methods for use with Devise views.
 module DeviseHelper
   def devise_error_messages!

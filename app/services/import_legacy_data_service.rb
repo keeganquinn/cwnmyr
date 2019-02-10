@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # Service to import data from legacy system.
 class ImportLegacyDataService
-  SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'.freeze
-  LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'.freeze
+  SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
+  LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
 
   def initialize(data = nil)
     @data = data
@@ -81,6 +83,7 @@ class ImportLegacyDataService
 
   def build_link(node, name, key, value)
     return unless value[key]
+
     NodeLink.find_or_create_by node: node, name: name, url: value[key]
   end
 
@@ -102,11 +105,13 @@ class ImportLegacyDataService
 
   def build_prop(host, key, value)
     return unless value[key]
+
     HostProperty.find_or_create_by host: host, key: key, value: value[key]
   end
 
   def build_iface_pub(host, value)
     return unless value['pubaddr']
+
     pub = InterfaceType.find_by code: 'pub'
     mask = value['pubmasklen'] || '24'
     Interface.find_or_create_by host: host, interface_type: pub,
@@ -116,6 +121,7 @@ class ImportLegacyDataService
 
   def build_iface_priv(host, value)
     return unless value['privaddr']
+
     priv = InterfaceType.find_by code: 'priv'
     mask = value['privmasklen'] || '24'
     Interface.find_or_create_by host: host, interface_type: priv,

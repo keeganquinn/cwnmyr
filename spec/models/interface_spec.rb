@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Interface do
   subject(:interface) { build_stubbed :interface }
 
@@ -78,7 +80,7 @@ describe Interface do
     subject(:interface) { build(:interface) }
 
     it do
-      is_expected.to(
+      expect(subject).to(
         validate_uniqueness_of(:code).scoped_to(:host_id).case_insensitive
       )
     end

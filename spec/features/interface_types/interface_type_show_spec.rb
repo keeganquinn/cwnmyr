@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Interface Type show page', type: :feature do
   let(:interface_type) { create :interface_type }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id status.to_param
 json.code status.code
 json.name status.name

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller allows viewing of Zone records.
 class ZonesController < ApplicationController
   after_action :verify_authorized

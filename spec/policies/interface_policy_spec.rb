@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe InterfacePolicy do
   subject { described_class }
 

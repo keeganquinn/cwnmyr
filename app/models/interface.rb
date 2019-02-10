@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'dot_diskless'
 
 # An Interface instance represents a network interface or connection with
@@ -50,6 +52,7 @@ class Interface < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 
@@ -68,6 +71,7 @@ class Interface < ApplicationRecord
   # configuration data.
   def ipv4_neighbors
     return [] unless ipv4_cidr && interface_type.allow_neighbors
+
     interface_type.interfaces.where.not(id: id).select do |other|
       ipv4_net == other.ipv4_net
     end

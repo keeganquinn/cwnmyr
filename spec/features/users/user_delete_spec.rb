@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: User delete
 #   As a user
 #   I want to delete my user profile

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Host Type show page', type: :feature do
   let(:host_type) { create :host_type }
 

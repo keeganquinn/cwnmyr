@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Status show page', type: :feature do
   let(:status) { create :status }
 

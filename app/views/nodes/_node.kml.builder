@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.Placemark do
   xml.name node.name
   xml.tag! 'atom:link', href: node_url(node)

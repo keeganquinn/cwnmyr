@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: Sign out
 #   As a user
 #   I want to sign out

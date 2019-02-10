@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller allows viewing of Interface Type records.
 class InterfaceTypesController < ApplicationController
   after_action :verify_authorized

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :respond_with_content_type do |expected|
   def lookup(short)
     Mime::Type.lookup_by_extension(short.to_sym).to_s

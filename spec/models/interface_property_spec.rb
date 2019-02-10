@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe InterfaceProperty do
   subject(:interface_property) { build_stubbed(:interface_property) }
 

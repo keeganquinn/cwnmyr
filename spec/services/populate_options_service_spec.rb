@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe PopulateOptionsService do
   subject(:service) { described_class }
 

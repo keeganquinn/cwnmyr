@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'capistrano-db-tasks'
 
 set :application, 'cwnmyr'

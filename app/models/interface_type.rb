@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Each InterfaceType instance represents a type of Interface.
 class InterfaceType < ApplicationRecord
   has_paper_trail
@@ -37,6 +39,7 @@ class InterfaceType < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

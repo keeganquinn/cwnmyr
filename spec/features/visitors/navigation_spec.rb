@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: Navigation links
 #   As a visitor
 #   I want to see navigation links

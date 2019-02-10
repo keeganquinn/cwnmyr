@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.instruct!
 
 xml << render(partial: 'host_properties/host_property.xml',

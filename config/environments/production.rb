@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in
   # config/application.rb.
@@ -52,7 +54,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  #config.log_level = :debug
+  # config.log_level = :debug
 
   # Change logging to reduce disk usage in live.
   config.log_level = :warn

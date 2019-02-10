@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe NodeLinkDashboard do
   subject(:dashboard) { described_class }
 

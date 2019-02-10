@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 # Pundit access control policy for HostsController.
 class HostPolicy < ApplicationPolicy
   def create?
     return false unless @user
+
     @user.try(:admin?) || @record.node.user == @user
   end
 

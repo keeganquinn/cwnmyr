@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Node do
   subject(:node) { build_stubbed(:node) }
 

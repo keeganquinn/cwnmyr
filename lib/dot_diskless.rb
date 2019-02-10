@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # dot_diskless.rb
 #
 # Extends RGL (Ruby Graph Library) to support direct generation of graph

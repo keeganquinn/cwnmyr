@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.instruct!
 
 xml << render(partial: 'interface_types/interface_type.xml',

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A Contact is a person of interest related to one or more Nodes.
 class Contact < ApplicationRecord
   has_paper_trail
@@ -23,6 +25,7 @@ class Contact < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

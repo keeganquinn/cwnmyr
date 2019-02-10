@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
   include Paperclip::Storage::Database::ControllerClassMethods
@@ -11,6 +13,7 @@ class NodesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     @node = authorize Node.find_by_code(params[:id])
     raise unless @node
+
     redirect_to node_path(@node)
   end
 

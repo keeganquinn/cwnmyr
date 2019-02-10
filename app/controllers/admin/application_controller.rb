@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # Parent class for Administrate controllers.
   class ApplicationController < Administrate::ApplicationController

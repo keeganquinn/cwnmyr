@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller allows management of HostProperty records.
 class HostPropertiesController < ApplicationController
   before_action :authenticate_user!, except: %i[show]

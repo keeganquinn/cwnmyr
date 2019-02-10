@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Host do
   subject(:host) { build_stubbed(:host) }
 
@@ -26,7 +28,7 @@ describe Host do
     subject(:host) { build(:host) }
 
     it do
-      is_expected.to(
+      expect(subject).to(
         validate_uniqueness_of(:name).scoped_to(:node_id).case_insensitive
       )
     end

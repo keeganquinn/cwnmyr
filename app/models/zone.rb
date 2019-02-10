@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A Zone instance represents a physical area at a large scale.  It serves
 # as an organizational aid and the heirarchial root of the system when
 # browsing in the user interface.
@@ -19,6 +21,7 @@ class Zone < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

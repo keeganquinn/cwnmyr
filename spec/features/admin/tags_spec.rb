@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Tags admin interface', type: :feature do
   let(:user) { build :user }
   let(:admin) { build :user, :admin }
@@ -5,7 +7,7 @@ describe 'Tags admin interface', type: :feature do
   describe 'unauthenticated user attempts access' do
     before { visit admin_tags_path }
 
-    it { expect(current_path).to eq(new_user_session_path) }
+    it { expect(page).to have_current_path(new_user_session_path) }
     it { expect(page).to have_content 'You need to sign in' }
   end
 
@@ -15,7 +17,7 @@ describe 'Tags admin interface', type: :feature do
       visit admin_tags_path
     end
 
-    it { expect(current_path).to eq(new_user_session_path) }
+    it { expect(page).to have_current_path(new_user_session_path) }
     it { expect(page).to have_content 'Access denied' }
   end
 
@@ -25,7 +27,7 @@ describe 'Tags admin interface', type: :feature do
       visit admin_tags_path
     end
 
-    it { expect(current_path).to eq(admin_tags_path) }
+    it { expect(page).to have_current_path(admin_tags_path) }
     it { expect(page).to have_content 'Tags' }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe InterfaceType do
   subject(:interface_type) { build_stubbed(:interface_type) }
 

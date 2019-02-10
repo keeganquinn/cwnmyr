@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe ZonePolicy do
   subject { described_class }
 

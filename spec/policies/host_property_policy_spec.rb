@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe HostPropertyPolicy do
   subject { described_class }
 

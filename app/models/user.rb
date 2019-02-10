@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A User is a person who can log in to the system.
 class User < ApplicationRecord
   has_paper_trail
@@ -28,6 +30,7 @@ class User < ApplicationRecord
 
   def to_param
     return unless id
+
     code && [id, code].join('-') || id.to_s
   end
 

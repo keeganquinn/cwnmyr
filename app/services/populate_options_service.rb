@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Service to populate various records used to represent selections in
 # imported data.
 class PopulateOptionsService

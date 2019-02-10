@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # Administrate controller for the User model.
   class UsersController < Admin::ApplicationController

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'User Link show page', type: :feature do
   let(:current_user) { create :user }
   let(:user_link) { create :user_link, user: current_user }

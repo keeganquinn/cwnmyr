@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: User profile page
 #   As a user
 #   I want to visit my user profile page

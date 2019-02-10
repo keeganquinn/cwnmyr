@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Interface show page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }

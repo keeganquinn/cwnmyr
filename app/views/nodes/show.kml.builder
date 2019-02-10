@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.instruct!
 
 xml.kml('xmlns': 'http://www.opengis.net/kml/2.2',

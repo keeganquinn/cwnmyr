@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Group do
   subject(:group) { build_stubbed(:group) }
 

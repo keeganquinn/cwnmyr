@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'administrate/base_dashboard'
 
 # Administrate Dashboard for the User model.

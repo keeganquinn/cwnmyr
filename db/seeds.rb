@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 admin = CreateAdminService.new.call
 puts 'ADMIN USER: ' << admin.email
 

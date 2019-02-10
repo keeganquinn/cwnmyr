@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Geocoder.configure(
   http_headers: { 'User-Agent' => ENV['DOMAIN_NAME'] },
   lookup: :google,

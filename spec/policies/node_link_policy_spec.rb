@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe NodeLinkPolicy do
   subject { described_class }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class is parent to all controllers in the application.
 class ApplicationController < ActionController::Base
   include ExceptionHandler

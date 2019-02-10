@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller allows viewing of Host Type records.
 class HostTypesController < ApplicationController
   after_action :verify_authorized

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Service to create a default administrator user.
 class CreateAdminService
   ADMIN_ATTRS = {

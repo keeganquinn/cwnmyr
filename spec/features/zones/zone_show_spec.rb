@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Zone show page', type: :feature do
   let(:zone) { create :zone }
 

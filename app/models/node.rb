@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_dependency 'dot_diskless'
 
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
-  DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='.freeze
+  DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='
 
   has_paper_trail
   belongs_to :contact, optional: true
@@ -37,6 +39,7 @@ class Node < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

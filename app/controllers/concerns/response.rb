@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This concern includes methods to construct responses to common request types.
 module Response
   def save_and_respond(thing, status, msg)

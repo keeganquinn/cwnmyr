@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Zone do
   subject(:zone) { build_stubbed(:zone) }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config/initializers/pundit.rb
 # Extends the ApplicationController to add Pundit for authorization.
 # Modify this file to change the behavior of a 'not authorized' error.

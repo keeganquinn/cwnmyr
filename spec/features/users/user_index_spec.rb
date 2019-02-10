@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: User index page
 #   As a user
 #   I want to see a list of users

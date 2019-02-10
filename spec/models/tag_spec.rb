@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Tag do
   subject(:tag) { build_stubbed(:tag) }
 

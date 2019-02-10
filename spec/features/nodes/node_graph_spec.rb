@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Node network diagram', type: :feature do
   let(:node) { create :node }
   let(:host) { create :host, node: node }
@@ -14,6 +16,6 @@ describe 'Node network diagram', type: :feature do
 
   it 'other requests are redirected' do
     visit graph_node_path(node)
-    expect(current_path).to eq graph_node_path(node, format: :png)
+    expect(page).to have_current_path graph_node_path(node, format: :png)
   end
 end

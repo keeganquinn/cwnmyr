@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Each HostType instance represents a type of Host.  Commentary can
 # be provided by means of HostTypeComment instances.
 class HostType < ApplicationRecord
@@ -18,6 +20,7 @@ class HostType < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

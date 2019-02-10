@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Host new page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }

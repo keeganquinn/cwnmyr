@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Contact do
   subject(:contact) { build_stubbed(:contact) }
 

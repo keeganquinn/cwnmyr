@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Each InterfaceProperty instance represents a property setting made in
 # reference to an Interface instance and an InterfacePropertyType instance.
 class InterfaceProperty < ApplicationRecord
@@ -9,6 +11,7 @@ class InterfaceProperty < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, key].join('-')
   end
 end

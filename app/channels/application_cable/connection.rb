@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   # Connection represents an authenticated user with an active cable connection
   # to the system.

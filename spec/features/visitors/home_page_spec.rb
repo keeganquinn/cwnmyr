@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: Home page
 #   As a visitor
 #   I want to visit a home page

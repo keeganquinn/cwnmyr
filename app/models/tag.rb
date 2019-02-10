@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A Tag represents a general characteristic associated with a Node.
 class Tag < ApplicationRecord
   has_paper_trail
@@ -16,6 +18,7 @@ class Tag < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A UserLink instance represents a hypertext link which is related to
 # a particular User instance.
 class UserLink < ApplicationRecord
@@ -14,6 +16,7 @@ class UserLink < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, name.parameterize].join('-')
   end
 end

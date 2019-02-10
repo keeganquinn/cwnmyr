@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Host Type index action', type: :request do
   subject { response }
 

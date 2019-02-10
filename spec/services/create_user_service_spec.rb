@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe CreateUserService do
   subject(:service) { described_class }
 

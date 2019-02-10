@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Each HostProperty instance represents a property setting made in
 # reference to a Host instance and a HostPropertyType instance.
 class HostProperty < ApplicationRecord
@@ -9,6 +11,7 @@ class HostProperty < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, key].join('-')
   end
 end

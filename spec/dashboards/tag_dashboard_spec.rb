@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe TagDashboard do
   subject(:dashboard) { described_class }
 

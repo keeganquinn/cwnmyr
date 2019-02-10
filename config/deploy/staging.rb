@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :stage, :staging
 set :rails_env, 'production'
 

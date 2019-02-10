@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Each Status instance represents a generalized state which might apply
 # to any number of Node, Host or Interface instances.
 class Status < ApplicationRecord
@@ -18,6 +20,7 @@ class Status < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

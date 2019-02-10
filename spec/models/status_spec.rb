@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Status do
   subject(:status) { build_stubbed(:status) }
 

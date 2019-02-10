@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array! @interface_types do |interface_type|
   json.id interface_type.to_param
   json.code interface_type.code

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A Group of Users may work together to manage Nodes as a team.
 class Group < ApplicationRecord
   has_paper_trail
@@ -18,6 +20,7 @@ class Group < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, code].join('-')
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Features
   # Helper methods for convenience use in tests.
   module SessionHelpers

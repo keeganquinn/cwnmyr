@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'User Link new page', type: :feature do
   let(:current_user) { create :user }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.Node 'rdf:ID': node.to_param do
   xml.foaf :homepage, node_url(node)
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'Host show action', type: :request do
   subject { response }
 

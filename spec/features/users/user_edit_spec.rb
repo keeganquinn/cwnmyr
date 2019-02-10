@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: User edit
 #   As a user
 #   I want to edit my user profile

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A NodeLink instance represents a hypertext link which is related to
 # a particular Node instance.
 class NodeLink < ApplicationRecord
@@ -14,6 +16,7 @@ class NodeLink < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, name.parameterize].join('-')
   end
 end

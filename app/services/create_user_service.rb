@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Service to create a default non-privileged user.
 class CreateUserService
   USER_ATTRS = {

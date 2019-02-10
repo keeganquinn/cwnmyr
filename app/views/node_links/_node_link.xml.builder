@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 xml.nodeLink do
   xml.id node_link.to_param
   xml.name node_link.name

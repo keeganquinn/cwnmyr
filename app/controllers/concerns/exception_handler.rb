@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This concern constructs error responses when JSON requests fail.
 module ExceptionHandler
   extend ActiveSupport::Concern
@@ -9,6 +11,7 @@ module ExceptionHandler
 
   def record_invalid(error)
     raise unless request.format.json? || request.format.xml?
+
     respond_to do |format|
       format.json do
         render json: { error: error.message }, status: :unprocessable_entity
@@ -21,6 +24,7 @@ module ExceptionHandler
 
   def record_not_found(error)
     raise unless request.format.json? || request.format.xml?
+
     respond_to do |format|
       format.json do
         render json: { error: error.message }, status: :not_found

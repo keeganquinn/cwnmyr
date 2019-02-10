@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :interface_type do
     sequence(:name) { |n| "Test Type ##{n}" }

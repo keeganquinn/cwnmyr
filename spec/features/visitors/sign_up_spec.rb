@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Feature: Sign up
 #   As a visitor
 #   I want to sign up

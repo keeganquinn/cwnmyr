@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class is parent to all policies in the application.
 class ApplicationPolicy
   attr_reader :user, :record

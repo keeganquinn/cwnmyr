@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'dot_diskless'
 
 # Each Host instance represents a network device which is used at a Node.
@@ -17,6 +19,7 @@ class Host < ApplicationRecord
 
   def to_param
     return unless id
+
     [id, name].join('-')
   end
 

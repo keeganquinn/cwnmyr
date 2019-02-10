@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe HostProperty do
   subject(:host_property) { build_stubbed(:host_property) }
 

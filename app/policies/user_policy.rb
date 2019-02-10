@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pundit access control policy for UsersController.
 class UserPolicy < ApplicationPolicy
   def index?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id node.to_param
 json.name node.name
 

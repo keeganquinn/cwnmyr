@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   namespace :admin do
     resources :contacts, :groups, :hosts, :host_properties, :host_types,
