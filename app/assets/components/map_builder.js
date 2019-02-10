@@ -6,6 +6,7 @@ function MapBuilder () {
   this.gMap = null
   this.mapDiv = null
   this.statusCtrl = null
+  this.errors = []
 }
 
 MapBuilder.prototype.initMap = function () {
@@ -30,7 +31,7 @@ MapBuilder.prototype.initMap = function () {
 }
 
 MapBuilder.prototype.handleError = function (error) {
-  console.log(error.responseText)
+  this.errors.push(error)
 }
 
 MapBuilder.prototype.handleResponse = function (data) {
