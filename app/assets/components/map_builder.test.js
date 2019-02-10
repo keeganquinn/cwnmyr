@@ -1,12 +1,14 @@
 const MapBuilder = require('./map_builder')
 
-const stubGoogleApis = function () {
+const stubApis = function () {
   window.google = {
     maps: {
       Animation: {},
       BicyclingLayer: function () {},
       Circle: function () {},
-      ControlPosition: {},
+      ControlPosition: {
+        TOP_RIGHT: 'TOP_RIGHT'
+      },
       Data: function () {},
       DirectionsRenderer: function () {},
       DirectionsService: function () {},
@@ -34,9 +36,16 @@ const stubGoogleApis = function () {
         }
       },
       MVCArray: function () {},
-      MVCObject: function () {},
+      MVCObject: function () {
+        return {
+          set: function () {}
+        }
+      },
       Map: function () {
         return {
+          controls: {
+            'TOP_RIGHT': []
+          },
           setTilt: function () { },
           mapTypes: {
             set: function () { }
@@ -59,7 +68,8 @@ const stubGoogleApis = function () {
       MapTypeRegistry: function () {},
       Marker: function () {
         return {
-          addListener: function () {}
+          addListener: function () {},
+          bindTo: function () {}
         }
       },
       MarkerImage: function () {},
@@ -105,6 +115,12 @@ const stubGoogleApis = function () {
       }
     }
   }
+
+  window.navigator = {
+    geolocation: {
+      getCurrentPosition: function () {}
+    }
+  }
 }
 
 const page = `<div id="map"></div>`
@@ -116,6 +132,7 @@ describe('MapBuilder', () => {
   })
 
   it('can be instantiated', () => {
+    mapBuilder.initMap()
     expect(mapBuilder.mapDiv).toBeFalsy()
   })
 
@@ -136,7 +153,7 @@ describe('MapBuilder', () => {
 
     describe('with node data', () => {
       beforeEach(() => {
-        stubGoogleApis()
+        stubApis()
         mapBuilder.handleResponse({
           'node': {
             'lat': 1,
@@ -145,6 +162,30 @@ describe('MapBuilder', () => {
             'name': 'Node',
             'infowindow': 'Node Information'
           }
+        })
+      })
+
+      it('creates a status display', () => {
+        expect(mapBuilder.statusCtrl).toBeTruthy()
+      })
+    })
+
+    describe('with status data', () => {
+      beforeEach(() => {
+        stubApis()
+        mapBuilder.handleResponse({
+          'statuses': [{
+            'default_display': true,
+            'color': 'blue',
+            'name': 'Status',
+            'nodes': [{
+              'lat': 1,
+              'lng': 1,
+              'icon': 'icon',
+              'name': 'Node',
+              'infowindow': 'Node Information'
+            }]
+          }]
         })
       })
 
