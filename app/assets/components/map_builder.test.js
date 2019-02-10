@@ -116,10 +116,8 @@ const stubApis = function () {
     }
   }
 
-  window.navigator = {
-    geolocation: {
+  navigator.geolocation = {
       getCurrentPosition: function () {}
-    }
   }
 }
 
@@ -168,6 +166,16 @@ describe('MapBuilder', () => {
       it('creates a status display', () => {
         expect(mapBuilder.statusCtrl).toBeTruthy()
       })
+
+      it('can handle position data', () => {
+        mapBuilder.handlePosition({
+          coords: {
+            latitude: 1,
+            longitude: 1
+          }
+        })
+        expect(mapBuilder.posMarker).toBeTruthy()
+      })
     })
 
     describe('with status data', () => {
@@ -184,8 +192,38 @@ describe('MapBuilder', () => {
               'icon': 'icon',
               'name': 'Node',
               'infowindow': 'Node Information'
+            }, {
+              'icon': 'icon',
+              'name': 'Uncoded Node',
+              'infowindow': 'More Node Information'
             }]
           }]
+        })
+      })
+
+      it('creates a status display', () => {
+        expect(mapBuilder.statusCtrl).toBeTruthy()
+      })
+    })
+
+    describe('with zone data', () => {
+      beforeEach(() => {
+        stubApis()
+        mapBuilder.handleResponse({
+          'zone': {
+            'statuses': [{
+              'default_display': true,
+              'color': 'blue',
+              'name': 'Status',
+              'nodes': [{
+                'lat': 1,
+                'lng': 1,
+                'icon': 'icon',
+                'name': 'Node',
+                'infowindow': 'Node Information'
+              }]
+            }]
+          }
         })
       })
 
