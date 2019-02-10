@@ -80,7 +80,9 @@ MapBuilder.prototype.handleResponse = function (data) {
   this.statusCtrl.append(document.createElement('br'))
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(this.handlePosition)
+    // Disable user geolocation; it is annoying and unhelpful as a default.
+    // This should be reimplemented as a configurable option.
+    // navigator.geolocation.getCurrentPosition(this.handlePosition)
   }
 
   if (data.node) {
@@ -105,19 +107,19 @@ MapBuilder.prototype.handleResponse = function (data) {
 
 MapBuilder.prototype.handlePosition = function (position) {
   let me = this
-  let marker = new google.maps.Marker({
-    icon: require('images/position_small.png'),
+  me.posMarker = new google.maps.Marker({
+    icon: 'position_small.png',
     map: this.gMap,
     position: new google.maps.LatLng(
       position.coords.latitude, position.coords.longitude),
     title: 'Current Location'
   })
-  marker.addListener('click', function () {
+  me.posMarker.addListener('click', function () {
     me.gInfoWindow.setContent('You Are Here')
-    me.gInfoWindow.open(me.gMap, marker)
+    me.gInfoWindow.open(me.gMap, me.posMarker)
   })
   if (this.mapDiv.dataset.center) {
-    this.gMap.setCenter(marker.position)
+    this.gMap.setCenter(me.posMarker.position)
   }
 }
 
