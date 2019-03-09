@@ -2,6 +2,9 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    authenticate :user, ->(user) { user.admin? } do
+      mount PgHero::Engine, at: 'pghero'
+    end
     resources :contacts, :groups, :hosts, :host_properties, :host_types,
               :interfaces, :interface_properties, :interface_types,
               :nodes, :node_links, :statuses, :tags, :users, :user_links, :zones
