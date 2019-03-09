@@ -93,7 +93,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.4.9)
+    autoprefixer-rails (9.4.10.1)
       execjs
     bcrypt (3.1.12)
     bcrypt (3.1.12-java)
@@ -503,7 +503,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (4.0.1)
+    webpacker (4.0.2)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
@@ -523,7 +523,7 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
-  administrate
+  administrate (= 0.10.0)
   administrate-field-paperclip
   better_errors
   bootsnap
