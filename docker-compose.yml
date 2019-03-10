@@ -3,13 +3,15 @@ version: '3.1'
 services:
   db:
     image: postgres
+    ports:
+      - '5432'
 
   web:
     build: .
     command: foreman start -f Procfile.dev
     volumes:
-      - .:/srv/rails
-      - /srv/rails/node_modules
+      - .:/srv/app
+      - /srv/app/node_modules
     ports:
       - '3000:3000'
     environment:

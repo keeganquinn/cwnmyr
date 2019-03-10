@@ -1,14 +1,10 @@
-FROM debian:stable
+FROM ruby:2.6.1
 MAINTAINER Keegan Quinn <keeganquinn@gmail.com>
 
-# Install Debian main packages
+# Install supplemental Debian main packages
 RUN apt-get update -qq \
   && apt-get install -y --no-install-recommends \
-    autoconf bison build-essential ca-certificates curl \
-    file git gnupg graphviz imagemagick \
-    libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev \
-    libffi-dev libgdbm-dev libpq-dev libmagickwand-dev \
-    postgresql-client \
+    bison build-essential graphviz libgdbm-dev postgresql-client \
   && apt-get clean
 
 # Add node and yarn sources, install additional packages
@@ -29,37 +25,16 @@ RUN export PHANTOMJS="phantomjs-2.1.1-linux-x86_64" \
   && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin \
   && rm -rf /tmp/phantomjs
 
-# Install rbenv, ruby-build, build a Ruby
-RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv
-RUN cd /root/.rbenv && git pull && git reset --hard 483e7f9
-RUN git clone \
-  https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build
-RUN cd /root/.rbenv/plugins/ruby-build && git pull && git reset --hard 0e33b11
-RUN /root/.rbenv/plugins/ruby-build/install.sh
-ENV PATH /root/.rbenv/bin:/root/.rbenv/shims:$PATH
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
-RUN echo 'eval "$(rbenv init -)"' >> .bashrc
-RUN rbenv install -s 2.6.1 \
-  && rbenv global 2.6.1 \
-  && gem install bundler
-
-# Configure bundler to install gems out of tree
-ENV GEM_HOME /usr/local/bundle
-ENV BUNDLE_PATH="$GEM_HOME" \
-  BUNDLE_BIN="$GEM_HOME/bin" \
-  BUNDLE_SILENCE_ROOT_WARNING=1 \
-  BUNDLE_APP_CONFIG="$GEM_HOME"
-ENV PATH $BUNDLE_BIN:$PATH
-RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
-  && chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
+# Update to Bundler 2
+RUN gem install bundler
 
 # Add application dependencies
-WORKDIR /srv/rails
+WORKDIR /srv/app
 
-COPY Gemfile /srv/rails/Gemfile
-COPY Gemfile.lock /srv/rails/Gemfile.lock
+COPY Gemfile /srv/app/Gemfile
+COPY Gemfile.lock /srv/app/Gemfile.lock
 RUN bundle install
 
-COPY package.json /srv/rails/package.json
-COPY yarn.lock /srv/rails/yarn.lock
+COPY package.json /srv/app/package.json
+COPY yarn.lock /srv/app/yarn.lock
 RUN yarn install
