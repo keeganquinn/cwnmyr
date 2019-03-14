@@ -33,8 +33,8 @@ WORKDIR /srv/app
 
 COPY Gemfile /srv/app/Gemfile
 COPY Gemfile.lock /srv/app/Gemfile.lock
-RUN bundle install
+RUN bundle install --no-cache
 
 COPY package.json /srv/app/package.json
 COPY yarn.lock /srv/app/yarn.lock
-RUN yarn install
+RUN yarn install --no-cache
