@@ -1,4 +1,4 @@
-FROM ruby:2.6.1
+FROM ruby:2.6.2
 MAINTAINER Keegan Quinn <keeganquinn@gmail.com>
 
 # Install supplemental Debian main packages
