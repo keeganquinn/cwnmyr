@@ -197,14 +197,7 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
-    guard-bundler (2.2.1)
-      bundler (>= 1.3.0, < 3)
-      guard (~> 2.2)
-      guard-compat (~> 1.1)
     guard-compat (1.2.1)
-    guard-rails (0.8.1)
-      guard (~> 2.11)
-      guard-compat (~> 1.0)
     guard-rspec (4.7.3)
       guard (~> 2.1)
       guard-compat (~> 1.1)
@@ -549,8 +542,6 @@ DEPENDENCIES
   faker
   foreman
   geocoder
-  guard-bundler
-  guard-rails
   guard-rspec
   haml-rails
   haml_lint

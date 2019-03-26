@@ -52,11 +52,9 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   gem 'haml_lint', require: false
-  gem 'html2haml'
+  gem 'html2haml', require: false
   gem 'listen'
   gem 'rails_layout'
   gem 'rb-fchange', require: false
