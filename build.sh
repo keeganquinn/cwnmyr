@@ -9,6 +9,17 @@ cc_test_reporter=https://codeclimate.com/downloads/test-reporter/test-reporter-l
 
 set -ex
 
+[ -d .bundle ] || mkdir -p .bundle
+[ -f .bundle/config ] || (
+    echo '---'
+    echo 'BUNDLE_PATH: "vendor"'
+    echo 'BUNDLE_DISABLE_SHARED_GEMS: "true"'
+    echo 'BUNDLE_WITHOUT: "production"'
+) > .bundle/config
+bundle install
+yarn install
+
+
 rm -rf checkstyle-*.xml coverage junit.xml rspec.xml log/* public/assets tmp/*
 
 [ "${build}" != "current" ] && {
