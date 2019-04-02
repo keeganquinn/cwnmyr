@@ -20,6 +20,7 @@
 # Build artifacts
 /checkstyle-*.xml
 /coverage/
+/coverage-js/
 /junit.xml
 /rspec.xml
 

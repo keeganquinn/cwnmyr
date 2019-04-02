@@ -20,7 +20,8 @@ bundle install
 yarn install
 
 
-rm -rf checkstyle-*.xml coverage junit.xml rspec.xml log/* public/assets tmp/*
+rm -rf checkstyle-*.xml coverage coverage-js junit.xml rspec.xml \
+   log/* public/assets tmp/*
 
 [ "${build}" != "current" ] && {
     curl -L "${cc_test_reporter}" > ./cc-test-reporter
@@ -34,18 +35,17 @@ rm -rf checkstyle-*.xml coverage junit.xml rspec.xml log/* public/assets tmp/*
     trap report INT TERM
 }
 
-node_modules/.bin/jest --coverage --coverageReporters cobertura || true
+yarn -s test || true
 
-node_modules/.bin/eslint \
-    app --format node_modules/eslint-formatter-checkstyle-* \
-    > checkstyle-eslint.xml || true
+yarn -s lint --format node_modules/eslint-formatter-checkstyle-* \
+     > checkstyle-eslint.xml || true
 
 bundle exec rubocop --require rubocop/formatter/checkstyle_formatter \
        --format RuboCop::Formatter::CheckstyleFormatter \
        -o checkstyle-rubocop.xml || true
 
-bundle exec haml-lint app \
-       --reporter checkstyle > checkstyle-haml-lint.xml || true
+bundle exec haml-lint app --reporter checkstyle \
+       > checkstyle-haml-lint.xml || true
 
 bundle exec rake db:create db:environment:set db:schema:load RAILS_ENV=test
 

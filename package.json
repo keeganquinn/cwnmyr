@@ -6,6 +6,12 @@
     "test": "jest --coverage"
   },
   "jest": {
+    "coverageDirectory": "coverage-js",
+    "coverageReporters": [
+      "cobertura",
+      "html",
+      "text"
+    ],
     "moduleDirectories": [
       "app/assets",
       "node_modules"
