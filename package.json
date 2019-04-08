@@ -43,6 +43,7 @@
     "@babel/core": "^7.4.3",
     "@babel/plugin-transform-modules-commonjs": "^7.4.3",
     "@rails/webpacker": "https://github.com/rails/webpacker",
+    "ahoy.js": "^0.3.4",
     "autoprefixer": "^9.5.0",
     "bootstrap": "^4.3.1",
     "caniuse-lite": "^1.0.30000955",

@@ -30,6 +30,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '>= 4.0.x'
 
 gem 'administrate-field-paperclip'
+gem 'ahoy_matey'
 gem 'geocoder'
 gem 'netaddr'
 gem 'paper_trail'
