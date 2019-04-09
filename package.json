@@ -85,6 +85,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.7.1",
     "jest-junit": "^6.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.3.0"
   }
 }
