@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_015832) do
+ActiveRecord::Schema.define(version: 2019_04_09_122334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -286,6 +286,35 @@ ActiveRecord::Schema.define(version: 2019_04_09_015832) do
     t.datetime "updated_at", null: false
     t.index ["node_id"], name: "index_nodes_tags_on_node_id"
     t.index ["tag_id"], name: "index_nodes_tags_on_tag_id"
+  end
+
+  create_table "notable_jobs", force: :cascade do |t|
+    t.string "note_type"
+    t.text "note"
+    t.text "job"
+    t.string "job_id"
+    t.string "queue"
+    t.decimal "runtime"
+    t.decimal "queued_time"
+    t.datetime "created_at"
+  end
+
+  create_table "notable_requests", force: :cascade do |t|
+    t.string "note_type"
+    t.text "note"
+    t.integer "user_id"
+    t.string "user_type"
+    t.text "action"
+    t.integer "status"
+    t.text "url"
+    t.string "request_id"
+    t.string "ip"
+    t.text "user_agent"
+    t.text "referrer"
+    t.text "params"
+    t.decimal "request_time"
+    t.datetime "created_at"
+    t.index ["user_id", "user_type"], name: "index_notable_requests_on_user_id_and_user_type"
   end
 
   create_table "statuses", id: :serial, force: :cascade do |t|
