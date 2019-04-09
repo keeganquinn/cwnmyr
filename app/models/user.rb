@@ -3,10 +3,14 @@
 # A User is a person who can log in to the system.
 class User < ApplicationRecord
   has_paper_trail
+
   has_and_belongs_to_many :groups, uniq: true
   has_many :contacts
   has_many :nodes
+  has_many :notable_requests, class_name: 'Notable::Request'
   has_many :user_links
+  has_many :visits, class_name: 'Ahoy::Visit'
+
   enum role: %i[user manager admin]
 
   validates_length_of :code, maximum: 64
