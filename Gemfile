@@ -31,6 +31,7 @@ gem 'webpacker', '>= 4.0.x'
 
 gem 'administrate-field-paperclip'
 gem 'ahoy_matey'
+gem 'blazer'
 gem 'geocoder'
 gem 'netaddr'
 gem 'paper_trail'

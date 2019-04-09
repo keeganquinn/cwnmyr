@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     authenticate :user, ->(user) { user.admin? } do
+      mount Blazer::Engine, at: 'blazer'
       mount PgHero::Engine, at: 'pghero'
     end
     resources :contacts, :groups, :hosts, :host_properties, :host_types,

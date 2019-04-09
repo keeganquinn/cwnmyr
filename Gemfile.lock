@@ -114,6 +114,11 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.6.0)
+    blazer (2.0.1)
+      activerecord (>= 4.2)
+      chartkick
+      railties (>= 4.2)
+      safely_block (>= 0.1.1)
     bootsnap (1.4.2)
       msgpack (~> 1.0)
     bootsnap (1.4.2-java)
@@ -152,6 +157,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    chartkick (3.0.2)
     climate_control (0.2.0)
     cliver (0.3.2)
     coderay (1.1.2)
@@ -540,6 +546,7 @@ DEPENDENCIES
   administrate-field-paperclip
   ahoy_matey
   better_errors
+  blazer
   bootsnap
   brakeman
   byebug
