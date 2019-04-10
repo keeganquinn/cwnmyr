@@ -78,6 +78,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'rubocop-checkstyle_formatter', require: false
+  gem 'rubocop-performance'
   gem 'rubocop-rspec'
 end
 
