@@ -1,0 +1,18 @@
+.container
+  %h1= t :search
+
+  %p.pt-2
+    = form_tag '/search', method: 'GET' do
+      = text_field_tag 'query', params[:query]
+      = submit_tag t(:search)
+
+  %ul
+    - @results.each do |result|
+      %li
+        = link_to url_for(result) do
+          = succeed ':' do
+            = result.model_name.human
+          = result.name
+
+    - if @results.empty?
+      %li= t '.no_results'

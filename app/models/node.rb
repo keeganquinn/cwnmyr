@@ -8,6 +8,8 @@ class Node < ApplicationRecord
   DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='
 
   has_paper_trail
+  searchkick
+
   belongs_to :contact, optional: true
   belongs_to :status
   belongs_to :user, optional: true

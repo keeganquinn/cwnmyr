@@ -24,6 +24,7 @@ en:
   update: Update
   cancel: Cancel
   delete: Delete
+  search: Search
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
   node: "Node: %{node}"

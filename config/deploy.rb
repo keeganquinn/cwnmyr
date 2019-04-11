@@ -72,8 +72,23 @@ namespace :foreman do
   end
 end
 
+namespace :searchkick do
+  desc 'reindex all searches'
+  task :reindex_all do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'searchkick:reindex:all'
+        end
+      end
+    end
+  end
+end
+
 before :'bundler:install', :'bundler:preinstall'
 before :'deploy:migrate', :'db:fetch'
+
+after :'deploy:migrate', :'searchkick:reindex_all'
 
 after :'deploy:symlink:linked_dirs', :'deploy:symlink_env'
 after :'foreman:export', :'foreman:fix_perms'
