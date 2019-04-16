@@ -4,7 +4,7 @@
       %h1= t '.title'
 
     .col-sm-6.text-right
-      = form_tag '/search', method: 'GET' do
+      = form_tag search_path, id: 'search', method: 'GET' do
         = text_field_tag 'query', params[:query]
         = submit_tag t(:search)
 
