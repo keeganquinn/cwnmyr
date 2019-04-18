@@ -16,7 +16,10 @@ ssh-add -l >/dev/null || ssh-add
 bundle install
 
 
+rm -f db/live.sql db/live.sql.gz
+
 bundle exec cap production db:fetch
+bundle exec cap production assets:pull
 
 gunzip db/live.sql.gz
 
