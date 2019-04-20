@@ -2,11 +2,8 @@
 
 # This controller facilitates interaction with Nodes.
 class NodesController < ApplicationController
-  include Paperclip::Storage::Database::ControllerClassMethods
-  downloads_files_for :node, :logo
-
-  before_action :authenticate_user!, except: %i[show graph logos]
-  after_action :verify_authorized, except: %i[logos]
+  before_action :authenticate_user!, except: %i[show graph]
+  after_action :verify_authorized
 
   def show
     @node = authorize Node.find(params[:id])

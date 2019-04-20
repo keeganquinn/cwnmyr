@@ -7,8 +7,8 @@
     .col-md-7
       = render partial: 'shared/edit_delete', locals: { record: @node }
 
-      - unless @node.logo.blank?
-        = image_tag @node.logo.url
+      - if @node.logo.attached?
+        = image_tag @node.logo
 
       = markdown @node.body
 

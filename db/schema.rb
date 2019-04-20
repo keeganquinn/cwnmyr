@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_195310) do
+ActiveRecord::Schema.define(version: 2019_04_20_010829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -254,14 +254,6 @@ ActiveRecord::Schema.define(version: 2019_04_18_195310) do
     t.index ["name"], name: "index_interfaces_on_name"
   end
 
-  create_table "logos", force: :cascade do |t|
-    t.integer "node_id"
-    t.string "style"
-    t.binary "file_contents"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "node_links", id: :serial, force: :cascade do |t|
     t.integer "node_id"
     t.string "name"
@@ -288,10 +280,6 @@ ActiveRecord::Schema.define(version: 2019_04_18_195310) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "group_id"
-    t.string "logo_file_name"
-    t.string "logo_content_type"
-    t.integer "logo_file_size"
-    t.datetime "logo_updated_at"
     t.index ["code"], name: "index_nodes_on_code", unique: true
     t.index ["contact_id"], name: "index_nodes_on_contact_id"
     t.index ["group_id"], name: "index_nodes_on_group_id"

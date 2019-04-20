@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'paperclip/matchers'
 require 'simplecov'
 require 'simplecov-rcov'
 require 'warden'
@@ -85,9 +84,6 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-
-  # Matchers from Paperclip.
-  config.include Paperclip::Shoulda::Matchers
 
   # Devise/Warden integration.
   config.include Warden::Test::Helpers

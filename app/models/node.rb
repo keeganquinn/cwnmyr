@@ -18,8 +18,7 @@ class Node < ApplicationRecord
   has_many :hosts
   has_many :node_links
   has_and_belongs_to_many :tags
-  has_attached_file :logo, storage: :database
-  validates_attachment_content_type :logo, content_type: /\Aimage/
+  has_one_attached :logo
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
@@ -29,6 +28,7 @@ class Node < ApplicationRecord
                              allow_blank: true
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
+  validates :logo, content_type: { allow: ['image/jpeg', 'image/png'] }
 
   before_validation :set_defaults
 

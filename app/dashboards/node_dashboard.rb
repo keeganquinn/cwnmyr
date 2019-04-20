@@ -12,6 +12,7 @@ class NodeDashboard < Administrate::BaseDashboard
     user: Field::BelongsTo,
     group: Field::BelongsTo,
     status: Field::BelongsTo,
+    logo: Field::ActiveStorage,
     body: Field::Text,
     address: Field::Text,
     latitude: Field::Number,
@@ -29,12 +30,12 @@ class NodeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[zone code name user status].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    zone code name user group status body address latitude longitude hours
+    zone code name user group status logo body address latitude longitude hours
     notes contact hosts node_links tags created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    zone code name user group status body address hours notes contact tags
+    zone code name user group status logo body address hours notes contact tags
   ].freeze
 
   def display_resource(node)

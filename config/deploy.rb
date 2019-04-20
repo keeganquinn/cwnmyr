@@ -11,10 +11,9 @@ set :rbenv_prefix,
     "#{fetch(:rbenv_path)}/bin/rbenv exec"
 
 set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
-set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
 set :linked_dirs, fetch(:linked_dirs, []).push('storage')
 
-set :assets_dir, %w[public/system]
+set :assets_dir, %w[storage]
 set :skip_data_sync_confirm, true
 
 # Quick and dirty rbenv-sudo support. Contrib to capistrano-rbenv gem?
