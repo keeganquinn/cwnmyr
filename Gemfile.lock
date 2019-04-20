@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/elabs/pundit.git
-  revision: 32cca74f6e76d9608b4beb84ccb02d8800d1c7f0
+  revision: d97aa4bf61bda53fc69fed0483220273b2099724
   specs:
     pundit (2.0.1)
       activesupport (>= 3.0.0)
@@ -149,7 +149,7 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    capybara (3.16.2)
+    capybara (3.17.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -307,10 +307,10 @@ GEM
     minitest (5.11.3)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
-    msgpack (1.2.9)
-    msgpack (1.2.9-java)
-    msgpack (1.2.9-x64-mingw32)
-    msgpack (1.2.9-x86-mingw32)
+    msgpack (1.2.10)
+    msgpack (1.2.10-java)
+    msgpack (1.2.10-x64-mingw32)
+    msgpack (1.2.10-x86-mingw32)
     multi_json (1.13.1)
     multipart-post (2.0.0)
     nenv (0.3.0)
