@@ -12,6 +12,7 @@ set :rbenv_prefix,
 
 set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
 set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('storage')
 
 set :assets_dir, %w[public/system]
 set :skip_data_sync_confirm, true

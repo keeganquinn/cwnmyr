@@ -5,6 +5,7 @@
 /public/assets/
 /public/assets-test/
 /public/system/
+/storage/
 /tmp/*
 /vendor/bundle/
 /vendor/ruby/
