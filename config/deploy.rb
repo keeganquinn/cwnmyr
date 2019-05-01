@@ -86,7 +86,6 @@ namespace :searchkick do
 end
 
 before :'bundler:install', :'bundler:preinstall'
-before :'deploy:migrate', :'db:fetch'
 
 after :'deploy:migrate', :'searchkick:reindex_all'
 
