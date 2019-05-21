@@ -46,7 +46,7 @@
     "ahoy.js": "^0.3.4",
     "autoprefixer": "^9.5.1",
     "bootstrap": "^4.3.1",
-    "caniuse-lite": "^1.0.30000967",
+    "caniuse-lite": "^1.0.30000969",
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.4.1",
     "compression-webpack-plugin": "^2.0.0",
@@ -70,7 +70,7 @@
     "style-loader": "^0.23.1",
     "turbolinks": "^5.2.0",
     "typescript": "^3.4.5",
-    "webpack": "^4.31.0",
+    "webpack": "^4.32.0",
     "webpack-cli": "^3.3.2",
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1"
@@ -85,6 +85,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "jest-junit": "^6.4.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.4.1"
   }
 }
