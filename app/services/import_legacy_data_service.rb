@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
+require 'resolv-replace'
+
 # Service to import data from legacy system.
 class ImportLegacyDataService
   SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
   LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
 
-  def initialize(data = nil)
-    @data = data
-  end
-
-  def user
-    User.admin.first
-  end
-
-  def zone
-    Zone.find_by code: 'pdx'
+  def initialize(nodes = nil)
+    @nodes = nodes
+    @user = User.admin.first
+    @zone = Zone.find_by code: 'pdx'
   end
 
   def nodes
-    @data ||= fetch
+    @nodes ||= fetch['data'].flatten.map(&:values).flatten
   end
 
   def fetch
@@ -28,8 +24,7 @@ class ImportLegacyDataService
 
     request = Net::HTTP::Get.new(uri.request_uri)
     request['X-PTP-API-KEY'] = ENV['PTP_API_KEY']
-
-    JSON.parse(http.request(request).body)['data'].flatten.map(&:values).flatten
+    JSON.parse http.request(request).body
   end
 
   def call
@@ -48,7 +43,7 @@ class ImportLegacyDataService
   end
 
   def build_node(value)
-    node = Node.find_or_initialize_by zone: zone, code: value['node']
+    node = Node.find_or_initialize_by zone: @zone, code: value['node']
     node.assign_attributes(
       status: Status.find_by(code: value['status']),
       name: value['nodename'], body: value['description'],
@@ -57,17 +52,23 @@ class ImportLegacyDataService
     node
   end
 
-  def finalize_node(node, value)
-    unless value['logo'].blank?
-      begin
-        node.logo = URI.parse("#{LOGO_BASE}/#{value['logo']}")
-      rescue OpenURI::HTTPError
-        nil
+  def attach_logo(node, value)
+    return if value['logo'].blank?
+
+    begin
+      URI.parse("#{LOGO_BASE}/#{value['logo']}").open do |logo|
+        node.logo.attach io: logo, filename: value['logo']
       end
+    rescue OpenURI::HTTPError
+      nil
     end
+  end
+
+  def finalize_node(node, value)
+    attach_logo node, value
 
     node.contact = build_contact(value) if value['contact']
-    node.user ||= user
+    node.user ||= @user
 
     node.save
   end
@@ -77,7 +78,7 @@ class ImportLegacyDataService
     contact.email = value['email']
     contact.phone = value['phone']
     contact.notes ||= value['role']
-    contact.user ||= user
+    contact.user ||= @user
     contact.save && contact
   end
 
