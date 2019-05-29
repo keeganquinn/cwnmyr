@@ -15,6 +15,7 @@ describe User do
   it { is_expected.to respond_to(:body) }
 
   it { is_expected.to allow_value('user@example.com').for(:email) }
+  it { is_expected.to allow_value('user+mailbox@example.com').for(:email) }
   it { is_expected.not_to allow_value('not-an-email').for(:email) }
   it { is_expected.to validate_length_of(:code) }
 

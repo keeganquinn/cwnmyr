@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :name, allow_blank: true, case_sensitive: false
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email,
-                      with: /\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)
+                      with: /\A([\w\+\-\.\#\$%&!?*\'=(){}|~_]+)
                             @([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z/x,
                       message: 'must be a valid email address',
                       allow_blank: true
