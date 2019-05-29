@@ -117,7 +117,7 @@ const stubApis = function () {
   }
 
   navigator.geolocation = {
-      getCurrentPosition: function () {}
+    getCurrentPosition: function () {}
   }
 }
 
