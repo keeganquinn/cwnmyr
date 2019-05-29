@@ -80,7 +80,7 @@ describe Interface do
     subject(:interface) { build(:interface) }
 
     it do
-      expect(subject).to(
+      expect(interface).to(
         validate_uniqueness_of(:code).scoped_to(:host_id).case_insensitive
       )
     end

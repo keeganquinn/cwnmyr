@@ -58,9 +58,9 @@ class Node < ApplicationRecord
   # This method constructs an RGL::AdjacencyGraph instance based on this
   # Node instance, including related Interface instances and IPv4 neighbor
   # relationships.
-  def graph(g = RGL::AdjacencyGraph.new)
-    hosts.each { |host| host.graph g }
-    g
+  def graph(rgl = RGL::AdjacencyGraph.new)
+    hosts.each { |host| host.graph rgl }
+    rgl
   end
 
   def set_defaults

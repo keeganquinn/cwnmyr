@@ -26,11 +26,11 @@ class Host < ApplicationRecord
   # This method constructs an RGL::AdjacencyGraph instance based on this
   # Host instance, including related Interface instances and IPv4 neighbor
   # relationships.
-  def graph(g = RGL::AdjacencyGraph.new)
+  def graph(rgl = RGL::AdjacencyGraph.new)
     interfaces.each do |interface|
-      g.add_edge name, name + ': ' + interface.code
-      interface.graph g
+      rgl.add_edge name, name + ': ' + interface.code
+      interface.graph rgl
     end
-    g
+    rgl
   end
 end

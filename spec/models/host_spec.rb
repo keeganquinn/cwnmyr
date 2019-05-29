@@ -28,7 +28,7 @@ describe Host do
     subject(:host) { build(:host) }
 
     it do
-      expect(subject).to(
+      expect(host).to(
         validate_uniqueness_of(:name).scoped_to(:node_id).case_insensitive
       )
     end

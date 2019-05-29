@@ -77,12 +77,12 @@ class Interface < ApplicationRecord
     end
   end
 
-  def graph(g = RGL::AdjacencyGraph.new)
+  def graph(rgl = RGL::AdjacencyGraph.new)
     ipv4_neighbors.each do |neighbor|
-      g.add_edge name + ': ' + code,
-                 neighbor.host.name + ': ' + neighbor.code
+      rgl.add_edge name + ': ' + code,
+                   neighbor.host.name + ': ' + neighbor.code
     end
-    g
+    rgl
   end
 
   def set_defaults
