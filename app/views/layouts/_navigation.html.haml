@@ -1,10 +1,10 @@
 %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
   .container
     = link_to 'cwnmyr', root_path, class: 'navbar-brand'
-    %button.navbar-toggler{ 'data-target': '#navbarCollapse',
+    %button.navbar-toggler{ 'data-target': '#navbar-collapse',
                             'data-toggle': 'collapse', type: 'button',
                             'aria-label': t(:toggle_navigation) }
       %span.navbar-toggler-icon/
-    #navbarCollapse.collapse.navbar-collapse
+    .collapse.navbar-collapse#navbar-collapse
       %ul.navbar-nav.ml-auto
         = render 'layouts/nav_links_for_auth'
