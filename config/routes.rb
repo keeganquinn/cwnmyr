@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     resources :contacts, :groups, :hosts, :host_properties, :host_types,
               :interfaces, :interface_properties, :interface_types,
-              :nodes, :node_links, :statuses, :tags, :users, :user_links, :zones
+              :nodes, :node_links, :statuses, :users, :user_links, :zones
     root to: 'users#index'
   end
 

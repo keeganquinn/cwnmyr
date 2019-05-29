@@ -22,7 +22,6 @@ class NodeDashboard < Administrate::BaseDashboard
     contact: Field::BelongsTo,
     hosts: Field::HasMany,
     node_links: Field::HasMany,
-    tags: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -31,11 +30,11 @@ class NodeDashboard < Administrate::BaseDashboard
 
   SHOW_PAGE_ATTRIBUTES = %i[
     zone code name user group status logo body address latitude longitude hours
-    notes contact hosts node_links tags created_at updated_at
+    notes contact hosts node_links created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    zone code name user group status logo body address hours notes contact tags
+    zone code name user group status logo body address hours notes contact
   ].freeze
 
   def display_resource(node)

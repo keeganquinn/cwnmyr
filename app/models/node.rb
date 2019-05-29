@@ -7,6 +7,7 @@ require_dependency 'dot_diskless'
 class Node < ApplicationRecord
   DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='
 
+  acts_as_taggable
   has_paper_trail
   searchkick
 
@@ -17,7 +18,6 @@ class Node < ApplicationRecord
   belongs_to :zone
   has_many :hosts
   has_many :node_links
-  has_and_belongs_to_many :tags
   has_one_attached :logo
 
   validates_length_of :code, minimum: 1
@@ -34,6 +34,12 @@ class Node < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :should_geocode?
+
+  def search_data
+    {
+      tag_list: tag_list.join(' ')
+    }.merge(attributes)
+  end
 
   def should_geocode?
     address.present? && (address_changed? || !latitude || !longitude)

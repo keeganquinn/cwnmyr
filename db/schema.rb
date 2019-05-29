@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_010829) do
+ActiveRecord::Schema.define(version: 2019_05_29_072334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -288,15 +288,6 @@ ActiveRecord::Schema.define(version: 2019_04_20_010829) do
     t.index ["zone_id"], name: "index_nodes_on_zone_id"
   end
 
-  create_table "nodes_tags", id: :serial, force: :cascade do |t|
-    t.integer "node_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["node_id"], name: "index_nodes_tags_on_node_id"
-    t.index ["tag_id"], name: "index_nodes_tags_on_tag_id"
-  end
-
   create_table "notable_jobs", force: :cascade do |t|
     t.string "note_type"
     t.text "note"
@@ -337,12 +328,28 @@ ActiveRecord::Schema.define(version: 2019_04_20_010829) do
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
 
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
   create_table "tags", id: :serial, force: :cascade do |t|
-    t.string "code", limit: 64
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_tags_on_code", unique: true
+    t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 

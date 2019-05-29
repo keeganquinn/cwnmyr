@@ -31,6 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '>= 4.0.x'
 
 gem 'active_storage_validations'
+gem 'acts-as-taggable-on'
 gem 'administrate-field-active_storage'
 gem 'ahoy_matey'
 gem 'blazer'

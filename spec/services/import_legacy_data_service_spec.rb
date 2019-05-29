@@ -67,7 +67,7 @@ describe ImportLegacyDataService do
     expect(Interface.count).to be_positive
   end
 
-  xit 'is able to fetch node data' do
+  it 'is able to fetch node data' do
     expect(service.new.fetch).not_to be_empty
   end
 end
