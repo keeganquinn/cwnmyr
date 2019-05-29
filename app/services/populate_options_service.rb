@@ -32,12 +32,14 @@ class PopulateOptionsService
     { code: 'priv', name: 'Private Network' }
   ].freeze
   STATUSES = [
-    { code: 'active', name: 'Active', color: 'green', default_display: true },
-    { code: 'pending', name: 'Pending', color: 'blue' },
-    { code: 'inactive', name: 'Inactive', color: 'red' },
-    { code: 'retired', name: 'Retired', color: 'purple' },
-    { code: 'not_ptp_managed', name: 'Not PTP Managed', color: 'brown' },
-    { code: 'test', name: 'Testing', color: 'orange' }
+    { code: 'active', name: 'Active', color: 'green', ordinal: 100,
+      default_display: true },
+    { code: 'not_ptp_managed', name: 'Not PTP Managed', color: 'blue',
+      ordinal: 200, default_display: true },
+    { code: 'pending', name: 'Pending', color: 'brown', ordinal: 300 },
+    { code: 'inactive', name: 'Inactive', color: 'red', ordinal: 400 },
+    { code: 'retired', name: 'Retired', color: 'purple', ordinal: 500 },
+    { code: 'test', name: 'Testing', color: 'orange', ordinal: 600 }
   ].freeze
 
   def call

@@ -10,6 +10,7 @@ class StatusDashboard < Administrate::BaseDashboard
     name: Field::String,
     default_display: Field::Boolean,
     color: Field::String,
+    ordinal: Field::Number,
     nodes: Field::HasMany,
     hosts: Field::HasMany,
     interfaces: Field::HasMany,
@@ -17,12 +18,12 @@ class StatusDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[code name color].freeze
+  COLLECTION_ATTRIBUTES = %i[code name color ordinal].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[code name default_display color
+  SHOW_PAGE_ATTRIBUTES = %i[code name default_display color ordinal
                             nodes hosts interfaces].freeze
 
-  FORM_ATTRIBUTES = %i[code name default_display color].freeze
+  FORM_ATTRIBUTES = %i[code name default_display color ordinal].freeze
 
   def display_resource(status)
     "Status ##{status.to_param}"
