@@ -14,6 +14,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
 set :linked_dirs, fetch(:linked_dirs, []).push('storage')
 
 set :assets_dir, %w[storage]
+set :local_assets_dir, %w[.]
 set :skip_data_sync_confirm, true
 
 # Quick and dirty rbenv-sudo support. Contrib to capistrano-rbenv gem?
