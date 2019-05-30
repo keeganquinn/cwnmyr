@@ -6,7 +6,7 @@ class PopulateOptionsService
   ZONES = [{ code: 'pdx', name: 'Portland' }].freeze
   GROUPS = [{ code: 'not', name: 'Network Operations Team' }].freeze
 
-  HOST_TYPES = [
+  DEVICE_TYPES = [
     { code: 'test', name: 'Test Device' },
     { code: 'airrouter', name: 'AirRouter' },
     { code: 'apu', name: 'APU' },
@@ -45,7 +45,7 @@ class PopulateOptionsService
   def call
     [
       *GROUPS.map { |vals| make_one Group, vals },
-      *HOST_TYPES.map { |vals| make_one HostType, vals },
+      *DEVICE_TYPES.map { |vals| make_one DeviceType, vals },
       *INTERFACE_TYPES.map { |vals| make_one InterfaceType, vals },
       *STATUSES.map { |vals| make_one Status, vals },
       *ZONES.map { |vals| make_one Zone, vals }

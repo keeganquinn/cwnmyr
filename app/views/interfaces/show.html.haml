@@ -12,13 +12,14 @@
       = render partial: 'shared/edit_delete', locals: { record: @interface }
 
       %p.small
-        = link_to t(:zone, zone: @interface.host.node.zone.name),
-                           url_for(@interface.host.node.zone)
+        = link_to t(:zone, zone: @interface.device.node.zone.name),
+                           url_for(@interface.device.node.zone)
         %br/
-        = link_to t(:node, node: @interface.host.node.name),
-                           url_for(@interface.host.node)
+        = link_to t(:node, node: @interface.device.node.name),
+                           url_for(@interface.device.node)
         %br/
-        = link_to t(:host, host: @interface.host.name), url_for(@interface.host)
+        = link_to t(:device, device: @interface.device.name),
+                             url_for(@interface.device)
         - if @interface.interface_type
           %br/
           = link_to @interface.interface_type.name,

@@ -28,7 +28,7 @@ en:
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
   node: "Node: %{node}"
-  host: "Host: %{host}"
+  device: "Device: %{device}"
   interface: "Interface: %{interface}"
   status: "Status: %{status}"
   hours: "Hours: %{hours}"
@@ -47,20 +47,20 @@ en:
   nodes_numbered:
     one: "one node"
     other: "%{count} nodes"
-  hosts_numbered:
-    one: "one host"
-    other: "%{count} hosts"
+  devices_numbered:
+    one: "one device"
+    other: "%{count} devices"
   activerecord:
     models:
-      host:
-        one: Host
-        other: Hosts
-      host_property:
-        one: Host Property
-        other: Host Properties
-      host_type:
-        one: Host Type
-        other: Host Types
+      device:
+        one: Device
+        other: Devices
+      device_property:
+        one: Device Property
+        other: Device Properties
+      device_type:
+        one: Device Type
+        other: Device Types
       interface:
         one: Interface
         other: Interfaces

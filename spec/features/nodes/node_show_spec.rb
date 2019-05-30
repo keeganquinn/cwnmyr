@@ -33,22 +33,22 @@ describe 'Node show page', type: :feature do
     expect(page).to have_content 'Spec Link'
   end
 
-  it 'allows a host to be created' do
-    fill_in 'host_name', with: 'spechost'
-    click_button 'host_create'
-    expect(page).to have_content 'spechost'
+  it 'allows a device to be created' do
+    fill_in 'device_name', with: 'specdevice'
+    click_button 'device_create'
+    expect(page).to have_content 'specdevice'
   end
 
-  it 'shows an error if host creation fails' do
-    click_button 'host_create'
-    expect(page).to have_content 'error prevented this host'
+  it 'shows an error if device creation fails' do
+    click_button 'device_create'
+    expect(page).to have_content 'error prevented this device'
   end
 
-  it 'allows the error to be corrected after a failed host create' do
-    click_button 'host_create'
-    fill_in 'host_name', with: 'spechost'
-    click_button 'host_create'
-    expect(page).to have_content 'spechost'
+  it 'allows the error to be corrected after a failed device create' do
+    click_button 'device_create'
+    fill_in 'device_name', with: 'specdevice'
+    click_button 'device_create'
+    expect(page).to have_content 'specdevice'
   end
 
   it 'allows the node to be edited' do

@@ -3,8 +3,8 @@
 describe 'Interface Property new page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
-  let(:host) { create :host, node: node }
-  let(:interface) { create :interface, host: host }
+  let(:device) { create :device, node: node }
+  let(:interface) { create :interface, device: device }
 
   before do
     login_as current_user

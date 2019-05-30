@@ -55,12 +55,12 @@ describe ImportLegacyDataService do
     expect(NodeLink.count).to be_positive
   end
 
-  it 'creates host records' do
-    expect(Host.count).to be_positive
+  it 'creates device records' do
+    expect(Device.count).to be_positive
   end
 
-  it 'creates host property records' do
-    expect(HostProperty.count).to be_positive
+  it 'creates device property records' do
+    expect(DeviceProperty.count).to be_positive
   end
 
   it 'creates interface records' do

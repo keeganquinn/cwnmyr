@@ -10,13 +10,13 @@ $TTL			86400
 
 <% zone.nodes.each do |node| -%>
 ; begin node: <%= node.code %> (<%= node.name %>)
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface -%>
-<%= host.name %>.<%= node.code %>	A	<%= host.primary_interface.ipv4_address %>
-<% if host.external_interface -%>
-<%= node.code %>	CNAME	<%= host.name %>.<%= node.code %>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface -%>
+<%= device.name %>.<%= node.code %>	A	<%= device.primary_interface.ipv4_address %>
+<% if device.external_interface -%>
+<%= node.code %>	CNAME	<%= device.name %>.<%= node.code %>
 <% end -%>
-<%= host.name %>	CNAME	<%= host.name %>.<%= node.code %>
+<%= device.name %>	CNAME	<%= device.name %>.<%= node.code %>
 <% end -%>
 <% end -%>
 ; end node: <%= node.code %>

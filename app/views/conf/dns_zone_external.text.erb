@@ -9,9 +9,9 @@ $TTL			86400
 
 <% @zone.nodes.each do |node| -%>
 ; begin node: <%= node.code %> (<%= node.name %>)
-<% if node.primary_host && node.primary_host.external_interface -%>
-<%= node.code %>	A	<%= node.primary_host.external_interface.ipv4_address %>
-<%= node.primary_host.name %>	CNAME	<%= node.code %>
+<% if node.primary_device && node.primary_device.external_interface -%>
+<%= node.code %>	A	<%= node.primary_device.external_interface.ipv4_address %>
+<%= node.primary_device.name %>	CNAME	<%= node.code %>
 <% end -%>
 ; end node: <%= node.code %>
 

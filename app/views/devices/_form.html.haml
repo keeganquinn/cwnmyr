@@ -1,0 +1,17 @@
+= render partial: 'shared/form_errors', locals: { record: device }
+
+.form-group
+  %label{ for: 'device_name' }= Device.human_attribute_name('name')
+  = text_field 'device', 'name', class: 'form-control',
+               'aria-describedby': 'device-name-help'
+  %span.help-block#device-name-help= t '.device_name_help'
+
+.form-group
+  %label{ for: 'device_device_type_id' }
+    = Device.human_attribute_name('device_type')
+  = collection_select 'device', 'device_type_id', DeviceType.all, 'id', 'name',
+    {}, class: 'form-control'
+
+.form-group
+  %label{ for: 'device_body' }= Device.human_attribute_name('body')
+  = text_area 'device', 'body', rows: 8, class: 'form-control'

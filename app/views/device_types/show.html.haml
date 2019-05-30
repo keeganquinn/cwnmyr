@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-md-12
+      %h1= h @device_type.name
+
+  .row
+    .col-md-12
+      %p= h @device_type.code
+
+      %h2= Device.model_name.human(count: 2)
+
+      %ul
+        - @device_type.devices.each do |device|
+          %li= link_to device.name, url_for(device)

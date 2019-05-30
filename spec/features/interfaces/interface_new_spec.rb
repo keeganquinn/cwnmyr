@@ -3,11 +3,11 @@
 describe 'Interface new page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
-  let(:host) { create :host, node: node }
+  let(:device) { create :device, node: node }
 
   before do
     login_as current_user
-    visit new_interface_path(host_id: host)
+    visit new_interface_path(device_id: device)
   end
 
   it { expect(page).to have_content 'New Interface' }

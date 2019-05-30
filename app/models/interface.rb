@@ -3,16 +3,16 @@
 require_dependency 'dot_diskless'
 
 # An Interface instance represents a network interface or connection with
-# a relationship to a Host instance.
+# a relationship to a Device instance.
 class Interface < ApplicationRecord
   has_paper_trail
-  belongs_to :host
+  belongs_to :device
   belongs_to :interface_type
   has_many :interface_properties
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
-  validates_uniqueness_of :code, scope: :host_id, case_sensitive: false
+  validates_uniqueness_of :code, scope: :device_id, case_sensitive: false
   validates_format_of :code,
                       with: /\A[-_a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
@@ -80,7 +80,7 @@ class Interface < ApplicationRecord
   def graph(rgl = RGL::AdjacencyGraph.new)
     ipv4_neighbors.each do |neighbor|
       rgl.add_edge name + ': ' + code,
-                   neighbor.host.name + ': ' + neighbor.code
+                   neighbor.device.name + ': ' + neighbor.code
     end
     rgl
   end

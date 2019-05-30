@@ -17,7 +17,7 @@
 
       = render partial: 'links', locals: { node: @node, node_link: @node_link }
 
-      = render partial: 'hosts', locals: { node: @node, host: @host }
+      = render partial: 'devices', locals: { node: @node, device: @device }
 
       %h2= t('.network_diagram')
       %p= image_tag graph_node_path(@node, format: :png)

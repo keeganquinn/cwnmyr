@@ -80,12 +80,12 @@ title = <%= zone.name %>
 menu = <%= node.name %>
 title = <%= node.name %>
 
-<% if node.primary_host && node.primary_host.external_interface -%>
-+++ <%= node.primary_host.name %>
+<% if node.primary_device && node.primary_device.external_interface -%>
++++ <%= node.primary_device.name %>
 
-menu = <%= node.primary_host.name %>
-title = <%= node.primary_host.name %>
-host = <%= node.primary_host.external_interface.ipv4_address %>
+menu = <%= node.primary_device.name %>
+title = <%= node.primary_device.name %>
+host = <%= node.primary_device.external_interface.ipv4_address %>
 
 <% end -%>
 <% end -%>

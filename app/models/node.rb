@@ -16,7 +16,7 @@ class Node < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :group, optional: true
   belongs_to :zone
-  has_many :hosts
+  has_many :devices
   has_many :node_links
   has_one_attached :logo
 
@@ -59,7 +59,7 @@ class Node < ApplicationRecord
   # Node instance, including related Interface instances and IPv4 neighbor
   # relationships.
   def graph(rgl = RGL::AdjacencyGraph.new)
-    hosts.each { |host| host.graph rgl }
+    devices.each { |device| device.graph rgl }
     rgl
   end
 

@@ -80,13 +80,13 @@ title = <%= zone.name %>
 menu = <%= node.name %>
 title = <%= node.name %>
 
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface -%>
-+++ <%= host.name %>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface -%>
++++ <%= device.name %>
 
-menu = <%= host.name %>
-title = <%= host.name %>
-host = <%= host.primary_interface.ipv4_address %>
+menu = <%= device.name %>
+title = <%= device.name %>
+host = <%= device.primary_interface.ipv4_address %>
 
 <% end -%>
 <% end -%>

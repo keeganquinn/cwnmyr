@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_091909) do
+ActiveRecord::Schema.define(version: 2019_05_29_180950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -148,6 +148,38 @@ ActiveRecord::Schema.define(version: 2019_05_29_091909) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
+  create_table "device_properties", id: :serial, force: :cascade do |t|
+    t.integer "device_id"
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_device_properties_on_device_id"
+    t.index ["key"], name: "index_device_properties_on_key"
+  end
+
+  create_table "device_types", id: :serial, force: :cascade do |t|
+    t.string "code", limit: 64
+    t.string "name"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_device_types_on_code"
+    t.index ["name"], name: "index_device_types_on_name"
+  end
+
+  create_table "devices", id: :serial, force: :cascade do |t|
+    t.integer "node_id"
+    t.string "name"
+    t.integer "device_type_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_type_id"], name: "index_devices_on_device_type_id"
+    t.index ["name"], name: "index_devices_on_name"
+    t.index ["node_id"], name: "index_devices_on_node_id"
+  end
+
   create_table "groups", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
@@ -165,38 +197,6 @@ ActiveRecord::Schema.define(version: 2019_05_29_091909) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_groups_users_on_group_id"
     t.index ["user_id"], name: "index_groups_users_on_user_id"
-  end
-
-  create_table "host_properties", id: :serial, force: :cascade do |t|
-    t.integer "host_id"
-    t.string "key"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["host_id"], name: "index_host_properties_on_host_id"
-    t.index ["key"], name: "index_host_properties_on_key"
-  end
-
-  create_table "host_types", id: :serial, force: :cascade do |t|
-    t.string "code", limit: 64
-    t.string "name"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_host_types_on_code", unique: true
-    t.index ["name"], name: "index_host_types_on_name", unique: true
-  end
-
-  create_table "hosts", id: :serial, force: :cascade do |t|
-    t.integer "node_id"
-    t.string "name"
-    t.integer "host_type_id"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["host_type_id"], name: "index_hosts_on_host_type_id"
-    t.index ["name"], name: "index_hosts_on_name"
-    t.index ["node_id"], name: "index_hosts_on_node_id"
   end
 
   create_table "interface_properties", id: :serial, force: :cascade do |t|
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_091909) do
   end
 
   create_table "interfaces", id: :serial, force: :cascade do |t|
-    t.integer "host_id"
+    t.integer "device_id"
     t.string "code"
     t.string "name"
     t.integer "interface_type_id"
@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_091909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_interfaces_on_code"
-    t.index ["host_id"], name: "index_interfaces_on_host_id"
+    t.index ["device_id"], name: "index_interfaces_on_device_id"
     t.index ["interface_type_id"], name: "index_interfaces_on_interface_type_id"
     t.index ["name"], name: "index_interfaces_on_name"
   end

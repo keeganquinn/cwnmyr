@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Each Status instance represents a generalized state which might apply
-# to any number of Node, Host or Interface instances.
+# Status represents the overall state of a Node.
 class Status < ApplicationRecord
   has_paper_trail
   has_many :nodes

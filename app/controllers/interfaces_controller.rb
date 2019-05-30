@@ -10,7 +10,7 @@ class InterfacesController < ApplicationController
   end
 
   def new
-    @interface = authorize Interface.new(host_id: params[:host_id])
+    @interface = authorize Interface.new(device_id: params[:device_id])
   end
 
   def create
@@ -30,14 +30,14 @@ class InterfacesController < ApplicationController
 
   def destroy
     @interface = authorize Interface.find(params[:id])
-    destroy_and_respond @interface, @interface.host
+    destroy_and_respond @interface, @interface.device
   end
 
   private
 
   def safe_params
     params.require(:interface).permit(
-      :host_id, :code, :name, :interface_type_id, :body,
+      :device_id, :code, :name, :interface_type_id, :body,
       :address_ipv4, :address_ipv6, :address_mac,
       :latitude, :longitude, :altitude,
       :essid, :security_psk, :channel, :tx_power, :rx_sensitivity,

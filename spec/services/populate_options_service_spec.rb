@@ -13,8 +13,8 @@ describe PopulateOptionsService do
     expect(Group.count).to be_positive
   end
 
-  it 'creates host type records' do
-    expect(HostType.count).to be_positive
+  it 'creates device type records' do
+    expect(DeviceType.count).to be_positive
   end
 
   it 'creates interface type records' do

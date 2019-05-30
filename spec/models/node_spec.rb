@@ -8,7 +8,7 @@ describe Node do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:group) }
   it { is_expected.to belong_to(:zone) }
-  it { is_expected.to have_many(:hosts) }
+  it { is_expected.to have_many(:devices) }
   it { is_expected.to have_many(:node_links) }
 
   it { is_expected.to respond_to(:code) }

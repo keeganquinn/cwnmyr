@@ -1,0 +1,11 @@
+= render partial: 'shared/form_errors', locals: { record: device_property }
+
+.form-group
+  %label{ for: 'device_property_key' }
+    = DeviceProperty.human_attribute_name('key')
+  = text_field 'device_property', 'key', class: 'form-control'
+
+.form-group
+  %label{ for: 'device_property_value' }
+    = DeviceProperty.human_attribute_name('value')
+  = text_field 'device_property', 'value', class: 'form-control'

@@ -20,7 +20,7 @@ class NodeDashboard < Administrate::BaseDashboard
     hours: Field::String,
     notes: Field::Text,
     contact: Field::BelongsTo,
-    hosts: Field::HasMany,
+    devices: Field::HasMany,
     node_links: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -30,7 +30,7 @@ class NodeDashboard < Administrate::BaseDashboard
 
   SHOW_PAGE_ATTRIBUTES = %i[
     zone code name user group status logo body address latitude longitude hours
-    notes contact hosts node_links created_at updated_at
+    notes contact devices node_links created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[

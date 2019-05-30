@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       mount Blazer::Engine, at: 'blazer'
       mount PgHero::Engine, at: 'pghero'
     end
-    resources :contacts, :groups, :hosts, :host_properties, :host_types,
+    resources :contacts, :groups, :devices, :device_properties, :device_types,
               :interfaces, :interface_properties, :interface_types,
               :nodes, :node_links, :statuses, :users, :user_links, :zones
     root to: 'users#index'
@@ -17,10 +17,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :host_types, :host_properties, :host_types,
+  resources :devices, :device_properties, :device_types,
             :interfaces, :interface_properties, :interface_types,
             :node_links, :users, :user_links, :statuses
-  resources :hosts do
+  resources :devices do
     member do
       get 'graph'
     end

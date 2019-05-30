@@ -3,7 +3,7 @@
 describe Interface do
   subject(:interface) { build_stubbed :interface }
 
-  it { is_expected.to belong_to(:host) }
+  it { is_expected.to belong_to(:device) }
   it { is_expected.to belong_to(:interface_type) }
   it { is_expected.to have_many(:interface_properties) }
 
@@ -81,7 +81,7 @@ describe Interface do
 
     it do
       expect(interface).to(
-        validate_uniqueness_of(:code).scoped_to(:host_id).case_insensitive
+        validate_uniqueness_of(:code).scoped_to(:device_id).case_insensitive
       )
     end
   end

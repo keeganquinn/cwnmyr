@@ -36,7 +36,7 @@ class ImportLegacyDataService
       build_link node, 'RSS Feed', 'rss', value
       build_link node, 'Twitter', 'twitter', value
       build_link node, 'Wiki', 'wikiurl', value
-      build_host node, value
+      build_device node, value
 
       node
     end
@@ -88,44 +88,44 @@ class ImportLegacyDataService
     NodeLink.find_or_create_by node: node, name: name, url: value[key]
   end
 
-  def build_host(node, value)
+  def build_device(node, value)
     return unless value['hostname']
 
-    host = Host.find_or_create_by(
+    device = Device.find_or_create_by(
       node: node, name: value['hostname'],
-      host_type: HostType.find_by(code: value['device'].try(:downcase))
+      device_type: DeviceType.find_by(code: value['device'].try(:downcase))
     )
 
-    build_prop host, 'filter', value
-    build_prop host, 'splashpageversion', value
-    build_prop host, 'dhcpstart', value
+    build_prop device, 'filter', value
+    build_prop device, 'splashpageversion', value
+    build_prop device, 'dhcpstart', value
 
-    build_iface_pub host, value
-    build_iface_priv host, value
+    build_iface_pub device, value
+    build_iface_priv device, value
   end
 
-  def build_prop(host, key, value)
+  def build_prop(device, key, value)
     return unless value[key]
 
-    HostProperty.find_or_create_by host: host, key: key, value: value[key]
+    DeviceProperty.find_or_create_by device: device, key: key, value: value[key]
   end
 
-  def build_iface_pub(host, value)
+  def build_iface_pub(device, value)
     return unless value['pubaddr']
 
     pub = InterfaceType.find_by code: 'pub'
     mask = value['pubmasklen'] || '24'
-    Interface.find_or_create_by host: host, interface_type: pub,
+    Interface.find_or_create_by device: device, interface_type: pub,
                                 name: 'Public Network',
                                 address_ipv4: "#{value['pubaddr']}/#{mask}"
   end
 
-  def build_iface_priv(host, value)
+  def build_iface_priv(device, value)
     return unless value['privaddr']
 
     priv = InterfaceType.find_by code: 'priv'
     mask = value['privmasklen'] || '24'
-    Interface.find_or_create_by host: host, interface_type: priv,
+    Interface.find_or_create_by device: device, interface_type: priv,
                                 name: 'Private Network',
                                 address_ipv4: "#{value['privaddr']}/#{mask}"
   end

@@ -22,7 +22,7 @@
         %span{ class: node.status.color } &larr;
         %span.small
           = surround '(', ')' do
-            = t :hosts_numbered, count: node.hosts.count
+            = t :devices_numbered, count: node.devices.count
     - if user_signed_in?
       %li= link_to t('.new_node'), new_node_path(zone: @zone)
 

@@ -10,8 +10,8 @@
 <% contact_maintainers = [] -%>
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface and node.user -%>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface and node.user -%>
 <% unless contact_maintainers.include? node.user -%>
 <% contact_maintainers.push node.user -%>
 # <%= node.user.name %> is a node maintainer
@@ -36,8 +36,8 @@ define contact{
 <% contactgroup_maintainers = [] -%>
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface and node.user -%>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface and node.user -%>
 <% unless contactgroup_maintainers.include? node.user -%>
 <% contactgroup_maintainers.push node.user -%>
 # <%= node.user.name %> is a node maintainer
@@ -57,14 +57,14 @@ define contactgroup{
 
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface -%>
-# <%= node.code %>: <%= host.name %>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface -%>
+# <%= node.code %>: <%= device.name %>
 define host{
         use                     generic-host            ; Name of host template to use
-        host_name               <%= host.name %>.<%= node.code %>
-        alias                   <%= host.name %>.<%= node.code %>
-        address                 <%= host.primary_interface.ipv4_address %>
+        host_name               <%= device.name %>.<%= node.code %>
+        alias                   <%= device.name %>.<%= node.code %>
+        address                 <%= device.primary_interface.ipv4_address %>
         check_command           check-host-alive
         max_check_attempts      10
         notification_interval   120
@@ -79,14 +79,14 @@ define host{
 
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface and node.user -%>
-# <%= node.code %>: <%= host.name %>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface and node.user -%>
+# <%= node.code %>: <%= device.name %>
 define hostgroup{
-        hostgroup_name  <%= host.name %>.<%= node.code %>
-        alias           <%= host.name %>.<%= node.code %>
+        hostgroup_name  <%= device.name %>.<%= node.code %>
+        alias           <%= device.name %>.<%= node.code %>
         contact_groups  <%= node.user.name %>
-        members         <%= host.name %>.<%= node.code %>
+        members         <%= device.name %>.<%= node.code %>
         }
 
 <% end -%>
@@ -98,12 +98,12 @@ define hostgroup{
 
 <% Zone.all.each do |zone| -%>
 <% zone.nodes.each do |node| -%>
-<% node.hosts.each do |host| -%>
-<% if host.primary_interface and node.user -%>
-# <%= node.code %>: <%= host.name %>
+<% node.devices.each do |device| -%>
+<% if device.primary_interface and node.user -%>
+# <%= node.code %>: <%= device.name %>
 define service{
         use                             generic-service         ; Name of service template to use
-        host_name                       <%= host.name %>.<%= node.code %>
+        host_name                       <%= device.name %>.<%= node.code %>
         service_description             PING
         is_volatile                     0
         check_period                    24x7

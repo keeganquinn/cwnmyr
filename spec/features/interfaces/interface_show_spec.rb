@@ -3,8 +3,8 @@
 describe 'Interface show page', type: :feature do
   let(:current_user) { create :user }
   let(:node) { create :node, user: current_user }
-  let(:host) { create :host, node: node }
-  let(:interface) { create :interface, host: host }
+  let(:device) { create :device, node: node }
+  let(:interface) { create :interface, device: device }
 
   before do
     login_as current_user
@@ -20,6 +20,6 @@ describe 'Interface show page', type: :feature do
 
   it 'allows the interface to be deleted' do
     click_link 'Delete'
-    expect(page).to have_content interface.host.name
+    expect(page).to have_content interface.device.name
   end
 end

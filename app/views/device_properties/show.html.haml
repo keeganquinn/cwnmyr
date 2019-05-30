@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-12
+      %h1= h @device_property.key
+
+  .row
+    .col-md-7
+      = render partial: 'shared/edit_delete',
+               locals: { record: @device_property }
+
+      %p= h @device_property.value
+
+    .col-md-5
+      %p.small
+        = link_to @device_property.device.name, url_for(@device_property.device)

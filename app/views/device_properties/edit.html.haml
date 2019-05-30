@@ -1,0 +1,10 @@
+.container
+  %h1= t :edit_h, thing: DeviceProperty.model_name.human
+
+  = form_tag url_for(@device_property), method: :put do
+    = render partial: 'form', locals: { device_property: @device_property }
+
+    = submit_tag t(:update), id: 'device_property_update',
+                 class: 'btn btn-primary'
+    = link_to t(:cancel), url_for(@device_property.device),
+              class: 'btn btn-warning'

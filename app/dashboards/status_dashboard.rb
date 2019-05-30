@@ -12,7 +12,7 @@ class StatusDashboard < Administrate::BaseDashboard
     color: Field::String,
     ordinal: Field::Number,
     nodes: Field::HasMany,
-    hosts: Field::HasMany,
+    devices: Field::HasMany,
     interfaces: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -21,7 +21,7 @@ class StatusDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[code name color ordinal].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[code name default_display color ordinal
-                            nodes hosts interfaces].freeze
+                            nodes devices interfaces].freeze
 
   FORM_ATTRIBUTES = %i[code name default_display color ordinal].freeze
 

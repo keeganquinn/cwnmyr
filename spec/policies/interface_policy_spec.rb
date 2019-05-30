@@ -8,8 +8,8 @@ describe InterfacePolicy do
   let(:admin) { build_stubbed :user, :admin }
 
   let(:node) { build_stubbed :node, user: current_user }
-  let(:host) { build_stubbed :host, node: node }
-  let(:interface) { build_stubbed :interface, host: host }
+  let(:device) { build_stubbed :device, node: node }
+  let(:interface) { build_stubbed :interface, device: device }
 
   permissions :show? do
     let(:interface) { create :interface }

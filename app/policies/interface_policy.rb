@@ -5,7 +5,7 @@ class InterfacePolicy < ApplicationPolicy
   def create?
     return false unless @user
 
-    @user.try(:admin?) || @record.host.node.user == @user
+    @user.try(:admin?) || @record.device.node.user == @user
   end
 
   def update?
