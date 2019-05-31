@@ -71,7 +71,7 @@ GEM
       activerecord (~> 5.0)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    administrate (0.10.0)
+    administrate (0.11.0)
       actionpack (>= 4.2, < 6.0)
       actionview (>= 4.2, < 6.0)
       activerecord (>= 4.2, < 6.0)
@@ -454,7 +454,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    searchkick (4.0.0)
+    searchkick (4.0.1)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
@@ -538,7 +538,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   acts-as-taggable-on
-  administrate (= 0.10.0)
+  administrate
   administrate-field-active_storage
   ahoy_matey
   better_errors

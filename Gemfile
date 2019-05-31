@@ -13,7 +13,7 @@ gem 'foreman'
 gem 'pg'
 gem 'puma', '~> 3.0'
 
-gem 'administrate', '= 0.10.0'
+gem 'administrate'
 gem 'bootsnap', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
