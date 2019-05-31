@@ -26,7 +26,7 @@ class UserDashboard < Administrate::BaseDashboard
     unconfirmed_email: Field::Email,
     code: Field::String,
     name: Field::String,
-    role: Field::String.with_options(searchable: false),
+    role: Field::Select.with_options(collection: User.roles.keys),
     body: Field::Text,
     groups: Field::HasMany,
     contacts: Field::HasMany,
