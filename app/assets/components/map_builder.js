@@ -37,15 +37,22 @@ class MapBuilder {
     request.send()
   }
 
+  get big () {
+    return !!this.data.statuses
+  }
+
   handleError (error) {
     this.errors.push(error)
   }
 
   handleResponse (data) {
     this.data = data
+
     this.gBounds = new google.maps.LatLngBounds()
     this.gInfoWindow = new google.maps.InfoWindow()
     this.gMap = new google.maps.Map(this.mapDiv, {
+      fullscreenControl: this.big,
+      gestureHandling: this.big ? 'greedy' : 'cooperative',
       maxZoom: 18,
       minZoom: 12,
       zoom: 17
@@ -115,7 +122,7 @@ class MapBuilder {
   }
 
   handleResize (event) {
-    if (!this.mapDiv || !this.data.statuses) return
+    if (!this.big) return
 
     this.mapDiv.style.height = `${window.innerHeight - 56}px`
     window.scrollTo(0, 0)
