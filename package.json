@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-modules-commonjs": "^7.4.4",
-    "@rails/webpacker": "^4.0.5",
+    "@rails/webpacker": "^4.0.6",
     "ahoy.js": "^0.3.4",
     "autoprefixer": "^9.5.1",
     "bootstrap": "^4.3.1",
@@ -85,6 +85,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "jest-junit": "^6.4.0",
-    "webpack-dev-server": "^3.4.1"
+    "webpack-dev-server": "^3.5.0"
   }
 }
