@@ -114,7 +114,10 @@ MapBuilder.prototype.handleResponse = function (data) {
 }
 
 MapBuilder.prototype.handleResize = function (event) {
-  if (this.mapDiv) this.mapDiv.style.height = `${window.innerHeight - 56}px`
+  if (!this.mapDiv) return
+
+  this.mapDiv.style.height = `${window.innerHeight - 56}px`
+  window.scrollTo(0, 0)
 }
 
 MapBuilder.prototype.handlePosition = function (position) {
