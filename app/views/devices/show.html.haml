@@ -8,10 +8,11 @@
       = render partial: 'shared/edit_delete', locals: { record: @device }
 
       %p.small
-        = link_to t(:zone, zone: @device.node.zone.name),
-          url_for(@device.node.zone)
-        %br/
-        = link_to t(:node, node: @device.node.name), url_for(@device.node)
+        - if @device.node
+          = link_to t(:zone, zone: @device.node.zone.name),
+            url_for(@device.node.zone)
+          %br/
+          = link_to t(:node, node: @device.node.name), url_for(@device.node)
         - if @device.device_type
           %br/
           = link_to @device.device_type.name, url_for(@device.device_type)
