@@ -7,6 +7,6 @@
 describe 'Home page', type: :feature do
   before { visit root_path }
 
-  it { expect(page).to have_content 'Welcome' }
+  it { expect(page).to have_content 'Browse' }
   it { expect(page).to have_selector "#map[data-center='disco']" }
 end

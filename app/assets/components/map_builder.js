@@ -39,7 +39,7 @@ MapBuilder.prototype.handleResponse = function (data) {
   this.gInfoWindow = new google.maps.InfoWindow()
   this.gMap = new google.maps.Map(this.mapDiv, {
     maxZoom: 18,
-    minZoom: 11,
+    minZoom: 12,
     zoom: 17
   })
 
@@ -88,12 +88,20 @@ MapBuilder.prototype.handleResponse = function (data) {
   if (data.node) {
     this.renderNode(data.node)
   } else if (data.statuses) {
+    window.addEventListener('orientationchange', this.handleResize.bind(this))
+    window.addEventListener('resize', this.handleResize.bind(this))
+    this.handleResize()
+
     for (let status of data.statuses) {
       this.renderStatus(status)
     }
     this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
       this.statusCtrl)
   } else if (data.zone && data.zone.statuses) {
+    window.addEventListener('orientationchange', this.handleResize.bind(this))
+    window.addEventListener('resize', this.handleResize.bind(this))
+    this.handleResize()
+
     for (let status of data.zone.statuses) {
       this.renderStatus(status)
     }
@@ -103,6 +111,10 @@ MapBuilder.prototype.handleResponse = function (data) {
 
   this.gMap.fitBounds(this.gBounds)
   this.gMap.panToBounds(this.gBounds)
+}
+
+MapBuilder.prototype.handleResize = function (event) {
+  if (this.mapDiv) this.mapDiv.style.height = `${window.innerHeight - 56}px`
 }
 
 MapBuilder.prototype.handlePosition = function (position) {

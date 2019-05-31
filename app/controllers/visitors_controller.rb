@@ -2,6 +2,8 @@
 
 # Visitors controller. This controller serves the default root page.
 class VisitorsController < ApplicationController
+  layout 'big', only: [:index]
+
   def index; end
 
   def search

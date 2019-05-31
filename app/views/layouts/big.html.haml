@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+    %title= content_for?(:title) ? yield(:title) : t(:cwnmyr)
+    = remote_javascript_includes
+    = javascript_pack_tag 'main', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'main', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+    = csp_meta_tag
+  %body
+    %header
+      = render 'layouts/navigation'
+    = render 'layouts/messages'
+    = yield

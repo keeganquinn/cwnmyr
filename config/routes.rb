@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     root to: 'users#index'
   end
 
+  get 'browse', to: 'visitors#browse'
   get 'search', to: 'visitors#search'
   root to: 'visitors#index'
 

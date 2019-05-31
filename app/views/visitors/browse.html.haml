@@ -1,0 +1,47 @@
+.container
+  .row.vertical-align
+    .col-12
+      %h1= t :search
+
+      = form_tag search_path, id: 'search', method: 'GET' do
+        = text_field_tag 'query', params[:query]
+        = submit_tag t(:search)
+
+  .row
+    .col-sm-6
+      %h2= t :browse
+
+      %ul
+        - Zone.all.each do |zone|
+          %li
+            = link_to h(zone.name), url_for(zone)
+            %span.small
+              = surround '(', ')' do
+                = t :nodes_numbered, count: zone.nodes.count
+
+      %h2= t :additional_data
+
+      %ul
+        %li= link_to DeviceType.model_name.human(count: 2), device_types_path
+        %li= link_to InterfaceType.model_name.human(count: 2),
+          interface_types_path
+        %li= link_to Status.model_name.human(count: 2), statuses_path
+
+    .col-sm-6
+      - unless user_signed_in?
+        %h2= t :join_us
+
+        %ul
+          %li= link_to t(:sign_in), user_session_path
+          %li= link_to t(:sign_up), new_user_registration_path
+
+      - if user_signed_in? && current_user.nodes.count.positive?
+        %h2= t '.my_nodes'
+
+        %ul
+          - current_user.nodes.order(name: :asc).each do |node|
+            %li
+              = link_to h(node.name), url_for(node)
+              %span.small
+                = surround '(', ')' do
+                  = t :devices_numbered, count: node.devices.count

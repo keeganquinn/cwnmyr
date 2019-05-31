@@ -1,3 +1,5 @@
+%li.nav-item= link_to 'Browse', browse_path, class: 'nav-link'
+
 - if user_signed_in?
   %li.nav-item
     = link_to 'Profile', edit_user_registration_path, class: 'nav-link'
