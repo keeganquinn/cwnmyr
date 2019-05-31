@@ -12,6 +12,7 @@ const Rails = require('rails-ujs')
 Rails.start()
 
 var mb = new MapBuilder()
+mb.prepare()
 
 document.addEventListener('turbolinks:load', function (event) {
   ahoy.trackView()

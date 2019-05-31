@@ -2,12 +2,18 @@
 
 class MapBuilder {
   constructor () {
+    this.data = null
     this.gBounds = null
     this.gInfoWindow = null
     this.gMap = null
     this.mapDiv = null
     this.statusCtrl = null
     this.errors = []
+  }
+
+  prepare () {
+    window.addEventListener('orientationchange', this.handleResize.bind(this))
+    window.addEventListener('resize', this.handleResize.bind(this))
   }
 
   initMap () {
@@ -36,6 +42,7 @@ class MapBuilder {
   }
 
   handleResponse (data) {
+    this.data = data
     this.gBounds = new google.maps.LatLngBounds()
     this.gInfoWindow = new google.maps.InfoWindow()
     this.gMap = new google.maps.Map(this.mapDiv, {
@@ -89,20 +96,12 @@ class MapBuilder {
     if (data.node) {
       this.renderNode(data.node)
     } else if (data.statuses) {
-      window.addEventListener('orientationchange', this.handleResize.bind(this))
-      window.addEventListener('resize', this.handleResize.bind(this))
-      this.handleResize()
-
       for (let status of data.statuses) {
         this.renderStatus(status)
       }
       this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
         this.statusCtrl)
     } else if (data.zone && data.zone.statuses) {
-      window.addEventListener('orientationchange', this.handleResize.bind(this))
-      window.addEventListener('resize', this.handleResize.bind(this))
-      this.handleResize()
-
       for (let status of data.zone.statuses) {
         this.renderStatus(status)
       }
@@ -112,10 +111,11 @@ class MapBuilder {
 
     this.gMap.fitBounds(this.gBounds)
     this.gMap.panToBounds(this.gBounds)
+    this.handleResize()
   }
 
   handleResize (event) {
-    if (!this.mapDiv) return
+    if (!this.mapDiv || !this.data.statuses) return
 
     this.mapDiv.style.height = `${window.innerHeight - 56}px`
     window.scrollTo(0, 0)
