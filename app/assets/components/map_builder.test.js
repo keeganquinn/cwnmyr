@@ -116,6 +116,8 @@ const stubApis = function () {
     }
   }
 
+  window.scrollTo = jest.fn()
+
   navigator.geolocation = {
     getCurrentPosition: function () {}
   }
