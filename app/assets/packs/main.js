@@ -1,3 +1,5 @@
+import { MapBuilder } from 'components/map_builder'
+
 import ahoy from 'ahoy.js'
 
 var Turbolinks = require('turbolinks')
@@ -9,7 +11,6 @@ require('bootstrap/dist/js/bootstrap.js')
 const Rails = require('rails-ujs')
 Rails.start()
 
-const MapBuilder = require('components/map_builder')
 var mb = new MapBuilder()
 
 document.addEventListener('turbolinks:load', function (event) {

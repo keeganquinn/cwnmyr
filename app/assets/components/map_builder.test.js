@@ -1,4 +1,4 @@
-const MapBuilder = require('./map_builder')
+import { MapBuilder } from 'components/map_builder'
 
 const stubApis = function () {
   window.google = {
