@@ -17,6 +17,12 @@
   = collection_select 'node', 'status_id', Status.all, 'id', 'name', {},
                       class: 'form-control'
 
+- unless current_user.groups.empty?
+  .form-group
+    %label{ for: 'node_group' }= Node.human_attribute_name('group')
+    = collection_select 'node', 'group_id', current_user.groups, 'id', 'name',
+                        {include_blank: 'None'}, class: 'form-control'
+
 .form-group
   %label{ for: 'node_body' }= Node.human_attribute_name('body')
   = text_area 'node', 'body', rows: 8, class: 'form-control',

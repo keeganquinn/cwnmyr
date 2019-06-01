@@ -24,11 +24,17 @@
 
     .col-md-5
       %p.small
-        = link_to t(:zone, zone: @node.zone.name), url_for(@node.zone)
+        Zone:
+        = link_to @node.zone.name, url_for(@node.zone)
         %br/
         = t :code, code: @node.code
         %br/
-        - if @node.user.name
+        - unless @node.group.blank?
+          Managed By:
+          = link_to @node.group.name, url_for(@node.group)
+          %br/
+        - if @node.group.blank? && @node.user&.visible?
+          Owner:
           = link_to @node.user.name, url_for(@node.user)
           %br/
         %span{ class: @node.status.color }

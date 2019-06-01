@@ -7,8 +7,7 @@ class VisitorsController < ApplicationController
   def index; end
 
   def search
-    return redirect_to root_path if params[:query].blank?
-
-    @results = Searchkick.search params[:query], index_name: [Node]
+    @results = Searchkick.search params[:query],
+                                 index_name: [Node], match: :word_start
   end
 end

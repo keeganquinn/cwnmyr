@@ -8,11 +8,6 @@ class NodesController < ApplicationController
   def show
     @node = authorize Node.find(params[:id])
     serve_image if params[:format] == 'png'
-  rescue ActiveRecord::RecordNotFound
-    @node = authorize Node.find_by_code(params[:id])
-    raise unless @node
-
-    redirect_to node_path(@node)
   end
 
   def new
@@ -53,6 +48,8 @@ class NodesController < ApplicationController
   private
 
   def serve_image
+    return head(:ok) unless @node.logo.attached?
+
     expires_in 1.year, public: true
     send_data @node.logo.blob.service.download(@node.logo.blob.key),
               type: @node.logo.blob.content_type, disposition: 'inline'
@@ -60,7 +57,7 @@ class NodesController < ApplicationController
 
   def safe_params
     params.require(:node).permit(
-      :user_id, :zone_id, :code, :name, :status_id, :body, :address,
+      :user_id, :zone_id, :code, :name, :status_id, :group_id, :body, :address,
       :hours, :notes, :logo
     )
   end

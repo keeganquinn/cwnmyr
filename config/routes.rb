@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :devices, :device_properties, :device_types,
+  resources :devices, :device_properties, :device_types, :groups,
             :interfaces, :interface_properties, :interface_types,
             :node_links, :users, :user_links, :statuses
   resources :devices do

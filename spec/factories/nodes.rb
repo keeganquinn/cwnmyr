@@ -11,15 +11,17 @@ FactoryBot.define do
     address { '709 W 27th St., Vancouver, WA 98660' }
     notes { Faker::Lorem.paragraphs }
 
-    transient do
-      logo_file do
-        Rack::Test::UploadedFile.new 'app/assets/images/position.png',
-                                     'image/png'
-      end
+    trait :with_image do
+      transient do
+        logo_file do
+          Rack::Test::UploadedFile.new 'app/assets/images/position.png',
+                                       'image/png'
+        end
 
-      after :build do |node, evaluator|
-        node.logo.attach io: evaluator.logo_file.open,
-                         filename: evaluator.logo_file.path
+        after :build do |node, evaluator|
+          node.logo.attach io: evaluator.logo_file.open,
+                           filename: evaluator.logo_file.path
+        end
       end
     end
   end

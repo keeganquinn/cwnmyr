@@ -1,15 +1,13 @@
 .container
   .row.vertical-align
-    .col-12
-      %h1= t :search
+    .col-sm-6
+      %h2= t :search
 
       = form_tag search_path, id: 'search', method: 'GET' do
         = text_field_tag 'query', params[:query]
         = submit_tag t(:search)
 
-  .row
-    .col-sm-6
-      %h2= t :browse
+      %h2= Zone.model_name.human.pluralize
 
       %ul
         - Zone.all.each do |zone|
@@ -18,6 +16,17 @@
             %span.small
               = surround '(', ')' do
                 = t :nodes_numbered, count: zone.nodes.count
+
+      - if user_signed_in? && current_user.groups.count.positive?
+        %h2= Group.model_name.human.pluralize
+
+        %ul
+          - current_user.groups.order(name: :asc).each do |group|
+            %li
+              = link_to h(group.name), url_for(group)
+              %span.small
+                = surround '(', ')' do
+                  = t :nodes_numbered, count: group.nodes.count
 
       %h2= t :additional_data
 
@@ -35,11 +44,11 @@
           %li= link_to t(:sign_in), user_session_path
           %li= link_to t(:sign_up), new_user_registration_path
 
-      - if user_signed_in? && current_user.nodes.count.positive?
+      - if user_signed_in? && current_user.nodes.ungrouped.count.positive?
         %h2= t '.my_nodes'
 
         %ul
-          - current_user.nodes.order(name: :asc).each do |node|
+          - current_user.nodes.ungrouped.order(name: :asc).each do |node|
             %li
               = link_to h(node.name), url_for(node)
               %span.small

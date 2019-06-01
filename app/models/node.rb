@@ -9,7 +9,7 @@ class Node < ApplicationRecord
 
   acts_as_taggable
   has_paper_trail
-  searchkick
+  searchkick word_start: %i[code name body address notes tag_list]
 
   belongs_to :contact, optional: true
   belongs_to :status
@@ -34,6 +34,8 @@ class Node < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :should_geocode?
+
+  scope :ungrouped, -> { where(group_id: nil) }
 
   def search_data
     {

@@ -60,9 +60,4 @@ describe 'Node show page', type: :feature do
     click_link 'Delete'
     expect(page).to have_content node.zone.name
   end
-
-  it 'allows a node to be referenced by code' do
-    visit node_path(node.code)
-    expect(page).to have_content node.name
-  end
 end

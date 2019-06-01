@@ -10,16 +10,25 @@
         %br/
         = t :updated, date: @user.updated_at.to_s(:db)
 
-      %h2= Node.model_name.human(count: 2)
+      - unless @user.groups.empty?
+        %h2= Group.model_name.human.pluralize
 
-      %ul
-        - @user.nodes.order(name: :asc).each do |node|
-          %li= link_to node.name, url_for(node)
+        %ul
+          - @user.groups.order(name: :asc).each do |group|
+            %li= link_to group.name, url_for(group)
 
-      %h2= UserLink.model_name.human(count: 2)
+      - unless @user.nodes.ungrouped.empty?
+        %h2= Node.model_name.human.pluralize
 
-      %ul
-        - @user.user_links.each do |user_link|
-          %li= link_to user_link.name, url_for(user_link)
-        - if policy(@user).update?
-          %li= link_to t('.new_link'), new_user_link_path(user: @user)
+        %ul
+          - @user.nodes.ungrouped.order(name: :asc).each do |node|
+            %li= link_to node.name, url_for(node)
+
+      - unless @user.user_links.empty? && !policy(@user).update?
+        %h2= UserLink.model_name.human.pluralize
+
+        %ul
+          - @user.user_links.each do |user_link|
+            %li= link_to user_link.name, url_for(user_link)
+          - if policy(@user).update?
+            %li= link_to t('.new_link'), new_user_link_path(user: @user)

@@ -1,0 +1,27 @@
+.container
+  %h1= h @group.name
+
+  %p.small
+    = t :created, date: @group.created_at.to_s(:db)
+    %br/
+    = t :updated, date: @group.updated_at.to_s(:db)
+
+  = markdown @group.body
+
+  - unless @group.users.visible.empty?
+    %h2= t User.model_name.human.pluralize
+
+    %ul
+      - @group.users.visible.order(name: :asc).each do |user|
+        %li= link_to h(user.name), url_for(user)
+
+  - unless @group.nodes.empty?
+    %h2= t Node.model_name.human.pluralize
+
+    %ul
+      - @group.nodes.order(name: :asc).each do |node|
+        %li
+          = link_to h(node.name), url_for(node)
+          %span.small
+            = surround '(', ')' do
+              = t :devices_numbered, count: node.devices.count
