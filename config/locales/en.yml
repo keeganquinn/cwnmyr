@@ -44,6 +44,7 @@ en:
     one: "One error prevented this %{thing} from being saved:"
     other: "%{count} errors prevented this %{thing} from being saved:"
   total_numbered: "%{count} total"
+  visible_numbered: "%{count} visible"
   nodes_numbered:
     one: "one node"
     other: "%{count} nodes"

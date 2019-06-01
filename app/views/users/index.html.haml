@@ -1,8 +1,11 @@
 %h1= User.model_name.human(count: 2)
 
-%p.small= t :total_numbered, count: User.count
+%p.small
+  = succeed(',') do
+    = t :total_numbered, count: User.count
+  = t :visible_numbered, count: User.visible.count
 
 %ul
-  - @users.each do |user|
+  - User.visible.each do |user|
     %li{ id: "user_#{user.to_param}" }
       = link_to h(user.name), url_for(user)

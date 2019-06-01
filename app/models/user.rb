@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
   before_validation :set_defaults
 
+  scope :visible, -> { where.not(code: [nil, '']) }
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 
@@ -41,5 +43,9 @@ class User < ApplicationRecord
   def set_defaults
     self.code = name.parameterize if name
     self.role ||= :user
+  end
+
+  def visible?
+    !code.blank?
   end
 end
