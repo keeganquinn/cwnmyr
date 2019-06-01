@@ -69,6 +69,7 @@ class ImportLegacyDataService
 
     node.contact = build_contact(value) if value['contact']
     node.user ||= @user
+    node.group ||= node.user&.groups&.first
 
     node.save
   end
