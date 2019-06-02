@@ -58,6 +58,6 @@ describe 'Node show page', type: :feature do
 
   it 'allows the node to be deleted' do
     click_link 'Delete'
-    expect(page).to have_content node.zone.name
+    expect(page).to have_content 'successfully deleted'
   end
 end

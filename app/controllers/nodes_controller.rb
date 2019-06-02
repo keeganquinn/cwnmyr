@@ -11,7 +11,9 @@ class NodesController < ApplicationController
   end
 
   def new
-    @node = authorize Node.new(user_id: current_user.id, zone_id: params[:zone])
+    @node = authorize Node.new(
+      user_id: current_user.id, zone_id: Zone.default&.id
+    )
   end
 
   def create
@@ -31,7 +33,7 @@ class NodesController < ApplicationController
 
   def destroy
     @node = authorize Node.find(params[:id])
-    destroy_and_respond @node, @node.zone
+    destroy_and_respond @node, root_path
   end
 
   def graph
