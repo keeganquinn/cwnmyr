@@ -6,7 +6,6 @@ describe User do
   it { is_expected.to have_and_belong_to_many(:groups) }
   it { is_expected.to have_many(:contacts) }
   it { is_expected.to have_many(:nodes) }
-  it { is_expected.to have_many(:user_links) }
 
   it { is_expected.to respond_to(:email) }
   it { is_expected.to respond_to(:code) }

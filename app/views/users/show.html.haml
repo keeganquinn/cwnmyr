@@ -27,12 +27,3 @@
         %ul
           - @user.nodes.ungrouped.order(name: :asc).each do |node|
             %li= link_to node.name, url_for(node)
-
-      - unless @user.user_links.empty? && !policy(@user).update?
-        %h2= UserLink.model_name.human.pluralize
-
-        %ul
-          - @user.user_links.each do |user_link|
-            %li= link_to user_link.name, url_for(user_link)
-          - if policy(@user).update?
-            %li= link_to t('.new_link'), new_user_link_path(user: @user)

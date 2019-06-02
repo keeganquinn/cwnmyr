@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     resources :contacts, :groups, :devices, :device_properties, :device_types,
               :interfaces, :interface_properties, :interface_types,
-              :nodes, :node_links, :statuses, :users, :user_links, :zones
+              :nodes, :node_links, :statuses, :users, :zones
     root to: 'users#index'
   end
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :devices, :device_properties, :device_types, :groups,
             :interfaces, :interface_properties, :interface_types,
-            :node_links, :users, :user_links, :statuses
+            :node_links, :users, :statuses
   resources :devices do
     member do
       get 'graph'

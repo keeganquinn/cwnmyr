@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :contacts
   has_many :nodes
   has_many :notable_requests, class_name: 'Notable::Request'
-  has_many :user_links
   has_many :visits, class_name: 'Ahoy::Visit'
 
   enum role: %i[user manager admin]
