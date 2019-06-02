@@ -3,12 +3,16 @@
     .col-md-12
       %h1= h @user.name
 
-  .row
-    .col-md-12
+      - if policy(@user).update?
+        %p= link_to t(:edit), edit_user_registration_path,
+          class: 'btn btn-warning'
+
       %p.small
         = t :created, date: @user.created_at.to_s(:db)
         %br/
         = t :updated, date: @user.updated_at.to_s(:db)
+
+      = markdown @user.body
 
       - unless @user.groups.empty?
         %h2= Group.model_name.human.pluralize
