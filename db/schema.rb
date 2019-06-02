@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_02_033037) do
+ActiveRecord::Schema.define(version: 2019_06_02_062923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -398,6 +398,14 @@ ActiveRecord::Schema.define(version: 2019_06_02_033037) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.boolean "default"
+    t.text "address"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.integer "zoom_default"
+    t.integer "zoom_min"
+    t.integer "zoom_max"
     t.index ["code"], name: "index_zones_on_code", unique: true
     t.index ["name"], name: "index_zones_on_name", unique: true
   end

@@ -3,7 +3,16 @@
 # Service to populate various records used to represent selections in
 # imported data.
 class PopulateOptionsService
-  ZONES = [{ code: 'pdx', name: 'Portland' }].freeze
+  ZONES = [{
+    code: 'pdx',
+    name: 'Portland',
+    title: 'Personal Telco Nodes',
+    default: true,
+    address: '727 SE Grand Ave, Portland, OR 97214',
+    zoom_default: 17,
+    zoom_min: 12,
+    zoom_max: 18
+  }].freeze
   GROUPS = [{ code: 'not', name: 'Network Operations Team' }].freeze
 
   DEVICE_TYPES = [

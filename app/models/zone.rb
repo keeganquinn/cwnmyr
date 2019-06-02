@@ -16,8 +16,20 @@ class Zone < ApplicationRecord
                       allow_blank: true
   validates_length_of :name, minimum: 1
   validates_length_of :name, maximum: 64
+  validates :default, uniqueness: true, if: :default
 
   before_validation :set_defaults
+
+  geocoded_by :address
+  after_validation :geocode, if: :should_geocode?
+
+  def self.default
+    find_by default: true
+  end
+
+  def should_geocode?
+    address.present? && (address_changed? || !latitude || !longitude)
+  end
 
   def to_param
     return unless id
