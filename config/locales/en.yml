@@ -46,10 +46,10 @@ en:
   total_numbered: "%{count} total"
   visible_numbered: "%{count} visible"
   nodes_numbered:
-    one: "one node"
+    one: "1 node"
     other: "%{count} nodes"
   devices_numbered:
-    one: "one device"
+    one: "1 device"
     other: "%{count} devices"
   activerecord:
     models:
