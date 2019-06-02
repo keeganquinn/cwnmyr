@@ -11,9 +11,7 @@ class NodesController < ApplicationController
   end
 
   def new
-    @node = authorize Node.new(
-      user_id: current_user.id, zone_id: Zone.default&.id
-    )
+    @node = authorize Node.new(user_id: current_user.id)
   end
 
   def create
@@ -33,7 +31,7 @@ class NodesController < ApplicationController
 
   def destroy
     @node = authorize Node.find(params[:id])
-    destroy_and_respond @node, root_path
+    destroy_and_respond @node, browse_path
   end
 
   def graph
@@ -63,7 +61,7 @@ class NodesController < ApplicationController
 
   def safe_params
     params.require(:node).permit(
-      :user_id, :zone_id, :code, :name, :status_id, :group_id, :body, :address,
+      :user_id, :code, :name, :status_id, :group_id, :body, :address,
       :hours, :notes, :logo
     )
   end

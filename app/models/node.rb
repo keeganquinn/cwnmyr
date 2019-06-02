@@ -67,6 +67,7 @@ class Node < ApplicationRecord
 
   def set_defaults
     self.code = name.parameterize if code.blank? && name
+    self.zone ||= Zone.default
   end
 
   def logo_stamp
