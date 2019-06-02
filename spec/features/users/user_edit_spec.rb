@@ -38,7 +38,7 @@ describe 'User edit', :devise, type: :feature do
 
     before { visit edit_user_registration_path(other_user) }
 
-    it { is_expected.to have_content 'Edit User' }
+    it { is_expected.to have_content 'Account Settings' }
     it { is_expected.to have_field('Email', with: current_user.email) }
   end
 end
