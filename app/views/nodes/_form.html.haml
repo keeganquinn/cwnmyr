@@ -21,7 +21,7 @@
   .form-group
     %label{ for: 'node_group' }= Node.human_attribute_name('group')
     = collection_select 'node', 'group_id', current_user.groups, 'id', 'name',
-                        {include_blank: 'None'}, class: 'form-control'
+                        { include_blank: 'None' }, class: 'form-control'
 
 .form-group
   %label{ for: 'node_body' }= Node.human_attribute_name('body')

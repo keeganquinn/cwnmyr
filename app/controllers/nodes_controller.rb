@@ -47,12 +47,16 @@ class NodesController < ApplicationController
 
   private
 
+  def blob
+    @node.logo.blob
+  end
+
   def serve_image
     return head(:ok) unless @node.logo.attached?
 
     expires_in 1.year, public: true
-    send_data @node.logo.blob.service.download(@node.logo.blob.key),
-              type: @node.logo.blob.content_type, disposition: 'inline'
+    send_data blob.service.download(blob.key),
+              type: blob.content_type, disposition: 'inline'
   end
 
   def safe_params
