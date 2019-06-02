@@ -68,4 +68,8 @@ class Node < ApplicationRecord
   def set_defaults
     self.code = name.parameterize if code.blank? && name
   end
+
+  def logo_stamp
+    logo.blob.created_at.to_i if logo.attached?
+  end
 end
