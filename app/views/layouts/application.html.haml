@@ -2,20 +2,26 @@
 %html
   %head
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
-    %title= content_for?(:title) ? yield(:title) : t(:cwnmyr)
+    %title= page_title
     = remote_javascript_includes
     = javascript_pack_tag 'main', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'main', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
     = csp_meta_tag
+
   %body
     %header
       = render 'layouts/navigation'
-    = render 'layouts/messages'
-    = yield
+
+    .container.pt-2.pb-5
+      = render 'layouts/messages'
+      = yield
+
     .footer.bg-light
       .container.text-muted
         cwnmyr
+        &middot;
+        = link_to 'Site Search', search_path
         &middot;
         = link_to 'GitHub Project', 'https://github.com/keeganquinn/cwnmyr',
           target: :_blank

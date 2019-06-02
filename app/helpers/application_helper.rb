@@ -41,4 +41,12 @@ module ApplicationHelper
       yield
     end
   end
+
+  def default_title
+    Zone.default&.title || t(:cwnmyr)
+  end
+
+  def page_title
+    content_for?(:title) ? content_for(:title) : default_title
+  end
 end
