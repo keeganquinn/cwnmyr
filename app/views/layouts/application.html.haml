@@ -11,10 +11,12 @@
   %body
     %header
       = render 'layouts/navigation'
-    %main{ role: 'main' }
-      = render 'layouts/messages'
-      = yield
-    .footer
+    = render 'layouts/messages'
+    = yield
+    .footer.bg-light
       .container
         %span.text-muted.pull-right
           cwnmyr-0.1
+          &middot;
+          = link_to 'GitHub Project', 'https://github.com/keeganquinn/cwnmyr',
+            target: :_blank

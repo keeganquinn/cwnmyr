@@ -9,18 +9,6 @@ img {
   font-size: inherit;
   }
 
-main {
-  @extend .container;
-  background-color: #eee;
-  padding-bottom: 80px;
-  width: 100%;
-  margin-top: 51px; // accommodate the navbar
-  }
-section {
-  @extend .row;
-  margin-top: 20px;
-  }
-
 .authform {
   padding-top: 30px;
   max-width: 320px;
