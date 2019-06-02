@@ -26,11 +26,11 @@
 
 = form_for resource, as: resource_name, url: registration_path(resource_name),
            html: { method: :put } do |f|
-  = render "devise/shared/error_messages", resource: resource
+  = render 'devise/shared/error_messages', resource: resource
   .form-group
     = f.label :email
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true, autocomplete: 'email'
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
@@ -38,7 +38,7 @@
     = f.label :password
     %i (leave blank if you don't want to change it)
     %br/
-    = f.password_field :password, autocomplete: "new-password"
+    = f.password_field :password, autocomplete: 'new-password'
     - if @minimum_password_length
       %br/
       %em
@@ -47,17 +47,18 @@
   .form-group
     = f.label :password_confirmation
     %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+    = f.password_field :password_confirmation, autocomplete: 'new-password'
   .form-group
     = f.label :current_password
     %i (we need your current password to confirm your changes)
     %br/
-    = f.password_field :current_password, autocomplete: "current-password"
+    = f.password_field :current_password, autocomplete: 'current-password'
   .form-group
-    = f.submit "Update"
+    = f.submit 'Update'
 
 %h2 Delete Account
 %p
   Unhappy? This option will delete all records from our systems.
 
-  #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+  = button_to 'Cancel my account', registration_path(resource_name),
+    data: { confirm: 'Are you sure?' }, method: :delete
