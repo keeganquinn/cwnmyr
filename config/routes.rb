@@ -31,11 +31,6 @@ Rails.application.routes.draw do
       get 'graph'
     end
   end
-  resources :zones do
-    member do
-      get 'conf'
-    end
-  end
 
   get 'nodes/logos/:id', to: 'nodes#logos'
 end
