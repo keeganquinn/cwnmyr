@@ -21,7 +21,7 @@
 
   .small.text-muted.pb-1
     = surround '(', ')' do
-      = t :total_numbered, count: group.nodes.count
+      = t :total_numbered, count: @group.nodes.count
 
   %table
     %thead
@@ -30,7 +30,7 @@
         %th Name
         %th Devices
     %tbody
-      - group.nodes.order(code: :asc).each do |node|
+      - @group.nodes.order(code: :asc).each do |node|
         %tr
           %td= link_to h(node.display_code), url_for(node)
           %td= link_to h(node.name), url_for(node)
