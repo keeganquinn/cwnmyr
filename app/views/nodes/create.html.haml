@@ -5,6 +5,5 @@
     = render partial: 'form', locals: { node: @node }
 
     = hidden_field 'node', 'user_id'
-    = hidden_field 'node', 'zone_id'
     = submit_tag t(:create), class: 'btn btn-primary'
-    = link_to t(:cancel), url_for(@node.zone), class: 'btn btn-warning'
+    = link_to t(:cancel), browse_path, class: 'btn btn-warning'
