@@ -11,5 +11,7 @@
       %p= h @device_property.value
 
     .col-md-5
-      %p.small
-        = link_to @device_property.device.name, url_for(@device_property.device)
+      - if @device_property.device
+        %p.small
+          = link_to @device_property.device.name,
+            url_for(@device_property.device)

@@ -10,5 +10,5 @@
       %h2= Interface.model_name.human(count: 2)
 
       %ul
-        - @interface_type.interfaces.sort_by(&:ipv4_cidr).each do |interface|
+        - @interface_type.interfaces.order(:address_ipv4).each do |interface|
           %li= link_to interface.address_ipv4, url_for(interface)

@@ -10,5 +10,5 @@
       %p= link_to @node_link.url, @node_link.url
 
     .col-md-5
-      %p.small
-        = link_to @node_link.node.name, url_for(@node_link.node)
+      - if @node_link.node
+        %p.small= link_to @node_link.node.name, url_for(@node_link.node)

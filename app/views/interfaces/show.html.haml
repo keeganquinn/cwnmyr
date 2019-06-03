@@ -11,11 +11,13 @@
     = render partial: 'shared/edit_delete', locals: { record: @interface }
 
     %p.small
-      = link_to t(:node, node: @interface.device.node.name),
-                         url_for(@interface.device.node)
-      %br/
-      = link_to t(:device, device: @interface.device.name),
-                           url_for(@interface.device)
+      - if @interface.device&.node
+        = link_to t(:node, node: @interface.device.node.name),
+                           url_for(@interface.device.node)
+        %br/
+      - if @interface.device
+        = link_to t(:device, device: @interface.device.name),
+                             url_for(@interface.device)
       - if @interface.interface_type
         %br/
         = link_to @interface.interface_type.name,
