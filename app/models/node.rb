@@ -73,4 +73,12 @@ class Node < ApplicationRecord
   def logo_stamp
     logo.blob.created_at.to_i if logo.attached?
   end
+
+  def display_code
+    "Node#{code}"
+  end
+
+  def display_name
+    "#{display_code}: #{name}"
+  end
 end

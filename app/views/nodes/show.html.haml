@@ -1,57 +1,57 @@
-.container
-  .row
-    .col-md-12
-      %h1= h @node.name
+- content_for :title, @node.display_name
 
-  .row
-    .col-md-7
-      = render partial: 'shared/edit_delete', locals: { record: @node }
+.row
+  .col-md-12
+    %h1= h @node.display_code
 
-      - if @node.logo.attached?
-        = image_tag node_path(@node, format: 'png', _v: @node.logo_stamp)
+    %h2= h @node.name
 
-      = markdown @node.body
+.row
+  .col-md-7
+    = render partial: 'shared/edit_delete', locals: { record: @node }
 
-      - if @node.notes?
-        = markdown @node.notes
+    - if @node.logo.attached?
+      = image_tag node_path(@node, format: 'png', _v: @node.logo_stamp)
 
-      = render partial: 'links', locals: { node: @node, node_link: @node_link }
+    = markdown @node.body
 
-      = render partial: 'devices', locals: { node: @node, device: @device }
+    - if @node.notes?
+      = markdown @node.notes
 
-      %h2= t('.network_diagram')
-      %p= image_tag graph_node_path(@node, format: :png)
+    = render partial: 'links', locals: { node: @node, node_link: @node_link }
 
-    .col-md-5
-      %p.small
-        Zone:
-        = link_to @node.zone.name, url_for(@node.zone)
+    = render partial: 'devices', locals: { node: @node, device: @device }
+
+    %h2= t('.network_diagram')
+    %p= image_tag graph_node_path(@node, format: :png)
+
+  .col-md-5
+    %p.small
+      = t :code, code: @node.code
+      %br/
+      - unless @node.group.blank?
+        Managed By:
+        = link_to @node.group.name, url_for(@node.group)
         %br/
-        = t :code, code: @node.code
+      - if @node.group.blank? && @node.user&.visible?
+        Owner:
+        = link_to @node.user.name, url_for(@node.user)
         %br/
-        - unless @node.group.blank?
-          Managed By:
-          = link_to @node.group.name, url_for(@node.group)
-          %br/
-        - if @node.group.blank? && @node.user&.visible?
-          Owner:
-          = link_to @node.user.name, url_for(@node.user)
-          %br/
-        %span{ class: @node.status.color }
-          = t :status, status: @node.status.name
+      %span{ class: @node.status.color }
+        = t :status, status: @node.status.name
 
-      - if @node.address?
-        %p= @node.address
-        %p= link_to t(:get_directions), @node.directions_url, target: :_blank
+    - if @node.address?
+      %p= @node.address
+      %p= link_to t(:get_directions), @node.directions_url, target: :_blank
 
-      - if @node.hours?
-        %p= t :hours, hours: @node.hours
+    - if @node.hours?
+      %p= t :hours, hours: @node.hours
 
-      - if @node.latitude && @node.longitude
-        #map{ 'data-markers': node_path(@node, format: :json) }
-        %span.text-muted.pull-right
-          = link_to t(:json), node_path(@node, format: :json)
-          \|
-          = link_to t(:kml), node_path(@node, format: :kml)
-          \|
-          = link_to t(:xml), node_path(@node, format: :xml)
+    - if @node.latitude && @node.longitude
+      #map{ 'data-markers': node_path(@node, format: :json) }
+      %span.text-muted.pull-right
+        = link_to t(:json), node_path(@node, format: :json)
+        \|
+        = link_to t(:kml), node_path(@node, format: :kml)
+        \|
+        = link_to t(:xml), node_path(@node, format: :xml)

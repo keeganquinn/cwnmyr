@@ -1,66 +1,62 @@
-.container
-  .row
-    .col-md-12
-      %h1
-        = h @interface.code
-        - unless @interface.name.blank?
-          \-
-          = h @interface.name
+.row
+  .col-md-12
+    %h1
+      = h @interface.code
+      - unless @interface.name.blank?
+        \-
+        = h @interface.name
 
-  .row
-    .col-md-12
-      = render partial: 'shared/edit_delete', locals: { record: @interface }
+.row
+  .col-md-12
+    = render partial: 'shared/edit_delete', locals: { record: @interface }
 
-      %p.small
-        = link_to t(:zone, zone: @interface.device.node.zone.name),
-                           url_for(@interface.device.node.zone)
+    %p.small
+      = link_to t(:node, node: @interface.device.node.name),
+                         url_for(@interface.device.node)
+      %br/
+      = link_to t(:device, device: @interface.device.name),
+                           url_for(@interface.device)
+      - if @interface.interface_type
         %br/
-        = link_to t(:node, node: @interface.device.node.name),
-                           url_for(@interface.device.node)
-        %br/
-        = link_to t(:device, device: @interface.device.name),
-                             url_for(@interface.device)
-        - if @interface.interface_type
-          %br/
-          = link_to @interface.interface_type.name,
-            url_for(@interface.interface_type)
+        = link_to @interface.interface_type.name,
+          url_for(@interface.interface_type)
 
-      = markdown @interface.body
+    = markdown @interface.body
 
-      - unless @interface.address_mac.blank?
-        %p
-          BSSID/MAC address:
-          = h @interface.address_mac
+    - unless @interface.address_mac.blank?
+      %p
+        BSSID/MAC address:
+        = h @interface.address_mac
 
-      - unless @interface.address_ipv6.blank?
-        %p
-          IPv6 address:
-          = h @interface.address_ipv6
+    - unless @interface.address_ipv6.blank?
+      %p
+        IPv6 address:
+        = h @interface.address_ipv6
 
-      - unless @interface.address_ipv4.blank?
-        %p
-          IPv4 address:
-          = h @interface.address_ipv4
+    - unless @interface.address_ipv4.blank?
+      %p
+        IPv4 address:
+        = h @interface.address_ipv4
 
-      %h2 Neighbors
+    %h2 Neighbors
 
-      - if @interface.ipv4_neighbors.empty?
-        %p No known neighbors.
-      - else
-        %ul
-          - @interface.ipv4_neighbors.each do |neighbor|
-            %li= link_to neighbor, url_for(neighbor)
-
-      %h2= InterfaceProperty.model_name.human(count: 2)
-
+    - if @interface.ipv4_neighbors.empty?
+      %p No known neighbors.
+    - else
       %ul
-        - @interface.interface_properties.each do |interface_property|
-          %li
-            = link_to h(interface_property.key), url_for(interface_property)
-            &larr;
-            = h interface_property.value
-        - if policy(@interface).update?
-          %li= link_to t(:create),
-            new_interface_property_path(interface: @interface)
+        - @interface.ipv4_neighbors.each do |neighbor|
+          %li= link_to neighbor, url_for(neighbor)
 
-      -# radio stuff, geospatial stuff
+    %h2= InterfaceProperty.model_name.human(count: 2)
+
+    %ul
+      - @interface.interface_properties.each do |interface_property|
+        %li
+          = link_to h(interface_property.key), url_for(interface_property)
+          &larr;
+          = h interface_property.value
+      - if policy(@interface).update?
+        %li= link_to t(:create),
+          new_interface_property_path(interface: @interface)
+
+    -# radio stuff, geospatial stuff

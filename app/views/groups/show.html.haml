@@ -1,27 +1,37 @@
-.container
-  %h1= h @group.name
+- content_for :title, @group.name
 
-  %p.small
-    = t :created, date: @group.created_at.to_s(:db)
-    %br/
-    = t :updated, date: @group.updated_at.to_s(:db)
+%h1= h @group.name
 
-  = markdown @group.body
+%p.small
+  = t :created, date: @group.created_at.to_s(:db)
+  %br/
+  = t :updated, date: @group.updated_at.to_s(:db)
 
-  - unless @group.users.visible.empty?
-    %h2= t User.model_name.human.pluralize
+= markdown @group.body
 
-    %ul
-      - @group.users.visible.order(name: :asc).each do |user|
-        %li= link_to h(user.name), url_for(user)
+- unless @group.users.visible.empty?
+  %h2= t User.model_name.human.pluralize
 
-  - unless @group.nodes.empty?
-    %h2= t Node.model_name.human.pluralize
+  %ul
+    - @group.users.visible.order(name: :asc).each do |user|
+      %li= link_to h(user.name), url_for(user)
 
-    %ul
-      - @group.nodes.order(name: :asc).each do |node|
-        %li
-          = link_to h(node.name), url_for(node)
-          %span.small
-            = surround '(', ')' do
-              = t :devices_numbered, count: node.devices.count
+- unless @group.nodes.empty?
+  %h2= t Node.model_name.human.pluralize
+
+  .small.text-muted.pb-1
+    = surround '(', ')' do
+      = t :total_numbered, count: group.nodes.count
+
+  %table
+    %thead
+      %tr
+        %th Code
+        %th Name
+        %th Devices
+    %tbody
+      - group.nodes.order(code: :asc).each do |node|
+        %tr
+          %td= link_to h(node.display_code), url_for(node)
+          %td= link_to h(node.name), url_for(node)
+          %td.text-right= node.devices.count

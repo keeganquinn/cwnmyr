@@ -1,56 +1,100 @@
-.container
-  .row.vertical-align
-    .col-sm-6
-      %h2= t :search
+= markdown Zone.default&.body
 
-      = form_tag search_path, id: 'search', method: 'GET' do
-        = text_field_tag 'query', params[:query]
-        = submit_tag t(:search)
+.row.vertical-align
+  .col-lg-8
+    - if Zone.default && !Zone.default.nodes.empty?
+      %h2= Node.model_name.human.pluralize
 
-      %h2= Zone.model_name.human.pluralize
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: Zone.default.nodes.count
+
+      %table
+        %thead
+          %tr
+            %th Code
+            %th Name
+            %th Devices
+        - Zone.default.nodes.order(code: :asc).each do |node|
+          %tr
+            %td= link_to h(node.display_code), url_for(node)
+            %td= link_to h(node.name), url_for(node)
+            %td.text-right= node.devices.count
+
+  .col-lg-4
+    - unless user_signed_in?
+      %h2= t :join_us
 
       %ul
-        - Zone.all.each do |zone|
+        %li= link_to t(:sign_in), user_session_path
+        %li= link_to t(:sign_up), new_user_registration_path
+
+    - if user_signed_in? && current_user.nodes.ungrouped.count.positive?
+      %h2= t '.my_nodes'
+
+      %ul
+        - current_user.nodes.ungrouped.order(name: :asc).each do |node|
           %li
-            = link_to h(zone.name), url_for(zone)
-            %span.small
-              = surround '(', ')' do
-                = t :nodes_numbered, count: zone.nodes.count
+            = link_to h(node.name), url_for(node)
 
-      - if user_signed_in? && current_user.groups.count.positive?
-        %h2= Group.model_name.human.pluralize
+    - unless Group.all.empty?
+      %h2= Group.model_name.human.pluralize
 
-        %ul
-          - current_user.groups.order(name: :asc).each do |group|
-            %li
-              = link_to h(group.name), url_for(group)
-              %span.small
-                = surround '(', ')' do
-                  = t :nodes_numbered, count: group.nodes.count
-
-      %h2= t :additional_data
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: Group.count
 
       %ul
-        %li= link_to DeviceType.model_name.human(count: 2), device_types_path
-        %li= link_to InterfaceType.model_name.human(count: 2),
-          interface_types_path
-        %li= link_to Status.model_name.human(count: 2), statuses_path
+        - Group.all.order(name: :asc).each do |group|
+          %li
+            = link_to h(group.name), url_for(group)
 
-    .col-sm-6
-      - unless user_signed_in?
-        %h2= t :join_us
+    - unless User.visible.empty?
+      %h2= User.model_name.human.pluralize
 
-        %ul
-          %li= link_to t(:sign_in), user_session_path
-          %li= link_to t(:sign_up), new_user_registration_path
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = succeed(',') do
+            = t :total_numbered, count: User.count
+          = t :visible_numbered, count: User.visible.count
 
-      - if user_signed_in? && current_user.nodes.ungrouped.count.positive?
-        %h2= t '.my_nodes'
+      %ul
+        - User.visible.order(name: :asc).each do |user|
+          %li
+            = link_to h(user.name), url_for(user)
 
-        %ul
-          - current_user.nodes.ungrouped.order(name: :asc).each do |node|
-            %li
-              = link_to h(node.name), url_for(node)
-              %span.small
-                = surround '(', ')' do
-                  = t :devices_numbered, count: node.devices.count
+    - unless DeviceType.all.empty?
+      %h2= DeviceType.model_name.human.pluralize
+
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: DeviceType.count
+
+      %ul
+        - DeviceType.all.order(name: :asc).each do |device_type|
+          %li
+            = link_to h(device_type.name), url_for(device_type)
+
+    - unless InterfaceType.all.empty?
+      %h2= InterfaceType.model_name.human.pluralize
+
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: InterfaceType.count
+
+      %ul
+        - InterfaceType.all.order(name: :asc).each do |interface_type|
+          %li
+            = link_to h(interface_type.name), url_for(interface_type)
+
+    - unless Status.all.empty?
+      %h2= Status.model_name.human.pluralize
+
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: Status.count
+
+      %ul
+        - Status.all.order(name: :asc).each do |status|
+          %li
+            = link_to h(status.name), url_for(status)

@@ -1,29 +1,30 @@
-.container
-  .row
-    .col-md-12
-      %h1= h @user.name
+- content_for :title, @user.name
 
-      - if policy(@user).update?
-        %p= link_to t(:edit), edit_user_registration_path,
-          class: 'btn btn-warning'
+.row
+  .col-md-12
+    %h1= h @user.name
 
-      %p.small
-        = t :created, date: @user.created_at.to_s(:db)
-        %br/
-        = t :updated, date: @user.updated_at.to_s(:db)
+    - if policy(@user).update?
+      %p= link_to t(:edit), edit_user_registration_path,
+        class: 'btn btn-warning'
 
-      = markdown @user.body
+    %p.small
+      = t :created, date: @user.created_at.to_s(:db)
+      %br/
+      = t :updated, date: @user.updated_at.to_s(:db)
 
-      - unless @user.groups.empty?
-        %h2= Group.model_name.human.pluralize
+    = markdown @user.body
 
-        %ul
-          - @user.groups.order(name: :asc).each do |group|
-            %li= link_to group.name, url_for(group)
+    - unless @user.groups.empty?
+      %h2= Group.model_name.human.pluralize
 
-      - unless @user.nodes.ungrouped.empty?
-        %h2= Node.model_name.human.pluralize
+      %ul
+        - @user.groups.order(name: :asc).each do |group|
+          %li= link_to group.name, url_for(group)
 
-        %ul
-          - @user.nodes.ungrouped.order(name: :asc).each do |node|
-            %li= link_to node.name, url_for(node)
+    - unless @user.nodes.ungrouped.empty?
+      %h2= Node.model_name.human.pluralize
+
+      %ul
+        - @user.nodes.ungrouped.order(name: :asc).each do |node|
+          %li= link_to node.name, url_for(node)
