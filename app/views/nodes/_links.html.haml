@@ -1,35 +1,36 @@
-%h2= NodeLink.model_name.human(count: 2)
+- if policy(node).update? || node.node_links.count.positive?
+  %h2= NodeLink.model_name.human(count: 2)
 
-%ul
-  - node.node_links.each do |node_link|
-    %li
-      = link_to node_link.name, url_for(node_link)
-      = link_to node_link.url, node_link.url
-      - if policy(node).update?
-        = link_to url_for(node_link), method: :delete,
-                  data: { confirm: t(:confirm_delete,
-                          thing: NodeLink.model_name.human.downcase) } do
-          %span.glyphicon.glyphicon-remove
-  - if policy(node).update?
-    %li
-      = form_tag node_links_path, class: 'form-inline' do
-        - if node_link&.errors&.any?
-          .error-explanation
-            = t :errors, count: node_link.errors.count,
-                thing: NodeLink.model_name.human.downcase
-            %ul
-              - node_link.errors.full_messages.each do |msg|
-                %li= msg
-        .form-group
-          %label.sr-only{ for: 'node_link_name' }
-            = NodeLink.human_attribute_name('name')
-          = text_field 'node_link', 'name', class: 'form-control',
-                       placeholder: NodeLink.human_attribute_name('name')
-        .form-group
-          %label.sr-only{ for: 'node_link_url' }
-            = NodeLink.human_attribute_name('url')
-          = text_field 'node_link', 'url', class: 'form-control',
-                       placeholder: NodeLink.human_attribute_name('url')
-        = hidden_field 'node_link', 'node_id', value: node.to_param
-        = submit_tag t(:create), id: 'node_link_create',
-                     class: 'btn btn-primary'
+  %ul
+    - node.node_links.each do |node_link|
+      %li
+        = link_to node_link.name, url_for(node_link)
+        = link_to node_link.url, node_link.url
+        - if policy(node).update?
+          = link_to url_for(node_link), method: :delete,
+                    data: { confirm: t(:confirm_delete,
+                            thing: NodeLink.model_name.human.downcase) } do
+            %span.glyphicon.glyphicon-remove
+    - if policy(node).update?
+      %li
+        = form_tag node_links_path, class: 'form-inline' do
+          - if node_link&.errors&.any?
+            .error-explanation
+              = t :errors, count: node_link.errors.count,
+                  thing: NodeLink.model_name.human.downcase
+              %ul
+                - node_link.errors.full_messages.each do |msg|
+                  %li= msg
+          .form-group
+            %label.sr-only{ for: 'node_link_name' }
+              = NodeLink.human_attribute_name('name')
+            = text_field 'node_link', 'name', class: 'form-control',
+                         placeholder: NodeLink.human_attribute_name('name')
+          .form-group
+            %label.sr-only{ for: 'node_link_url' }
+              = NodeLink.human_attribute_name('url')
+            = text_field 'node_link', 'url', class: 'form-control',
+                         placeholder: NodeLink.human_attribute_name('url')
+          = hidden_field 'node_link', 'node_id', value: node.to_param
+          = submit_tag t(:create), id: 'node_link_create',
+                       class: 'btn btn-primary'

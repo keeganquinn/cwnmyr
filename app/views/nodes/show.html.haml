@@ -22,8 +22,9 @@
 
     = render partial: 'devices', locals: { node: @node, device: @device }
 
-    %h2= t('.network_diagram')
-    %p= image_tag graph_node_path(@node, format: :png)
+    - if @node.graph&.edges&.count&.positive?
+      %h2= t('.network_diagram')
+      %p= image_tag graph_node_path(@node, format: :png)
 
   .col-md-5
     %p.small
