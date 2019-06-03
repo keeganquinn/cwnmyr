@@ -29,10 +29,11 @@
         %li= link_to t(:sign_in), user_session_path
         %li= link_to t(:sign_up), new_user_registration_path
 
-    - if user_signed_in? && current_user.nodes.ungrouped.count.positive?
+    - if user_signed_in?
       %h2= t '.my_nodes'
 
       %ul
+        %li= link_to 'Create a Node', new_node_path
         - current_user.nodes.ungrouped.order(name: :asc).each do |node|
           %li
             = link_to h(node.name), url_for(node)
