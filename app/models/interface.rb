@@ -79,6 +79,8 @@ class Interface < ApplicationRecord
 
   def graph(rgl = RGL::AdjacencyGraph.new)
     ipv4_neighbors.each do |neighbor|
+      next unless neighbor.device
+
       rgl.add_edge name + ': ' + code,
                    neighbor.device.name + ': ' + neighbor.code
     end
