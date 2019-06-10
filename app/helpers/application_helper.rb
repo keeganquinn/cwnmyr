@@ -49,4 +49,12 @@ module ApplicationHelper
   def page_title
     content_for?(:title) ? content_for(:title) : default_title
   end
+
+  def searchable_table
+    { toggle: 'table', search: 'true', 'search-align': 'left' }
+  end
+
+  def sortable_row
+    { sortable: 'true', sorter: 'linkSort' }
+  end
 end
