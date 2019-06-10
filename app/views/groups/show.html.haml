@@ -23,11 +23,11 @@
     = surround '(', ')' do
       = t :total_numbered, count: @group.nodes.count
 
-  %table
+  %table{ data: searchable_table }
     %thead
       %tr
-        %th Code
-        %th Name
+        %th{ data: sortable_row, scope: 'col' } Code
+        %th{ data: sortable_row, scope: 'col' } Name
         %th Devices
     %tbody
       - @group.nodes.order(code: :asc).each do |node|
