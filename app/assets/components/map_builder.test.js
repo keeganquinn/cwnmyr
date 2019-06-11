@@ -139,6 +139,7 @@ describe('MapBuilder', () => {
   describe('attached', () => {
     beforeEach(() => {
       document.body.innerHTML = page
+      mapBuilder.prepare()
       mapBuilder.initMap()
     })
 
@@ -146,15 +147,10 @@ describe('MapBuilder', () => {
       expect(mapBuilder.mapDiv).toBeTruthy()
     })
 
-    it('can handle errors', () => {
-      mapBuilder.handleError({ 'responseText': 'error' })
-      expect(mapBuilder.errors[0].responseText).toEqual('error')
-    })
-
     describe('with node data', () => {
       beforeEach(() => {
         stubApis()
-        mapBuilder.handleResponse({
+        mapBuilder.handleResponse(null, {
           'node': {
             'lat': 1,
             'lng': 1,
@@ -183,7 +179,7 @@ describe('MapBuilder', () => {
     describe('with status data', () => {
       beforeEach(() => {
         stubApis()
-        mapBuilder.handleResponse({
+        mapBuilder.handleResponse(null, {
           'statuses': [{
             'default_display': true,
             'color': 'blue',
@@ -211,7 +207,7 @@ describe('MapBuilder', () => {
     describe('with zone data', () => {
       beforeEach(() => {
         stubApis()
-        mapBuilder.handleResponse({
+        mapBuilder.handleResponse(null, {
           'zone': {
             'statuses': [{
               'default_display': true,
