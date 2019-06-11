@@ -10,11 +10,11 @@
       = surround '(', ')' do
         = t :total_numbered, count: @results.count
 
-    %table
+    %table{ data: { toggle: 'table' } }
       %thead
         %tr
-          %th Code
-          %th Name
+          %th{ data: { field: 'code' }.merge(sortable_row) } Code
+          %th{ data: { field: 'name' }.merge(sortable_row) } Name
           %th Devices
       %tbody
         - @results.each do |node|
