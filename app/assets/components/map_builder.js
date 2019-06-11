@@ -12,6 +12,7 @@ class MapBuilder {
   }
 
   prepare () {
+    window.mapBuilder = this
     window.addEventListener('orientationchange', this.handleResize.bind(this))
     window.addEventListener('resize', this.handleResize.bind(this))
   }
@@ -23,16 +24,7 @@ class MapBuilder {
     }
 
     let request = new XMLHttpRequest()
-    let me = this
-    request.onreadystatechange = function () {
-      if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 200) {
-          me.handleResponse(JSON.parse(request.responseText))
-        } else {
-          me.handleError(request)
-        }
-      }
-    }
+    request.addEventListener('load', this.handleResponse)
     request.open('GET', this.mapDiv.dataset.markers, true)
     request.send()
   }
@@ -41,13 +33,13 @@ class MapBuilder {
     return !!this.data.statuses
   }
 
-  handleError (error) {
-    this.errors.push(error)
+  handleResponse (event, data) {
+    let mapBuilder = window.mapBuilder
+    mapBuilder.data = data || JSON.parse(this.responseText)
+    mapBuilder.renderMap()
   }
 
-  handleResponse (data) {
-    this.data = data
-
+  renderMap () {
     this.gBounds = new google.maps.LatLngBounds()
     this.gInfoWindow = new google.maps.InfoWindow()
     this.gMap = new google.maps.Map(this.mapDiv, {
@@ -100,16 +92,16 @@ class MapBuilder {
       // navigator.geolocation.getCurrentPosition(this.handlePosition)
     }
 
-    if (data.node) {
-      this.renderNode(data.node)
-    } else if (data.statuses) {
-      for (let status of data.statuses) {
+    if (this.data.node) {
+      this.renderNode(this.data.node)
+    } else if (this.data.statuses) {
+      for (let status of this.data.statuses) {
         this.renderStatus(status)
       }
       this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
         this.statusCtrl)
-    } else if (data.zone && data.zone.statuses) {
-      for (let status of data.zone.statuses) {
+    } else if (this.data.zone && this.data.zone.statuses) {
+      for (let status of this.data.zone.statuses) {
         this.renderStatus(status)
       }
       this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
