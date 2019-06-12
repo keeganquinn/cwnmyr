@@ -2,13 +2,15 @@
 
 class MapBuilder {
   constructor () {
+    this.elBtnHide = null
+    this.elBtnShow = null
+    this.elMap = null
+    this.elStatus = null
+
     this.data = null
     this.gBounds = null
     this.gInfoWindow = null
     this.gMap = null
-    this.mapDiv = null
-    this.statusCtrl = null
-    this.errors = []
   }
 
   prepare () {
@@ -18,14 +20,12 @@ class MapBuilder {
   }
 
   initMap () {
-    this.mapDiv = document.getElementById('map')
-    if (!this.mapDiv) {
-      return false
-    }
+    this.elMap = document.getElementById('map')
+    if (!this.elMap) return false
 
     let request = new XMLHttpRequest()
     request.addEventListener('load', this.handleResponse)
-    request.open('GET', this.mapDiv.dataset.markers, true)
+    request.open('GET', this.elMap.dataset.markers, true)
     request.send()
   }
 
@@ -42,7 +42,7 @@ class MapBuilder {
   renderMap () {
     this.gBounds = new google.maps.LatLngBounds()
     this.gInfoWindow = new google.maps.InfoWindow()
-    this.gMap = new google.maps.Map(this.mapDiv, {
+    this.gMap = new google.maps.Map(this.elMap, {
       fullscreenControl: this.big,
       gestureHandling: this.big ? 'greedy' : 'cooperative',
       maxZoom: 18,
@@ -50,17 +50,17 @@ class MapBuilder {
       zoom: 17
     })
 
-    this.statusCtrl = document.createElement('div')
-    this.statusCtrl.style.background = '#fff'
-    this.statusCtrl.style.border = '1px solid #000'
-    this.statusCtrl.style.padding = '2px'
+    this.elStatus = document.createElement('div')
+    this.elStatus.style.background = '#fff'
+    this.elStatus.style.border = '1px solid #000'
+    this.elStatus.style.padding = '2px'
 
     let me = this
-    let showBtn = document.createElement('input')
-    showBtn.setAttribute('type', 'button')
-    showBtn.setAttribute('value', 'show all')
-    showBtn.onclick = function () {
-      let boxes = me.statusCtrl.querySelectorAll('input[type="checkbox"]')
+    this.elBtnShow = document.createElement('input')
+    this.elBtnShow.setAttribute('type', 'button')
+    this.elBtnShow.setAttribute('value', 'show all')
+    this.elBtnShow.onclick = function () {
+      let boxes = me.elStatus.querySelectorAll('input[type="checkbox"]')
       for (let box of boxes) {
         if (!box.checked) {
           box.checked = true
@@ -69,11 +69,11 @@ class MapBuilder {
       }
     }
 
-    let hideBtn = document.createElement('input')
-    hideBtn.setAttribute('type', 'button')
-    hideBtn.setAttribute('value', 'hide all')
-    hideBtn.onclick = function () {
-      let boxes = me.statusCtrl.querySelectorAll('input[type="checkbox"]')
+    this.elBtnHide = document.createElement('input')
+    this.elBtnHide.setAttribute('type', 'button')
+    this.elBtnHide.setAttribute('value', 'hide all')
+    this.elBtnHide.onclick = function () {
+      let boxes = me.elStatus.querySelectorAll('input[type="checkbox"]')
       for (let box of boxes) {
         if (box.checked) {
           box.checked = false
@@ -82,9 +82,9 @@ class MapBuilder {
       }
     }
 
-    this.statusCtrl.append(showBtn)
-    this.statusCtrl.append(hideBtn)
-    this.statusCtrl.append(document.createElement('br'))
+    this.elStatus.append(this.elBtnShow)
+    this.elStatus.append(this.elBtnHide)
+    this.elStatus.append(document.createElement('br'))
 
     if (navigator.geolocation) {
       // Disable user geolocation; it is annoying and unhelpful as a default.
@@ -99,13 +99,13 @@ class MapBuilder {
         this.renderStatus(status)
       }
       this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
-        this.statusCtrl)
+        this.elStatus)
     } else if (this.data.zone && this.data.zone.statuses) {
       for (let status of this.data.zone.statuses) {
         this.renderStatus(status)
       }
       this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
-        this.statusCtrl)
+        this.elStatus)
     }
 
     this.gMap.fitBounds(this.gBounds)
@@ -116,7 +116,7 @@ class MapBuilder {
   handleResize (event) {
     if (!this.big) return
 
-    this.mapDiv.style.height = `${window.innerHeight - 56}px`
+    this.elMap.style.height = `${window.innerHeight - 56}px`
     window.scrollTo(0, 0)
   }
 
@@ -133,7 +133,7 @@ class MapBuilder {
       me.gInfoWindow.setContent('You Are Here')
       me.gInfoWindow.open(me.gMap, me.posMarker)
     })
-    if (this.mapDiv.dataset.center) {
+    if (this.elMap.dataset.center) {
       this.gMap.setCenter(me.posMarker.position)
     }
   }
@@ -159,7 +159,7 @@ class MapBuilder {
     statusDiv.append(' ')
     statusDiv.append(statusLabel)
 
-    this.statusCtrl.append(statusDiv)
+    this.elStatus.append(statusDiv)
 
     for (let node of status.nodes) {
       let marker = this.renderNode(node)

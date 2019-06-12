@@ -133,7 +133,7 @@ describe('MapBuilder', () => {
 
   it('can be instantiated', () => {
     mapBuilder.initMap()
-    expect(mapBuilder.mapDiv).toBeFalsy()
+    expect(mapBuilder.elMap).toBeFalsy()
   })
 
   describe('attached', () => {
@@ -144,7 +144,7 @@ describe('MapBuilder', () => {
     })
 
     it('has element reference', () => {
-      expect(mapBuilder.mapDiv).toBeTruthy()
+      expect(mapBuilder.elMap).toBeTruthy()
     })
 
     describe('with node data', () => {
@@ -162,7 +162,7 @@ describe('MapBuilder', () => {
       })
 
       it('creates a status display', () => {
-        expect(mapBuilder.statusCtrl).toBeTruthy()
+        expect(mapBuilder.elStatus).toBeTruthy()
       })
 
       it('can handle position data', () => {
@@ -200,7 +200,7 @@ describe('MapBuilder', () => {
       })
 
       it('creates a status display', () => {
-        expect(mapBuilder.statusCtrl).toBeTruthy()
+        expect(mapBuilder.elStatus).toBeTruthy()
       })
     })
 
@@ -226,7 +226,7 @@ describe('MapBuilder', () => {
       })
 
       it('creates a status display', () => {
-        expect(mapBuilder.statusCtrl).toBeTruthy()
+        expect(mapBuilder.elStatus).toBeTruthy()
       })
     })
   })
