@@ -11,6 +11,7 @@ class MapBuilder {
     this.gBounds = null
     this.gInfoWindow = null
     this.gMap = null
+    this.markers = null
   }
 
   prepare () {
@@ -40,6 +41,7 @@ class MapBuilder {
   }
 
   renderMap () {
+    this.markers = []
     this.gBounds = new google.maps.LatLngBounds()
     this.gInfoWindow = new google.maps.InfoWindow()
     this.gMap = new google.maps.Map(this.elMap, {
@@ -129,10 +131,6 @@ class MapBuilder {
         position.coords.latitude, position.coords.longitude),
       title: 'Current Location'
     })
-    me.posMarker.addListener('click', function () {
-      me.gInfoWindow.setContent('You Are Here')
-      me.gInfoWindow.open(me.gMap, me.posMarker)
-    })
     if (this.elMap.dataset.center) {
       this.gMap.setCenter(me.posMarker.position)
     }
@@ -187,6 +185,7 @@ class MapBuilder {
     })
     this.gBounds.extend(marker.position)
 
+    this.markers.push(marker)
     return marker
   }
 }
