@@ -28,7 +28,7 @@ const stubApis = function () {
         insertAt: function () {},
         removeAt: function () {}
       }
-      this.fitBounds = function () {},
+      this.fitBounds = function () {}
       this.panToBounds = function () {}
     })
   window.scrollTo = jest.fn()
