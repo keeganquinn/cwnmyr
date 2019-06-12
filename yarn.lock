@@ -4496,6 +4496,11 @@ jest-get-type@^24.8.0:
   resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-24.8.0.tgz#a7440de30b651f5a70ea3ed7ff073a32dfe646fc"
   integrity sha512-RR4fo8jEmMD9zSz2nLbs2j0zvPpk/KCEz3a62jJWbd2ayNo0cb+KFRxPHVhE4ZmgGJEQp0fosmNz84IfqM8cMQ==
 
+jest-google-maps-mock@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jest-google-maps-mock/-/jest-google-maps-mock-1.0.1.tgz#f56ba37fa03a2101a9395cbafb254de8ebad13ec"
+  integrity sha512-yxT3pjUnA5umXR4s9vyhxUdMVriP8HCFfE/bdD/jTgD5e4DegXJorEBNN9HVmg+MM2aToCsDx9fnkTohxJdymg==
+
 jest-haste-map@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest-haste-map/-/jest-haste-map-24.8.0.tgz#51794182d877b3ddfd6e6d23920e3fe72f305800"

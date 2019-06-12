@@ -1,121 +1,36 @@
 import { MapBuilder } from 'components/map_builder'
+import createGoogleMapsMock from 'jest-google-maps-mock'
 
 const stubApis = function () {
-  window.google = {
-    maps: {
-      Animation: {},
-      BicyclingLayer: function () {},
-      Circle: function () {},
-      ControlPosition: {
-        TOP_RIGHT: 'TOP_RIGHT'
-      },
-      Data: function () {},
-      DirectionsRenderer: function () {},
-      DirectionsService: function () {},
-      DirectionsStatus: {},
-      DirectionsTravelMode: {},
-      DirectionsUnitSystem: {},
-      DistanceMatrixElementStatus: {},
-      DistanceMatrixService: function () {},
-      DistanceMatrixStatus: {},
-      ElevationService: function () {},
-      ElevationStatus: {},
-      FusionTablesLayer: function () {},
-      Geocoder: function () {},
-      GeocoderLocationType: {},
-      GeocoderStatus: {},
-      GroundOverlay: function () {},
-      ImageMapType: function () {},
-      InfoWindow: function () {},
-      KmlLayer: function () {},
-      KmlLayerStatus: {},
-      LatLng: function () {},
-      LatLngBounds: function () {
-        return {
-          extend: function () {}
-        }
-      },
-      MVCArray: function () {},
-      MVCObject: function () {
-        return {
-          set: function () {}
-        }
-      },
-      Map: function () {
-        return {
-          controls: {
-            'TOP_RIGHT': []
-          },
-          setTilt: function () { },
-          mapTypes: {
-            set: function () { }
-          },
-          overlayMapTypes: {
-            insertAt: function () { },
-            removeAt: function () { }
-          },
-          fitBounds: function () {},
-          panToBounds: function () {}
-        }
-      },
-      MapTypeControlStyle: {},
-      MapTypeId: {
-        HYBRID: '',
-        ROADMAP: '',
-        SATELLITE: '',
-        TERRAIN: ''
-      },
-      MapTypeRegistry: function () {},
-      Marker: function () {
-        return {
-          addListener: function () {},
-          bindTo: function () {}
-        }
-      },
-      MarkerImage: function () {},
-      MaxZoomService: function () {
-        return {
-          getMaxZoomAtLatLng: function () { }
-        }
-      },
-      MaxZoomStatus: {},
-      NavigationControlStyle: {},
-      OverlayView: function () { },
-      Point: function () {},
-      Polygon: function () {},
-      Polyline: function () {},
-      Rectangle: function () {},
-      SaveWidget: function () {},
-      ScaleControlStyle: {},
-      Size: function () {},
-      StreetViewCoverageLayer: function () {},
-      StreetViewPanorama: function () {},
-      StreetViewService: function () {},
-      StreetViewStatus: {},
-      StrokePosition: {},
-      StyledMapType: function () {},
-      SymbolPath: {},
-      TrafficLayer: function () {},
-      TransitLayer: function () {},
-      TransitMode: {},
-      TransitRoutePreference: {},
-      TravelMode: {},
-      UnitSystem: {},
-      ZoomControlStyle: {},
-      __gjsload__: function () { },
-      event: {
-        addListener: function () { }
-      },
-      places: {
-        AutocompleteService: function () {
-          return {
-            getPlacePredictions: function () { }
-          }
-        }
-      }
+  window.google = { maps: createGoogleMapsMock() }
+  window.google.maps.InfoWindow = jest.fn().mockImplementation(
+    function () {
+      this.open = jest.fn()
+      this.setContent = jest.fn()
     }
-  }
-
+  )
+  window.google.maps.LatLngBounds = jest.fn().mockImplementation(
+    function () {
+      this.extend = jest.fn()
+    }
+  )
+  window.google.maps.Map = jest.fn().mockImplementation(
+    function (mapDiv, opts) {
+      this.mapDiv = mapDiv
+      this.opts = opts
+      this.controls = {}
+      this.controls[window.google.maps.ControlPosition.TOP_RIGHT] = []
+      this.setTilt = function () {}
+      this.mapTypes = {
+        set: function () {}
+      }
+      this.overlayMapTypes = {
+        insertAt: function () {},
+        removeAt: function () {}
+      }
+      this.fitBounds = function () {},
+      this.panToBounds = function () {}
+    })
   window.scrollTo = jest.fn()
 
   navigator.geolocation = {
@@ -165,6 +80,12 @@ describe('MapBuilder', () => {
         expect(mapBuilder.elStatus).toBeTruthy()
       })
 
+      it('creates a marker that can be clicked', () => {
+        let marker = mapBuilder.markers[0]
+        marker.listeners['click'][0]()
+        expect(mapBuilder.gInfoWindow.setContent.mock.calls.length).toBe(1)
+      })
+
       it('can handle position data', () => {
         mapBuilder.handlePosition({
           coords: {
@@ -195,12 +116,45 @@ describe('MapBuilder', () => {
               'name': 'Uncoded Node',
               'infowindow': 'More Node Information'
             }]
+          }, {
+            'default_display': false,
+            'color': 'green',
+            'name': 'Other Status',
+            'nodes': [{
+              'lat': 2,
+              'lng': 2,
+              'icon': 'icon',
+              'name': 'Other Node',
+              'infowindow': 'Other Node Information'
+            }, {
+              'icon': 'icon',
+              'name': 'Other Uncoded Node',
+              'infowindow': 'Yet More Node Information'
+            }]
           }]
         })
       })
 
       it('creates a status display', () => {
         expect(mapBuilder.elStatus).toBeTruthy()
+      })
+
+      it('show button can be clicked', () => {
+        mapBuilder.elBtnShow.click()
+        let boxes = mapBuilder.elStatus.querySelectorAll(
+          'input[type="checkbox"]')
+        for (let box of boxes) {
+          expect(box.checked).toBeTruthy()
+        }
+      })
+
+      it('hide button can be clicked', () => {
+        mapBuilder.elBtnHide.click()
+        let boxes = mapBuilder.elStatus.querySelectorAll(
+          'input[type="checkbox"]')
+        for (let box of boxes) {
+          expect(box.checked).toBeFalsy()
+        }
       })
     })
 
