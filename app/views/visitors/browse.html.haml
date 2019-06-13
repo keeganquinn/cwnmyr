@@ -1,7 +1,7 @@
 = markdown Zone.default&.body
 
-.row.vertical-align
-  .col-lg-8
+.row
+  .col-lg-8.pb-3
     - if Zone.default && !Zone.default.nodes.empty?
       %h2= Node.model_name.human.pluralize
 
@@ -31,17 +31,27 @@
     - if user_signed_in?
       %h2= t '.my_nodes'
 
-      %ul
-        %li= link_to 'Create a Node', new_node_path
-        - current_user.nodes.ungrouped.order(name: :asc).each do |node|
-          %li= link_to h(node.name), url_for(node)
+      .small.text-muted.pb-1
+        = link_to 'Create Node', new_node_path
+        = surround '(', ')' do
+          = t :owned_numbered, count: current_user.nodes.ungrouped.count
+
+      - unless current_user.nodes.ungrouped.empty?
+        %ul
+          - current_user.nodes.ungrouped.order(name: :asc).each do |node|
+            %li= link_to h(node.name), url_for(node)
 
       %h2= t '.my_contacts'
 
-      %ul
-        %li= link_to 'Create a Contact', new_contact_path
-        - current_user.contacts.order(name: :asc).each do |contact|
-          %li= link_to h(contact.name), url_for(contact)
+      .small.text-muted.pb-1
+        = link_to 'Create Contact', new_contact_path
+        = surround '(', ')' do
+          = t :owned_numbered, count: current_user.contacts.ungrouped.count
+
+      - unless current_user.contacts.ungrouped.empty?
+        %ul
+          - current_user.contacts.ungrouped.order(name: :asc).each do |contact|
+            %li= link_to h(contact.name), url_for(contact)
 
     - unless Group.all.empty?
       %h2= Group.model_name.human.pluralize

@@ -23,6 +23,8 @@ class Contact < ApplicationRecord
 
   before_validation :set_defaults
 
+  scope :ungrouped, -> { where(group_id: nil) }
+
   def to_param
     return unless id
 
