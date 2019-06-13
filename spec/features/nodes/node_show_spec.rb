@@ -2,7 +2,7 @@
 
 describe 'Node show page', type: :feature do
   let(:current_user) { create :user }
-  let(:node) { create :node, user: current_user }
+  let(:node) { create :node, :with_image, user: current_user }
 
   before do
     login_as current_user
