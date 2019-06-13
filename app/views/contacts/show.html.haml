@@ -12,6 +12,12 @@
 - unless @contact.phone.blank?
   %p Phone: #{@contact.phone}
 
+- unless @contact.group.blank?
+  %p Group: #{link_to @contact.group.name, url_for(@contact.group)}
+
+- if @contact.group.blank? && @contact.user&.visible?
+  %p User: #{link_to @contact.user.name, url_for(@contact.user)}
+
 - unless @contact.notes.blank?
   = markdown @contact.notes
 
