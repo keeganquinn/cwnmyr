@@ -1,0 +1,10 @@
+- content_for :title, t(:new_h, thing: Contact.model_name.human)
+
+%h1= t :new_h, thing: Contact.model_name.human
+
+= form_tag contacts_path do
+  = render partial: 'form', locals: { contact: @contact }
+
+  = hidden_field 'contact', 'user_id'
+  = submit_tag t(:create), class: 'btn btn-primary'
+  = link_to t(:cancel), browse_path, class: 'btn btn-warning'

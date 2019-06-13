@@ -1,0 +1,23 @@
+- content_for :title, @contact.name
+
+%h1= h @contact.name
+
+= render partial: 'shared/edit_delete', locals: { record: @contact }
+
+%p= @contact.hidden? ? 'Hidden' : 'Public'
+
+- unless @contact.email.blank?
+  %p Email: #{@contact.email}
+
+- unless @contact.phone.blank?
+  %p Phone: #{@contact.phone}
+
+- unless @contact.notes.blank?
+  = markdown @contact.notes
+
+- unless @contact.nodes.empty?
+  %h2= Node.model_name.human.pluralize
+
+  %ul
+    - @contact.nodes.order(name: :asc).each do |node|
+      %li= link_to node.name, url_for(node)
