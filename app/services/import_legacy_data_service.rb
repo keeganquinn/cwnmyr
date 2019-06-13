@@ -80,6 +80,7 @@ class ImportLegacyDataService
     contact.phone = value['phone']
     contact.notes ||= value['role']
     contact.user ||= @user
+    contact.group ||= contact.user&.groups&.first
     contact.save && contact
   end
 
