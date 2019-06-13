@@ -1,9 +1,10 @@
-.container
-  %h1= t :new_h, thing: NodeLink.model_name.human
+- content_for :title, t(:new_h, thing: NodeLink.model_name.human)
 
-  = form_tag node_links_path do
-    = render partial: 'form', locals: { node_link: @node_link }
+%h1= t :new_h, thing: NodeLink.model_name.human
 
-    = hidden_field 'node_link', 'node_id'
-    = submit_tag t(:create), id: 'node_link_create', class: 'btn btn-primary'
-    = link_to t(:cancel), root_path, class: 'btn btn-warning'
+= form_tag node_links_path do
+  = render partial: 'form', locals: { node_link: @node_link }
+
+  = hidden_field 'node_link', 'node_id'
+  = submit_tag t(:create), id: 'node_link_create', class: 'btn btn-primary'
+  = link_to t(:cancel), root_path, class: 'btn btn-warning'
