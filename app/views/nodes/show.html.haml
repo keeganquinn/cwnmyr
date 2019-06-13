@@ -1,34 +1,43 @@
 - content_for :title, @node.display_name
 
+%h2= h @node.name
+
+%p
+  = status_color @node.status do
+    = t :status, status: @node.status.name
+
+= markdown @node.body
+
 .row
-  .col-md-12
-    %h1= h @node.display_code
+  .col-lg-8.pb-3
+    - if @node.address?
+      %p= @node.address
 
-    %h2= h @node.name
+    - if @node.hours?
+      %p= t :hours, hours: @node.hours
 
-.row
-  .col-md-7
-    = render partial: 'shared/edit_delete', locals: { record: @node }
-
-    - if @node.logo.attached?
-      = image_tag node_path(@node, format: 'png', _v: @node.logo_stamp)
-
-    = markdown @node.body
+    - if @node.latitude && @node.longitude
+      #map{ 'data-markers': node_path(@node, format: :json) }
+      .text-muted.text-right
+        = link_to t(:get_directions), @node.directions_url, target: :_blank
 
     - if @node.notes?
       = markdown @node.notes
 
-    = render partial: 'links', locals: { node: @node, node_link: @node_link }
-
     = render partial: 'devices', locals: { node: @node, device: @device }
 
     - if @node.graph&.edges&.count&.positive?
-      %h2= t('.network_diagram')
+      %h3= t('.network_diagram')
       %p= image_tag graph_node_path(@node, format: :png)
 
-  .col-md-5
+  .col-lg-4
+    - if @node.logo.attached?
+      %p= image_tag node_path(@node, format: 'png', _v: @node.logo_stamp)
+
+    = render partial: 'shared/edit_delete', locals: { record: @node }
+
     %p.small
-      = t :code, code: @node.code
+      = t :code, code: @node.display_code
       %br/
       - unless @node.group.blank?
         Managed By:
@@ -38,21 +47,8 @@
         Owner:
         = link_to @node.user.name, url_for(@node.user)
         %br/
-      %span{ class: @node.status.color }
-        = t :status, status: @node.status.name
+      = t :created, date: @node.created_at.to_s(:db)
+      %br/
+      = t :updated, date: @node.updated_at.to_s(:db)
 
-    - if @node.address?
-      %p= @node.address
-      %p= link_to t(:get_directions), @node.directions_url, target: :_blank
-
-    - if @node.hours?
-      %p= t :hours, hours: @node.hours
-
-    - if @node.latitude && @node.longitude
-      #map{ 'data-markers': node_path(@node, format: :json) }
-      %span.text-muted.pull-right
-        = link_to t(:json), node_path(@node, format: :json)
-        \|
-        = link_to t(:kml), node_path(@node, format: :kml)
-        \|
-        = link_to t(:xml), node_path(@node, format: :xml)
+    = render partial: 'links', locals: { node: @node, node_link: @node_link }

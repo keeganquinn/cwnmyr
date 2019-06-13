@@ -1,5 +1,5 @@
 - if policy(node).update? || node.node_links.count.positive?
-  %h2= NodeLink.model_name.human(count: 2)
+  %h3= t :links
 
   %ul
     - node.node_links.each do |node_link|
