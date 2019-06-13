@@ -2,36 +2,47 @@
 
 %h1= h @group.name
 
-%p.small
-  = t :created, date: @group.created_at.to_s(:db)
-  %br/
-  = t :updated, date: @group.updated_at.to_s(:db)
-
 = markdown @group.body
 
-- unless @group.users.visible.empty?
-  %h2= t User.model_name.human.pluralize
+.row
+  - unless @group.nodes.empty?
+    .col-lg-8.pb-3
+      %h2= t Node.model_name.human.pluralize
 
-  %ul
-    - @group.users.visible.order(name: :asc).each do |user|
-      %li= link_to h(user.name), url_for(user)
+      .small.text-muted.pb-1
+        = surround '(', ')' do
+          = t :total_numbered, count: @group.nodes.count
 
-- unless @group.nodes.empty?
-  %h2= t Node.model_name.human.pluralize
+      %table{ data: { 'sort-name': 'code' }.merge(searchable_table) }
+        %thead
+          %tr
+            %th{ data: { field: 'code' }.merge(sortable_row) } Code
+            %th{ data: { field: 'name' }.merge(sortable_row) } Name
+            %th Devices
+        %tbody
+          - @group.nodes.order(code: :asc).each do |node|
+            %tr
+              %td= link_to h(node.display_code), url_for(node)
+              %td= link_to h(node.name), url_for(node)
+              %td.text-right= node.devices.count
 
-  .small.text-muted.pb-1
-    = surround '(', ')' do
-      = t :total_numbered, count: @group.nodes.count
+  - if @group.users.include? current_user
+    .col-lg-4
+      %p.small
+        = t :created, date: @group.created_at.to_s(:db)
+        %br/
+        = t :updated, date: @group.updated_at.to_s(:db)
 
-  %table{ data: { 'sort-name': 'code' }.merge(searchable_table) }
-    %thead
-      %tr
-        %th{ data: { field: 'code' }.merge(sortable_row) } Code
-        %th{ data: { field: 'name' }.merge(sortable_row) } Name
-        %th Devices
-    %tbody
-      - @group.nodes.order(code: :asc).each do |node|
-        %tr
-          %td= link_to h(node.display_code), url_for(node)
-          %td= link_to h(node.name), url_for(node)
-          %td.text-right= node.devices.count
+      - unless @group.users.visible.empty?
+        %h2= t User.model_name.human.pluralize
+
+        %ul
+          - @group.users.visible.order(name: :asc).each do |user|
+            %li= link_to h(user.name), url_for(user)
+
+      - unless @group.contacts.empty?
+        %h2= t Contact.model_name.human.pluralize
+
+        %ul
+          - @group.contacts.order(name: :asc).each do |contact|
+            %li= link_to h(contact.name), url_for(contact)
