@@ -34,6 +34,7 @@ class Node < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :should_geocode?
+  after_validation :geocode_reset, if: :should_geocode_reset?
 
   scope :ungrouped, -> { where(group_id: nil) }
 
@@ -43,8 +44,17 @@ class Node < ApplicationRecord
     }.merge(attributes)
   end
 
+  def geocode_reset
+    self.latitude = nil
+    self.longitude = nil
+  end
+
   def should_geocode?
     address.present? && (address_changed? || !latitude || !longitude)
+  end
+
+  def should_geocode_reset?
+    !address.present?
   end
 
   def to_param
