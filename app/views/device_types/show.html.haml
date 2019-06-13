@@ -1,14 +1,12 @@
-.container
-  .row
-    .col-md-12
-      %h1= h @device_type.name
+- content_for :title, @device_type.name
 
-  .row
-    .col-md-12
-      %p= h @device_type.code
+%h1= h @device_type.name
 
-      %h2= Device.model_name.human(count: 2)
+%p= h @device_type.code
 
-      %ul
-        - @device_type.devices.each do |device|
-          %li= link_to device.name, url_for(device)
+- unless @device_type.devices.empty?
+  %h2= Device.model_name.human(count: 2)
+
+  %ul
+    - @device_type.devices.each do |device|
+      %li= link_to device.name, url_for(device)

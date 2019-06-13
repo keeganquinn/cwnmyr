@@ -1,13 +1,10 @@
-.container
-  .row
-    .col-md-12
-      %h1= Status.model_name.human(count: 2)
+- content_for :title, Status.model_name.human(count: 2)
 
-  .row
-    .col-md-12
-      %ul
-        - @statuses.each do |status|
-          %li
-            = link_to h(status.name), url_for(status)
-            = status_color(status) do
-              &larr;
+%h1= Status.model_name.human(count: 2)
+
+%ul
+  - @statuses.each do |status|
+    %li
+      = link_to h(status.name), url_for(status)
+      = status_color(status) do
+        &larr;

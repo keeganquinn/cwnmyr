@@ -1,17 +1,15 @@
-.container
-  .row
-    .col-md-12
-      %h1= h @status.name
+- content_for :title, @status.name
 
-  .row
-    .col-md-12
-      %p
-        = status_color(@status) do
-          = h @status.code
-          &larr;
+%h1= h @status.name
 
-      %h2= Node.model_name.human(count: 2)
+%p
+  = status_color(@status) do
+    = h @status.code
+    &larr;
 
-      %ul
-        - @status.nodes.order(name: :asc).each do |node|
-          %li= link_to node.name, url_for(node)
+- unless @status.nodes.empty?
+  %h2= Node.model_name.human(count: 2)
+
+  %ul
+    - @status.nodes.order(name: :asc).each do |node|
+      %li= link_to node.name, url_for(node)
