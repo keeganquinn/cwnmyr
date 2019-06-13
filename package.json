@@ -50,7 +50,7 @@
     "popper.js": "^1.15.0",
     "rails-ujs": "^5.2.3",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.33.0"
+    "webpack": "^4.34.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
