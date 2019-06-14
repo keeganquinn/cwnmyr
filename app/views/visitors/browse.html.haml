@@ -29,29 +29,7 @@
         %li= link_to t(:sign_up), new_user_registration_path
 
     - if user_signed_in?
-      %h2= t '.my_nodes'
-
-      .small.text-muted.pb-1
-        = link_to 'Create Node', new_node_path
-        = surround '(', ')' do
-          = t :owned_numbered, count: current_user.nodes.ungrouped.count
-
-      - unless current_user.nodes.ungrouped.empty?
-        %ul
-          - current_user.nodes.ungrouped.order(name: :asc).each do |node|
-            %li= link_to h(node.name), url_for(node)
-
-      %h2= t '.my_contacts'
-
-      .small.text-muted.pb-1
-        = link_to 'Create Contact', new_contact_path
-        = surround '(', ')' do
-          = t :owned_numbered, count: current_user.contacts.ungrouped.count
-
-      - unless current_user.contacts.ungrouped.empty?
-        %ul
-          - current_user.contacts.ungrouped.order(name: :asc).each do |contact|
-            %li= link_to h(contact.name), url_for(contact)
+      = render partial: 'my_things'
 
     - unless Group.all.empty?
       %h2= Group.model_name.human.pluralize
