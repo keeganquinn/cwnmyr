@@ -6,7 +6,10 @@ set :rails_env, 'production'
 server 'scrap.quinn.tk', user: 'deploy', roles: %w[web app db], primary: true
 set :deploy_to, '/srv/rails/cwnmyr'
 
-set :foreman_export_format, 'systemd'
+set :foreman_use_sudo, :rbenv
+set :foreman_init_system, 'systemd'
 set :foreman_export_path, '/etc/systemd/system'
-set :foreman_user, 'deploy'
-set :foreman_flags, '-e /etc/rails/cwnmyr.env -m all=1,release=0'
+set :foreman_options,
+    user: 'deploy',
+    env: '.env.production',
+    formation: 'all=1,release=0'
