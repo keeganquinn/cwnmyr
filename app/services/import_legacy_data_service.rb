@@ -2,11 +2,11 @@
 
 require 'resolv-replace'
 
+SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
+LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
+
 # Service to import data from legacy system.
 class ImportLegacyDataService
-  SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
-  LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
-
   def initialize(nodes = nil)
     @nodes = nodes
     @user = User.admin.first
