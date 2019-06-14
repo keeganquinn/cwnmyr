@@ -6,36 +6,31 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.6.3'
 gem 'rails'
 
 gem 'foreman'
 gem 'pg'
-gem 'puma', '~> 3.0'
+gem 'puma'
 
 gem 'administrate'
 gem 'bootsnap', require: false
-gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'haml-rails'
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 gem 'mini_magick'
 gem 'omniauth'
-gem 'pundit', github: 'elabs/pundit'
+gem 'pundit'
 gem 'redcarpet'
-gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '>= 4.0.x'
+gem 'webpacker'
 
 gem 'active_storage_validations'
 gem 'acts-as-taggable-on'
 gem 'administrate-field-active_storage'
 gem 'ahoy_matey'
 gem 'blazer'
-gem 'elasticsearch', '~> 6.2.0'
+gem 'elasticsearch'
 gem 'geocoder'
 gem 'netaddr'
 gem 'notable'
@@ -52,8 +47,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-db-tasks', require: false
-  gem 'capistrano-foreman',
-      github: 'koenpunt/capistrano-foreman', branch: 'systemd'
+  gem 'capistrano-foreman'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
@@ -68,9 +62,9 @@ group :development do
   gem 'rb-inotify', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   gem 'unicorn'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
 end
 
 group :development, :test do
@@ -90,8 +84,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'shoulda-matchers',
-      github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
 end
