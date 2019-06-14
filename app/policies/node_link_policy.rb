@@ -3,9 +3,7 @@
 # Pundit access control policy for NodeLinksController.
 class NodeLinkPolicy < ApplicationPolicy
   def create?
-    return false unless @user
-
-    @user.try(:admin?) || @record.node.user == @user
+    NodePolicy.new(@user, @record.node).create?
   end
 
   def update?

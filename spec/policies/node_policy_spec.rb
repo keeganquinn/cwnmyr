@@ -5,9 +5,11 @@ describe NodePolicy do
 
   let(:current_user) { build_stubbed :user }
   let(:other_user) { build_stubbed :user }
+  let(:group_user) { build_stubbed :user }
   let(:admin) { build_stubbed :user, :admin }
 
-  let(:node) { build_stubbed :node, user: current_user }
+  let(:group) { build_stubbed :group, users: [group_user] }
+  let(:node) { build_stubbed :node, user: current_user, group: group }
 
   permissions :show?, :graph? do
     let(:node) { create :node }
@@ -19,6 +21,7 @@ describe NodePolicy do
     it { is_expected.not_to permit nil, node }
     it { is_expected.not_to permit other_user, node }
     it { is_expected.to permit current_user, node }
+    it { is_expected.to permit group_user, node }
     it { is_expected.to permit admin, node }
   end
 end

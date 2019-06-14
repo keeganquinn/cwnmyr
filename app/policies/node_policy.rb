@@ -5,7 +5,8 @@ class NodePolicy < ApplicationPolicy
   def create?
     return false unless @user
 
-    @user.try(:admin?) || @record.user == @user
+    @user.try(:admin?) || @record.user == @user ||
+      @record.group&.users&.include?(@user)
   end
 
   def update?

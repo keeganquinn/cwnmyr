@@ -3,9 +3,7 @@
 # Pundit access control policy for InterfacesController.
 class InterfacePolicy < ApplicationPolicy
   def create?
-    return false unless @user
-
-    @user.try(:admin?) || @record.device.node.user == @user
+    DevicePolicy.new(@user, @record.device).create?
   end
 
   def update?

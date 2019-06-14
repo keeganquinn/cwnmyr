@@ -4,15 +4,15 @@
 class ContactPolicy < ApplicationPolicy
   def show?
     return true unless @record.hidden
-    return false unless @user
 
-    @record.user == @user || @user.try(:admin?)
+    create?
   end
 
   def create?
     return false unless @user
 
-    @user.try(:admin?) || @record.user == @user
+    @user.try(:admin?) || @record.user == @user ||
+      @record.group&.users&.include?(@user)
   end
 
   def update?
