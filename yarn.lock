@@ -1581,10 +1581,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-table@^1.15.1:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-table/-/bootstrap-table-1.15.1.tgz#682ffb9f454802f7231124cd579314cb15e312c1"
-  integrity sha512-wBLsWFEpTKyLsJRWxbj2beXDJDKkTgBHzFFGuIQI/vNOuaRKcJN95AkrS/xsaTs5++JuNKkPt3d3OdNvTRLXoQ==
+bootstrap-table@^1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/bootstrap-table/-/bootstrap-table-1.15.2.tgz#452a718c45a211ed3b254ee87077fb04338c3dfe"
+  integrity sha512-wStieT+3llzcnuyzhmsWG7i82T13zg3Jv01fL+FdITKltpZ/1bxbEIJjtpXyi6dKhKBrhJ/wZJBlnkl9BFKnkQ==
 
 bootstrap@^4.3.1:
   version "4.3.1"
