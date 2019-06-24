@@ -45,15 +45,15 @@
     "@rails/webpacker": "^4.0.7",
     "ahoy.js": "^0.3.4",
     "bootstrap": "^4.3.1",
-    "bootstrap-table": "^1.14.2",
+    "bootstrap-table": "^1.15.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "rails-ujs": "^5.2.3",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.34.0"
+    "webpack": "^4.35.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
     "eslint-plugin-import": "^2.17.3",
@@ -63,6 +63,6 @@
     "jest": "^24.8.0",
     "jest-google-maps-mock": "^1.0.1",
     "jest-junit": "^6.4.0",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.2"
   }
 }
