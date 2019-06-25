@@ -10,14 +10,8 @@ class VerifyGeocodeService
     Node.where.not(address: nil).map do |node|
       next if node.address.blank?
 
-      check_missing(node) || check_range(node) || next
+      check_range(node) || next
     end.compact
-  end
-
-  def check_missing(node)
-    return if node.latitude && node.longitude
-
-    "#{node.id} #{node.code}: not geocoded: #{node.address}"
   end
 
   def check_range(node)
