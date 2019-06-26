@@ -49,9 +49,7 @@ group :development do
   gem 'capistrano-db-tasks', require: false
   gem 'capistrano-foreman'
   gem 'capistrano-rails'
-  gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-puma'
   gem 'guard-rspec', require: false
   gem 'haml_lint', require: false
   gem 'html2haml', require: false
