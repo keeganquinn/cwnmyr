@@ -3,6 +3,8 @@
 # Pundit access control policy for DevicesController.
 class DevicePolicy < ApplicationPolicy
   def create?
+    return false unless @record.node
+
     NodePolicy.new(@user, @record.node).create?
   end
 
