@@ -187,18 +187,25 @@ GEM
     haml (5.1.1)
       temple (>= 0.8.0)
       tilt
-    haml-rails (2.0.1)
-      actionpack (>= 5.1)
-      activesupport (>= 5.1)
-      haml (>= 4.0.6, < 6.0)
-      html2haml (>= 1.0.1)
-      railties (>= 5.1)
     haml_lint (0.32.0)
       haml (>= 4.0, < 5.2)
       rainbow
       rake (>= 10, < 13)
       rubocop (>= 0.50.0)
       sysexits (~> 1.1)
+    hamlit (2.9.3)
+      temple (>= 0.8.0)
+      thor
+      tilt
+    hamlit (2.9.3-java)
+      temple (>= 0.8.0)
+      thor
+      tilt
+    hamlit-rails (0.2.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      hamlit (>= 1.2.0)
+      railties (>= 4.0.1)
     hashie (3.6.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
@@ -525,8 +532,8 @@ DEPENDENCIES
   foreman
   geocoder
   guard-rspec
-  haml-rails
   haml_lint
+  hamlit-rails
   html2haml
   jbuilder
   launchy

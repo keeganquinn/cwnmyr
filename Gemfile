@@ -16,7 +16,7 @@ gem 'administrate'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'dotenv-rails'
-gem 'haml-rails'
+gem 'hamlit-rails'
 gem 'jbuilder'
 gem 'mini_magick'
 gem 'omniauth'
