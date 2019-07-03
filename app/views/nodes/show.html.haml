@@ -2,9 +2,10 @@
 
 %h2= h @node.name
 
-%p
-  = status_color @node.status do
-    = t :status, status: @node.status.name
+- unless @node.status.blank?
+  %p
+    = status_color @node.status do
+      = t :status, status: @node.status.name
 
 = markdown @node.body
 
@@ -24,7 +25,22 @@
     - if @node.notes?
       = markdown @node.notes
 
-    = render partial: 'devices', locals: { node: @node, device: @device }
+    - if policy(@node).update? || @node.devices.count.positive?
+      %h3= Device.model_name.human(count: 2)
+
+      %ul
+        - @node.devices.each do |device|
+          %li
+            = link_to device.name, url_for(device)
+            - unless device.device_type.blank?
+              &mdash;
+              = device.device_type.name
+            - unless device.interfaces.empty?
+              (#{device.interfaces.count} interfaces)
+        - if policy(@node).update?
+          %li
+            = link_to t(:new_h, thing: Device.model_name.human),
+              new_device_path(node: @node)
 
     - if @node.graph&.edges&.count&.positive?
       %h3= t('.network_diagram')
@@ -51,4 +67,9 @@
       %br/
       = t :updated, date: @node.updated_at.to_s(:db)
 
-    = render partial: 'links', locals: { node: @node, node_link: @node_link }
+    - if @node.node_links.count.positive?
+      %h3= t :links
+
+      %ul
+        - @node.node_links.each do |node_link|
+          %li= link_to node_link.name, node_link.url
