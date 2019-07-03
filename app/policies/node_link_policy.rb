@@ -2,6 +2,10 @@
 
 # Pundit access control policy for NodeLinksController.
 class NodeLinkPolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
   def create?
     return false unless @record.node
 
