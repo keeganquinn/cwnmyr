@@ -1,57 +1,22 @@
-= render partial: 'shared/form_errors', locals: { record: node }
+= f.input :code, size: 16, maxlength: 64
+= f.input :name
 
-.form-group
-  %label{ for: 'node_code' }= Node.human_attribute_name('code')
-  = text_field 'node', 'code', size: 16, maxlength: 64, class: 'form-control',
-                               'aria-describedby': 'node-code-help'
-  %span.help-block#node-code-help= t '.node_code_help'
-
-.form-group
-  %label{ for: 'node_name' }= Node.human_attribute_name('name')
-  = text_field 'node', 'name', class: 'form-control',
-                               'aria-describedby': 'node-name-help'
-  %span.help-block#node-name-help= t '.node_name_help'
-
-.form-group
-  %label{ for: 'node_status_id' }= Node.human_attribute_name('status')
-  = collection_select 'node', 'status_id', Status.all, 'id', 'name', {},
-                      class: 'form-control'
-
-.form-group
-  %label{ for: 'node_group' }= Node.human_attribute_name('group')
-  = collection_select 'node', 'group_id', Group.all, 'id', 'name',
-                      { include_blank: 'None' }, class: 'form-control'
+= f.association :status
+= f.association :group
 
 - unless current_user.contacts.empty?
-  .form-group
-    %label{ for: 'node_contact' }= Node.human_attribute_name('contact')
-    = collection_select 'node', 'contact_id', current_user.contacts, 'id',
-                        'name', { include_blank: 'None' }, class: 'form-control'
+  = f.association :contact
 
-.form-group
-  %label{ for: 'node_body' }= Node.human_attribute_name('body')
-  = text_area 'node', 'body', rows: 8, class: 'form-control',
-                              'aria-describedby': 'node-body-help'
-  %span.help-block#node-body-help= t '.node_body_help'
+= f.input :body
+= f.input :address
+= f.input :hours
+= f.input :notes
+= f.input :logo
 
-.form-group
-  %label{ for: 'node_address' }= Node.human_attribute_name('address')
-  = text_field 'node', 'address', class: 'form-control',
-                                  'aria-describedby': 'node-address-help'
-  %span.help-block#node-address-help= t '.node_address_help'
-
-.form-group
-  %label{ for: 'node_hours' }= Node.human_attribute_name('hours')
-  = text_field 'node', 'hours', class: 'form-control',
-                                'aria-describedby': 'node-hours-help'
-  %span.help-block#node-hours-help= t '.node_hours_help'
-
-.form-group
-  %label{ for: 'node_notes' }= Node.human_attribute_name('notes')
-  = text_area 'node', 'notes', rows: 8, class: 'form-control',
-                               'aria-describedby': 'node-notes-help'
-  %span.help-block#node-notes-help= t '.node_notes_help'
-
-.form-group
-  %label{ for: 'node_logo' }= Node.human_attribute_name('logo')
-  = file_field 'node', 'logo', class: 'form-control'
+%h3 Links
+#node-links
+  = f.simple_fields_for :node_links do |node_link|
+    = render 'node_link_fields', f: node_link
+  .links.mb-3
+    = link_to_add_association f, :node_links do
+      = t(:add_h, thing: NodeLink.model_name.human)

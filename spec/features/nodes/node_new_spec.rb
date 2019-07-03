@@ -20,6 +20,6 @@ describe 'Node new page', type: :feature do
 
   it 'shows an error if node creation fails' do
     click_button 'Create'
-    expect(page).to have_content 'errors prevented this node'
+    expect(page).to have_content "Name can't be blank"
   end
 end

@@ -36,6 +36,8 @@ en:
   updated: "Updated: %{date}"
   new_h: "New %{thing}"
   edit_h: "Edit %{thing}"
+  add_h: "Add %{thing}"
+  remove_h: "Remove %{thing}"
   confirm_delete: "Are you sure you want to delete this %{thing}?"
   create_success: "%{thing} has been successfully created."
   update_success: "%{thing} has been successfully updated."

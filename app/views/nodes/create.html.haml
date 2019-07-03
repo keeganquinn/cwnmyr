@@ -2,9 +2,9 @@
 
 %h1= t :new_h, thing: Node.model_name.human
 
-= form_tag nodes_path, multipart: true do
-  = render partial: 'form', locals: { node: @node }
+= simple_form_for @node do |f|
+  = render partial: 'form', locals: { f: f }
 
-  = hidden_field 'node', 'user_id'
-  = submit_tag t(:create), class: 'btn btn-primary'
+  = f.input :user_id, as: :hidden
+  = f.submit t(:create), class: 'btn btn-primary'
   = link_to t(:cancel), browse_path, class: 'btn btn-warning'

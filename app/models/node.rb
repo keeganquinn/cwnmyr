@@ -17,15 +17,20 @@ class Node < ApplicationRecord
   belongs_to :group, optional: true
   belongs_to :zone
   has_many :devices
-  has_many :node_links
+  has_many :node_links, inverse_of: :node
   has_one_attached :logo
 
+  accepts_nested_attributes_for :node_links,
+                                reject_if: :all_blank, allow_destroy: true
+
+  validates_presence_of :code
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code, case_sensitive: false
   validates_format_of :code, with: /\A[-_a-zA-Z0-9]+\z/,
                              message: 'contains unacceptable characters',
                              allow_blank: true
+  validates_presence_of :name
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
   validates :logo, content_type: { allow: ['image/jpeg', 'image/png'] }
