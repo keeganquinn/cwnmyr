@@ -1,10 +1,7 @@
 import { MapBuilder } from 'components/map_builder'
 
 import ahoy from 'ahoy.js'
-import $ from 'jquery'
-
-window.jQuery = $
-window.$ = $
+import "<%= File.join(Gem.loaded_specs['cocoon'].full_gem_path, 'app', 'assets', 'javascripts', 'cocoon') %>"
 
 var Turbolinks = require('turbolinks')
 Turbolinks.start()
