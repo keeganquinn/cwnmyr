@@ -1,9 +1,0 @@
-= render partial: 'shared/form_errors', locals: { record: node_link }
-
-.form-group
-  %label{ for: 'node_link_name' }= NodeLink.human_attribute_name('name')
-  = text_field 'node_link', 'name', class: 'form-control'
-
-.form-group
-  %label{ for: 'node_link_url' }= NodeLink.human_attribute_name('url')
-  = text_field 'node_link', 'url', class: 'form-control'

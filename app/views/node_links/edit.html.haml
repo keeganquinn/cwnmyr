@@ -1,9 +1,0 @@
-- content_for :title, t(:edit_h, thing: NodeLink.model_name.human)
-
-%h1= t :edit_h, thing: NodeLink.model_name.human
-
-= form_tag url_for(@node_link), method: :put do
-  = render partial: 'form', locals: { node_link: @node_link }
-
-  = submit_tag t(:update), id: 'node_link_update', class: 'btn btn-primary'
-  = link_to t(:cancel), url_for(@node_link), class: 'btn btn-warning'

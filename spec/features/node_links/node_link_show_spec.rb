@@ -11,14 +11,4 @@ describe 'Node Link show page', type: :feature do
   end
 
   it { expect(page).to have_content node_link.name }
-
-  it 'allows the node link to be edited' do
-    click_link 'Edit'
-    expect(page).to have_content 'Edit Node Link'
-  end
-
-  it 'allows the node link to be deleted' do
-    click_link 'Delete'
-    expect(page).to have_content node_link.node.name
-  end
 end
