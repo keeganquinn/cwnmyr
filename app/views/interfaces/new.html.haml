@@ -1,9 +1,0 @@
-.container
-  %h1= t :new_h, thing: Interface.model_name.human
-
-  = form_tag interfaces_path do
-    = render partial: 'form', locals: { interface: @interface }
-
-    = hidden_field 'interface', 'device_id'
-    = submit_tag t(:create), id: 'interface_create', class: 'btn btn-primary'
-    = link_to t(:cancel), url_for(@interface.device), class: 'btn btn-warning'

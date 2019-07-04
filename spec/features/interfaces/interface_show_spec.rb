@@ -11,15 +11,5 @@ describe 'Interface show page', type: :feature do
     visit interface_path(interface)
   end
 
-  it { expect(page).to have_content interface.code }
-
-  it 'allows the interface to be edited' do
-    click_link 'Edit'
-    expect(page).to have_content 'Edit Interface'
-  end
-
-  it 'allows the interface to be deleted' do
-    click_link 'Delete'
-    expect(page).to have_content interface.device.name
-  end
+  it { expect(page).to have_content interface.device.name }
 end

@@ -2,6 +2,10 @@
 
 # Pundit access control policy for InterfacesController.
 class InterfacePolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
   def create?
     return false unless @record.device
 

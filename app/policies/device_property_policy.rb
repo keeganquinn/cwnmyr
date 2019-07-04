@@ -2,6 +2,10 @@
 
 # Pundit access control policy for DevicePropertiesController.
 class DevicePropertyPolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
   def create?
     return false unless @record.device
 

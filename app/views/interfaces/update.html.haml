@@ -1,8 +1,0 @@
-.container
-  %h1= t :edit_h, thing: Interface.model_name.human
-
-  = form_tag url_for(@interface), method: :put do
-    = render partial: 'form', locals: { interface: @interface }
-
-    = submit_tag t(:update), id: 'interface_update', class: 'btn btn-primary'
-    = link_to t(:cancel), url_for(@interface), class: 'btn btn-warning'
