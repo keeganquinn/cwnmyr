@@ -57,6 +57,7 @@ class NodesController < ApplicationController
   end
 
   def serve_image
+    # TODO: should probably 404
     return head(:ok) unless @node.logo.attached?
 
     expires_in 1.year, public: true
