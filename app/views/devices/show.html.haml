@@ -17,33 +17,32 @@
 
     = markdown @device.body
 
-    %h2= Interface.model_name.human(count: 2)
+    - unless @device.interfaces.empty?
+      %h2= Interface.model_name.human(count: 2)
 
-    %ul
-      - @device.interfaces.each do |interface|
-        %li
-          = link_to h(interface.name), url_for(interface)
-          - if interface.essid
-            \-
-            = Interface.human_attribute_name('essid')
-            = h interface.essid
-          - if interface.channel
-            \-
-            = Interface.human_attribute_name('channel')
-            = h interface.channel
-      - if policy(@device).update?
-        %li= link_to t(:create), new_interface_path(device_id: @device)
+      %ul
+        - @device.interfaces.each do |interface|
+          %li
+            = h(interface.name)
+            - if interface.essid
+              \-
+              = Interface.human_attribute_name('essid')
+              = h interface.essid
+            - if interface.channel
+              \-
+              = Interface.human_attribute_name('channel')
+              = h interface.channel
 
-    %h2= DeviceProperty.model_name.human(count: 2)
+    - unless @device.device_properties.empty?
+      %h2= DeviceProperty.model_name.human(count: 2)
 
-    %ul
-      - @device.device_properties.each do |device_property|
-        %li
-          = link_to h(device_property.key), url_for(device_property)
-          &larr;
-          = h device_property.value
-      - if policy(@device).update?
-        %li= link_to t(:create), new_device_property_path(device_id: @device)
+      %ul
+        - @device.device_properties.each do |device_property|
+          %li
+            = h(device_property.key)
+            &larr;
+            = h device_property.value
 
-    %h2= t('.network_diagram')
-    %p= image_tag graph_device_path(@device, format: :png)
+    - if @device.graph&.edges&.count&.positive?
+      %h2= t('.network_diagram')
+      %p= image_tag graph_device_path(@device, format: :png)
