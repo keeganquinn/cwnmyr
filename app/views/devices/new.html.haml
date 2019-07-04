@@ -1,9 +1,9 @@
 .container
   %h1= t :new_h, thing: Device.model_name.human
 
-  = form_tag devices_path do
-    = render partial: 'form', locals: { device: @device }
+  = simple_form_for @device do |f|
+    = render partial: 'form', locals: { f: f }
 
-    = hidden_field 'device', 'node_id'
-    = submit_tag t(:create), id: 'device_create', class: 'btn btn-primary'
+    = f.input :node_id, as: :hidden
+    = f.submit t(:create), id: 'device_create', class: 'btn btn-primary'
     = link_to t(:cancel), root_path, class: 'btn btn-warning'

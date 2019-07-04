@@ -1,8 +1,8 @@
 .container
   %h1= t :edit_h, thing: Device.model_name.human
 
-  = form_tag url_for(@device), method: :put do
-    = render partial: 'form', locals: { device: @device }
+  = simple_form_for @device do |f|
+    = render partial: 'form', locals: { f: f }
 
-    = submit_tag t(:update), id: 'device_update', class: 'btn btn-primary'
+    = f.submit t(:update), id: 'device_update', class: 'btn btn-primary'
     = link_to t(:cancel), url_for(@device), class: 'btn btn-warning'

@@ -1,0 +1,11 @@
+.nested-fields.border.border-dark.rounded.mb-2.p-1
+  = f.input :code
+  = f.input :name
+  = f.association :interface_type
+  = f.input :address_ipv6
+  = f.input :address_ipv4
+  = f.input :address_mac
+  .clearfix
+    .float-right
+      = link_to_remove_association f do
+        = t(:remove_h, thing: Interface.model_name.human)

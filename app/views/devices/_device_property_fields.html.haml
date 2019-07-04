@@ -1,0 +1,7 @@
+.nested-fields.border.border-dark.rounded.mb-2.p-1
+  = f.input :key
+  = f.input :value
+  .clearfix
+    .float-right
+      = link_to_remove_association f do
+        = t(:remove_h, thing: DeviceProperty.model_name.human)

@@ -5,11 +5,18 @@ require_dependency 'dot_diskless'
 # Each Device instance represents a network device which is used at a Node.
 class Device < ApplicationRecord
   has_paper_trail
+
   belongs_to :node
   belongs_to :device_type, optional: true
-  has_many :interfaces
-  has_many :device_properties
+  has_many :interfaces, inverse_of: :device
+  has_many :device_properties, inverse_of: :device
 
+  accepts_nested_attributes_for :interfaces,
+                                reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :device_properties,
+                                reject_if: :all_blank, allow_destroy: true
+
+  validates_presence_of :name
   validates_length_of :name, minimum: 1
   validates_uniqueness_of :name, scope: :node_id, case_sensitive: false
   validates_format_of :name,

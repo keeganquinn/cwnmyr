@@ -1,17 +1,19 @@
-= render partial: 'shared/form_errors', locals: { record: device }
+= f.input :name
+= f.association :device_type
+= f.input :body
 
-.form-group
-  %label{ for: 'device_name' }= Device.human_attribute_name('name')
-  = text_field 'device', 'name', class: 'form-control',
-               'aria-describedby': 'device-name-help'
-  %span.help-block#device-name-help= t '.device_name_help'
+%h3 Interfaces
+#interfaces
+  = f.simple_fields_for :interfaces do |interface|
+    = render 'interface_fields', f: interface
+  .links.mb-3
+    = link_to_add_association f, :interfaces do
+      = t(:add_h, thing: Interface.model_name.human)
 
-.form-group
-  %label{ for: 'device_device_type_id' }
-    = Device.human_attribute_name('device_type')
-  = collection_select 'device', 'device_type_id', DeviceType.all, 'id', 'name',
-    {}, class: 'form-control'
-
-.form-group
-  %label{ for: 'device_body' }= Device.human_attribute_name('body')
-  = text_area 'device', 'body', rows: 8, class: 'form-control'
+%h3 Device Properties
+#device-properties
+  = f.simple_fields_for :device_properties do |device_property|
+    = render 'device_property_fields', f: device_property
+  .links.mb-3
+    = link_to_add_association f, :device_properties do
+      = t(:add_h, thing: DeviceProperty.model_name.human)
