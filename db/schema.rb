@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_064115) do
+ActiveRecord::Schema.define(version: 2019_07_05_001522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -197,16 +197,6 @@ ActiveRecord::Schema.define(version: 2019_06_03_064115) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_groups_users_on_group_id"
     t.index ["user_id"], name: "index_groups_users_on_user_id"
-  end
-
-  create_table "interface_properties", id: :serial, force: :cascade do |t|
-    t.integer "interface_id"
-    t.string "key"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["interface_id"], name: "index_interface_properties_on_interface_id"
-    t.index ["key"], name: "index_interface_properties_on_key"
   end
 
   create_table "interface_types", id: :serial, force: :cascade do |t|

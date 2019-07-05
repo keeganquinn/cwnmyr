@@ -29,7 +29,6 @@ class InterfaceDashboard < Administrate::BaseDashboard
     azimuth: Field::Number,
     elevation: Field::Number,
     polarity: Field::String,
-    interface_properties: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -40,8 +39,7 @@ class InterfaceDashboard < Administrate::BaseDashboard
     device code name interface_type body
     address_ipv4 address_ipv6 address_mac latitude longitude altitude
     essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
-    beamwidth_h beamwidth_v azimuth elevation polarity interface_properties
-    created_at updated_at
+    beamwidth_h beamwidth_v azimuth elevation polarity created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[

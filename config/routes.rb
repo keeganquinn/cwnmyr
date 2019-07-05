@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       mount PgHero::Engine, at: 'pghero'
     end
     resources :contacts, :devices, :device_properties, :device_types, :groups,
-              :interfaces, :interface_properties, :interface_types,
-              :nodes, :node_links, :statuses, :users, :zones
+              :interfaces, :interface_types, :nodes, :node_links, :statuses,
+              :users, :zones
     root to: 'users#index'
   end
 
