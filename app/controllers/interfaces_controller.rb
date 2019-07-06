@@ -11,6 +11,6 @@ class InterfacesController < ApplicationController
 
   def show
     @interface = authorize Interface.find(params[:id])
-    redirect_to @interface.device
+    redirect_to @interface&.device || browse_path
   end
 end

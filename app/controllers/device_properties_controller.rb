@@ -11,6 +11,6 @@ class DevicePropertiesController < ApplicationController
 
   def show
     @device_property = authorize DeviceProperty.find(params[:id])
-    redirect_to @device_property.device
+    redirect_to @device_property&.device || browse_path
   end
 end

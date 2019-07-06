@@ -11,6 +11,6 @@ class NodeLinksController < ApplicationController
 
   def show
     @node_link = authorize NodeLink.find(params[:id])
-    redirect_to @node_link.node
+    redirect_to @node_link&.node || browse_path
   end
 end
