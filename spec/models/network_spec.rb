@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-describe InterfaceType do
-  subject(:interface_type) { build_stubbed(:interface_type) }
+describe Network do
+  subject(:network) { build_stubbed(:network) }
 
   it { is_expected.to have_many(:interfaces) }
 
@@ -19,24 +19,24 @@ describe InterfaceType do
   it { is_expected.to be_valid }
 
   it '#to_param returns nil when unsaved' do
-    interface_type.id = nil
-    expect(interface_type.to_param).to be_nil
+    network.id = nil
+    expect(network.to_param).to be_nil
   end
 
   it '#to_param returns a string' do
-    expect(interface_type.to_param).to(
-      match "^#{interface_type.id}-#{interface_type.code}$"
+    expect(network.to_param).to(
+      match "^#{network.id}-#{network.code}$"
     )
   end
 
   it 'generates a code if a name is provided' do
-    interface_type.name = 'Test Interface Type'
-    interface_type.validate
-    expect(interface_type.code).to match 'test-interface-type'
+    network.name = 'Test Network'
+    network.validate
+    expect(network.code).to match 'test-network'
   end
 
   describe 'with database access' do
-    subject(:interface_type) { build(:interface_type) }
+    subject(:network) { build(:network) }
 
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end

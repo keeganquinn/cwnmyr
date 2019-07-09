@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-12
+      %h1= Network.model_name.human(count: 2)
+
+  .row
+    .col-md-12
+      %ul
+        - @networks.each do |network|
+          %li= link_to h(network.name), url_for(network)

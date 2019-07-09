@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_001522) do
+ActiveRecord::Schema.define(version: 2019_07_07_121658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -199,24 +199,11 @@ ActiveRecord::Schema.define(version: 2019_07_05_001522) do
     t.index ["user_id"], name: "index_groups_users_on_user_id"
   end
 
-  create_table "interface_types", id: :serial, force: :cascade do |t|
-    t.string "code", limit: 64
-    t.string "name"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "network_ipv4"
-    t.string "network_ipv6"
-    t.boolean "allow_neighbors"
-    t.index ["code"], name: "index_interface_types_on_code", unique: true
-    t.index ["name"], name: "index_interface_types_on_name", unique: true
-  end
-
   create_table "interfaces", id: :serial, force: :cascade do |t|
     t.integer "device_id"
     t.string "code"
     t.string "name"
-    t.integer "interface_type_id"
+    t.integer "network_id"
     t.text "body"
     t.string "address_ipv4"
     t.string "address_ipv6"
@@ -240,18 +227,21 @@ ActiveRecord::Schema.define(version: 2019_07_05_001522) do
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_interfaces_on_code"
     t.index ["device_id"], name: "index_interfaces_on_device_id"
-    t.index ["interface_type_id"], name: "index_interfaces_on_interface_type_id"
     t.index ["name"], name: "index_interfaces_on_name"
+    t.index ["network_id"], name: "index_interfaces_on_network_id"
   end
 
-  create_table "node_links", id: :serial, force: :cascade do |t|
-    t.integer "node_id"
+  create_table "networks", id: :serial, force: :cascade do |t|
+    t.string "code", limit: 64
     t.string "name"
-    t.string "url"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_node_links_on_name"
-    t.index ["node_id"], name: "index_node_links_on_node_id"
+    t.string "network_ipv4"
+    t.string "network_ipv6"
+    t.boolean "allow_neighbors"
+    t.index ["code"], name: "index_networks_on_code", unique: true
+    t.index ["name"], name: "index_networks_on_name", unique: true
   end
 
   create_table "nodes", id: :serial, force: :cascade do |t|
@@ -270,6 +260,10 @@ ActiveRecord::Schema.define(version: 2019_07_05_001522) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "group_id"
+    t.string "website"
+    t.string "rss"
+    t.string "twitter"
+    t.string "wiki"
     t.index ["code"], name: "index_nodes_on_code", unique: true
     t.index ["contact_id"], name: "index_nodes_on_contact_id"
     t.index ["group_id"], name: "index_nodes_on_group_id"

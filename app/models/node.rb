@@ -2,11 +2,12 @@
 
 require_dependency 'dot_diskless'
 
+DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='
+TWITTER_BASE = 'https://twitter.com'
+
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
-  DIR_URL = 'https://www.google.com/maps?saddr=My+Location&daddr='
-
   acts_as_taggable
   has_paper_trail
   searchkick word_start: %i[code name body address notes tag_list]
@@ -17,11 +18,7 @@ class Node < ApplicationRecord
   belongs_to :group, optional: true
   belongs_to :zone
   has_many :devices
-  has_many :node_links, inverse_of: :node
   has_one_attached :logo
-
-  accepts_nested_attributes_for :node_links,
-                                reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :code
   validates_length_of :code, minimum: 1
@@ -70,6 +67,10 @@ class Node < ApplicationRecord
 
   def directions_url
     "#{DIR_URL}#{URI.encode_www_form_component(address)}"
+  end
+
+  def twitter_url
+    "#{TWITTER_BASE}/#{twitter}" unless twitter.blank?
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this

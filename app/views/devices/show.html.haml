@@ -8,11 +8,13 @@
   .col-md-12
     = render partial: 'shared/edit_delete', locals: { record: @device }
 
-    %p.small
-      - if @device.node
-        = link_to t(:node, node: @device.node.name), url_for(@device.node)
-      - if @device.device_type
-        %br/
+    - if @device.node
+      .small
+        #{Node.model_name.human}:
+        = link_to @device.node.name, url_for(@device.node)
+    - if @device.device_type
+      .small
+        #{DeviceType.model_name.human}:
         = link_to @device.device_type.name, url_for(@device.device_type)
 
     = markdown @device.body
@@ -24,12 +26,17 @@
         - @device.interfaces.each do |interface|
           %li
             = h(interface.name)
+            - unless interface.address_ipv4.blank?
+              (#{interface.address_ipv4})
+            - unless interface.network.blank?
+              &mdash;
+              = link_to interface.network.name, url_for(interface.network)
             - if interface.essid
-              \-
+              &mdash;
               = Interface.human_attribute_name('essid')
               = h interface.essid
             - if interface.channel
-              \-
+              &mdash;
               = Interface.human_attribute_name('channel')
               = h interface.channel
 

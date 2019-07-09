@@ -69,17 +69,17 @@
           %li
             = link_to h(device_type.name), url_for(device_type)
 
-    - unless InterfaceType.all.empty?
-      %h2= InterfaceType.model_name.human.pluralize
+    - unless Network.all.empty?
+      %h2= Network.model_name.human.pluralize
 
       .small.text-muted.pb-1
         = surround '(', ')' do
-          = t :total_numbered, count: InterfaceType.count
+          = t :total_numbered, count: Network.count
 
       %ul
-        - InterfaceType.all.order(name: :asc).each do |interface_type|
+        - Network.all.order(name: :asc).each do |network|
           %li
-            = link_to h(interface_type.name), url_for(interface_type)
+            = link_to h(network.name), url_for(network)
 
     - unless Status.all.empty?
       %h2= Status.model_name.human.pluralize

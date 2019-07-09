@@ -17,8 +17,8 @@ describe PopulateOptionsService do
     expect(DeviceType.count).to be_positive
   end
 
-  it 'creates interface type records' do
-    expect(InterfaceType.count).to be_positive
+  it 'creates network records' do
+    expect(Network.count).to be_positive
   end
 
   it 'creates status records' do

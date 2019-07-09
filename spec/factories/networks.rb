@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :interface_type do
+  factory :network do
     sequence(:name) { |n| "Test Type ##{n}" }
     body { Faker::Lorem.paragraphs }
   end

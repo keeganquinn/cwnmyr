@@ -2,12 +2,12 @@
 
 describe 'Device network diagram', type: :feature do
   let(:device) { create :device }
-  let(:network) { create :interface_type }
+  let(:network) { create :network }
 
   it 'PNG data is returned' do
-    create :interface, device: device, interface_type: network,
+    create :interface, device: device, network: network,
                        address_ipv4: '10.11.23.2/24'
-    create :interface, interface_type: network, address_ipv4: '10.11.23.3/24'
+    create :interface, network: network, address_ipv4: '10.11.23.3/24'
 
     visit graph_device_path(device, format: :png)
     expect(page.response_headers['Content-Type']).to eq 'image/png'

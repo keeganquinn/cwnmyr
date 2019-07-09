@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Each InterfaceType instance represents a type of Interface.
-class InterfaceType < ApplicationRecord
+# A Network can be used to connect multiple Interfaces.
+class Network < ApplicationRecord
   has_paper_trail
   has_many :interfaces
 

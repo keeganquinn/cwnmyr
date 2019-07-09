@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :interface do
-    interface_type
+    network
     device
     sequence(:name) { |n| "Test Interface ##{n}" }
     body { Faker::Lorem.paragraphs }

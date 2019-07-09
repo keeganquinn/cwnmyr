@@ -35,10 +35,9 @@ class PopulateOptionsService
     { code: 'wndr3800', name: 'WNDR3800' },
     { code: 'wzr600dhp', name: 'WZR600DHP' }
   ].freeze
-  INTERFACE_TYPES = [
+  NETWORKS = [
     { code: 'test', name: 'Test Interface' },
-    { code: 'pub', name: 'Public Network', allow_neighbors: true },
-    { code: 'priv', name: 'Private Network' }
+    { code: 'ptpnet', name: 'PTPnet', allow_neighbors: true }
   ].freeze
   STATUSES = [
     { code: 'active', name: 'Active', color: 'green', ordinal: 100,
@@ -55,7 +54,7 @@ class PopulateOptionsService
     [
       *GROUPS.map { |vals| make_one Group, vals },
       *DEVICE_TYPES.map { |vals| make_one DeviceType, vals },
-      *INTERFACE_TYPES.map { |vals| make_one InterfaceType, vals },
+      *NETWORKS.map { |vals| make_one Network, vals },
       *STATUSES.map { |vals| make_one Status, vals },
       *ZONES.map { |vals| make_one Zone, vals }
     ]

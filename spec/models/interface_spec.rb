@@ -4,7 +4,7 @@ describe Interface do
   subject(:interface) { build_stubbed :interface }
 
   it { is_expected.to belong_to(:device) }
-  it { is_expected.to belong_to(:interface_type) }
+  it { is_expected.to belong_to(:network) }
 
   it { is_expected.to respond_to(:code) }
   it { is_expected.to respond_to(:name) }
@@ -54,20 +54,20 @@ describe Interface do
   end
 
   describe 'IPv4 neighbors' do
-    let(:network) { create :interface_type, allow_neighbors: true }
+    let(:network) { create :network, allow_neighbors: true }
     let!(:local) do
-      create :interface, interface_type: network, address_ipv4: '10.11.23.2/24'
+      create :interface, network: network, address_ipv4: '10.11.23.2/24'
     end
     let!(:remote) do
-      create :interface, interface_type: network, address_ipv4: '10.11.23.3/24'
+      create :interface, network: network, address_ipv4: '10.11.23.3/24'
     end
 
     it 'are on the same network' do
-      expect(local.interface_type).to eq(remote.interface_type)
+      expect(local.network).to eq(remote.network)
     end
 
-    it 'share an interface type' do
-      expect(local.interface_type.interfaces).to include(remote)
+    it 'share a network association' do
+      expect(local.network.interfaces).to include(remote)
     end
 
     it 'are detected' do

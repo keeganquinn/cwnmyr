@@ -31,13 +31,7 @@ class ImportLegacyDataService
     nodes.map do |value|
       node = build_node value
       finalize_node node, value
-
-      build_link node, 'Website', 'url', value
-      build_link node, 'RSS Feed', 'rss', value
-      build_link node, 'Twitter', 'twitter', value
-      build_link node, 'Wiki', 'wikiurl', value
       build_device node, value
-
       node
     end
   end
@@ -47,7 +41,9 @@ class ImportLegacyDataService
     node.assign_attributes(
       status: Status.find_by(code: value['status']),
       name: value['nodename'], body: value['description'],
-      notes: value['notes'], address: value['address']
+      notes: value['notes'], address: value['address'],
+      website: value['url'], rss: value['rss'],
+      twitter: value['twitter'], wiki: value['wikiurl']
     )
     node
   end
@@ -84,12 +80,6 @@ class ImportLegacyDataService
     contact.save && contact
   end
 
-  def build_link(node, name, key, value)
-    return unless value[key]
-
-    NodeLink.find_or_create_by node: node, name: name, url: value[key]
-  end
-
   def build_device(node, value)
     return unless value['hostname']
 
@@ -115,20 +105,25 @@ class ImportLegacyDataService
   def build_iface_pub(device, value)
     return unless value['pubaddr']
 
-    pub = InterfaceType.find_by code: 'pub'
+    ptpnet = Network.find_by code: 'ptpnet'
     mask = value['pubmasklen'] || '24'
-    Interface.find_or_create_by device: device, interface_type: pub,
-                                name: 'Public Network',
-                                address_ipv4: "#{value['pubaddr']}/#{mask}"
+    iface = Interface.find_or_initialize_by device: device,
+                                            name: 'Public Network'
+    iface.code = 'pub'
+    iface.network = ptpnet
+    iface.address_ipv4 = "#{value['pubaddr']}/#{mask}"
+    iface.save
   end
 
   def build_iface_priv(device, value)
     return unless value['privaddr']
 
-    priv = InterfaceType.find_by code: 'priv'
     mask = value['privmasklen'] || '24'
-    Interface.find_or_create_by device: device, interface_type: priv,
-                                name: 'Private Network',
-                                address_ipv4: "#{value['privaddr']}/#{mask}"
+    iface = Interface.find_or_initialize_by device: device,
+                                            name: 'Private Network'
+    iface.code = 'priv'
+    iface.network = nil
+    iface.address_ipv4 = "#{value['privaddr']}/#{mask}"
+    iface.save
   end
 end

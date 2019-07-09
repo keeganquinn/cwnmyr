@@ -7,7 +7,7 @@ require_dependency 'dot_diskless'
 class Interface < ApplicationRecord
   has_paper_trail
   belongs_to :device
-  belongs_to :interface_type
+  belongs_to :network, optional: true
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
@@ -69,9 +69,9 @@ class Interface < ApplicationRecord
   # Finds neighboring Interface instances based on IPv4 network
   # configuration data.
   def ipv4_neighbors
-    return [] unless ipv4_cidr && interface_type.allow_neighbors
+    return [] unless ipv4_cidr && network&.allow_neighbors
 
-    interface_type.interfaces.where.not(id: id).select do |other|
+    network.interfaces.where.not(id: id).select do |other|
       ipv4_net == other.ipv4_net
     end
   end

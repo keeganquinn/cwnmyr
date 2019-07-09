@@ -11,12 +11,8 @@
 = f.input :address
 = f.input :hours
 = f.input :notes
+= f.input :website
+= f.input :rss
+= f.input :twitter
+= f.input :wiki
 = f.input :logo
-
-%h3 Links
-#node-links
-  = f.simple_fields_for :node_links do |node_link|
-    = render 'node_link_fields', f: node_link
-  .links.mb-3
-    = link_to_add_association f, :node_links do
-      = t(:add_h, thing: NodeLink.model_name.human)

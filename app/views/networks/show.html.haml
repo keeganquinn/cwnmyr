@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-12
+      %h1= h @network.name
+
+  .row
+    .col-md-12
+      %p= h @network.code
+
+      - unless @network.interfaces.empty?
+        %h2= Interface.model_name.human(count: 2)
+
+        %ul
+          - @network.interfaces.order(:address_ipv4).each do |interface|
+            %li
+              = interface.address_ipv4
+              - unless interface.device.blank?
+                = surround '(', ')' do
+                  = link_to interface.device.name, url_for(interface.device)

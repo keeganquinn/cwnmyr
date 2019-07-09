@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe InterfaceTypePolicy do
+describe NetworkPolicy do
   subject { described_class }
 
   permissions :index? do
@@ -8,8 +8,8 @@ describe InterfaceTypePolicy do
   end
 
   permissions :show? do
-    let(:interface_type) { create :interface_type }
+    let(:network) { create :network }
 
-    it { is_expected.to permit nil, interface_type }
+    it { is_expected.to permit nil, network }
   end
 end

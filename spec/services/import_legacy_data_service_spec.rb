@@ -51,10 +51,6 @@ describe ImportLegacyDataService do
     expect(Contact.count).to be_positive
   end
 
-  it 'creates node link records' do
-    expect(NodeLink.count).to be_positive
-  end
-
   it 'creates device records' do
     expect(Device.count).to be_positive
   end

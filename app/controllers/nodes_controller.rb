@@ -67,9 +67,8 @@ class NodesController < ApplicationController
 
   def safe_params
     params.require(:node).permit(
-      :user_id, :code, :name, :status_id, :group_id, :contact_id,
-      :body, :address, :hours, :notes, :logo,
-      node_links_attributes: %i[id name url _destroy]
+      :user_id, :code, :name, :status_id, :group_id, :contact_id, :body,
+      :address, :hours, :notes, :website, :rss, :twitter, :wiki, :logo
     )
   end
 end

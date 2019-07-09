@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-describe InterfaceTypeDashboard do
+describe NetworkDashboard do
   subject(:dashboard) { described_class }
 
-  let(:interface_type) { build_stubbed :interface_type }
+  let(:network) { build_stubbed :network }
 
   it 'defines attribute types' do
     expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(10)
@@ -22,8 +22,8 @@ describe InterfaceTypeDashboard do
   end
 
   it '#display_resource returns a string' do
-    expect(dashboard.new.display_resource(interface_type)).to(
-      match "^Interface Type ##{interface_type.to_param}$"
+    expect(dashboard.new.display_resource(network)).to(
+      match "^Network ##{network.to_param}$"
     )
   end
 end

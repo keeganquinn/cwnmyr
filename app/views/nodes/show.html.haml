@@ -25,8 +25,25 @@
     - if @node.notes?
       = markdown @node.notes
 
+    %ul.list-group.list-group-horizontal
+      - unless @node.website.blank?
+        %li.list-group-item
+          = link_to 'Website', @node.website, target: :_blank
+
+      - unless @node.rss.blank?
+        %li.list-group-item
+          = link_to 'RSS Feed', @node.rss, target: :_blank
+
+      - unless @node.twitter.blank?
+        %li.list-group-item
+          = link_to 'Twitter', @node.twitter_url, target: :_blank
+
+      - unless @node.wiki.blank?
+        %li.list-group-item
+          = link_to 'Wiki', @node.wiki, target: :_blank
+
     - if policy(@node).update? || @node.devices.count.positive?
-      %h3= Device.model_name.human(count: 2)
+      %h3.mt-3= Device.model_name.human(count: 2)
 
       %ul
         - @node.devices.each do |device|
@@ -43,7 +60,7 @@
               new_device_path(node: @node)
 
     - if @node.graph&.edges&.count&.positive?
-      %h3= t('.network_diagram')
+      %h3.mt-3= t('.network_diagram')
       %p= image_tag graph_node_path(@node, format: :png)
 
   .col-lg-4
@@ -66,10 +83,3 @@
       = t :created, date: @node.created_at.to_s(:db)
       %br/
       = t :updated, date: @node.updated_at.to_s(:db)
-
-    - if @node.node_links.count.positive?
-      %h3= t :links
-
-      %ul
-        - @node.node_links.each do |node_link|
-          %li= link_to node_link.name, node_link.url

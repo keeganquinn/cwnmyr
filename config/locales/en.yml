@@ -71,9 +71,9 @@ en:
       interface_property:
         one: Interface Property
         other: Interface Properties
-      interface_type:
-        one: Interface Type
-        other: Interface Types
+      network:
+        one: Network
+        other: Networks
       node:
         one: Node
         other: Nodes

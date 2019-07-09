@@ -9,7 +9,7 @@ class InterfaceDashboard < Administrate::BaseDashboard
     device: Field::BelongsTo,
     code: Field::String,
     name: Field::String,
-    interface_type: Field::BelongsTo,
+    network: Field::BelongsTo,
     body: Field::Text,
     address_ipv4: Field::String,
     address_ipv6: Field::String,
@@ -33,17 +33,17 @@ class InterfaceDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[device code name interface_type].freeze
+  COLLECTION_ATTRIBUTES = %i[device code name network].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    device code name interface_type body
+    device code name network body
     address_ipv4 address_ipv6 address_mac latitude longitude altitude
     essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
     beamwidth_h beamwidth_v azimuth elevation polarity created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    device code name interface_type body
+    device code name network body
     address_ipv4 address_ipv6 address_mac latitude longitude altitude
     essid security_psk channel tx_power rx_sensitivity cable_loss antenna_gain
     beamwidth_h beamwidth_v azimuth elevation polarity

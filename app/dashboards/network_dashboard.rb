@@ -2,8 +2,8 @@
 
 require 'administrate/base_dashboard'
 
-# Administrate Dashboard for the InterfaceType model.
-class InterfaceTypeDashboard < Administrate::BaseDashboard
+# Administrate Dashboard for the Network model.
+class NetworkDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     code: Field::String,
@@ -25,7 +25,7 @@ class InterfaceTypeDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[code name body network_ipv4 network_ipv6
                        allow_neighbors].freeze
 
-  def display_resource(interface_type)
-    "Interface Type ##{interface_type.to_param}"
+  def display_resource(network)
+    "Network ##{network.to_param}"
   end
 end

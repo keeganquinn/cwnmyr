@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class InterfaceTypesController < Admin::ApplicationController
+  class NetworksController < Admin::ApplicationController
     # To customize the behavior of this controller,
     # simply overwrite any of the RESTful actions. For example:
     #

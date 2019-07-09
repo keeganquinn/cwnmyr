@@ -50,7 +50,7 @@ class DevicesController < ApplicationController
     params.require(:device).permit(
       :node_id, :name, :device_type_id, :body,
       interfaces_attributes: %i[
-        id code name interface_type_id address_ipv6 address_ipv4 address_mac
+        id code name network_id address_ipv6 address_ipv4 address_mac
         _destroy
       ],
       device_properties_attributes: %i[id key value _destroy]
