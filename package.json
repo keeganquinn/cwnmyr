@@ -51,7 +51,7 @@
     "rails-erb-loader": "^5.5.2",
     "rails-ujs": "^5.2.3",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.35.2"
+    "webpack": "^4.35.3"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
