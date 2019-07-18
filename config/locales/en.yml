@@ -56,6 +56,9 @@ en:
     other: "%{count} devices"
   activerecord:
     models:
+      contact:
+        one: Contact
+        other: Contacts
       device:
         one: Device
         other: Devices
@@ -65,21 +68,18 @@ en:
       device_type:
         one: Device Type
         other: Device Types
+      group:
+        one: Group
+        other: Groups
       interface:
-        one: Interface
-        other: Interfaces
-      interface_property:
-        one: Interface Property
-        other: Interface Properties
+        one: Network Interface
+        other: Network Interfaces
       network:
         one: Network
         other: Networks
       node:
         one: Node
         other: Nodes
-      node_link:
-        one: Node Link
-        other: Node Links
       status:
         one: Status
         other: Statuses
@@ -91,9 +91,13 @@ en:
         other: Zones
     attributes:
       interface:
-        address_ipv4: CIDR-masked IPv4 address
-        address_ipv6: CIDR-masked IPv6 address
-        address_mac: BSSID/MAC address
+        address_ipv4: IPv4 Address
+        address_ipv6: IPv6 Address
+        address_mac: BSSID/MAC Address
+      device:
+        body: Description
+        device_type: Device Type
+        name: Hostname
       node:
         body: Description
         rss: RSS Feed
