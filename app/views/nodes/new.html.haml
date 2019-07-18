@@ -2,6 +2,10 @@
 
 %h1= t :new_h, thing: Node.model_name.human
 
+%p
+  Here you can create a new node. Nodes registered in this system will be
+  included in our database and displayed on the map.
+
 = simple_form_for @node do |f|
   = render partial: 'form', locals: { f: f }
 
