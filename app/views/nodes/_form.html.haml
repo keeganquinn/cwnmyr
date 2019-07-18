@@ -1,18 +1,47 @@
-= f.input :code, size: 16, maxlength: 64
-= f.input :name
+%p
+  Unless otherwise specified, any details you provide here will be
+  available to the public. Please be sure not to include any information
+  you wish to remain private.
 
-= f.association :status
-= f.association :group
+= f.input :code, size: 16, placeholder: 'JoesPlace', wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted
+  A unique identifier for this node. We suggest using the node's WikiWord
+  without the prefix. For example, NodePioneerSquare would have the code
+  PioneerSquare. If your node doesn't have a WikiWord yet, you can make one up.
+
+= f.input :name, placeholder: "Joe's Place", wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted Proper name of the area or business where the node is located.
+
+.row
+  .col-6
+    = f.association :status
+  .col-6
+    = f.association :group
+
+= f.input :body, wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted Description of the node. Any relevant information can go here.
+
+= f.input :address, wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted
+  Street address of the node. This will be used to determine the position of
+  the map marker.
+= f.input :hours
+
+= f.input :notes, wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted
+  Notes about the node. Technical or miscellaneous information can go here.
+
+= f.input :website
+= f.input :rss
+
+= f.input :twitter, wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted Twitter username. Do not include @ symbol.
+
+= f.input :wiki
+
+= f.input :logo, wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted
+  Square images in PNG format work best.
 
 - unless current_user.contacts.empty?
   = f.association :contact
-
-= f.input :body
-= f.input :address
-= f.input :hours
-= f.input :notes
-= f.input :website
-= f.input :rss
-= f.input :twitter
-= f.input :wiki
-= f.input :logo
