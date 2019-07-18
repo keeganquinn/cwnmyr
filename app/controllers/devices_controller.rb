@@ -15,7 +15,7 @@ class DevicesController < ApplicationController
 
   def create
     @device = authorize Device.new(safe_params)
-    save_and_respond @device, :created, :create_success
+    save_and_respond @device, :created, :create_success, :new
   end
 
   def edit
@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   def update
     @device = authorize Device.find(params[:id])
     @device.assign_attributes(safe_params)
-    save_and_respond @device, :ok, :update_success
+    save_and_respond @device, :ok, :update_success, :edit
   end
 
   def destroy

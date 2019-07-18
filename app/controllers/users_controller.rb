@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def update
     @user = authorize User.find(params[:id])
     @user.assign_attributes(safe_params)
-    save_and_respond @user, :ok, :update_success
+    save_and_respond @user, :ok, :update_success, :edit
   end
 
   private

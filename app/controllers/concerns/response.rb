@@ -2,10 +2,12 @@
 
 # This concern includes methods to construct responses to common request types.
 module Response
-  def save_and_respond(thing, status, msg)
+  def save_and_respond(thing, status, msg, action)
     if request.format.html?
       if thing.save
         redirect_to thing, notice: t(msg, thing: thing.model_name.human)
+      else
+        render action
       end
     else
       thing.save!

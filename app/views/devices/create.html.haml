@@ -1,9 +1,0 @@
-.container
-  %h1= t :new_h, thing: Device.model_name.human
-
-  = simple_form_for @device do |f|
-    = render partial: 'form', locals: { f: f }
-
-    = f.input :node_id, as: :hidden
-    = f.submit t(:create), id: 'device_create', class: 'btn btn-primary'
-    = link_to t(:cancel), root_path, class: 'btn btn-warning'

@@ -1,9 +1,0 @@
-- content_for :title, t(:edit_h, thing: Contact.model_name.human)
-
-%h1= t :edit_h, thing: Contact.model_name.human
-
-= form_tag url_for(@contact), method: :put, multipart: true do
-  = render partial: 'form', locals: { contact: @contact }
-
-  = submit_tag t(:update), class: 'btn btn-primary'
-  = link_to t(:cancel), url_for(@contact), class: 'btn btn-warning'
