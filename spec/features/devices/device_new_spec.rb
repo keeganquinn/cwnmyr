@@ -19,6 +19,6 @@ describe 'Device new page', type: :feature do
 
   it 'shows an error if device creation fails' do
     click_button 'Create'
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Hostname can't be blank"
   end
 end

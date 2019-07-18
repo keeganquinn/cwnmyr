@@ -21,6 +21,6 @@ describe 'Device edit page', type: :feature do
   it 'shows an error if device update fails' do
     fill_in 'device_name', with: ''
     click_button 'Update'
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Hostname can't be blank"
   end
 end
