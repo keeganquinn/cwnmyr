@@ -96,6 +96,8 @@ en:
         address_mac: BSSID/MAC address
       node:
         body: Description
+        rss: RSS Feed
+        wiki: Wiki URL
       node_link:
         url: URL
       user:
