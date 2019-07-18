@@ -1,19 +1,43 @@
-= f.input :name
+%p
+  Unless otherwise specified, any details you provide here will be
+  available to the public. Please be sure not to include any information
+  you wish to remain private.
+
+= f.input :name, placeholder: 'darkstar', wrapper_html: { class: 'mb-1' }
+.mb-3.text-muted
+  Unique identifier for this device. Must be lowercase. Dashes
+  and numbers are allowed after the first character.
+
 = f.association :device_type
+
 = f.input :body
 
-%h3 Interfaces
+%h3 Network Interfaces
+
+%p
+  Each interface represents a logical association between a device and a
+  network. All devices should have at least one interface.
+
 #interfaces
   = f.simple_fields_for :interfaces do |interface|
     = render 'interface_fields', f: interface
   .links.mb-3
+    &middot;
     = link_to_add_association f, :interfaces do
       = t(:add_h, thing: Interface.model_name.human)
 
 %h3 Device Properties
+
+%p
+  Properties may be used to denote specific technical attributes of a device.
+  This information is made available to external build tools and the correct
+  settings are specific to them; feel free to ignore this section if you are
+  not using these tools.
+
 #device-properties
   = f.simple_fields_for :device_properties do |device_property|
     = render 'device_property_fields', f: device_property
   .links.mb-3
+    &middot;
     = link_to_add_association f, :device_properties do
       = t(:add_h, thing: DeviceProperty.model_name.human)
