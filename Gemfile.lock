@@ -483,6 +483,9 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    validate_url (1.0.8)
+      activemodel (>= 3.0.0)
+      public_suffix
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -578,6 +581,7 @@ DEPENDENCIES
   spring-watcher-listen
   turbolinks
   unicorn
+  validate_url
   web-console
   webpacker
 

@@ -42,6 +42,7 @@ gem 'rgl', require: 'rgl/adjacency'
 gem 'rmagick'
 gem 'searchkick'
 gem 'simple_form'
+gem 'validate_url'
 
 group :development do
   gem 'better_errors'
