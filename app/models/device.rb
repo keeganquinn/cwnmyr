@@ -17,10 +17,9 @@ class Device < ApplicationRecord
                                 reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :name
-  validates_length_of :name, minimum: 1
   validates_uniqueness_of :name, scope: :node_id, case_sensitive: false
   validates_format_of :name,
-                      with: /\A[-a-zA-Z0-9]+\z/,
+                      with: /\A[a-z][-a-z0-9]+\z/,
                       message: 'contains unacceptable characters',
                       allow_blank: true
 
