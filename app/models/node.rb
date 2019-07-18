@@ -21,14 +21,12 @@ class Node < ApplicationRecord
   has_one_attached :logo
 
   validates_presence_of :code
-  validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code, case_sensitive: false
   validates_format_of :code, with: /\A[-_a-zA-Z0-9]+\z/,
                              message: 'contains unacceptable characters',
                              allow_blank: true
   validates_presence_of :name
-  validates_length_of :name, minimum: 1
   validates_uniqueness_of :name
   validates :logo, content_type: { allow: ['image/jpeg', 'image/png'] }
 
