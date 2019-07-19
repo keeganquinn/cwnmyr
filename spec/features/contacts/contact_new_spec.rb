@@ -18,6 +18,6 @@ describe 'Contact new page', type: :feature do
 
   it 'shows an error if contact creation fails' do
     click_button 'Create'
-    expect(page).to have_content 'errors prevented this contact'
+    expect(page).to have_content "Name can't be blank"
   end
 end

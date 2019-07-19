@@ -20,6 +20,6 @@ describe 'Contact edit page', type: :feature do
   it 'shows an error if node update fails' do
     fill_in 'contact_name', with: ''
     click_button 'Update'
-    expect(page).to have_content 'error prevented this contact'
+    expect(page).to have_content "Name can't be blank"
   end
 end

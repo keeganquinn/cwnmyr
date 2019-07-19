@@ -2,9 +2,9 @@
 
 %h1= t :new_h, thing: Contact.model_name.human
 
-= form_tag contacts_path do
-  = render partial: 'form', locals: { contact: @contact }
+= simple_form_for @contact do |f|
+  = render partial: 'form', locals: { f: f }
 
-  = hidden_field 'contact', 'user_id'
-  = submit_tag t(:create), class: 'btn btn-primary'
+  = f.input :user_id, as: :hidden
+  = f.submit t(:create), id: 'contact_create', class: 'btn btn-primary'
   = link_to t(:cancel), browse_path, class: 'btn btn-warning'

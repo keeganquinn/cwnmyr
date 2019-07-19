@@ -1,35 +1,8 @@
-= render partial: 'shared/form_errors', locals: { record: contact }
-
-.form-group
-  %label{ for: 'contact_name' }= Contact.human_attribute_name('name')
-  = text_field 'contact', 'name', class: 'form-control',
-                                  'aria-describedby': 'contact-name-help'
-  %span.help-block#contact-name-help= t '.contact_name_help'
-
-.form-group
-  %label{ for: 'contact_hidden' }= Contact.human_attribute_name('hidden')
-  = check_box 'contact', 'hidden', class: 'form-control',
-                                    'aria-describedby': 'contact-hidden-help'
-  %span.help-block#contact-hidden-help= t '.contact_hidden_help'
-
-.form-group
-  %label{ for: 'contact_email' }= Contact.human_attribute_name('email')
-  = text_field 'contact', 'email', class: 'form-control',
-                                   'aria-describedby': 'contact-email-help'
-  %span.help-block#contact-email-help= t '.contact_email_help'
-
-.form-group
-  %label{ for: 'contact_phone' }= Contact.human_attribute_name('phone')
-  = text_field 'contact', 'phone', class: 'form-control',
-                                   'aria-describedby': 'contact-phone-help'
-  %span.help-block#contact-phone-help= t '.contact_phone_help'
-
-.form-group
-  %label{ for: 'contact_notes' }= Contact.human_attribute_name('notes')
-  = text_area 'contact', 'notes', class: 'form-control'
+= f.input :name
+= f.input :hidden
+= f.input :email
+= f.input :phone
+= f.input :notes
 
 - unless current_user.groups.empty?
-  .form-group
-    %label{ for: 'contact_group' }= Contact.human_attribute_name('group')
-    = collection_select 'contact', 'group_id', current_user.groups, 'id',
-                        'name', { include_blank: 'None' }, class: 'form-control'
+  = f.association :group
