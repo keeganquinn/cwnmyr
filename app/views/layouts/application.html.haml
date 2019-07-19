@@ -10,8 +10,8 @@
     = csp_meta_tag
 
   %body
-    %header
-      = render 'layouts/navigation'
+    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+      .container= render 'layouts/navigation'
 
     .container.pt-2.pb-5
       = render 'layouts/messages'
