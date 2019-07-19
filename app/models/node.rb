@@ -30,10 +30,10 @@ class Node < ApplicationRecord
                              allow_blank: true
   validates_presence_of :name
   validates_uniqueness_of :name
-  validates :website, url: true, allow_blank: true
-  validates :rss, url: true, allow_blank: true
-  validates :twitter, format: { with: /\A[_a-zA-Z0-9]+\z/ }, allow_blank: true
-  validates :wiki, url: true, allow_blank: true
+  validates :website, format: URI.regexp(%w[http https]), allow_blank: true
+  validates :rss, format: URI.regexp(%w[http https]), allow_blank: true
+  validates :twitter, format: /\A[_a-zA-Z0-9]+\z/, allow_blank: true
+  validates :wiki, format: URI.regexp(%w[http https]), allow_blank: true
   validates :logo, content_type: { allow: ['image/jpeg', 'image/png'] }
 
   before_validation :set_defaults
