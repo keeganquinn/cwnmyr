@@ -17,7 +17,7 @@ module Response
 
   def destroy_and_respond(thing, parent)
     thing.destroy
-    if request.format.html?
+    if request.format.html? || request.format.js?
       redirect_to(parent,
                   notice: t(:delete_success, thing: thing.model_name.human))
     else
