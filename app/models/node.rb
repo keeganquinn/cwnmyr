@@ -20,6 +20,8 @@ class Node < ApplicationRecord
   has_many :devices
   has_one_attached :logo
 
+  accepts_nested_attributes_for :contact, reject_if: :all_blank
+
   validates_presence_of :code
   validates_length_of :code, maximum: 64
   validates_uniqueness_of :code, case_sensitive: false

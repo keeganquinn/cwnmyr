@@ -1,0 +1,8 @@
+.contact-fields.nested-fields.border.border-dark.rounded.mb-2.p-2
+  = render partial: 'contacts/form', locals: { f: f }
+
+  .clearfix
+    .float-right
+      &middot;
+      = link_to_remove_association f do
+        = t(:remove_h, thing: Contact.model_name.human)

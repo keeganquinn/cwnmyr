@@ -31,6 +31,19 @@ document.addEventListener('turbolinks:load', function (event) {
   mb.initMap()
   $('[data-toggle="table"]').bootstrapTable()
 
+  $('#contact').bind('cocoon:after-insert', function () {
+    $('#contact_select').hide()
+    $('#contact .links').hide()
+  })
+  $('#contact').bind('cocoon:after-remove', function () {
+    $('#contact_select').show()
+    $('#contact .links').show()
+  })
+  if ($('.contact-fields').length > 0) {
+    $('#contact_select').hide()
+    $('#contact .links').hide()
+  }
+
   let elSearch = document.getElementById('search')
   let elQuery = document.getElementById('query')
   if (!elSearch || !elQuery) return

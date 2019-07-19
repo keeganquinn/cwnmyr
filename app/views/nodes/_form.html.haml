@@ -43,5 +43,16 @@
 .mb-3.text-muted
   Square images in PNG format work best.
 
-- unless current_user.contacts.empty?
-  = f.association :contact
+%h3 Contact
+
+#contact
+  - if @node.contact.present? && !@node.contact.persisted?
+    = f.simple_fields_for :contact do |contact|
+      = render 'contact_fields', f: contact
+  - unless current_user.contacts.empty?
+    #contact_select
+      = f.association :contact, label: false, wrapper_html: { class: 'mb-1' }
+  .links.mb-3
+    &middot;
+    = link_to_add_association f, :contact do
+      = t(:add_new_h, thing: Contact.model_name.human)
