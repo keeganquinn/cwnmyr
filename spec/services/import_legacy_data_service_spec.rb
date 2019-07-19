@@ -17,7 +17,7 @@ describe ImportLegacyDataService do
       'role' => 'happened to be nearby',
       'url' => 'https://node.guy.net/',
       'rss' => 'https://node.guy.net/feed.xml',
-      'twitter' => 'https://www.twitter.com/someguy',
+      'twitter' => 'someguyontwitter',
       'wikiurl' => 'https://personaltelco.net/wiki/NodeSomeGuy',
       'hostname' => 'some',
       'device' => 'mr3201a',
