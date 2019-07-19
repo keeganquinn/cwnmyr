@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = authorize Contact.new(safe_params)
-    save_and_respond @contact, :created, :create_success, :new
+    save_and_respond @contact, :created, :create_success
   end
 
   def edit
@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
   def update
     @contact = authorize Contact.find(params[:id])
     @contact.assign_attributes(safe_params)
-    save_and_respond @contact, :ok, :update_success, :edit
+    save_and_respond @contact, :ok, :update_success
   end
 
   def destroy

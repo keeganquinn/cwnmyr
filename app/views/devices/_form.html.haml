@@ -41,3 +41,5 @@
     &middot;
     = link_to_add_association f, :device_properties do
       = t(:add_h, thing: DeviceProperty.model_name.human)
+
+= hidden_field_tag :authenticity_token, form_authenticity_token

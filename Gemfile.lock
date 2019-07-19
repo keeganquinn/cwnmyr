@@ -476,6 +476,10 @@ GEM
     tilt (2.0.9)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
+    turbolinks-form (0.0.8)
+      jquery-rails (~> 4.3)
+      rails (>= 4.2)
+      turbolinks (~> 5.0)
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -580,6 +584,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen
   turbolinks
+  turbolinks-form
   unicorn
   validate_url
   web-console

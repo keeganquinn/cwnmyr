@@ -21,7 +21,7 @@ class NodesController < ApplicationController
 
   def create
     @node = authorize Node.new(safe_params)
-    save_and_respond @node, :created, :create_success, :new
+    save_and_respond @node, :created, :create_success
   end
 
   def edit
@@ -31,7 +31,7 @@ class NodesController < ApplicationController
   def update
     @node = authorize Node.find(params[:id])
     @node.assign_attributes(safe_params)
-    save_and_respond @node, :ok, :update_success, :edit
+    save_and_respond @node, :ok, :update_success
   end
 
   def destroy

@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'pundit'
 gem 'redcarpet'
 gem 'turbolinks'
+gem 'turbolinks-form'
 gem 'webpacker'
 
 gem 'active_storage_validations'

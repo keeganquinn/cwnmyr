@@ -2,7 +2,7 @@
 
 %h1= t :edit_h, thing: Contact.model_name.human
 
-= simple_form_for @contact do |f|
+= simple_form_for @contact, turbolinks_form: true do |f|
   = render partial: 'form', locals: { f: f }
 
   = f.submit t(:update), id: 'contact_update', class: 'btn btn-primary'

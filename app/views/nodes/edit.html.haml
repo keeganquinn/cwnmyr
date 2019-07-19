@@ -2,7 +2,7 @@
 
 %h1= t :edit_h, thing: Node.model_name.human
 
-= simple_form_for @node do |f|
+= simple_form_for @node, turbolinks_form: true do |f|
   = render partial: 'form', locals: { f: f }
 
   = f.submit t(:update), class: 'btn btn-primary'

@@ -15,3 +15,4 @@
   = f.association :group
 
 = f.hidden_field :user_id, value: @contact&.user_id || current_user.id
+= hidden_field_tag :authenticity_token, form_authenticity_token

@@ -2,7 +2,7 @@
 
 %h1= t :new_h, thing: Device.model_name.human
 
-= simple_form_for @device do |f|
+= simple_form_for @device, turbolinks_form: true do |f|
   = render partial: 'form', locals: { f: f }
 
   = f.input :node_id, as: :hidden
