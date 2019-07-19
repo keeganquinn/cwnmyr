@@ -1,8 +1,17 @@
+%p Hidden contacts will not be available to the public.
+
 = f.input :name
 = f.input :hidden
-= f.input :email
-= f.input :phone
+
+.row
+  .col-md-6
+    = f.input :email
+  .col-md-6
+    = f.input :phone
+
 = f.input :notes
 
 - unless current_user.groups.empty?
   = f.association :group
+
+= f.hidden_field :user_id, value: @contact&.user_id || current_user.id
