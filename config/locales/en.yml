@@ -37,6 +37,7 @@ en:
   new_h: "New %{thing}"
   edit_h: "Edit %{thing}"
   add_h: "Add %{thing}"
+  add_new_h: "Add New %{thing}"
   remove_h: "Remove %{thing}"
   confirm_delete: "Are you sure you want to delete this %{thing}?"
   create_success: "%{thing} has been successfully created."
@@ -90,6 +91,9 @@ en:
         one: Zone
         other: Zones
     attributes:
+      contact:
+        email: Email Address
+        phone: Phone Number
       interface:
         address_ipv4: IPv4 Address
         address_ipv6: IPv6 Address
