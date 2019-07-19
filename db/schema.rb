@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_07_121658) do
+ActiveRecord::Schema.define(version: 2019_07_19_023231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -138,13 +138,13 @@ ActiveRecord::Schema.define(version: 2019_07_07_121658) do
     t.boolean "hidden"
     t.string "email"
     t.string "phone"
-    t.string "notes"
+    t.text "notes"
     t.integer "user_id"
     t.integer "group_id"
-    t.index ["code"], name: "index_contacts_on_code", unique: true
+    t.index ["code"], name: "index_contacts_on_code"
     t.index ["group_id"], name: "index_contacts_on_group_id"
     t.index ["hidden"], name: "index_contacts_on_hidden"
-    t.index ["name"], name: "index_contacts_on_name", unique: true
+    t.index ["name"], name: "index_contacts_on_name"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 

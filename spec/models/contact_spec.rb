@@ -35,10 +35,4 @@ describe Contact do
     contact.validate
     expect(contact.code).to match 'test-contact'
   end
-
-  describe 'with database access' do
-    subject(:contact) { build(:contact) }
-
-    it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
-  end
 end

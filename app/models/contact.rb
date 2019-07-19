@@ -9,7 +9,6 @@ class Contact < ApplicationRecord
 
   validates_presence_of :code
   validates_length_of :code, maximum: 64
-  validates_uniqueness_of :code, case_sensitive: false
   validates_format_of :code,
                       with: /\A[-_a-zA-Z0-9]+\z/,
                       message: 'contains unacceptable characters',
