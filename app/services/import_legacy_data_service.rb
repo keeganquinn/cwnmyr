@@ -63,11 +63,11 @@ class ImportLegacyDataService
   def finalize_node(node, value)
     attach_logo node, value
 
-    node.contact = build_contact(value) if value['contact']
+    node.contact = build_contact(value) unless value['contact'].blank?
     node.user ||= @user
     node.group ||= node.user&.groups&.first
 
-    node.save
+    node.save!
   end
 
   def build_contact(value)
@@ -77,11 +77,12 @@ class ImportLegacyDataService
     contact.notes ||= value['role']
     contact.user ||= @user
     contact.group ||= contact.user&.groups&.first
+    # TODO: use save! here, need to support splitting into multiple contacts
     contact.save && contact
   end
 
   def build_device(node, value)
-    return unless value['hostname']
+    return if value['hostname'].blank?
 
     device = Device.find_or_create_by(
       node: node, name: value['hostname'],
@@ -103,7 +104,7 @@ class ImportLegacyDataService
   end
 
   def build_iface_pub(device, value)
-    return unless value['pubaddr']
+    return if value['pubaddr'].blank?
 
     ptpnet = Network.find_by code: 'ptpnet'
     mask = value['pubmasklen'] || '24'
@@ -112,11 +113,11 @@ class ImportLegacyDataService
     iface.code = 'pub'
     iface.network = ptpnet
     iface.address_ipv4 = "#{value['pubaddr']}/#{mask}"
-    iface.save
+    iface.save!
   end
 
   def build_iface_priv(device, value)
-    return unless value['privaddr']
+    return if value['privaddr'].blank?
 
     mask = value['privmasklen'] || '24'
     iface = Interface.find_or_initialize_by device: device,
@@ -124,6 +125,6 @@ class ImportLegacyDataService
     iface.code = 'priv'
     iface.network = nil
     iface.address_ipv4 = "#{value['privaddr']}/#{mask}"
-    iface.save
+    iface.save!
   end
 end
