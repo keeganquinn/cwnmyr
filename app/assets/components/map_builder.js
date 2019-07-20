@@ -116,7 +116,7 @@ class MapBuilder {
   }
 
   handleResize (event) {
-    if (!this.big) return
+    if (!this.elMap || !this.big) return
 
     this.elMap.style.height = `${window.innerHeight - 56}px`
     window.scrollTo(0, 0)
