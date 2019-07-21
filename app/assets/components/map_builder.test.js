@@ -66,12 +66,12 @@ describe('MapBuilder', () => {
       beforeEach(() => {
         stubApis()
         mapBuilder.handleResponse(null, {
-          'node': {
-            'lat': 1,
-            'lng': 1,
-            'icon': 'icon',
-            'name': 'Node',
-            'infowindow': 'Node Information'
+          node: {
+            lat: 1,
+            lng: 1,
+            icon: 'icon',
+            name: 'Node',
+            infowindow: 'Node Information'
           }
         })
       })
@@ -81,7 +81,7 @@ describe('MapBuilder', () => {
       })
 
       it('creates a marker that can be clicked', () => {
-        let marker = mapBuilder.markers[0]
+        const marker = mapBuilder.markers[0]
         marker.listeners['click'][0]()
         expect(mapBuilder.gInfoWindow.setContent.mock.calls.length).toBe(1)
       })
@@ -101,35 +101,35 @@ describe('MapBuilder', () => {
       beforeEach(() => {
         stubApis()
         mapBuilder.handleResponse(null, {
-          'statuses': [{
-            'default_display': true,
-            'color': 'blue',
-            'name': 'Status',
-            'nodes': [{
-              'lat': 1,
-              'lng': 1,
-              'icon': 'icon',
-              'name': 'Node',
-              'infowindow': 'Node Information'
+          statuses: [{
+            default_display: true,
+            color: 'blue',
+            name: 'Status',
+            nodes: [{
+              lat: 1,
+              lng: 1,
+              icon: 'icon',
+              name: 'Node',
+              infowindow: 'Node Information'
             }, {
-              'icon': 'icon',
-              'name': 'Uncoded Node',
-              'infowindow': 'More Node Information'
+              icon: 'icon',
+              name: 'Uncoded Node',
+              infowindow: 'More Node Information'
             }]
           }, {
-            'default_display': false,
-            'color': 'green',
-            'name': 'Other Status',
-            'nodes': [{
-              'lat': 2,
-              'lng': 2,
-              'icon': 'icon',
-              'name': 'Other Node',
-              'infowindow': 'Other Node Information'
+            default_display: false,
+            color: 'green',
+            name: 'Other Status',
+            nodes: [{
+              lat: 2,
+              lng: 2,
+              icon: 'icon',
+              name: 'Other Node',
+              infowindow: 'Other Node Information'
             }, {
-              'icon': 'icon',
-              'name': 'Other Uncoded Node',
-              'infowindow': 'Yet More Node Information'
+              icon: 'icon',
+              name: 'Other Uncoded Node',
+              infowindow: 'Yet More Node Information'
             }]
           }]
         })
@@ -141,18 +141,18 @@ describe('MapBuilder', () => {
 
       it('show button can be clicked', () => {
         mapBuilder.elBtnShow.click()
-        let boxes = mapBuilder.elStatus.querySelectorAll(
+        const boxes = mapBuilder.elStatus.querySelectorAll(
           'input[type="checkbox"]')
-        for (let box of boxes) {
+        for (const box of boxes) {
           expect(box.checked).toBeTruthy()
         }
       })
 
       it('hide button can be clicked', () => {
         mapBuilder.elBtnHide.click()
-        let boxes = mapBuilder.elStatus.querySelectorAll(
+        const boxes = mapBuilder.elStatus.querySelectorAll(
           'input[type="checkbox"]')
-        for (let box of boxes) {
+        for (const box of boxes) {
           expect(box.checked).toBeFalsy()
         }
       })
@@ -162,17 +162,17 @@ describe('MapBuilder', () => {
       beforeEach(() => {
         stubApis()
         mapBuilder.handleResponse(null, {
-          'zone': {
-            'statuses': [{
-              'default_display': true,
-              'color': 'blue',
-              'name': 'Status',
-              'nodes': [{
-                'lat': 1,
-                'lng': 1,
-                'icon': 'icon',
-                'name': 'Node',
-                'infowindow': 'Node Information'
+          zone: {
+            statuses: [{
+              default_display: true,
+              color: 'blue',
+              name: 'Status',
+              nodes: [{
+                lat: 1,
+                lng: 1,
+                icon: 'icon',
+                name: 'Node',
+                infowindow: 'Node Information'
               }]
             }]
           }
