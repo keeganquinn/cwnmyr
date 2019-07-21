@@ -9,7 +9,7 @@ describe 'Node show action', type: :request do
     context 'when image is requested' do
       before { get node_path(node, format: :png) }
 
-      it { is_expected.to have_http_status(200) }
+      it { is_expected.to have_http_status(:ok) }
       it { is_expected.to respond_with_content_type(:png) }
     end
   end
@@ -20,7 +20,7 @@ describe 'Node show action', type: :request do
     context 'when image is requested' do
       before { get node_path(node, format: :png) }
 
-      it { is_expected.to have_http_status(200) }
+      it { is_expected.to have_http_status(:ok) }
       it { is_expected.to respond_with_content_type(:png) }
     end
   end
