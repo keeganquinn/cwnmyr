@@ -11,8 +11,8 @@ require('<%= File.join(Gem.loaded_specs['turbolinks-form'].full_gem_path, 'app',
 require('styles/page.css.scss')
 require('bootstrap/dist/js/bootstrap.js')
 require('bootstrap-table/dist/bootstrap-table.js')
-require('javascripts/rails.validations')
-require('javascripts/rails.validations.simple_form.bootstrap4')
+require('<%= File.join(Gem.loaded_specs['client_side_validations'].full_gem_path, 'vendor', 'assets', 'javascripts', 'rails.validations') %>')
+require('<%= File.join(Gem.loaded_specs['client_side_validations-simple_form'].full_gem_path, 'vendor', 'assets', 'javascripts', 'rails.validations.simple_form.bootstrap4') %>')
 
 window.linkSort = function (a, b) {
   a = $(a).text()
