@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-#
+
 # Uncomment this and change the path if necessary to include your own
 # components.
 # See https://github.com/plataformatec/simple_form#custom-components to know
 # more about custom components.
 # Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
-#
+
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
@@ -13,8 +13,10 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+  config.wrappers :default,
+                  class: :input, hint_class: :field_with_hint,
+                  error_class: :field_with_errors,
+                  valid_class: :field_without_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -52,7 +54,8 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
+    # b.use :input, class: 'input', error_class: 'is-invalid',
+    # valid_class: 'is-valid'
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
@@ -93,10 +96,12 @@ SimpleForm.setup do |config|
   # Series of attempts to detect a default value method for collection.
   # config.collection_value_methods = [ :id, :to_s ]
 
-  # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
+  # You can wrap a collection of radio/check boxes in a pre-defined tag,
+  # defaulting to none.
   # config.collection_wrapper_tag = nil
 
-  # You can define the class to use on all collection wrappers. Defaulting to none.
+  # You can define the class to use on all collection wrappers. Defaulting to
+  # none.
   # config.collection_wrapper_class = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag,
@@ -107,7 +112,8 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+  # config.label_text = lambda { |label, required, explicit_label|
+  # "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil
@@ -122,10 +128,14 @@ SimpleForm.setup do |config|
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
 
-  # Tell browsers whether to use the native HTML5 validations (novalidate form option).
-  # These validations are enabled in SimpleForm's internal config but disabled by default
-  # in this configuration, which is recommended due to some quirks from different browsers.
-  # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
+  # Tell browsers whether to use the native HTML5 validations (novalidate
+  # form option).
+  # These validations are enabled in SimpleForm's internal config but disabled
+  # by default
+  # in this configuration, which is recommended due to some quirks from
+  # different browsers.
+  # To stop SimpleForm from generating the novalidate option, enabling the
+  # HTML5 validations,
   # change this configuration to true.
   config.browser_validations = false
 
@@ -138,7 +148,8 @@ SimpleForm.setup do |config|
   # config.input_mappings = { /count/ => :integer }
 
   # Custom wrappers for input types. This should be a hash containing an input
-  # type as key and the wrapper that will be used for all inputs with specified type.
+  # type as key and the wrapper that will be used for all inputs with
+  # specified type.
   # config.wrapper_mappings = { string: :prepend }
 
   # Namespaces where SimpleForm should look for custom input classes that
