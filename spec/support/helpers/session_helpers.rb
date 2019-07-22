@@ -8,14 +8,14 @@ module Features
       fill_in 'Email', with: email
       fill_in 'Password', with: password
       fill_in 'Password Confirmation', with: confirmation
-      click_button 'Sign up'
+      click_button 'Sign Up'
     end
 
     def signin(email, password)
       visit new_user_session_path
       fill_in 'Email', with: email
       fill_in 'Password', with: password
-      click_button 'Log in'
+      click_button 'Sign In'
     end
   end
 end
