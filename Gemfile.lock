@@ -496,7 +496,7 @@ GEM
     tilt (2.0.9)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
-    turbolinks-form (0.1.2)
+    turbolinks-form (0.1.3)
       rails (>= 4.2)
       turbolinks (~> 5.0)
     turbolinks-source (5.2.0)
