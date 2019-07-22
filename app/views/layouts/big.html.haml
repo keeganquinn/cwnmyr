@@ -1,17 +1,9 @@
 !!!
 %html
   %head
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
-    %title= page_title
-    = remote_javascript_includes
-    = javascript_pack_tag 'main', 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'main', 'data-turbolinks-track': 'reload'
-    = csrf_meta_tags
-    = csp_meta_tag
+    = render 'layouts/head'
 
   %body.big
-    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
-      = render 'layouts/navigation'
+    = render 'layouts/navigation'
 
-    = render 'layouts/messages'
     = yield
