@@ -50,7 +50,7 @@
     = f.simple_fields_for :contact do |contact|
       = render 'contact_fields', f: contact
   - unless current_user.contacts.empty?
-    #contact_select
+    #contact-select
       = f.association :contact, label: false, wrapper_html: { class: 'mb-1' }
   .links.mb-3
     &middot;

@@ -34,15 +34,15 @@ document.addEventListener('turbolinks:load', function (event) {
   $('[data-toggle="table"]').bootstrapTable()
 
   $('#contact').bind('cocoon:after-insert', function () {
-    $('#contact_select').hide()
+    $('#contact-select').hide()
     $('#contact .links').hide()
   })
   $('#contact').bind('cocoon:after-remove', function () {
-    $('#contact_select').show()
+    $('#contact-select').show()
     $('#contact .links').show()
   })
   if ($('.contact-fields').length > 0) {
-    $('#contact_select').hide()
+    $('#contact-select').hide()
     $('#contact .links').hide()
   }
 
