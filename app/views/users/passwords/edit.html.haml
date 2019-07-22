@@ -1,0 +1,19 @@
+%h2 Change Password
+
+= simple_form_for resource, as: resource_name,
+  url: password_path(resource_name), method: :put,
+  turbolinks_form: true do |f|
+
+  .row
+    .col-md-6
+      = f.input :password, label: 'New Password',
+        wrapper_html: { class: 'mb-1' }
+      - if @minimum_password_length
+        .mb-3.text-muted (#{@minimum_password_length} characters minimum)
+    .col-md-6
+      = f.input :password_confirmation
+
+  = f.hidden_field :reset_password_token
+  = f.submit 'Change Password'
+
+= render 'users/shared/links'

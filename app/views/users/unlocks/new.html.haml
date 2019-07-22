@@ -1,0 +1,10 @@
+%h2 Request Unlock
+
+= simple_form_for resource, as: resource_name,
+  url: unlock_path(resource_name), method: :post,
+  turbolinks_form: true do |f|
+
+  = f.input :email, required: false
+  = f.submit 'Request Unlock'
+
+= render 'users/shared/links'

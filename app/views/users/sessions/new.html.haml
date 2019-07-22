@@ -1,0 +1,12 @@
+%h2 Sign In
+
+= simple_form_for resource, as: resource_name,
+  url: session_path(resource_name), turbolinks_form: true do |f|
+
+  = f.input :email, required: false
+  = f.input :password
+  = f.input :remember_me, as: :boolean, error: false
+
+  = f.submit 'Sign In'
+
+= render 'users/shared/links'

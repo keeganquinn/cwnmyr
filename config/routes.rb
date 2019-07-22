@@ -15,7 +15,14 @@ Rails.application.routes.draw do
   get 'search', to: 'visitors#search'
   root to: 'visitors#index'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    unlocks: 'users/unlocks'
+  }
 
   resources :contacts, :device_types, :groups, :networks, :statuses, :users
   resources :devices do

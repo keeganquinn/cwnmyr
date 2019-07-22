@@ -1,0 +1,54 @@
+.border.border-dark.rounded.p-2
+  %h2 User Profile
+
+  %p
+    Information in this section will be available to the public. Leave these
+    fields blank if you do not wish to have a public profile.
+
+  = simple_form_for current_user, url: user_path(current_user),
+    turbolinks_form: true, validate: true do |f|
+
+    = f.input :name
+    = f.input :body
+
+    = f.submit 'Update Profile'
+
+.border.border-dark.rounded.p-2.mt-4
+  %h2 Account Settings
+
+  %p
+    Your email address and password will always remain private whether you
+    have a public profile or not.
+
+  = simple_form_for resource, as: resource_name,
+    url: registration_path(resource_name), method: :put,
+    turbolinks_form: true, validate: true do |f|
+
+    = f.input :email, required: false
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %div
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+    .row
+      .col-md-6
+        = f.input :password, label: 'New Password',
+          wrapper_html: { class: 'mb-1' }
+        .mb-3.text-muted
+          (leave blank if you don't want to change)
+      .col-md-6
+        = f.input :password_confirmation
+
+    = f.input :current_password, wrapper_html: { class: 'mb-1' }
+    .mb-3.text-muted (we need your current password to confirm your changes)
+
+    = f.submit 'Update'
+
+.border.border-danger.rounded.p-2.mt-4
+  %h2 Cancel Account
+
+  %p
+    Unhappy? You may cancel your account at any time. This action cannot be
+    undone.
+
+  = button_to 'Cancel Account', registration_path(resource_name),
+    data: { confirm: 'Are you sure?' }, method: :delete, remote: true
