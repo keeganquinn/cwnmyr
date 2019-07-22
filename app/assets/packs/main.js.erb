@@ -1,3 +1,5 @@
+// -*- js -*-
+
 import { MapBuilder } from 'components/map_builder'
 
 import ahoy from 'ahoy.js'
@@ -57,4 +59,10 @@ document.addEventListener('turbolinks:load', function (event) {
     event.preventDefault()
     return false
   })
+})
+
+document.addEventListener('turbolinks:before-cache', function (event) {
+  for (const elFlash of document.getElementsByClassName('alert')) {
+    elFlash.remove()
+  }
 })
