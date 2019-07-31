@@ -80,6 +80,9 @@
         Owner:
         = link_to @node.user.name, url_for(@node.user)
         %br/
+      - unless @node.live_date.blank?
+        #{t :live_date}: #{@node.live_date.to_s(:db)}
+        %br/
       = t :created, date: @node.created_at.to_s(:db)
       %br/
       = t :updated, date: @node.updated_at.to_s(:db)

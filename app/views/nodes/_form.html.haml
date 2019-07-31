@@ -31,6 +31,9 @@
 .mb-3.text-muted
   Notes about the node. Technical or miscellaneous information can go here.
 
+= f.input :live_date, include_blank: true,
+  start_year: 2000, end_year: Date.today.year
+
 = f.input :website
 = f.input :rss
 

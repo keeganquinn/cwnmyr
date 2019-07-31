@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_023231) do
+ActiveRecord::Schema.define(version: 2019_07_31_003735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -132,6 +132,13 @@ ActiveRecord::Schema.define(version: 2019_07_19_023231) do
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
+  create_table "build_providers", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contacts", id: :serial, force: :cascade do |t|
     t.string "code", limit: 64
     t.string "name"
@@ -146,6 +153,17 @@ ActiveRecord::Schema.define(version: 2019_07_19_023231) do
     t.index ["hidden"], name: "index_contacts_on_hidden"
     t.index ["name"], name: "index_contacts_on_name"
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "device_builds", force: :cascade do |t|
+    t.integer "build_provider_id"
+    t.integer "device_id"
+    t.integer "device_type_id"
+    t.string "title"
+    t.string "body"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "device_properties", id: :serial, force: :cascade do |t|
@@ -164,6 +182,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_023231) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "build_provider_id"
     t.index ["code"], name: "index_device_types_on_code"
     t.index ["name"], name: "index_device_types_on_name"
   end
@@ -264,6 +283,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_023231) do
     t.string "rss"
     t.string "twitter"
     t.string "wiki"
+    t.date "live_date"
     t.index ["code"], name: "index_nodes_on_code", unique: true
     t.index ["contact_id"], name: "index_nodes_on_contact_id"
     t.index ["group_id"], name: "index_nodes_on_group_id"

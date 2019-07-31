@@ -19,9 +19,13 @@ class NodeDashboard < Administrate::BaseDashboard
     longitude: Field::Number,
     hours: Field::String,
     notes: Field::Text,
+    live_date: Field::DateTime,
+    website: Field::String,
+    rss: Field::String,
+    twitter: Field::String,
+    wiki: Field::String,
     contact: Field::BelongsTo,
     devices: Field::HasMany,
-    node_links: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -30,14 +34,16 @@ class NodeDashboard < Administrate::BaseDashboard
 
   SHOW_PAGE_ATTRIBUTES = %i[
     zone code name user group status logo body address latitude longitude hours
-    notes contact devices node_links created_at updated_at
+    notes live_date website rss twitter wiki contact devices
+    created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    zone code name user group status logo body address hours notes contact
+    zone code name user group status logo body address hours notes live_date
+    website rss twitter wiki contact
   ].freeze
 
   def display_resource(node)
-    "Node ##{node.to_param}"
+    "Node#{node.code} (#{node.id})"
   end
 end

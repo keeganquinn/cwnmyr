@@ -3,7 +3,10 @@
 # Each DeviceType instance represents a type of Device.
 class DeviceType < ApplicationRecord
   has_paper_trail
+
+  belongs_to :build_provider
   has_many :devices
+  has_many :device_builds
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64

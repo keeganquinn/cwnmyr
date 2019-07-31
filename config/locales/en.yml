@@ -104,6 +104,7 @@ en:
         name: Hostname
       node:
         body: Description
+        live_date: Live Date
         rss: RSS Feed
         wiki: Wiki URL
       node_link:
