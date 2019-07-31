@@ -15,7 +15,7 @@ json.data do
   json.splashpageversion @device.splashpageversion
   if @device.node&.logo&.attached?
     json.logo \
-      node_path(@device.node, format: 'png', _v: @device.node.logo_stamp)
+      node_url(@device.node, format: 'png', _v: @device.node.logo_stamp)
   end
   json.device @device.device_type&.name
   json.bridge @device.bridge
