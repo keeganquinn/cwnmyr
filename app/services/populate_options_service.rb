@@ -14,6 +14,13 @@ class PopulateOptionsService
     zoom_max: 18
   }].freeze
   GROUPS = [{ code: 'not', name: 'Network Operations Team' }].freeze
+  BUILD_PROVIDERS = [{
+    code: 'qtk',
+    name: 'jenkins.quinn.tk',
+    url: 'https://jenkins.quinn.tk/job/cwnmyr-build/',
+    server: 'jenkins.quinn.tk',
+    job: 'cwnmyr-build'
+  }].freeze
 
   DEVICE_TYPES = [
     { code: 'test', name: 'Test Device' },
@@ -53,6 +60,7 @@ class PopulateOptionsService
   def call
     [
       *GROUPS.map { |vals| make_one Group, vals },
+      *BUILD_PROVIDERS.map { |vals| make_one BuildProvider, vals },
       *DEVICE_TYPES.map { |vals| make_one DeviceType, vals },
       *NETWORKS.map { |vals| make_one Network, vals },
       *STATUSES.map { |vals| make_one Status, vals },

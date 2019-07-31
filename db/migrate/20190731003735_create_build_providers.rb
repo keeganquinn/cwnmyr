@@ -4,8 +4,11 @@
 class CreateBuildProviders < ActiveRecord::Migration[5.2]
   def change
     create_table :build_providers do |t|
+      t.string :code
       t.string :name
       t.string :url
+      t.string :server
+      t.string :job
       t.timestamps
     end
 
@@ -16,6 +19,7 @@ class CreateBuildProviders < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :body
       t.string :url
+      t.integer :build_number
       t.timestamps
     end
 

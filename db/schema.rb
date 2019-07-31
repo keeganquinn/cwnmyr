@@ -133,8 +133,11 @@ ActiveRecord::Schema.define(version: 2019_07_31_003735) do
   end
 
   create_table "build_providers", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "url"
+    t.string "server"
+    t.string "job"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -162,6 +165,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_003735) do
     t.string "title"
     t.string "body"
     t.string "url"
+    t.integer "build_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
