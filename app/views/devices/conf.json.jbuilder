@@ -20,10 +20,10 @@ json.data do
   json.device @device.device_type&.name
   json.bridge @device.bridge
   json.filter @device.filter
-  json.pubaddr @device.pub.ipv4_address_nomask
-  json.pubmasklen @device.pub.ipv4_masklen
-  json.privaddr @device.priv.ipv4_address_nomask
-  json.privmasklen @device.priv.ipv4_masklen
+  json.pubaddr @device.pub&.ipv4_address_nomask
+  json.pubmasklen @device.pub&.ipv4_masklen
+  json.privaddr @device.priv&.ipv4_address_nomask
+  json.privmasklen @device.priv&.ipv4_masklen
   json.dhcpstart @device.dhcpstart
   json.address @device.node&.address
   json.lat @device.node&.latitude
