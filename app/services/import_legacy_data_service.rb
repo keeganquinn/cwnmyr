@@ -2,6 +2,7 @@
 
 require 'resolv-replace'
 
+SKIP = %w[Keegan Quinn].freeze
 SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
 LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
 
@@ -28,7 +29,7 @@ class ImportLegacyDataService
   end
 
   def call
-    nodes.map do |value|
+    nodes.reject { |v| SKIP.include? v['node'] }.map do |value|
       node = build_node value
       finalize_node node, value
       build_device node, value
