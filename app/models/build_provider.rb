@@ -9,4 +9,14 @@ class BuildProvider < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :url
   validates :url, format: URI.regexp(%w[http https]), allow_blank: true
+
+  def can_build?
+    server.present? && job.present?
+  end
+
+  def build(device, url)
+    api = JenkinsApi::Client.new server_ip: server, server_port: 443, ssl: true
+    opts = { 'build_start_timeout': 10 }
+    api.job.build job, { device: device, url: url }, opts
+  end
 end

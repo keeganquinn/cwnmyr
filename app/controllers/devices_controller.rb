@@ -13,6 +13,17 @@ class DevicesController < ApplicationController
     show
   end
 
+  def build
+    @device = authorize Device.find(params[:id])
+    unless @device&.device_type&.build_provider&.can_build?
+      return redirect_to(@device)
+    end
+
+    @device.device_type.build_provider.build(
+      @device.device_type.code, conf_device_url(@device, format: :json)
+    )
+  end
+
   def new
     @device = authorize Device.new(node_id: params[:node])
   end
