@@ -158,8 +158,6 @@ GEM
     elasticsearch-transport (7.2.1)
       faraday
       multi_json
-    erb2haml (0.1.5)
-      html2haml
     errbase (0.1.1)
     erubi (1.8.0)
     erubis (2.7.0)
@@ -557,7 +555,6 @@ DEPENDENCIES
   devise
   dotenv-rails
   elasticsearch
-  erb2haml
   factory_bot_rails
   faker
   foreman
@@ -565,6 +562,7 @@ DEPENDENCIES
   guard-rspec
   haml_lint
   hamlit-rails
+  html2haml
   jbuilder
   launchy
   listen

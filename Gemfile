@@ -55,9 +55,9 @@ group :development do
   gem 'capistrano-foreman'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'erb2haml'
   gem 'guard-rspec', require: false
   gem 'haml_lint', require: false
+  gem 'html2haml', require: false
   gem 'listen'
   gem 'rails_layout'
   gem 'rb-fchange', require: false
