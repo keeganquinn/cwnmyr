@@ -2,11 +2,15 @@
 
 # This controller allows management of Device records.
 class DevicesController < ApplicationController
-  before_action :authenticate_user!, except: %i[show graph]
+  before_action :authenticate_user!, except: %i[show conf graph]
   after_action :verify_authorized
 
   def show
     @device = authorize Device.find(params[:id])
+  end
+
+  def conf
+    show
   end
 
   def new

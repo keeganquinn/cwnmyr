@@ -2,6 +2,10 @@
 
 # Pundit access control policy for DevicesController.
 class DevicePolicy < ApplicationPolicy
+  def conf?
+    show?
+  end
+
   def create?
     return false unless @record.node
 

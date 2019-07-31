@@ -39,4 +39,28 @@ class Device < ApplicationRecord
     end
     rgl
   end
+
+  def pub
+    interfaces.where(code: 'pub').first
+  end
+
+  def priv
+    interfaces.where(code: 'priv').first
+  end
+
+  def splashpageversion
+    device_properties.where(key: 'splashpageversion').first&.value || nil
+  end
+
+  def bridge
+    device_properties.where(key: 'bridge').first&.value || '0'
+  end
+
+  def filter
+    device_properties.where(key: 'filter').first&.value || nil
+  end
+
+  def dhcpstart
+    device_properties.where(key: 'dhcpstart').first&.value&.to_i || 0
+  end
 end

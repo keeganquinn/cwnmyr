@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :contacts, :device_types, :groups, :networks, :statuses, :users
   resources :devices do
     member do
+      get 'conf'
       get 'graph'
     end
   end

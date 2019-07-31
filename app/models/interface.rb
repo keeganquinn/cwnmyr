@@ -66,6 +66,14 @@ class Interface < ApplicationRecord
     ipv4_cidr.network.to_s
   end
 
+  def ipv4_masklen
+    ipv4_cidr.netmask.prefix_len
+  end
+
+  def ipv4_address_nomask
+    address_ipv4.split('/')[0]
+  end
+
   # Finds neighboring Interface instances based on IPv4 network
   # configuration data.
   def ipv4_neighbors
