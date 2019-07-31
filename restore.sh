@@ -4,7 +4,7 @@
 
 set -e
 
-rake db:drop db:create
+bundle exec rake db:drop db:create
 psql -h "${DB_HOST}" -U "${DB_USERNAME}" cwnmyr_dev -f db/live.sql
-rake db:environment:set
-rake db:migrate
+bundle exec rake db:environment:set
+bundle exec rake db:migrate
