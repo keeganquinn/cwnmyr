@@ -3,7 +3,7 @@
 describe ImportLegacyDataService do
   subject(:service) { described_class }
 
-  NODES = [
+  node_data = [
     {
       'node' => 'Spec',
       'nodename' => 'Spec Node',
@@ -37,7 +37,7 @@ describe ImportLegacyDataService do
     }
   ].freeze
 
-  let!(:nodes) { service.new(NODES).call }
+  let!(:nodes) { service.new(node_data).call }
 
   it 'returns nodes' do
     expect(nodes).not_to be_empty
