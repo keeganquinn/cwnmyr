@@ -16,7 +16,9 @@ class BuildProvider < ApplicationRecord
 
   def build(device, url)
     api = JenkinsApi::Client.new server_ip: server, server_port: 443, ssl: true
-    opts = { 'build_start_timeout': 10 }
+    return if api.job.get_current_build_status(job) == 'running'
+
+    opts = { 'build_start_timeout' => 10 }
     api.job.build job, { device: device, url: url }, opts
   end
 end
