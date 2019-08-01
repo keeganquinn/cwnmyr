@@ -1,59 +1,55 @@
 - content_for :title, "#{@device.node&.display_code}: #{@device.name}"
 
-.row
-  .col-md-12
-    %h1= h @device.name
+%h1= h @device.name
 
-.row
-  .col-md-12
-    = render partial: 'shared/edit_delete', locals: { record: @device }
+= render partial: 'shared/edit_delete', locals: { record: @device }
 
-    - if @device.node
-      .small
-        #{Node.model_name.human}:
-        = link_to @device.node.name, url_for(@device.node)
-    - if @device.device_type
-      .small
-        #{DeviceType.model_name.human}:
-        = link_to @device.device_type.name, url_for(@device.device_type)
+- if @device.node
+  .small
+    #{Node.model_name.human}:
+    = link_to @device.node.name, url_for(@device.node)
+- if @device.device_type
+  .small
+    #{DeviceType.model_name.human}:
+    = link_to @device.device_type.name, url_for(@device.device_type)
 
-    = markdown @device.body
+= markdown @device.body
 
-    - if policy(@device).update? && @device.can_build?
-      = link_to t(:build), build_device_path(@device),
-        method: :post, remote: true
+- if policy(@device).update? && @device.can_build?
+  = link_to t(:build), build_device_path(@device),
+    method: :post, remote: true
 
-    - unless @device.interfaces.empty?
-      %h2= Interface.model_name.human(count: 2)
+- unless @device.interfaces.empty?
+  %h2= Interface.model_name.human(count: 2)
 
-      %ul
-        - @device.interfaces.each do |interface|
-          %li
-            = h(interface.name)
-            - unless interface.address_ipv4.blank?
-              (#{interface.address_ipv4})
-            - unless interface.network.blank?
-              &mdash;
-              = link_to interface.network.name, url_for(interface.network)
-            - if interface.essid
-              &mdash;
-              = Interface.human_attribute_name('essid')
-              = h interface.essid
-            - if interface.channel
-              &mdash;
-              = Interface.human_attribute_name('channel')
-              = h interface.channel
+  %ul
+    - @device.interfaces.each do |interface|
+      %li
+        = h(interface.name)
+        - unless interface.address_ipv4.blank?
+          (#{interface.address_ipv4})
+        - unless interface.network.blank?
+          &mdash;
+          = link_to interface.network.name, url_for(interface.network)
+        - if interface.essid
+          &mdash;
+          = Interface.human_attribute_name('essid')
+          = h interface.essid
+        - if interface.channel
+          &mdash;
+          = Interface.human_attribute_name('channel')
+          = h interface.channel
 
-    - unless @device.device_properties.empty?
-      %h2= DeviceProperty.model_name.human(count: 2)
+- unless @device.device_properties.empty?
+  %h2= DeviceProperty.model_name.human(count: 2)
 
-      %ul
-        - @device.device_properties.each do |device_property|
-          %li
-            = h(device_property.key)
-            &larr;
-            = h device_property.value
+  %ul
+    - @device.device_properties.each do |device_property|
+      %li
+        = h(device_property.key)
+        &larr;
+        = h device_property.value
 
-    - if @device.graph&.edges&.count&.positive?
-      %h2= t('.network_diagram')
-      %p= image_tag graph_device_path(@device, format: :png)
+  - if @device.graph&.edges&.count&.positive?
+    %h2= t('.network_diagram')
+    %p= image_tag graph_device_path(@device, format: :png)
