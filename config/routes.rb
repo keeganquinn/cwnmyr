@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     member do
       get 'conf'
       get 'graph'
+      post 'build'
     end
   end
   resources :nodes do

@@ -63,4 +63,8 @@ class Device < ApplicationRecord
   def dhcpstart
     device_properties.where(key: 'dhcpstart').first&.value&.to_i || 0
   end
+
+  def can_build?
+    device_type&.build_provider&.can_build?
+  end
 end

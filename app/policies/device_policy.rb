@@ -12,6 +12,10 @@ class DevicePolicy < ApplicationPolicy
     NodePolicy.new(@user, @record.node).create?
   end
 
+  def build?
+    create?
+  end
+
   def update?
     create?
   end

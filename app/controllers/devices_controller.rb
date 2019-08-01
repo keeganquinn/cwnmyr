@@ -15,13 +15,13 @@ class DevicesController < ApplicationController
 
   def build
     @device = authorize Device.find(params[:id])
-    unless @device&.device_type&.build_provider&.can_build?
-      return redirect_to(@device)
+    if @device.can_build?
+      ret = @device.device_type.build_provider.build(
+        @device.device_type.code, conf_device_url(@device, format: :json)
+      )
+      flash[:notice] = ret ? 'Build started.' : 'Build not available.'
     end
-
-    @device.device_type.build_provider.build(
-      @device.device_type.code, conf_device_url(@device, format: :json)
-    )
+    redirect_to @device
   end
 
   def new
