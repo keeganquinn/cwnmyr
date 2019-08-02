@@ -65,7 +65,7 @@
           = t :total_numbered, count: DeviceType.count
 
       %ul
-        - DeviceType.all.order(name: :asc).each do |device_type|
+        - DeviceType.all.order(:name).each do |device_type|
           %li
             = link_to h(device_type.name), url_for(device_type)
 
