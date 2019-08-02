@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_003735) do
+ActiveRecord::Schema.define(version: 2019_08_01_095551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -187,6 +187,9 @@ ActiveRecord::Schema.define(version: 2019_07_31_003735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "build_provider_id"
+    t.text "config"
+    t.text "postbuild"
+    t.text "prebuild"
     t.index ["code"], name: "index_device_types_on_code"
     t.index ["name"], name: "index_device_types_on_name"
   end
