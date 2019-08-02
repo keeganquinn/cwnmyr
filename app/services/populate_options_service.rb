@@ -23,24 +23,24 @@ class PopulateOptionsService
   }].freeze
 
   DEVICE_TYPES = [
-    { code: 'test', name: 'Test Device' },
-    { code: 'airrouter', name: 'AirRouter' },
-    { code: 'apu', name: 'APU' },
-    { code: 'alix', name: 'ALIX' },
-    { code: 'bullet', name: 'BULLET' },
-    { code: 'dir860l', name: 'DIR860L' },
-    { code: 'mr24', name: 'MR24' },
-    { code: 'mr3201a', name: 'MR3201A' },
-    { code: 'net4521', name: 'NET4521' },
-    { code: 'net4826', name: 'NET4826' },
-    { code: 'rb493g', name: 'RB493G' },
-    { code: 'rocket', name: 'ROCKET' },
-    { code: 'rsta', name: 'RSTA' },
-    { code: 'soekris', name: 'Soekris' },
-    { code: 'wgt634u', name: 'WGT634U' },
-    { code: 'wdr3600', name: 'WDR3600' },
-    { code: 'wndr3800', name: 'WNDR3800' },
-    { code: 'wzr600dhp', name: 'WZR600DHP' }
+    { code: 'airrouter', name: 'Ubiquiti AirRouter' },
+    { code: 'alix', name: 'PC Engines ALIX' },
+    { code: 'apu', name: 'PC Engines APU' },
+    { code: 'bullet', name: 'Ubiquiti Bullet' },
+    { code: 'dir860l', name: 'D-Link DIR-860L' },
+    { code: 'erx', name: 'Ubiquiti EdgeRouter ERX' },
+    { code: 'espbin', name: 'Globalscale ESPRESSObin' },
+    { code: 'mr24', name: 'Meraki MR24' },
+    { code: 'mr3201a', name: 'Accton MR3201A' },
+    { code: 'net4521', name: 'Soekris net4521' },
+    { code: 'net4826', name: 'Soekris net4826' },
+    { code: 'rb493g', name: 'MikroTik RouterBOARD 493G' },
+    { code: 'rocket', name: 'Ubiquiti Rocket' },
+    { code: 'rsta', name: 'Ubiquiti RouterStation' },
+    { code: 'wdr3600', name: 'TP-Link TL-WDR3600' },
+    { code: 'wgt634u', name: 'Netgear WGT634U' },
+    { code: 'wndr3800', name: 'Netgear WNDR3800' },
+    { code: 'wzr600dhp', name: 'Buffalo WZR-600DHP' }
   ].freeze
   NETWORKS = [
     { code: 'test', name: 'Test Interface' },
