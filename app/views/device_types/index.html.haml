@@ -3,5 +3,8 @@
 %h1= DeviceType.model_name.human(count: 2)
 
 %ul
-  - @device_types.each do |device_type|
-    %li= link_to h(device_type.name), url_for(device_type)
+  - @device_types.order(:code).each do |device_type|
+    %li
+      = link_to h(device_type.code), url_for(device_type)
+      \-
+      = h(device_type.name)
