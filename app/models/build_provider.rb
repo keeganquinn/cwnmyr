@@ -14,11 +14,20 @@ class BuildProvider < ApplicationRecord
     server.present? && job.present?
   end
 
-  def build(device, url)
+  def build(device, conf_url)
+    build_number = queue_build(device.device_type.code, conf_url)
+    return unless build_number
+
+    device_builds.create device: device, device_type: device.device_type,
+                         build_number: build_number,
+                         url: "#{url}#{build_number}"
+  end
+
+  def queue_build(device_type_code, url)
     api = JenkinsApi::Client.new server_ip: server, server_port: 443, ssl: true
     return if api.job.get_current_build_status(job) == 'running'
 
-    opts = { 'build_start_timeout' => 10 }
-    api.job.build job, { device: device, url: url }, opts
+    opts = { 'build_start_timeout' => 30 }
+    api.job.build job, { device: device_type_code, url: url }, opts
   end
 end

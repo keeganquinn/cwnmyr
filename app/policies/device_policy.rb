@@ -12,16 +12,16 @@ class DevicePolicy < ApplicationPolicy
     NodePolicy.new(@user, @record.node).create?
   end
 
-  def build?
-    create?
-  end
-
   def update?
     create?
   end
 
   def destroy?
     create?
+  end
+
+  def build?
+    update? && @record.can_build?
   end
 
   def graph?

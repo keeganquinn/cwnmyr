@@ -9,6 +9,7 @@ class Device < ApplicationRecord
   belongs_to :node
   belongs_to :device_type, optional: true
   has_many :interfaces, inverse_of: :device
+  has_many :device_builds, inverse_of: :device
   has_many :device_properties, inverse_of: :device
 
   accepts_nested_attributes_for :interfaces,

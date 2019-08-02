@@ -49,6 +49,7 @@ en:
   total_numbered: "%{count} total"
   owned_numbered: "%{count} owned"
   visible_numbered: "%{count} visible"
+  start_new_build: "Start New Build"
   nodes_numbered:
     one: "1 node"
     other: "%{count} nodes"
@@ -63,6 +64,9 @@ en:
       device:
         one: Device
         other: Devices
+      device_build:
+        one: Device Build
+        other: Device Builds
       device_property:
         one: Device Property
         other: Device Properties

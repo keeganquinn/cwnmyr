@@ -15,10 +15,6 @@
 
 = markdown @device.body
 
-- if policy(@device).update? && @device.can_build?
-  = link_to t(:build), build_device_path(@device),
-    method: :post, remote: true
-
 - unless @device.interfaces.empty?
   %h2= Interface.model_name.human(count: 2)
 
@@ -53,3 +49,14 @@
   - if @device.graph&.edges&.count&.positive?
     %h2= t('.network_diagram')
     %p= image_tag graph_device_path(@device, format: :png)
+
+- if !@device.device_builds.empty? || policy(@device).build?
+  %h2= DeviceBuild.model_name.human(count: 2)
+
+  %ul
+    - @device.device_builds.each do |device_build|
+      %li= link_to device_build.title, device_build.url, target: :_blank
+    - if policy(@device).build?
+      %li
+        = link_to t(:start_new_build), build_device_path(@device),
+          method: :post, remote: true

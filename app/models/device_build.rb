@@ -12,4 +12,10 @@ class DeviceBuild < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :url
   validates :url, format: URI.regexp(%w[http https]), allow_blank: true
+
+  before_validation :set_defaults
+
+  def set_defaults
+    self.title ||= "Build ##{build_number}" if build_number
+  end
 end
