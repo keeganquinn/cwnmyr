@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-describe DeviceDashboard do
+describe BuildProviderDashboard do
   subject(:dashboard) { described_class }
 
-  let(:device) { build_stubbed :device }
+  let(:build_provider) { build_stubbed :build_provider }
 
   it 'defines attribute types' do
     expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(10)
@@ -18,12 +18,12 @@ describe DeviceDashboard do
   end
 
   it 'defines form attributes' do
-    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(4)
+    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(5)
   end
 
   it '#display_resource returns a string' do
-    expect(dashboard.new.display_resource(device)).to(
-      match "^Device ##{device.to_param}$"
+    expect(dashboard.new.display_resource(build_provider)).to(
+      match "^Build Provider ##{build_provider.id}$"
     )
   end
 end

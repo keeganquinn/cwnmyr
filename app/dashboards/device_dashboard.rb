@@ -11,6 +11,7 @@ class DeviceDashboard < Administrate::BaseDashboard
     device_type: Field::BelongsTo,
     body: Field::Text,
     interfaces: Field::HasMany,
+    device_builds: Field::HasMany,
     device_properties: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -19,7 +20,8 @@ class DeviceDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[node name device_type].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[node name device_type body interfaces
-                            device_properties created_at updated_at].freeze
+                            device_builds device_properties
+                            created_at updated_at].freeze
 
   FORM_ATTRIBUTES = %i[node name device_type body].freeze
 

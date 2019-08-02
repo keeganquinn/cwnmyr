@@ -9,16 +9,24 @@ class DeviceTypeDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     body: Field::Text,
+    build_provider: Field::BelongsTo,
+    config: Field::Text,
+    postbuild: Field::Text,
+    prebuild: Field::Text,
     devices: Field::HasMany,
+    device_builds: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[code name].freeze
+  COLLECTION_ATTRIBUTES = %i[code name build_provider].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[code name body devices created_at updated_at].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body build_provider config
+                            postbuild prebuild devices device_builds
+                            created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = %i[code name body].freeze
+  FORM_ATTRIBUTES =
+    %i[code name body build_provider config postbuild prebuild].freeze
 
   def display_resource(device_type)
     "Device Type ##{device_type.to_param}"
