@@ -46,17 +46,17 @@ class DevicesController < ApplicationController
 
   def build_config
     show
-    render plain: @device.device_type.config
+    render plain: @device.device_type.config.delete("\r")
   end
 
   def postbuild
     show
-    render plain: @device.device_type.postbuild
+    render plain: @device.device_type.postbuild.delete("\r")
   end
 
   def prebuild
     show
-    render plain: @device.device_type.prebuild
+    render plain: @device.device_type.prebuild.delete("\r")
   end
 
   def graph
