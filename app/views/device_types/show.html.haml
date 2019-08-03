@@ -2,7 +2,29 @@
 
 %h1= h @device_type.name
 
-%p= h @device_type.code
+%p.small
+  = t :code, code: @device_type.code
+  %br/
+  = t :created, date: @device_type.created_at.to_s(:db)
+  %br/
+  = t :updated, date: @device_type.updated_at.to_s(:db)
+
+= markdown @device_type.body
+
+- unless @device_type.config.blank?
+  %h3= t :config
+
+  %pre.border.bg-white.p-1= @device_type.config
+
+- unless @device_type.postbuild.blank?
+  %h3= t :postbuild
+
+  %pre.border.bg-white.p-1= @device_type.postbuild
+
+- unless @device_type.prebuild.blank?
+  %h3= t :prebuild
+
+  %pre.border.bg-white.p-1= @device_type.prebuild
 
 - unless @device_type.devices.empty?
   %h2= Device.model_name.human(count: 2)
@@ -10,3 +32,10 @@
   %ul
     - @device_type.devices.each do |device|
       %li= link_to device.name, url_for(device)
+
+- unless @device_type.device_builds.empty?
+  %h2= DeviceBuild.model_name.human(count: 2)
+
+  %ul
+    - @device_type.device_builds.each do |device_build|
+      %li= link_to device_build.title, device_build.url, target: :_blank
