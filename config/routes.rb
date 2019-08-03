@@ -6,8 +6,9 @@ Rails.application.routes.draw do
       mount Blazer::Engine, at: 'blazer'
       mount PgHero::Engine, at: 'pghero'
     end
-    resources :contacts, :devices, :device_properties, :device_types, :groups,
-              :interfaces, :networks, :nodes, :statuses, :users, :zones
+    resources :build_providers, :contacts, :devices, :device_builds,
+              :device_properties, :device_types, :groups, :interfaces,
+              :networks, :nodes, :statuses, :users, :zones
     root to: 'users#index'
   end
 
