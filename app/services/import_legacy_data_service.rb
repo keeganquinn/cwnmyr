@@ -30,7 +30,12 @@ class ImportLegacyDataService
 
   def call
     nodes.reject { |v| SKIP.include? v['node'] }.map do |value|
-      node = build_node value
+      node = if value['node'].starts_with?('Test')
+               Node.find_by code: 'Klickitat'
+             else
+               build_node value
+             end
+
       finalize_node node, value
       build_device node, value
       node
@@ -50,7 +55,7 @@ class ImportLegacyDataService
   end
 
   def attach_logo(node, value)
-    return if value['logo'].blank?
+    return if value['logo'].blank? || node.logo.attached?
 
     begin
       URI.parse("#{LOGO_BASE}/#{value['logo']}").open do |logo|
