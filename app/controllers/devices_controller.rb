@@ -84,8 +84,7 @@ class DevicesController < ApplicationController
   end
 
   def try_build
-    provider = @device&.device_type&.build_provider
-    if provider&.build(@device, device_url(@device))
+    if @device&.device_type&.build_provider&.build(@device)
       flash[:notice] = 'Build started.'
     else
       flash[:warning] = 'Build not available.'
