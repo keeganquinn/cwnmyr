@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   resources :contacts, :device_types, :groups, :networks, :statuses, :users
   resources :devices do
     member do
+      get 'build_config'
       get 'conf'
+      get 'postbuild'
+      get 'prebuild'
       get 'graph'
       post 'build'
     end

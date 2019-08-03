@@ -24,6 +24,18 @@ class DevicePolicy < ApplicationPolicy
     update? && @record.can_build?
   end
 
+  def build_config?
+    show?
+  end
+
+  def postbuild?
+    show?
+  end
+
+  def prebuild?
+    show?
+  end
+
   def graph?
     show?
   end

@@ -2,7 +2,8 @@
 
 # This controller allows management of Device records.
 class DevicesController < ApplicationController
-  before_action :authenticate_user!, except: %i[show conf graph]
+  before_action :authenticate_user!,
+                except: %i[show conf build_config postbuild prebuild graph]
   after_action :verify_authorized
 
   def show
@@ -43,6 +44,21 @@ class DevicesController < ApplicationController
     destroy_and_respond @device, @device.node
   end
 
+  def build_config
+    show
+    render plain: @device.device_type.config
+  end
+
+  def postbuild
+    show
+    render plain: @device.device_type.postbuild
+  end
+
+  def prebuild
+    show
+    render plain: @device.device_type.prebuild
+  end
+
   def graph
     @device = authorize Device.find(params[:id])
 
@@ -69,7 +85,7 @@ class DevicesController < ApplicationController
 
   def try_build
     provider = @device&.device_type&.build_provider
-    if provider&.build(@device, conf_device_url(@device, format: :json))
+    if provider&.build(@device, device_url(@device))
       flash[:notice] = 'Build started.'
     else
       flash[:warning] = 'Build not available.'
