@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_095551) do
+ActiveRecord::Schema.define(version: 2019_08_03_011620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_095551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default_display"
-    t.boolean "ordinal"
+    t.integer "ordinal"
     t.index ["code"], name: "index_statuses_on_code", unique: true
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
