@@ -29,9 +29,9 @@
   - if @group.users.include? current_user
     .col-lg-4
       %p.small
-        = t :created, date: @group.created_at.to_s(:db)
+        = t :created, date: @group.created_at.localtime.to_s
         %br/
-        = t :updated, date: @group.updated_at.to_s(:db)
+        = t :updated, date: @group.updated_at.localtime.to_s
 
       - unless @group.users.visible.empty?
         %h2= t User.model_name.human.pluralize

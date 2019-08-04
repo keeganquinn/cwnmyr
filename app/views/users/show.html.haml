@@ -9,9 +9,9 @@
         class: 'btn btn-warning'
 
     %p.small
-      = t :created, date: @user.created_at.to_s(:db)
+      = t :created, date: @user.created_at.localtime.to_s
       %br/
-      = t :updated, date: @user.updated_at.to_s(:db)
+      = t :updated, date: @user.updated_at.localtime.to_s
 
     = markdown @user.body
 

@@ -5,9 +5,9 @@
 %p.small
   = t :code, code: @device_type.code
   %br/
-  = t :created, date: @device_type.created_at.to_s(:db)
+  = t :created, date: @device_type.created_at.localtime.to_s
   %br/
-  = t :updated, date: @device_type.updated_at.to_s(:db)
+  = t :updated, date: @device_type.updated_at.localtime.to_s
 
 = markdown @device_type.body
 
