@@ -8,7 +8,7 @@
   Unique identifier for this device. Must be lowercase. Dashes
   and numbers are allowed after the first character.
 
-= f.association :device_type
+= f.association :device_type, collection: DeviceType.all.order(:name)
 
 = f.input :body
 
