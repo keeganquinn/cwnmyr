@@ -16,16 +16,6 @@
 
   %pre.border.bg-white.p-1= @device_type.config
 
-- unless @device_type.postbuild.blank?
-  %h3= t :postbuild
-
-  %pre.border.bg-white.p-1= @device_type.postbuild
-
-- unless @device_type.prebuild.blank?
-  %h3= t :prebuild
-
-  %pre.border.bg-white.p-1= @device_type.prebuild
-
 - unless @device_type.devices.empty?
   %h2= Device.model_name.human(count: 2)
 
