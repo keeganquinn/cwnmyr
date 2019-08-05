@@ -17,7 +17,7 @@ json.data do
     json.logo \
       node_url(@device.node, format: 'png', _v: @device.node.logo_stamp)
   end
-  json.device @device.device_type&.name
+  json.device @device.device_type&.code&.upcase
   json.bridge @device.bridge
   json.filter @device.filter
   json.pubaddr @device.pub&.ipv4_address_nomask
