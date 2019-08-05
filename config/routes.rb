@@ -30,8 +30,6 @@ Rails.application.routes.draw do
     member do
       get 'build_config'
       get 'conf'
-      get 'postbuild'
-      get 'prebuild'
       get 'graph'
       post 'build'
     end
