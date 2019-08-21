@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-admin = CreateAdminService.new.call
-puts "ADMIN USER: #{admin.email}"
+unless User.admin.count.positive?
+  admin = CreateAdminService.new.call
+  puts "ADMIN USER: #{admin.email}"
+end
 
-user = CreateUserService.new.call
-puts "NORMAL USER: #{user.email}"
+unless User.user.count.positive?
+  user = CreateUserService.new.call
+  puts "NORMAL USER: #{user.email}"
+end
 
-records = PopulateOptionsService.new.call
-puts "OPTION RECORDS: #{records.size}"
+PopulateOptionsService.new.call
 
 importer = ImportLegacyDataService.new
 importer.call.each do |node|
