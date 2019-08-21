@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_011620) do
+ActiveRecord::Schema.define(version: 2019_08_21_211039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -414,6 +414,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_011620) do
     t.integer "zoom_default"
     t.integer "zoom_min"
     t.integer "zoom_max"
+    t.bigint "last_import"
     t.index ["code"], name: "index_zones_on_code", unique: true
     t.index ["name"], name: "index_zones_on_name", unique: true
   end

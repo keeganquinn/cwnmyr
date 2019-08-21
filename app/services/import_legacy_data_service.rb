@@ -15,7 +15,9 @@ class ImportLegacyDataService
   end
 
   def nodes
-    @nodes ||= fetch['data'].flatten.map(&:values).flatten
+    @nodes ||= fetch['data'].flatten.map(&:values).flatten.reject do |value|
+      @zone.last_import >= (value['updated'] || 0)
+    end
   end
 
   def fetch
@@ -73,7 +75,15 @@ class ImportLegacyDataService
     node.user ||= @user
     node.group ||= node.user&.groups&.first
 
+    update_stamp value['updated']
     node.save!
+  end
+
+  def update_stamp(stamp)
+    return unless stamp && stamp > @zone.last_import
+
+    @zone.last_import = stamp
+    @zone.save!
   end
 
   def build_contact(value)
