@@ -47,9 +47,9 @@ class MapBuilder {
     this.gMap = new google.maps.Map(this.elMap, {
       fullscreenControl: this.big,
       gestureHandling: this.big ? 'greedy' : 'cooperative',
-      maxZoom: 18,
-      minZoom: 12,
-      zoom: 17
+      maxZoom: parseInt(this.elMap.dataset.maxZoom) || 18,
+      minZoom: parseInt(this.elMap.dataset.minZoom) || 12,
+      zoom: parseInt(this.elMap.dataset.zoom) || 17
     })
 
     this.elStatus = document.createElement('div')

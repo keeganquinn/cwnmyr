@@ -4,7 +4,9 @@
 class VisitorsController < ApplicationController
   layout 'big', only: [:index]
 
-  def index; end
+  def index
+    @zone = Zone.default
+  end
 
   def search
     @results = Searchkick.search params[:query],
