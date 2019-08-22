@@ -23,7 +23,7 @@ describe UserDashboard do
 
   it '#display_resource returns a string' do
     expect(dashboard.new.display_resource(user)).to(
-      match "^User ##{user.to_param}$"
+      match "^#{user.email}$"
     )
   end
 end

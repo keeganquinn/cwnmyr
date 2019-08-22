@@ -47,6 +47,6 @@ class UserDashboard < Administrate::BaseDashboard
                        name role body groups].freeze
 
   def display_resource(user)
-    "User ##{user.to_param}"
+    user.email
   end
 end
