@@ -4,6 +4,7 @@
   Your account has been locked due to an excessive number of unsuccessful
   sign in attempts.
 
-%p Click the link below to unlock your account:
+%p Follow the link below to unlock your account:
 
-%p= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token)
+%ul
+  %li= link_to 'Unlock Account', unlock_url(@resource, unlock_token: @token)

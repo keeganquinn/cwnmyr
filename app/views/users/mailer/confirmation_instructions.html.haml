@@ -1,7 +1,12 @@
 %p Welcome #{@email}!
 
-%p You can confirm your account email through the link below:
-
 %p
-  = link_to 'Confirm my account',
-    confirmation_url(@resource, confirmation_token: @token)
+  Thank you for registering with our site. You may now confirm your email
+  address by following the link below:
+
+%ul
+  %li
+    = link_to 'Confirm Email Address',
+      confirmation_url(@resource, confirmation_token: @token)
+
+%p If you did not initiate this action, please disregard this message.
