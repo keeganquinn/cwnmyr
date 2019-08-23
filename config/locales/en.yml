@@ -50,6 +50,11 @@ en:
   owned_numbered: "%{count} owned"
   visible_numbered: "%{count} visible"
   start_new_build: "Start New Build"
+  confirmation_instructions: "Confirmation Instructions"
+  reset_password_instructions: "Reset Password Instructions"
+  unlock_instructions: "Unlock Instructions"
+  email_changed: "Email Changed"
+  password_change: "Password Change"
   nodes_numbered:
     one: "1 node"
     other: "%{count} nodes"
