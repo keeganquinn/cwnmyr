@@ -1,0 +1,10 @@
+Welcome <%= @email %>!
+
+
+Thank you for registering with our site. You may now confirm your email
+address by following the link below:
+
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+
+If you did not initiate this action, please disregard this message.
