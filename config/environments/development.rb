@@ -69,6 +69,9 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
 
+  # Enable ActionMailer previews.
+  config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
