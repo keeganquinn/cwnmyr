@@ -123,4 +123,7 @@ Rails.application.configure do
 
   # Store files locally.
   config.active_storage.service = :local
+
+  # Send exceptions back to the application.
+  config.exceptions_app = routes
 end

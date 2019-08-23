@@ -41,4 +41,8 @@ Rails.application.routes.draw do
   end
 
   get 'nodes/logos/:id', to: 'nodes#logos'
+
+  get '/404', to: 'errors#not_found'
+  get '/422', to: 'errors#unacceptable'
+  get '/500', to: 'errors#internal_error'
 end
