@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{ content: 'text/html; charset=utf-8', 'http-equiv': 'Content-Type' }/
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
+    = stylesheet_pack_tag 'main'
+
+  %body
+    .container.border.border-dark.mt-3.p-0
+      .w-100.navbar-dark.bg-dark.p-3.text-white
+        = default_title
+
+      .p-3
+        = yield
+
+        %hr.mt-4.w-75
+
+        .pl-5.pt-1.pb-2
+          %p Have a nice day!
+          &mdash;
+          = link_to default_title, root_url, target: :_blank
+
+      .p-1.w-100.bg-light
+        .container.text-muted
+          cwnmyr
+          &middot;
+          = link_to 'GitHub Project', 'https://github.com/keeganquinn/cwnmyr',
+            target: :_blank
