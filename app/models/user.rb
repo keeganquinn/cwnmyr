@@ -31,7 +31,7 @@ class User < ApplicationRecord
   scope :visible, -> { where.not(code: [nil, '']) }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :confirmable, :omniauthable
+         :trackable, :validatable, :confirmable, :omniauthable, :lockable
 
   def to_param
     return unless id
