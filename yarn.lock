@@ -675,6 +675,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@client-side-validations/client-side-validations@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.0.4.tgz#65ddc44a74b78ea60507de3438d4d757b79dc42d"
+  integrity sha512-A+1UQHBKS/WsLqxRd1ZagfIfmwpTAR9EWcI9f8nv7/2gP8kUEu8Erfx2GfL3/aPlbW2VljE7jivJlxYR06fsfw==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"

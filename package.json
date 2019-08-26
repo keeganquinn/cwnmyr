@@ -42,6 +42,7 @@
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "@client-side-validations/client-side-validations": "^0.0.4",
     "@rails/webpacker": "^4.0.7",
     "ahoy.js": "^0.3.4",
     "bootstrap": "^4.3.1",
