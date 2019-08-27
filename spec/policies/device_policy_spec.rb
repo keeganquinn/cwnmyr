@@ -10,7 +10,7 @@ describe DevicePolicy do
   let(:node) { build_stubbed :node, user: current_user }
   let(:device) { build_stubbed :device, node: node }
 
-  permissions :show?, :graph? do
+  permissions :show?, :build_config?, :conf?, :graph? do
     let(:device) { create :device }
 
     it { is_expected.to permit nil, device }
