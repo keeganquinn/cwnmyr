@@ -6,7 +6,7 @@ describe DeviceTypeDashboard do
   let(:device_type) { build_stubbed :device_type }
 
   it 'defines attribute types' do
-    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(12)
+    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(10)
   end
 
   it 'defines collection attributes' do
@@ -14,11 +14,11 @@ describe DeviceTypeDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(11)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(9)
   end
 
   it 'defines form attributes' do
-    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(7)
+    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(5)
   end
 
   it '#display_resource returns a string' do
