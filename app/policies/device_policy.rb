@@ -28,14 +28,6 @@ class DevicePolicy < ApplicationPolicy
     show?
   end
 
-  def postbuild?
-    show?
-  end
-
-  def prebuild?
-    show?
-  end
-
   def graph?
     show?
   end
