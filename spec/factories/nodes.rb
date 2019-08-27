@@ -6,10 +6,17 @@ FactoryBot.define do
     status
     user
     zone
+    group
     name { Faker::Company.name }
+    live_date { Date.today }
     body { Faker::Lorem.paragraphs }
     address { '709 W 27th St., Vancouver, WA 98660' }
+    hours { Faker::Lorem.sentence }
     notes { Faker::Lorem.paragraphs }
+    website { 'https://quinn.tk/' }
+    rss { 'https://quinn.tk/feed.rss' }
+    twitter { 'keeganquinn' }
+    wiki { 'https://quinn.tk/' }
 
     trait :with_image do
       transient do
