@@ -14,7 +14,7 @@ class ErrorsController < ApplicationController
     respond_to do |format|
       format.html { render status: 422 }
       format.json { render json: { error: 'Input unacceptable' }, status: 422 }
-      format.any  { head :unacceptable }
+      format.any  { head :unprocessable_entity }
     end
   end
 
@@ -22,7 +22,7 @@ class ErrorsController < ApplicationController
     respond_to do |format|
       format.html { render status: 500 }
       format.json { render json: { error: 'Internal error' }, status: 500 }
-      format.any  { head :internal_error }
+      format.any  { head :internal_server_error }
     end
   end
 end
