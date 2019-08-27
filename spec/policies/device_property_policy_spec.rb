@@ -11,7 +11,7 @@ describe DevicePropertyPolicy do
   let(:device) { build_stubbed :device, node: node }
   let(:device_property) { build_stubbed :device_property, device: device }
 
-  permissions :show? do
+  permissions :index?, :show? do
     let(:device_property) { create :device_property }
 
     it { is_expected.to permit nil, device_property }
