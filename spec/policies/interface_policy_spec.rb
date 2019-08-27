@@ -11,7 +11,7 @@ describe InterfacePolicy do
   let(:device) { build_stubbed :device, node: node }
   let(:interface) { build_stubbed :interface, device: device }
 
-  permissions :show? do
+  permissions :index?, :show? do
     let(:interface) { create :interface }
 
     it { is_expected.to permit nil, interface }
