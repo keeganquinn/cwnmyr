@@ -3,6 +3,8 @@
 describe ImportLegacyDataService do
   subject(:service) { described_class }
 
+  before { create :zone, default: true }
+
   node_data = [
     {
       'node' => 'Spec',
@@ -27,13 +29,22 @@ describe ImportLegacyDataService do
       'pubaddr' => '10.11.23.1',
       'pubmasklen' => '24',
       'privaddr' => '192.168.0.1',
-      'privmasklen' => '24'
+      'privmasklen' => '24',
+      'updated' => 12_345
     }, {
       'node' => 'BadLogoSpec',
       'nodename' => 'Spec Node With Broken Logo Link',
       'status' => 'active',
       'description' => 'Gets imported even though the logo is a 404',
       'logo' => 'InvalidLogoPath.png'
+    }, {
+      'node' => 'Klickitat',
+      'nodename' => 'Node with specific references should exist',
+      'status' => 'retired',
+      'updated' => 12_347
+    }, {
+      'node' => 'TestSomething',
+      'nodename' => 'Test devices should be linked to Klickitat'
     }
   ].freeze
 
@@ -61,9 +72,5 @@ describe ImportLegacyDataService do
 
   it 'creates interface records' do
     expect(Interface.count).to be_positive
-  end
-
-  it 'is able to fetch node data' do
-    expect(service.new.fetch).not_to be_empty
   end
 end

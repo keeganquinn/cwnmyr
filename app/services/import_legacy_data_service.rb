@@ -1,37 +1,17 @@
 # frozen_string_literal: true
 
-require 'resolv-replace'
-
-SKIP = %w[Keegan Quinn].freeze
-SOURCE_URI = 'https://personaltelco.net/api/v0/nodes'
 LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
 
 # Service to import data from legacy system.
 class ImportLegacyDataService
   def initialize(nodes = nil)
-    @nodes = nodes
     @user = User.admin.first
-    @zone = Zone.find_by code: 'pdx'
-  end
-
-  def nodes
-    @nodes ||= fetch['data'].flatten.map(&:values).flatten.reject do |value|
-      @zone.last_import >= (value['updated'] || 0)
-    end
-  end
-
-  def fetch
-    uri = URI.parse(SOURCE_URI)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['X-PTP-API-KEY'] = ENV['PTP_API_KEY']
-    JSON.parse http.request(request).body
+    @zone = Zone.default
+    @nodes = nodes || FetchLegacyDataService.new(@zone).call
   end
 
   def call
-    nodes.reject { |v| SKIP.include? v['node'] }.map do |value|
+    @nodes.map do |value|
       node = if value['node'].starts_with?('Test')
                Node.find_by code: 'Klickitat'
              else
