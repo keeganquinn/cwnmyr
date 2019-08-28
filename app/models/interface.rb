@@ -62,15 +62,15 @@ class Interface < ApplicationRecord
 
   # Extract the network address from the NetAddr representation.
   def ipv4_net
-    ipv4_cidr.network.to_s
+    ipv4_cidr&.network&.to_s
   end
 
   def ipv4_masklen
-    ipv4_cidr.netmask.prefix_len
+    ipv4_cidr&.netmask&.prefix_len
   end
 
   def ipv4_address_nomask
-    address_ipv4.split('/')[0]
+    address_ipv4&.split('/')&.first
   end
 
   # Finds neighboring Interface instances based on IPv4 network
