@@ -52,11 +52,11 @@
     "popper.js": "^1.15.0",
     "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.39.2"
+    "webpack": "^4.39.3"
   },
   "devDependencies": {
     "eslint": "^6.2.2",
-    "eslint-config-standard": "^14.0.1",
+    "eslint-config-standard": "^14.1.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
