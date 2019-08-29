@@ -11,7 +11,7 @@ class BuildProvider < ApplicationRecord
   validates :url, format: URI.regexp(%w[http https]), allow_blank: true
 
   def can_build?
-    server.present? && job.present?
+    mode.present? || (server.present? && job.present?)
   end
 
   def build(device)
@@ -24,10 +24,21 @@ class BuildProvider < ApplicationRecord
   end
 
   def queue_build(device_id)
+    return queue_build_pass(device_id) if mode == 'pass'
+    return queue_build_fail(device_id) if mode == 'fail'
+
     api = JenkinsApi::Client.new server_ip: server, server_port: 443, ssl: true
     return if api.job.get_current_build_status(job) == 'running'
 
     opts = { 'build_start_timeout' => 30 }
     api.job.build job, { id: device_id }, opts
+  end
+
+  def queue_build_pass(_device_id)
+    1
+  end
+
+  def queue_build_fail(_device_id)
+    nil
   end
 end
