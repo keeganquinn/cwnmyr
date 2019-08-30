@@ -36,12 +36,12 @@ Configuration
 In addition to the standard Rails configuration options, this app allows
 several common settings to be controlled through the environment:
 
- * DOMAIN_NAME: Host part of the URL the instance is hosted at. Required.
- * SECRET_KEY_BASE: Secret key for the instance. Required.
- * PORT: TCP port to listen for HTTP requests. Default is 3000.
- * BIND: Unix socket to listen for HTTP requests. Supersedes PORT if set.
- * GMAPS_API_KEY: Google Maps API key. Required.
- * PTP_API_KEY: PTP API key. Only needed to import confidential data.
- * SMTP_HOST: SMTP host for outgoing mail. Uses sendmail if not set.
- * SMTP_USER: Username for outgoing SMTP authentication. Required if using SMTP.
- * SMTP_PASS: Password for outgoing SMTP authentication. Required if using SMTP.
+ * `DOMAIN_NAME`: Host part of the URL the instance is hosted at. Required.
+ * `SECRET_KEY_BASE`: Secret key for the instance. Required.
+ * `PORT`: TCP port to listen for HTTP requests. Default is 3000.
+ * `BIND`: Unix socket to listen for HTTP requests. Supersedes `PORT` if set.
+ * `GMAPS_API_KEY`: Google Maps API key. Required.
+ * `PTP_API_KEY`: PTP API key. Only needed to import confidential data.
+ * `SMTP_HOST`: SMTP host for outgoing mail. Uses sendmail if not set.
+ * `SMTP_USER`: Username for outgoing SMTP authentication. Required for SMTP.
+ * `SMTP_PASS`: Password for outgoing SMTP authentication. Required for SMTP.
