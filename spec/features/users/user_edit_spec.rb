@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
-# Feature: User edit
-#   As a user
-#   I want to edit my user profile
-#   So I can change my email address
 describe 'User edit', :devise, type: :feature do
+  subject { page }
+
   let(:current_user) { create(:user) }
   let(:other_user) { create(:user) }
 
   before { login_as current_user }
 
-  # Scenario: User changes email address
-  #   Given I am signed in
-  #   When I change my email address
-  #   Then I see an account updated message
   describe 'user changes email address' do
     before do
       visit edit_user_registration_path(current_user)
@@ -29,16 +23,33 @@ describe 'User edit', :devise, type: :feature do
     end
   end
 
-  # Scenario: User cannot edit another user's profile
-  #   Given I am signed in
-  #   When I try to edit another user's profile
-  #   Then I see my own 'edit profile' page
-  describe "user cannot cannot edit another user's profile", :me do
-    subject { page }
+  describe 'user updates profile' do
+    before do
+      visit edit_user_registration_path(current_user)
+      fill_in 'Body', with: 'Information about spec user!'
+      click_button 'Update Profile'
+    end
 
+    it { is_expected.to have_current_path user_path(current_user) }
+    it { is_expected.to have_content 'Information about spec user!' }
+  end
+
+  describe "user cannot cannot edit another user's profile", :me do
     before { visit edit_user_registration_path(other_user) }
 
     it { is_expected.to have_content 'Account Settings' }
     it { is_expected.to have_field('Email', with: current_user.email) }
+  end
+
+  describe 'user edit by own id redirects' do
+    before { visit edit_user_path(current_user) }
+
+    it { is_expected.to have_current_path edit_user_registration_path }
+  end
+
+  describe 'user edit by other id redirects' do
+    before { visit edit_user_path(other_user) }
+
+    it { is_expected.to have_current_path root_path }
   end
 end
