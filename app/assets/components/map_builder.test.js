@@ -20,6 +20,7 @@ const stubApis = function () {
       this.opts = opts
       this.controls = {}
       this.controls[window.google.maps.ControlPosition.TOP_RIGHT] = []
+      this.setCenter = function () {}
       this.setTilt = function () {}
       this.mapTypes = {
         set: function () {}
@@ -39,6 +40,7 @@ const stubApis = function () {
 }
 
 const page = '<div id="map"></div>'
+const pageWithCenter = '<div id="map" data-center="disco"></div>'
 
 describe('MapBuilder', () => {
   let mapBuilder
@@ -181,6 +183,43 @@ describe('MapBuilder', () => {
 
       it('creates a status display', () => {
         expect(mapBuilder.elStatus).toBeTruthy()
+      })
+    })
+  })
+
+  describe('attached with center', () => {
+    beforeEach(() => {
+      document.body.innerHTML = pageWithCenter
+      mapBuilder.prepare()
+      mapBuilder.initMap()
+    })
+
+    it('has element reference', () => {
+      expect(mapBuilder.elMap).toBeTruthy()
+    })
+
+    describe('with node data', () => {
+      beforeEach(() => {
+        stubApis()
+        mapBuilder.handleResponse(null, {
+          node: {
+            lat: 1,
+            lng: 1,
+            icon: 'icon',
+            name: 'Node',
+            infowindow: 'Node Information'
+          }
+        })
+      })
+
+      it('can handle position data', () => {
+        mapBuilder.handlePosition({
+          coords: {
+            latitude: 1,
+            longitude: 1
+          }
+        })
+        expect(mapBuilder.posMarker).toBeTruthy()
       })
     })
   })
