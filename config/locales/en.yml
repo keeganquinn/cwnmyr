@@ -82,8 +82,8 @@ en:
         one: Group
         other: Groups
       interface:
-        one: Network Interface
-        other: Network Interfaces
+        one: Interface
+        other: Interfaces
       network:
         one: Network
         other: Networks
