@@ -38,7 +38,7 @@ const stubApis = function () {
   }
 }
 
-const page = `<div id="map"></div>`
+const page = '<div id="map"></div>'
 
 describe('MapBuilder', () => {
   let mapBuilder
@@ -82,7 +82,7 @@ describe('MapBuilder', () => {
 
       it('creates a marker that can be clicked', () => {
         const marker = mapBuilder.markers[0]
-        marker.listeners['click'][0]()
+        marker.listeners.click[0]()
         expect(mapBuilder.gInfoWindow.setContent.mock.calls.length).toBe(1)
       })
 
