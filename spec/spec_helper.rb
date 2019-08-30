@@ -9,6 +9,7 @@ SimpleCov.formatters = [
   SimpleCov::Formatter::RcovFormatter
 ]
 SimpleCov.start 'rails' do
+  project_name 'cwnmyr'
   add_filter 'vendor'
 end
 
