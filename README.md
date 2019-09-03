@@ -45,3 +45,5 @@ several common settings to be controlled through the environment:
  * `SMTP_HOST`: SMTP host for outgoing mail. Uses sendmail if not set.
  * `SMTP_USER`: Username for outgoing SMTP authentication. Required for SMTP.
  * `SMTP_PASS`: Password for outgoing SMTP authentication. Required for SMTP.
+ * `FACEBOOK_APP_ID`: App ID to use for Facebook authentication.
+ * `FACEBOOK_APP_SECRET`: Secret to use for Facebook authentication.
