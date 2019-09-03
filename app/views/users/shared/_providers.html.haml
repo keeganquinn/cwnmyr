@@ -1,0 +1,6 @@
+- if devise_mapping.omniauthable?
+  %ul.mt-3.list-group.list-group-horizontal
+    - resource_class.omniauth_providers.each do |provider|
+      %li.list-group-item
+        = link_to "Sign In with #{OmniAuth::Utils.camelize(provider.to_s.split('_').first)}",
+          omniauth_authorize_path(resource_name, provider)

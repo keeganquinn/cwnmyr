@@ -4,18 +4,26 @@ module Users
   # OmniAuth controller for Devise.
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
+      request_for 'Facebook'
+    end
+
+    def google_oauth2
+      request_for 'Google'
+    end
+
+    protected
+
+    def request_for(provider)
       auth = request.env['omniauth.auth']
       @authorization = authorization(auth)
 
       if @authorization.user&.persisted?
-        do_sign_in @authorization.user, 'Facebook'
+        do_sign_in @authorization.user, provider
       else
-        session['devise.facebook_data'] = auth
+        session["devise.#{provider.downcase}_data"] = auth
         redirect_to new_user_registration_url
       end
     end
-
-    protected
 
     def authorization(auth)
       @authorization = Authorization.from_omniauth(auth)

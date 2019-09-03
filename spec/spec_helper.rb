@@ -90,6 +90,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.after do
     OmniAuth.config.mock_auth[:facebook] = nil
+    OmniAuth.config.mock_auth[:google_oauth2] = nil
     Warden.test_reset!
   end
 
