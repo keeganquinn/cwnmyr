@@ -88,7 +88,10 @@ RSpec.configure do |config|
 
   # Devise/Warden integration.
   config.include Warden::Test::Helpers
-  config.after { Warden.test_reset! }
+  config.after do
+    OmniAuth.config.mock_auth[:facebook] = nil
+    Warden.test_reset!
+  end
 
   if ENV['BUILD_NUMBER']
     config.before(:example, :focus) do

@@ -31,7 +31,18 @@ class User < ApplicationRecord
   scope :visible, -> { where.not(code: [nil, '']) }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :confirmable, :omniauthable, :lockable
+         :trackable, :validatable, :confirmable, :omniauthable, :lockable,
+         omniauth_providers: %i[facebook]
+  mailkick_user
+
+  def self.from_omniauth(auth)
+    return unless auth&.info&.email
+
+    where(email: auth.info.email).first_or_create do |user|
+      user.password ||= Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
 
   def to_param
     return unless id
