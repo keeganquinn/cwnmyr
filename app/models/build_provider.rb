@@ -31,7 +31,11 @@ class BuildProvider < ApplicationRecord
     return if api.job.get_current_build_status(job) == 'running'
 
     opts = { 'build_start_timeout' => 30 }
-    api.job.build job, { id: device_id }, opts
+    begin
+      api.job.build job, { id: device_id }, opts
+    rescue JenkinsApi::Exceptions::ForbiddenWithCrumb
+      return
+    end
   end
 
   def queue_build_pass(_device_id)
