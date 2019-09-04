@@ -47,3 +47,5 @@ several common settings to be controlled through the environment:
  * `SMTP_PASS`: Password for outgoing SMTP authentication. Required for SMTP.
  * `FACEBOOK_APP_ID`: App ID to use for Facebook authentication.
  * `FACEBOOK_APP_SECRET`: Secret to use for Facebook authentication.
+ * `GOOGLE_CLIENT_ID`: Client ID to use for Google authentication.
+ * `GOOGLE_CLIENT_SECRET`: Secret to use for Google authentication.
