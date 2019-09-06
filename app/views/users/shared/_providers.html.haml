@@ -2,5 +2,5 @@
   %ul.mt-3.list-group.list-group-horizontal
     - resource_class.omniauth_providers.each do |provider|
       %li.list-group-item
-        = link_to "Sign In with #{OmniAuth::Utils.camelize(provider.to_s.split('_').first)}",
+        = link_to t("sign_in_#{provider}".to_sym),
           omniauth_authorize_path(resource_name, provider)
