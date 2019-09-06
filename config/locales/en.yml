@@ -41,6 +41,7 @@ en:
   add_h: "Add %{thing}"
   add_new_h: "Add New %{thing}"
   remove_h: "Remove %{thing}"
+  enabled: Enabled
   confirm_delete: "Are you sure you want to delete this %{thing}?"
   create_success: "%{thing} has been successfully created."
   update_success: "%{thing} has been successfully updated."

@@ -20,6 +20,10 @@ class DeviceProperty < ApplicationRecord
     )
   end
 
+  def display_value
+    device_property_type&.config? ? I18n.t(:enabled) : value
+  end
+
   def to_param
     return unless id
 
