@@ -6,7 +6,7 @@ class PopulateOptionsService
   ZONES = [{
     code: 'pdx',
     name: 'Portland',
-    title: 'Personal Telco Nodes',
+    title: 'PTP Nodes',
     default: true,
     address: '727 SE Grand Ave, Portland, OR 97214',
     zoom_default: 17,
