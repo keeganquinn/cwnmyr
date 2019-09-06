@@ -49,22 +49,6 @@ class Device < ApplicationRecord
     interfaces.where(code: 'priv').first
   end
 
-  def splashpageversion
-    device_properties.where(key: 'splashpageversion').first&.value || nil
-  end
-
-  def bridge
-    device_properties.where(key: 'bridge').first&.value || '0'
-  end
-
-  def filter
-    device_properties.where(key: 'filter').first&.value || nil
-  end
-
-  def dhcpstart
-    device_properties.where(key: 'dhcpstart').first&.value&.to_i || 0
-  end
-
   def can_build?
     device_type&.build_provider&.can_build?
   end

@@ -72,7 +72,9 @@ class DevicesController < ApplicationController
         id code name network_id address_ipv6 address_ipv4 address_mac
         _destroy
       ],
-      device_properties_attributes: %i[id key value _destroy]
+      device_properties_attributes: %i[
+        id device_property_type_id device_property_option_id value _destroy
+      ]
     )
   end
 

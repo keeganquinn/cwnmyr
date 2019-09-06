@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_101110) do
+ActiveRecord::Schema.define(version: 2019_09_05_090742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -191,12 +191,30 @@ ActiveRecord::Schema.define(version: 2019_08_31_101110) do
 
   create_table "device_properties", id: :serial, force: :cascade do |t|
     t.integer "device_id"
-    t.string "key"
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "device_property_type_id"
+    t.integer "device_property_option_id"
     t.index ["device_id"], name: "index_device_properties_on_device_id"
-    t.index ["key"], name: "index_device_properties_on_key"
+  end
+
+  create_table "device_property_options", force: :cascade do |t|
+    t.integer "device_property_type_id"
+    t.string "name"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "device_property_types", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.text "description"
+    t.integer "value_type"
+    t.text "config"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "device_types", id: :serial, force: :cascade do |t|

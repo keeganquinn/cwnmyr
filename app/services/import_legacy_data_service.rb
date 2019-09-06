@@ -19,7 +19,8 @@ class ImportLegacyDataService
              end
 
       finalize_node node, value
-      build_device node, value
+      build_device node, value unless value['hostname'].blank?
+
       node
     end
   end
@@ -78,13 +79,12 @@ class ImportLegacyDataService
   end
 
   def build_device(node, value)
-    return if value['hostname'].blank?
-
     device = Device.find_or_create_by(
       node: node, name: value['hostname'],
       device_type: DeviceType.find_by(code: value['device'].try(:downcase))
     )
 
+    build_prop device, 'bridge', value
     build_prop device, 'filter', value
     build_prop device, 'splashpageversion', value
     build_prop device, 'dhcpstart', value
@@ -94,9 +94,12 @@ class ImportLegacyDataService
   end
 
   def build_prop(device, key, value)
-    return unless value[key]
+    return if value[key].blank?
 
-    DeviceProperty.find_or_create_by device: device, key: key, value: value[key]
+    device_property_type = DevicePropertyType.find_or_create_by code: key
+    DeviceProperty.find_or_create_by device: device,
+                                     device_property_type: device_property_type,
+                                     value: value[key]
   end
 
   def build_iface_pub(device, value)

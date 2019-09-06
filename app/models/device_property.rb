@@ -5,13 +5,18 @@
 class DeviceProperty < ApplicationRecord
   has_paper_trail
   belongs_to :device
+  belongs_to :device_property_type
+  belongs_to :device_property_option, optional: true
 
-  validates_length_of :key, minimum: 1
-  validates_length_of :value, minimum: 1
+  def self.with_values
+    joins(:device_property_type).where.not(
+      device_property_types: { value_type: :config }
+    )
+  end
 
   def to_param
     return unless id
 
-    [id, key].join('-')
+    [id, device_property_type&.code].join('-')
   end
 end

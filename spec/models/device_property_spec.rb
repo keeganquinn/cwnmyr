@@ -3,12 +3,13 @@
 describe DeviceProperty do
   subject(:device_property) { build_stubbed(:device_property) }
 
-  it { is_expected.to belong_to(:device) }
+  let(:device_property_type) { device_property.device_property_type }
 
-  it { is_expected.to respond_to(:key) }
+  it { is_expected.to belong_to(:device) }
+  it { is_expected.to belong_to(:device_property_type) }
+
   it { is_expected.to respond_to(:value) }
 
-  it { is_expected.to validate_length_of(:key) }
   it { is_expected.to validate_length_of(:value) }
 
   it { is_expected.to be_valid }
@@ -20,7 +21,7 @@ describe DeviceProperty do
 
   it '#to_param returns a string' do
     expect(device_property.to_param).to(
-      match "^#{device_property.id}-#{device_property.key}$"
+      match "^#{device_property.id}-#{device_property_type.code}$"
     )
   end
 end

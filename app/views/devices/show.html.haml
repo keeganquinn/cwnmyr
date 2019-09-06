@@ -42,8 +42,7 @@
   %ul
     - @device.device_properties.each do |device_property|
       %li
-        = h(device_property.key)
-        &larr;
+        #{h(device_property.device_property_type&.name)}:
         = h device_property.value
 
   - if @device.graph&.edges&.count&.positive?

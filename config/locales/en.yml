@@ -111,6 +111,8 @@ en:
         body: Description
         device_type: Device Type
         name: Hostname
+      device_property:
+        device_property_type: Property
       node:
         body: Description
         live_date: Live Date

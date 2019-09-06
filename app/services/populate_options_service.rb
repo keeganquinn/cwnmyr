@@ -22,6 +22,12 @@ class PopulateOptionsService
     job: 'cwnmyr-build'
   }].freeze
 
+  DEVICE_PROPERTY_TYPES = [
+    { code: 'bridge', name: 'Bridge Select', value_type: :option },
+    { code: 'dhcpstart', name: 'DHCP Range Start', value_type: :number },
+    { code: 'filter', name: 'Filter Select', value_type: :option },
+    { code: 'splashpageversion', name: 'Splash Version', value_type: :option }
+  ].freeze
   DEVICE_TYPES = [
     { code: 'airrouter', name: 'Ubiquiti AirRouter' },
     { code: 'alix', name: 'PC Engines ALIX' },
@@ -59,6 +65,7 @@ class PopulateOptionsService
     [
       *GROUPS.map { |vals| make_one Group, vals },
       *BUILD_PROVIDERS.map { |vals| make_one BuildProvider, vals },
+      *DEVICE_PROPERTY_TYPES.map { |vals| make_one DevicePropertyType, vals },
       *DEVICE_TYPES.map { |vals| make_one DeviceType, vals },
       *NETWORKS.map { |vals| make_one Network, vals },
       *STATUSES.map { |vals| make_one Status, vals },
