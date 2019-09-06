@@ -8,6 +8,12 @@ class DeviceProperty < ApplicationRecord
   belongs_to :device_property_type
   belongs_to :device_property_option, optional: true
 
+  def self.with_config
+    joins(:device_property_type).where(
+      device_property_types: { value_type: :config }
+    )
+  end
+
   def self.with_values
     joins(:device_property_type).where.not(
       device_property_types: { value_type: :config }

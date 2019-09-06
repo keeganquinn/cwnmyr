@@ -52,4 +52,9 @@ class Device < ApplicationRecord
   def can_build?
     device_type&.build_provider&.can_build?
   end
+
+  def build_config
+    props = device_properties.with_config.map(&:device_property_type)
+    (device_type&.config || '') + props.map(&:config).join('\n')
+  end
 end

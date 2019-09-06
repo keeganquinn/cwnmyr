@@ -45,7 +45,7 @@ class DevicesController < ApplicationController
 
   def build_config
     show
-    render plain: @device.device_type.config.delete("\r")
+    render plain: @device.build_config.delete("\r")
   end
 
   def conf
