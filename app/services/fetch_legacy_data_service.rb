@@ -22,7 +22,10 @@ class FetchLegacyDataService
   end
 
   def call
-    fetch['data'].flatten.map(&:values).flatten.reject do |value|
+    data = fetch['data'].flatten.map(&:values).flatten
+    return data if ENV['FULL_IMPORT'] == '1'
+
+    data.reject do |value|
       (@zone.last_import >= (value['updated'] || 0)) ||
         SKIP.include?(value['node'])
     end
