@@ -1,4 +1,7 @@
-%li.nav-item= link_to 'Browse', browse_path, class: 'nav-link'
+- if current_page?(browse_path)
+  %li.nav-item= link_to 'Map', root_path, class: 'nav-link'
+- unless current_page?(browse_path)
+  %li.nav-item= link_to 'Browse', browse_path, class: 'nav-link'
 
 - if user_signed_in?
   %li.nav-item

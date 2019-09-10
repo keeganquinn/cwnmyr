@@ -57,4 +57,8 @@ module ApplicationHelper
   def sortable_row
     { sortable: 'true', sorter: 'linkSort' }
   end
+
+  def top_link
+    current_page?(browse_path) ? root_path : browse_path
+  end
 end

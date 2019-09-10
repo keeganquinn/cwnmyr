@@ -1,6 +1,10 @@
-%nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+%nav.navbar.navbar-expand-sm.navbar-light.bg-light
   .container
-    = link_to default_title, root_path, class: 'navbar-brand'
+    - if Zone.default&.nav_logo&.attached?
+      = link_to top_link do
+        = image_tag(root_path(format: :png, resize: '50x50', _v: Zone.default.nav_logo_stamp),
+          alt: t(:logo))
+    = link_to default_title, top_link, class: 'navbar-brand'
     %button.navbar-toggler{ 'data-target': '#navbar-collapse',
                             'data-toggle': 'collapse', type: 'button',
                             'aria-label': t(:toggle_navigation) }
