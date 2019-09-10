@@ -6,6 +6,7 @@
 class Zone < ApplicationRecord
   has_paper_trail
   has_many :nodes
+  has_one_attached :nav_logo
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
@@ -40,5 +41,9 @@ class Zone < ApplicationRecord
   def set_defaults
     self.code = name.parameterize if code.blank? && name
     self.last_import ||= 0
+  end
+
+  def nav_logo_stamp
+    nav_logo.blob.created_at.to_i if nav_logo.attached?
   end
 end

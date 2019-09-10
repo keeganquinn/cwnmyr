@@ -9,6 +9,7 @@ class ZoneDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     body: Field::Text,
+    nav_logo: Field::ActiveStorage,
     nodes: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -16,9 +17,10 @@ class ZoneDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[code name body nodes created_at updated_at].freeze
+  SHOW_PAGE_ATTRIBUTES = %i[code name body nav_logo nodes
+                            created_at updated_at].freeze
 
-  FORM_ATTRIBUTES = %i[code name body].freeze
+  FORM_ATTRIBUTES = %i[code name body nav_logo].freeze
 
   def display_resource(zone)
     "Zone ##{zone.to_param}"
