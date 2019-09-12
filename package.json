@@ -52,7 +52,7 @@
     "popper.js": "^1.15.0",
     "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.39.3"
+    "webpack": "^4.40.0"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
