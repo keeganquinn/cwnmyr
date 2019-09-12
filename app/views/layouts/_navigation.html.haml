@@ -1,9 +1,7 @@
 %nav.navbar.navbar-expand-sm.navbar-light.bg-light
   .container
-    - if Zone.default&.nav_logo&.attached?
-      = link_to top_link do
-        = image_tag(root_path(format: :png, resize: '50x50', _v: Zone.default.nav_logo_stamp),
-          alt: t(:logo))
+    - if zone&.nav_logo&.attached?
+      = link_to nav_logo_tag, top_link
     = link_to default_title, top_link, class: 'navbar-brand'
     %button.navbar-toggler{ 'data-target': '#navbar-collapse',
                             'data-toggle': 'collapse', type: 'button',

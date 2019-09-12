@@ -43,7 +43,7 @@ module ApplicationHelper
   end
 
   def default_title
-    Zone.default&.title || t(:cwnmyr)
+    zone&.title || t(:cwnmyr)
   end
 
   def page_title
@@ -60,5 +60,14 @@ module ApplicationHelper
 
   def top_link
     current_page?(browse_path) ? root_path : browse_path
+  end
+
+  def nav_logo_tag
+    logo = root_path(format: :png, resize: '50x50', _v: zone.nav_logo_stamp)
+    image_tag logo, alt: t(:logo)
+  end
+
+  def zone
+    Zone.default
   end
 end

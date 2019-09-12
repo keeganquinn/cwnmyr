@@ -16,23 +16,23 @@ class VisitorsController < ApplicationController
 
   private
 
-  def zone
-    Zone.default
+  def nav_logo
+    Zone.default&.nav_logo
   end
 
   def blob
     if params[:resize]
-      zone.nav_logo.variant(resize: params[:resize], quality: '00').processed
+      nav_logo.variant(resize: params[:resize], quality: '00').processed
     else
-      zone.nav_logo.blob
+      nav_logo.blob
     end
   end
 
   def serve_image
-    return head(:not_found) unless zone.nav_logo.attached?
+    return head(:not_found) unless nav_logo.attached?
 
     expires_in 1.year, public: true
     send_data blob.service.download(blob.key),
-              type: zone.nav_logo.blob.content_type, disposition: 'inline'
+              type: nav_logo.blob.content_type, disposition: 'inline'
   end
 end
