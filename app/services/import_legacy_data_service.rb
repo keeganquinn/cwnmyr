@@ -41,9 +41,8 @@ class ImportLegacyDataService
     return if value['logo'].blank? || node.logo.attached?
 
     begin
-      URI.parse("#{LOGO_BASE}/#{value['logo']}").open do |logo|
-        node.logo.attach io: logo, filename: value['logo']
-      end
+      logo = URI.parse("#{LOGO_BASE}/#{value['logo']}").open
+      node.logo.attach io: logo, filename: value['logo']
     rescue OpenURI::HTTPError
       nil
     end
