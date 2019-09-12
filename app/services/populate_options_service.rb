@@ -75,6 +75,6 @@ class PopulateOptionsService
 
   def make_one(klass, vals)
     item = klass.find_or_create_by code: vals[:code]
-    item.update_attributes vals
+    item.update vals
   end
 end
