@@ -8,9 +8,8 @@ TWITTER_BASE = 'https://twitter.com'
 # A Node instance represents a physical location at a scale somewhere
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
-  acts_as_taggable
   has_paper_trail
-  searchkick word_start: %i[code name body address notes tag_list]
+  searchkick word_start: %i[code name body address notes]
 
   belongs_to :contact, optional: true
   belongs_to :status
@@ -43,12 +42,6 @@ class Node < ApplicationRecord
   after_validation :geocode_reset, if: :should_geocode_reset?
 
   scope :ungrouped, -> { where(group_id: nil) }
-
-  def search_data
-    {
-      tag_list: tag_list.join(' ')
-    }.merge(attributes)
-  end
 
   def geocode_reset
     self.latitude = nil
