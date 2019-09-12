@@ -8,7 +8,6 @@ end
 
 gem 'rails'
 
-gem 'foreman'
 gem 'pg'
 gem 'puma'
 
@@ -17,8 +16,8 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'dotenv-rails'
 gem 'hamlit-rails'
+gem 'image_processing'
 gem 'jbuilder'
-gem 'mini_magick'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'pundit'
@@ -29,7 +28,6 @@ gem 'turbolinks-form'
 gem 'webpacker'
 
 gem 'active_storage_validations'
-gem 'acts-as-taggable-on'
 gem 'administrate-field-active_storage'
 gem 'ahoy_email'
 gem 'ahoy_matey'
