@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :interface do
     network
     device
-    sequence(:name) { |n| "Test Interface ##{n}" }
+    name { "Test Interface #{SecureRandom.uuid}" }
     body { Faker::Lorem.paragraphs }
   end
 end
