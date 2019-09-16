@@ -9,7 +9,7 @@ class NodesController < ApplicationController
     @node = authorize Node.find(params[:id])
     serve_image if params[:format] == 'png'
   rescue ActiveRecord::RecordNotFound
-    @node = Node.find_by_code(params[:id])
+    @node = authorize Node.find_by_code(params[:id])
     raise unless @node
 
     redirect_to node_path(@node)
