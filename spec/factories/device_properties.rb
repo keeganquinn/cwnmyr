@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :device_property do
-    device
     device_property_type
     sequence(:value) { |n| "value#{n}" }
   end
