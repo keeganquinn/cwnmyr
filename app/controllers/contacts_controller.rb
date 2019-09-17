@@ -14,7 +14,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = authorize Contact.new(safe_params)
+    @contact = authorize Contact.new(permitted_attributes(Contact))
     save_and_respond @contact, :created, :create_success
   end
 
@@ -24,20 +24,12 @@ class ContactsController < ApplicationController
 
   def update
     @contact = authorize Contact.find(params[:id])
-    @contact.assign_attributes(safe_params)
+    @contact.assign_attributes permitted_attributes(@contact)
     save_and_respond @contact, :ok, :update_success
   end
 
   def destroy
     @contact = authorize Contact.find(params[:id])
     destroy_and_respond @contact, browse_path
-  end
-
-  private
-
-  def safe_params
-    params.require(:contact).permit(
-      :user_id, :code, :name, :hidden, :email, :phone, :notes, :group_id
-    )
   end
 end

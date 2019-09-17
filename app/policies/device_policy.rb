@@ -31,4 +31,12 @@ class DevicePolicy < ApplicationPolicy
   def graph?
     show?
   end
+
+  def permitted_attributes
+    [:node_id, :name, :device_type_id, :body,
+     interfaces_attributes: %i[id code name network_id address_ipv6 address_ipv4
+                               address_mac _destroy],
+     device_properties_attributes: %i[id device_property_type_id
+                                      device_property_option_id value _destroy]]
+  end
 end

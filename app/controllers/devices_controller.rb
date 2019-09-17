@@ -18,7 +18,7 @@ class DevicesController < ApplicationController
   end
 
   def create
-    @device = authorize Device.new(safe_params)
+    @device = authorize Device.new(permitted_attributes(Device))
     save_and_respond @device, :created, :create_success
   end
 
@@ -28,7 +28,7 @@ class DevicesController < ApplicationController
 
   def update
     @device = authorize Device.find(params[:id])
-    @device.assign_attributes(safe_params)
+    @device.assign_attributes permitted_attributes(@device)
     save_and_respond @device, :ok, :update_success
   end
 
@@ -64,19 +64,6 @@ class DevicesController < ApplicationController
   end
 
   private
-
-  def safe_params
-    params.require(:device).permit(
-      :node_id, :name, :device_type_id, :body,
-      interfaces_attributes: %i[
-        id code name network_id address_ipv6 address_ipv4 address_mac
-        _destroy
-      ],
-      device_properties_attributes: %i[
-        id device_property_type_id device_property_option_id value _destroy
-      ]
-    )
-  end
 
   def try_build
     if @device&.device_type&.build_provider&.build(@device)

@@ -20,7 +20,7 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = authorize Node.new(safe_params)
+    @node = authorize Node.new(permitted_attributes(Node))
     save_and_respond @node, :created, :create_success
   end
 
@@ -30,7 +30,7 @@ class NodesController < ApplicationController
 
   def update
     @node = authorize Node.find(params[:id])
-    @node.assign_attributes(safe_params)
+    @node.assign_attributes permitted_attributes(@node)
     save_and_respond @node, :ok, :update_success
   end
 
@@ -62,14 +62,5 @@ class NodesController < ApplicationController
     expires_in 1.year, public: true
     send_data blob.service.download(blob.key),
               type: blob.content_type, disposition: 'inline'
-  end
-
-  def safe_params
-    params.require(:node).permit(
-      :user_id, :code, :name, :status_id, :group_id, :contact_id, :body,
-      :address, :hours, :notes, :live_date, :website, :rss, :twitter, :wiki,
-      :logo,
-      contact_attributes: %i[id name hidden email phone notes user_id _destroy]
-    )
   end
 end

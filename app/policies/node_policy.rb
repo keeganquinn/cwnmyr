@@ -20,4 +20,11 @@ class NodePolicy < ApplicationPolicy
   def graph?
     show?
   end
+
+  def permitted_attributes
+    [:user_id, :code, :name, :status_id, :group_id, :contact_id, :body,
+     :address, :hours, :notes, :live_date, :website, :rss, :twitter, :wiki,
+     :logo,
+     contact_attributes: %i[id name hidden email phone notes user_id _destroy]]
+  end
 end

@@ -20,13 +20,7 @@ class UsersController < ApplicationController
 
   def update
     @user = authorize User.find(params[:id])
-    @user.assign_attributes(safe_params)
+    @user.assign_attributes permitted_attributes(@user)
     save_and_respond @user, :ok, :update_success
-  end
-
-  private
-
-  def safe_params
-    params.require(:user).permit(:name, :body)
   end
 end

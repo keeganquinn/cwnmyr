@@ -9,4 +9,8 @@ class UserPolicy < ApplicationPolicy
   def update?
     @record == @user
   end
+
+  def permitted_attributes
+    %i[name body]
+  end
 end

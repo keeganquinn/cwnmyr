@@ -22,4 +22,8 @@ class ContactPolicy < ApplicationPolicy
   def destroy?
     create?
   end
+
+  def permitted_attributes
+    %i[user_id code name hidden email phone notes group_id]
+  end
 end
