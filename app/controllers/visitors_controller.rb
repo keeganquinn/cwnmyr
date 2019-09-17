@@ -29,7 +29,7 @@ class VisitorsController < ApplicationController
   end
 
   def serve_image
-    return head(:not_found) unless nav_logo.attached?
+    return head(:not_found) unless nav_logo&.attached?
 
     expires_in 1.year, public: true
     send_data blob.service.download(blob.key),
