@@ -26,6 +26,6 @@ read -r
 bundle exec cap production deploy
 
 echo
-echo "Deployed live site: https://cwnmyr.personaltelco.net/"
+echo "Deployed live site: https://nodes.personaltelco.net/"
 
 exit 0
