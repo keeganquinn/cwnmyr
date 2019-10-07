@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "@client-side-validations/client-side-validations": "^0.0.5",
+    "@client-side-validations/client-side-validations": "^0.1.0",
     "@rails/webpacker": "^4.0.7",
     "ahoy.js": "^0.3.4",
     "bootstrap": "^4.3.1",
@@ -55,7 +55,7 @@
     "webpack": "^4.41.0"
   },
   "devDependencies": {
-    "eslint": "^6.5.0",
+    "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -65,6 +65,6 @@
     "jest": "^24.9.0",
     "jest-google-maps-mock": "^1.0.2",
     "jest-junit": "^8.0.0",
-    "webpack-dev-server": "^3.8.1"
+    "webpack-dev-server": "^3.8.2"
   }
 }
