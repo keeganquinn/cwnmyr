@@ -49,10 +49,10 @@
     "bootstrap-table": "^1.15.5",
     "jquery": "^3.4.1",
     "jquery-ujs": "^1.2.2",
-    "popper.js": "^1.15.0",
+    "popper.js": "^1.16.0",
     "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.41.1"
+    "webpack": "^4.41.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
