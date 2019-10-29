@@ -55,7 +55,7 @@
     "webpack": "^4.41.2"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
+    "eslint": "^6.6.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -64,7 +64,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
     "jest-google-maps-mock": "^1.0.2",
-    "jest-junit": "^8.0.0",
-    "webpack-dev-server": "^3.8.2"
+    "jest-junit": "^9.0.0",
+    "webpack-dev-server": "^3.9.0"
   }
 }
