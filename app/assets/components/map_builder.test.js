@@ -1,107 +1,101 @@
-import { MapBuilder } from 'components/map_builder'
-import createGoogleMapsMock from 'jest-google-maps-mock'
+import MapBuilder from 'components/map_builder';
+import createGoogleMapsMock from 'jest-google-maps-mock';
 
-const stubApis = function () {
-  window.google = { maps: createGoogleMapsMock() }
-  window.google.maps.InfoWindow = jest.fn().mockImplementation(
-    function () {
-      this.open = jest.fn()
-      this.setContent = jest.fn()
-    }
-  )
-  window.google.maps.LatLngBounds = jest.fn().mockImplementation(
-    function () {
-      this.extend = jest.fn()
-    }
-  )
-  window.google.maps.Map = jest.fn().mockImplementation(
-    function (mapDiv, opts) {
-      this.mapDiv = mapDiv
-      this.opts = opts
-      this.controls = {}
-      this.controls[window.google.maps.ControlPosition.TOP_RIGHT] = []
-      this.setCenter = function () {}
-      this.setTilt = function () {}
-      this.mapTypes = {
-        set: function () {}
-      }
-      this.overlayMapTypes = {
-        insertAt: function () {},
-        removeAt: function () {}
-      }
-      this.fitBounds = function () {}
-      this.panToBounds = function () {}
-    })
-  window.scrollTo = jest.fn()
+const stubApis = () => {
+  window.google = { maps: createGoogleMapsMock() };
+  window.google.maps.InfoWindow = jest.fn(() => ({
+    open: jest.fn(),
+    setContent: jest.fn(),
+  }));
+  window.google.maps.LatLngBounds = jest.fn(() => ({
+    extend: jest.fn(),
+  }));
+  window.google.maps.Map = jest.fn((mapDiv, opts) => ({
+    mapDiv,
+    opts,
+    controls: {
+      [window.google.maps.ControlPosition.TOP_RIGHT]: [],
+    },
+    setCenter: jest.fn(),
+    setTilt: jest.fn(),
+    mapTypes: { set: jest.fn() },
+    overlayMapTypes: {
+      insertAt: jest.fn(),
+      removeAt: jest.fn(),
+    },
+    fitBounds: jest.fn(),
+    panToBounds: jest.fn(),
+  }));
+  window.scrollTo = jest.fn();
 
   navigator.geolocation = {
-    getCurrentPosition: function () {}
-  }
-}
+    getCurrentPosition: jest.fn(),
+  };
+};
 
-const page = '<div id="map"></div>'
-const pageWithCenter = '<div id="map" data-center="disco"></div>'
+const page = '<div id="map"></div>';
+const pageWithCenter = '<div id="map" data-center="disco"></div>';
 
 describe('MapBuilder', () => {
-  let mapBuilder
+  let mapBuilder;
   beforeEach(() => {
-    mapBuilder = new MapBuilder()
-  })
+    mapBuilder = new MapBuilder();
+  });
 
   it('can be instantiated', () => {
-    mapBuilder.initMap()
-    expect(mapBuilder.elMap).toBeFalsy()
-  })
+    mapBuilder.initMap();
+    expect(mapBuilder.elMap).toBeFalsy();
+  });
 
   describe('attached', () => {
     beforeEach(() => {
-      document.body.innerHTML = page
-      mapBuilder.prepare()
-      mapBuilder.initMap()
-    })
+      document.body.innerHTML = page;
+      mapBuilder.prepare();
+      mapBuilder.initMap();
+    });
 
     it('has element reference', () => {
-      expect(mapBuilder.elMap).toBeTruthy()
-    })
+      expect(mapBuilder.elMap).toBeTruthy();
+    });
 
     describe('with node data', () => {
       beforeEach(() => {
-        stubApis()
+        stubApis();
         mapBuilder.handleResponse(null, {
           node: {
             lat: 1,
             lng: 1,
             icon: 'icon',
             name: 'Node',
-            infowindow: 'Node Information'
-          }
-        })
-      })
+            infowindow: 'Node Information',
+          },
+        });
+      });
 
       it('creates a status display', () => {
-        expect(mapBuilder.elStatus).toBeTruthy()
-      })
+        expect(mapBuilder.elStatus).toBeTruthy();
+      });
 
       it('creates a marker that can be clicked', () => {
-        const marker = mapBuilder.markers[0]
-        marker.listeners.click[0]()
-        expect(mapBuilder.gInfoWindow.setContent.mock.calls.length).toBe(1)
-      })
+        const marker = mapBuilder.markers[0];
+        marker.listeners.click[0]();
+        expect(mapBuilder.gInfoWindow.setContent.mock.calls.length).toBe(1);
+      });
 
       it('can handle position data', () => {
         mapBuilder.handlePosition({
           coords: {
             latitude: 1,
-            longitude: 1
-          }
-        })
-        expect(mapBuilder.posMarker).toBeTruthy()
-      })
-    })
+            longitude: 1,
+          },
+        });
+        expect(mapBuilder.posMarker).toBeTruthy();
+      });
+    });
 
     describe('with status data', () => {
       beforeEach(() => {
-        stubApis()
+        stubApis();
         mapBuilder.handleResponse(null, {
           statuses: [{
             default_display: true,
@@ -112,12 +106,12 @@ describe('MapBuilder', () => {
               lng: 1,
               icon: 'icon',
               name: 'Node',
-              infowindow: 'Node Information'
+              infowindow: 'Node Information',
             }, {
               icon: 'icon',
               name: 'Uncoded Node',
-              infowindow: 'More Node Information'
-            }]
+              infowindow: 'More Node Information',
+            }],
           }, {
             default_display: false,
             color: 'green',
@@ -127,42 +121,44 @@ describe('MapBuilder', () => {
               lng: 2,
               icon: 'icon',
               name: 'Other Node',
-              infowindow: 'Other Node Information'
+              infowindow: 'Other Node Information',
             }, {
               icon: 'icon',
               name: 'Other Uncoded Node',
-              infowindow: 'Yet More Node Information'
-            }]
-          }]
-        })
-      })
+              infowindow: 'Yet More Node Information',
+            }],
+          }],
+        });
+      });
 
       it('creates a status display', () => {
-        expect(mapBuilder.elStatus).toBeTruthy()
-      })
+        expect(mapBuilder.elStatus).toBeTruthy();
+      });
 
       it('show button can be clicked', () => {
-        mapBuilder.elBtnShow.click()
+        mapBuilder.elBtnShow.click();
         const boxes = mapBuilder.elStatus.querySelectorAll(
-          'input[type="checkbox"]')
-        for (const box of boxes) {
-          expect(box.checked).toBeTruthy()
-        }
-      })
+          'input[type="checkbox"]',
+        );
+        boxes.forEach((box) => {
+          expect(box.checked).toBeTruthy();
+        });
+      });
 
       it('hide button can be clicked', () => {
-        mapBuilder.elBtnHide.click()
+        mapBuilder.elBtnHide.click();
         const boxes = mapBuilder.elStatus.querySelectorAll(
-          'input[type="checkbox"]')
-        for (const box of boxes) {
-          expect(box.checked).toBeFalsy()
-        }
-      })
-    })
+          'input[type="checkbox"]',
+        );
+        boxes.forEach((box) => {
+          expect(box.checked).toBeFalsy();
+        });
+      });
+    });
 
     describe('with zone data', () => {
       beforeEach(() => {
-        stubApis()
+        stubApis();
         mapBuilder.handleResponse(null, {
           zone: {
             statuses: [{
@@ -174,53 +170,53 @@ describe('MapBuilder', () => {
                 lng: 1,
                 icon: 'icon',
                 name: 'Node',
-                infowindow: 'Node Information'
-              }]
-            }]
-          }
-        })
-      })
+                infowindow: 'Node Information',
+              }],
+            }],
+          },
+        });
+      });
 
       it('creates a status display', () => {
-        expect(mapBuilder.elStatus).toBeTruthy()
-      })
-    })
-  })
+        expect(mapBuilder.elStatus).toBeTruthy();
+      });
+    });
+  });
 
   describe('attached with center', () => {
     beforeEach(() => {
-      document.body.innerHTML = pageWithCenter
-      mapBuilder.prepare()
-      mapBuilder.initMap()
-    })
+      document.body.innerHTML = pageWithCenter;
+      mapBuilder.prepare();
+      mapBuilder.initMap();
+    });
 
     it('has element reference', () => {
-      expect(mapBuilder.elMap).toBeTruthy()
-    })
+      expect(mapBuilder.elMap).toBeTruthy();
+    });
 
     describe('with node data', () => {
       beforeEach(() => {
-        stubApis()
+        stubApis();
         mapBuilder.handleResponse(null, {
           node: {
             lat: 1,
             lng: 1,
             icon: 'icon',
             name: 'Node',
-            infowindow: 'Node Information'
-          }
-        })
-      })
+            infowindow: 'Node Information',
+          },
+        });
+      });
 
       it('can handle position data', () => {
         mapBuilder.handlePosition({
           coords: {
             latitude: 1,
-            longitude: 1
-          }
-        })
-        expect(mapBuilder.posMarker).toBeTruthy()
-      })
-    })
-  })
-})
+            longitude: 1,
+          },
+        });
+        expect(mapBuilder.posMarker).toBeTruthy();
+      });
+    });
+  });
+});
