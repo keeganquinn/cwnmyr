@@ -1,0 +1,11 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": "airbnb-base",
+  "rules": {
+    "import/no-unresolved": "off"
+  }
+}
