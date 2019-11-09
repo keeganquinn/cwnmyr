@@ -9,7 +9,6 @@ TWITTER_BASE = 'https://twitter.com'
 # between that of the Zone model and that of the InterfacePoint model.
 class Node < ApplicationRecord
   has_paper_trail
-  searchkick word_start: %i[code name body address notes]
 
   belongs_to :contact, optional: true
   belongs_to :status

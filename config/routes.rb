@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   get 'browse', to: 'visitors#browse'
-  get 'search', to: 'visitors#search'
   root to: 'visitors#index'
 
   devise_for :users, controllers: {

@@ -9,11 +9,6 @@ class VisitorsController < ApplicationController
     serve_image if params[:format] == 'png'
   end
 
-  def search
-    @results = Searchkick.search params[:query],
-                                 index_name: [Node], match: :word_start
-  end
-
   private
 
   def nav_logo

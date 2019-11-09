@@ -47,18 +47,6 @@ document.addEventListener('turbolinks:load', () => {
     $('#contact-select').hide();
     $('#contact .links').hide();
   }
-
-  let elSearch = document.getElementById('search');
-  let elQuery = document.getElementById('query');
-  if (!elSearch || !elQuery) return;
-
-  elSearch.addEventListener('submit', (event) => {
-    let query = encodeURIComponent(elQuery.value);
-    Turbolinks.visit(`/search?query=${query}`);
-
-    event.preventDefault();
-    return false;
-  });
 });
 
 document.addEventListener('turbolinks:before-cache', () => {

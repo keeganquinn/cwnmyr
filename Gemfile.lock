@@ -168,14 +168,6 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    elasticsearch (7.4.0)
-      elasticsearch-api (= 7.4.0)
-      elasticsearch-transport (= 7.4.0)
-    elasticsearch-api (7.4.0)
-      multi_json
-    elasticsearch-transport (7.4.0)
-      faraday
-      multi_json
     errbase (0.2.0)
     erubi (1.9.0)
     erubis (2.7.0)
@@ -507,10 +499,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.1.0)
-      activemodel (>= 5)
-      elasticsearch (>= 6)
-      hashie
     selectize-rails (0.12.6)
     sexp_processor (4.13.0)
     shellany (0.0.1)
@@ -620,7 +608,6 @@ DEPENDENCIES
   database_cleaner
   devise
   dotenv-rails
-  elasticsearch
   factory_bot_rails
   faker
   geocoder
@@ -660,7 +647,6 @@ DEPENDENCIES
   rubocop-checkstyle_formatter
   rubocop-performance
   rubocop-rspec
-  searchkick
   shoulda-matchers
   simple_form
   simplecov
