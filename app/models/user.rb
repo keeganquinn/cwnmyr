@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable, :lockable,
-         omniauth_providers: %i[facebook google_oauth2]
+         omniauth_providers: Devise.active_providers
   mailkick_user
 
   def self.from_omniauth(auth)

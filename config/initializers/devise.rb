@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+# Track active omniauth providers in Devise.
+module Devise
+  @@active_providers = []
+
+  def self.active_providers
+    @@active_providers
+  end
+end
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -256,12 +265,18 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :facebook,
-                  ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
-                  scope: 'email'
-  config.omniauth :google_oauth2,
-                  ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
-                  scope: 'userinfo.email'
+  if ENV['FACEBOOK_APP_ID'].present? || Rails.env.test?
+    config.omniauth :facebook,
+                    ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
+                    scope: 'email'
+    Devise.active_providers << :facebook
+  end
+  if ENV['GOOGLE_CLIENT_ID'].present? || Rails.env.test?
+    config.omniauth :google_oauth2,
+                    ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+                    scope: 'userinfo.email'
+    Devise.active_providers << :google_oauth2
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
