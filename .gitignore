@@ -25,7 +25,7 @@
 /rspec.xml
 
 # Working files and data
-/.env
+/.env*
 /db/live.sql
 /db/live.sql.gz
 /db/*.sqlite3
@@ -36,8 +36,3 @@
 /doc/specs.html
 /log/*
 /yarn-error.log
-/public/packs
-/public/packs-test
-/node_modules
-yarn-debug.log*
-.yarn-integrity
