@@ -13,9 +13,9 @@ ssh-add -l >/dev/null || ssh-add
     echo 'BUNDLE_DISABLE_SHARED_GEMS: "true"'
     echo 'BUNDLE_WITHOUT: "production"'
 ) > .bundle/config
-
-
 bundle install
+yarn install
+
 bundle exec cap staging deploy
 
 echo
