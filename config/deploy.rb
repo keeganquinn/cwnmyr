@@ -8,6 +8,7 @@ set :repo_url, 'https://github.com/keeganquinn/cwnmyr.git'
 set :rbenv_ruby, File.read('.ruby-version').strip
 
 set :linked_dirs, fetch(:linked_dirs, []).push('node_modules')
+set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
 set :linked_dirs, fetch(:linked_dirs, []).push('storage')
 
 set :assets_dir, %w[storage]
@@ -36,8 +37,9 @@ namespace :deploy do
   desc 'Symlink environment'
   task :symlink_env do
     on roles(:app) do
-      execute "rm -f #{release_path}/.env.production"
-      execute "ln -s /etc/rails/cwnmyr.env #{release_path}/.env.production"
+      target = "#{release_path}/.env.#{fetch(:rails_env)}"
+      execute "rm -f #{target}"
+      execute "ln -s /etc/rails/#{fetch(:application)}.env #{target}"
     end
   end
 end
