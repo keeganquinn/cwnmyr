@@ -50,12 +50,12 @@ gem 'rmagick'
 group :development do
   gem 'better_errors'
   gem 'brakeman', require: false
-  gem 'capistrano'
-  gem 'capistrano-bundler'
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
   gem 'capistrano-db-tasks', require: false
-  gem 'capistrano-foreman'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-foreman', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
   gem 'guard-rspec', require: false
   gem 'haml_lint', require: false
   gem 'html2haml', require: false
@@ -67,7 +67,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
-  gem 'unicorn'
   gem 'web-console'
 end
 
