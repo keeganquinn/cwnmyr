@@ -12,6 +12,7 @@ install_plugin Capistrano::SCM::Git
 
 # Includes tasks from other gems
 require 'capistrano/bundler'
+require 'capistrano-db-tasks'
 require 'capistrano/foreman'
 require 'capistrano/rails'
 require 'capistrano/rbenv'

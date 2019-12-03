@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'capistrano-db-tasks'
-
 set :application, 'cwnmyr'
 set :repo_url, 'https://github.com/keeganquinn/cwnmyr.git'
 
