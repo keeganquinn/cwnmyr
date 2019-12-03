@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def top_link
-    current_page?(browse_path) ? root_path : browse_path
+    current_page?(root_path) ? browse_path : root_path
   end
 
   def nav_logo_tag
