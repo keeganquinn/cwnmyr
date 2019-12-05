@@ -5,29 +5,6 @@
     "lint": "eslint app",
     "test": "jest --coverage"
   },
-  "jest": {
-    "coverageDirectory": "coverage-js",
-    "coverageReporters": [
-      "cobertura",
-      "html",
-      "text"
-    ],
-    "moduleDirectories": [
-      "app/assets",
-      "node_modules"
-    ],
-    "reporters": [
-      "default",
-      "jest-junit"
-    ],
-    "roots": [
-      "app/assets"
-    ]
-  },
-  "engines": {
-    "node": ">= 8.9.4",
-    "yarn": ">= 1.3.2"
-  },
   "dependencies": {
     "@babel/core": "^7.7.4",
     "@babel/plugin-transform-modules-commonjs": "^7.7.4",
