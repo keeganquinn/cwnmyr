@@ -6,16 +6,7 @@
 /public/assets-test/
 /storage/
 /tmp/*
-/vendor/bundle/
-/vendor/ruby/
-
-# Never store or copy
-.DS_Store
-.\#*
-**.orig
-**.swp
-*~
-\#*\#
+/vendor/
 
 # Build artifacts
 /checkstyle-*.xml
