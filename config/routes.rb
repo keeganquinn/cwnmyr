@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     resources :build_providers, :contacts, :devices, :device_builds,
               :device_properties, :device_property_types,
-              :device_property_options, :device_types, :groups,
+              :device_property_options, :device_types, :events, :groups,
               :interfaces, :networks, :nodes, :statuses, :users, :zones
     root to: 'users#index'
   end
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  resources :contacts, :device_types, :groups, :networks, :statuses, :users
+  resources :contacts, :device_types, :events, :groups, :networks,
+            :statuses, :users
   resources :devices do
     member do
       get 'build_config'

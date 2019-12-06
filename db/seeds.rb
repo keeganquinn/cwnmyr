@@ -16,3 +16,8 @@ importer = ImportLegacyDataService.new
 importer.call.each do |node|
   puts "IMPORTED NODE: #{node.code}: #{node.name} @ #{node.id}"
 end
+
+eventer = ImportLegacyEventsService.new
+eventer.call.each do |event|
+  puts "IMPORTED EVENT: #{event.name}"
+end
