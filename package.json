@@ -6,8 +6,8 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/plugin-transform-modules-commonjs": "^7.7.4",
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
     "@client-side-validations/client-side-validations": "^0.1.0",
     "@rails/webpacker": "^4.2.0",
     "ahoy.js": "^0.3.4",
