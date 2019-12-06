@@ -1,3 +1,4 @@
+# -*- ruby -*-
 # frozen_string_literal: true
 
 xml.Node 'rdf:ID': node.to_param do

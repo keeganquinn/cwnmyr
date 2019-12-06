@@ -1,3 +1,4 @@
+# -*- ruby -*-
 # frozen_string_literal: true
 
 # https://www.w3.org/wiki/WirelessOntology

@@ -1,3 +1,4 @@
+# -*- ruby -*-
 # frozen_string_literal: true
 
 xml.device do
