@@ -20,4 +20,4 @@ module PunditHelper
   end
 end
 
-ApplicationController.send :include, PunditHelper
+ApplicationController.include PunditHelper

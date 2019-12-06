@@ -11,6 +11,7 @@ class ImportLegacyEventsService
       event = Event.find_or_initialize_by name: value['name']
 
       build_event event, value
+      build_action event, value
       attach_image event, value
       event.save!
 
@@ -21,12 +22,17 @@ class ImportLegacyEventsService
   def build_event(event, value)
     event.assign_attributes(
       description: value['description'],
-      action_url: value['action']['url'],
-      action_priority: value['action']['priority'],
-      action_text: value['action']['text'],
       starts_at: Time.at(value['starts'] / 1000),
       ends_at: Time.at(value['ends'] / 1000),
       splash_position: value['splash']['position']
+    )
+  end
+
+  def build_action(event, value)
+    event.assign_attributes(
+      action_url: value['action']['url'],
+      action_priority: value['action']['priority'],
+      action_text: value['action']['text']
     )
   end
 
