@@ -46,4 +46,25 @@ Rails.application.routes.draw do
   get '/404', to: 'errors#not_found'
   get '/422', to: 'errors#unacceptable'
   get '/500', to: 'errors#internal_error'
+
+  get '/android-chrome-192x192.png',
+      to: 'visitors#chromeicon_192', format: 'png'
+  get '/android-chrome-512x512.png',
+      to: 'visitors#chromeicon_512', format: 'png'
+  get '/apple-touch-icon.png',
+      to: 'visitors#touchicon_180', format: 'png'
+  get '/browserconfig.xml',
+      to: 'visitors#browserconfig', format: 'xml'
+  get '/favicon-16x16.png',
+      to: 'visitors#favicon_png16', format: 'png'
+  get '/favicon-32x32.png',
+      to: 'visitors#favicon_png32', format: 'png'
+  get '/favicon.ico',
+      to: 'visitors#favicon_ico', format: 'ico'
+  get '/mstile-150x150.png',
+      to: 'visitors#mstile_150', format: 'png'
+  get '/safari-pinned-tab.svg',
+      to: 'visitors#maskicon_svg', format: 'svg'
+  get '/site.webmanifest',
+      to: 'visitors#webmanifest', format: 'json'
 end

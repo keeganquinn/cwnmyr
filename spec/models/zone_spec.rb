@@ -35,8 +35,8 @@ describe Zone do
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
   end
 
-  describe 'with an image' do
-    subject(:zone) { build(:zone, :with_image) }
+  describe 'with images' do
+    subject(:zone) { build(:zone, :with_images) }
 
     it { expect(zone.nav_logo_stamp).to be >= 0 }
   end

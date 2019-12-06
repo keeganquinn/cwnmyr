@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_090055) do
+ActiveRecord::Schema.define(version: 2019_12_06_070728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -485,6 +485,11 @@ ActiveRecord::Schema.define(version: 2019_12_05_090055) do
     t.integer "zoom_min"
     t.integer "zoom_max"
     t.bigint "last_import"
+    t.string "maskicon_color"
+    t.string "mstile_color"
+    t.string "chrome_themecolor"
+    t.string "chrome_bgcolor"
+    t.string "chrome_display"
     t.index ["code"], name: "index_zones_on_code", unique: true
     t.index ["name"], name: "index_zones_on_name", unique: true
   end

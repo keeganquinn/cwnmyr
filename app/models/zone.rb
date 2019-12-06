@@ -6,7 +6,16 @@
 class Zone < ApplicationRecord
   has_paper_trail
   has_many :nodes
+
   has_one_attached :nav_logo
+  has_one_attached :chromeicon_192
+  has_one_attached :chromeicon_512
+  has_one_attached :favicon_ico
+  has_one_attached :favicon_png16
+  has_one_attached :favicon_png32
+  has_one_attached :maskicon_svg
+  has_one_attached :mstile_150
+  has_one_attached :touchicon_180
 
   validates_length_of :code, minimum: 1
   validates_length_of :code, maximum: 64
