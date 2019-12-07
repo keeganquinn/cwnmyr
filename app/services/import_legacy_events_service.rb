@@ -3,7 +3,8 @@
 # Service to import Event data from legacy system.
 class ImportLegacyEventsService
   def initialize(events = nil)
-    @events = events || FetchLegacyEventsService.new.call
+    @zone = Zone.default
+    @events = events || FetchLegacyEventsService.new(@zone).call
   end
 
   def call
@@ -13,7 +14,7 @@ class ImportLegacyEventsService
       build_event event, value
       build_action event, value
       attach_image event, value
-      event.save!
+      finalize_event event, value
 
       event
     end
@@ -45,5 +46,17 @@ class ImportLegacyEventsService
     rescue OpenURI::HTTPError
       nil
     end
+  end
+
+  def finalize_event(event, value)
+    update_stamp value['updated']
+    event.save!
+  end
+
+  def update_stamp(stamp)
+    return unless stamp && stamp > @zone.last_event_import
+
+    @zone.last_event_import = stamp
+    @zone.save!
   end
 end

@@ -50,6 +50,7 @@ class Zone < ApplicationRecord
   def set_defaults
     self.code = name.parameterize if code.blank? && name
     self.last_import ||= 0
+    self.last_event_import ||= 0
   end
 
   def nav_logo_stamp

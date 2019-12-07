@@ -3,6 +3,8 @@
 describe FetchLegacyEventsService do
   subject(:service) { described_class }
 
+  before { create :zone, default: true }
+
   it 'is able to fetch event data' do
     expect(service.new.fetch).not_to be_empty
   end

@@ -3,6 +3,8 @@
 describe ImportLegacyEventsService do
   subject(:service) { described_class }
 
+  before { create :zone, default: true }
+
   event_data = [
     {
       'name' => 'Join Us for Love Letters to Municipal Broadband',
