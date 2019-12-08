@@ -1,5 +1,6 @@
 --color
 --format documentation
+--require rspec_junit_formatter
 --require spec_helper
 --require rails_helper
 --format RspecJunitFormatter

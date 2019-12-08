@@ -76,10 +76,10 @@ group :development, :test do
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'rspec_junit_formatter'
+  gem 'rspec_junit_formatter', require: false
   gem 'rubocop-checkstyle_formatter', require: false
-  gem 'rubocop-performance'
-  gem 'rubocop-rspec'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do
