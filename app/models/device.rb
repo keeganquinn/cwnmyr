@@ -55,6 +55,6 @@ class Device < ApplicationRecord
 
   def build_config
     props = device_properties.with_config.map(&:device_property_type)
-    (device_type&.config || '') + props.map(&:config).join('\n')
+    (device_type&.config || '') + "\n" + props.map(&:config).join("\n")
   end
 end
