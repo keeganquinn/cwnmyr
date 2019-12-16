@@ -28,7 +28,9 @@ class User < ApplicationRecord
 
   before_validation :set_defaults
 
-  scope :visible, -> { where.not(code: [nil, '']) }
+  scope :visible, lambda {
+    where(["spam IS NULL AND code IS NOT NULL AND code != ''"])
+  }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable, :lockable,
@@ -56,6 +58,6 @@ class User < ApplicationRecord
   end
 
   def visible?
-    !code.blank?
+    !code.blank? && !spam
   end
 end

@@ -28,6 +28,7 @@ class UserDashboard < Administrate::BaseDashboard
     name: Field::String,
     role: Field::Select.with_options(collection: User.roles.keys),
     body: Field::Text,
+    spam: Field::Boolean,
     groups: Field::HasMany,
     contacts: Field::HasMany,
     nodes: Field::HasMany
@@ -40,11 +41,11 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at sign_in_count current_sign_in_at last_sign_in_at
     current_sign_in_ip last_sign_in_ip created_at updated_at
     confirmation_token confirmed_at confirmation_sent_at unconfirmed_email
-    code name role body groups contacts nodes
+    code name role body spam groups contacts nodes
   ].freeze
 
   FORM_ATTRIBUTES = %i[email password password_confirmation
-                       name role body groups].freeze
+                       name role body spam groups].freeze
 
   def display_resource(user)
     user.email
