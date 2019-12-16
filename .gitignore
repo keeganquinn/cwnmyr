@@ -17,6 +17,7 @@
 
 # Working files and data
 /.env*
+/.yardoc/
 /db/live.sql
 /db/live.sql.gz
 /db/*.sqlite3

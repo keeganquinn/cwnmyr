@@ -68,6 +68,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
   gem 'web-console'
+  gem 'yard'
 end
 
 group :development, :test do

@@ -570,6 +570,7 @@ GEM
     wmi-lite (1.0.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.20)
     zeitwerk (2.2.2)
 
 PLATFORMS
@@ -653,6 +654,7 @@ DEPENDENCIES
   turbolinks-form
   web-console
   webpacker
+  yard
 
 BUNDLED WITH
    2.0.2

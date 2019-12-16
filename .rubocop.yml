@@ -17,3 +17,6 @@ Metrics/BlockLength:
 Style/ClassVars:
   Exclude:
     - config/initializers/devise.rb
+
+Style/DocumentationMethod:
+  Enabled: true
