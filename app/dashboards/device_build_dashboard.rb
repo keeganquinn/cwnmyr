@@ -26,6 +26,7 @@ class DeviceBuildDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES =
     %i[build_provider device_type device title body url build_number].freeze
 
+  # Display representation of the resource.
   def display_resource(device_build)
     device_build.title || "Build ##{device_build.build_number}"
   end

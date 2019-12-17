@@ -25,6 +25,7 @@ class DeviceDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[node name device_type body].freeze
 
+  # Display representation of the resource.
   def display_resource(device)
     "Device ##{device.to_param}"
   end

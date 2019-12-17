@@ -10,6 +10,7 @@ require 'rgl/dot'
 module RGL
   # Extend the Ruby Graph Library.
   module Graph
+    # PNG representation of the graph.
     def to_png
       output = ''
 

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# PNG image file for use in Zone factory.
 def png_image
-  Rack::Test::UploadedFile.new 'app/assets/images/position.png', 'image/png'
+  Rack::Test::UploadedFile.new 'app/assets/images/position_small.png',
+                               'image/png'
 end
 
 FactoryBot.define do

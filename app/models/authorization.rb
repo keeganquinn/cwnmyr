@@ -7,6 +7,7 @@ class Authorization < ApplicationRecord
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, scope: :provider
 
+  # Locate an Authorization from a provided set of OmniAuth credentials.
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |new_auth|
       new_auth.provider = auth.provider

@@ -2,11 +2,13 @@
 
 # Service to import Event data from legacy system.
 class ImportLegacyEventsService
+  # Initialize the service with a Zone and a list of Event data.
   def initialize(events = nil)
     @zone = Zone.default
     @events = events || FetchLegacyEventsService.new(@zone).call
   end
 
+  # Do the thing.
   def call
     @events.map do |value|
       event = Event.find_or_initialize_by name: value['name']
@@ -19,6 +21,8 @@ class ImportLegacyEventsService
       event
     end
   end
+
+  protected
 
   def build_event(event, value)
     event.assign_attributes(

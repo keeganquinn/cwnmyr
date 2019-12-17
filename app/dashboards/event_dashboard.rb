@@ -33,6 +33,7 @@ class EventDashboard < Administrate::BaseDashboard
     starts_at ends_at splash_position published
   ].freeze
 
+  # Display representation of the resource.
   def display_resource(event)
     event.name
   end

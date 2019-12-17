@@ -2,6 +2,7 @@
 
 # Handle errors gracefully.
 class ErrorsController < ApplicationController
+  # Render an appropriate response for a 404 error.
   def not_found
     respond_to do |format|
       format.html { render status: 404 }
@@ -10,6 +11,7 @@ class ErrorsController < ApplicationController
     end
   end
 
+  # Render an appropriate response for a 422 error.
   def unacceptable
     respond_to do |format|
       format.html { render status: 422 }
@@ -18,6 +20,7 @@ class ErrorsController < ApplicationController
     end
   end
 
+  # Render an appropriate response for a 500 error.
   def internal_error
     respond_to do |format|
       format.html { render status: 500 }

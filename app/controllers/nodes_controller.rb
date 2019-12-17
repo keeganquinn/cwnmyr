@@ -5,6 +5,7 @@ class NodesController < ApplicationController
   before_action :authenticate_user!, except: %i[show graph]
   after_action :verify_authorized
 
+  # Show action.
   def show
     @node = authorize Node.find(params[:id])
     serve_image if params[:format] == 'png'
@@ -15,30 +16,36 @@ class NodesController < ApplicationController
     redirect_to node_path(@node)
   end
 
+  # New action.
   def new
     @node = authorize Node.new(user_id: current_user.id)
   end
 
+  # Create action.
   def create
     @node = authorize Node.new(permitted_attributes(Node))
     save_and_respond @node, :created, :create_success
   end
 
+  # Edit action.
   def edit
     @node = authorize Node.find(params[:id])
   end
 
+  # Update action.
   def update
     @node = authorize Node.find(params[:id])
     @node.assign_attributes permitted_attributes(@node)
     save_and_respond @node, :ok, :update_success
   end
 
+  # Destroy action.
   def destroy
     @node = authorize Node.find(params[:id])
     destroy_and_respond @node, browse_path
   end
 
+  # Graph action.
   def graph
     @node = authorize Node.find(params[:id])
 

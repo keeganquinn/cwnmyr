@@ -37,12 +37,14 @@ class Network < ApplicationRecord
 
   before_validation :set_defaults
 
+  # Canonical identifier.
   def to_param
     return unless id
 
     [id, code].join('-')
   end
 
+  # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
   end

@@ -25,6 +25,7 @@ class StatusDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[code name default_display color ordinal].freeze
 
+  # Display representation of the resource.
   def display_resource(status)
     "Status ##{status.to_param}"
   end

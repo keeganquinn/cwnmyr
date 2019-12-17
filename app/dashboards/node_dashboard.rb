@@ -43,6 +43,7 @@ class NodeDashboard < Administrate::BaseDashboard
     website rss twitter wiki contact
   ].freeze
 
+  # Display representation of the resource.
   def display_resource(node)
     "Node#{node.code} (#{node.id})"
   end

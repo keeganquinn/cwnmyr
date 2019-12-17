@@ -24,6 +24,7 @@ class DevicePropertyDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[device device_property_type device_property_option
                        value].freeze
 
+  # Display representation of the resource.
   def display_resource(device_property)
     "Device Property ##{device_property.to_param}"
   end

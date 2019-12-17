@@ -33,26 +33,31 @@ class Zone < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :should_geocode?
 
+  # Locate the default Zone.
   def self.default
     find_by default: true
   end
 
+  # Return true if the record should be geocoded.
   def should_geocode?
     address.present? && (address_changed? || !latitude || !longitude)
   end
 
+  # Canonical identifier.
   def to_param
     return unless id
 
     [id, code].join('-')
   end
 
+  # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
     self.last_import ||= 0
     self.last_event_import ||= 0
   end
 
+  # Version stamp for the attached navigation logo.
   def nav_logo_stamp
     nav_logo.blob.created_at.to_i if nav_logo.attached?
   end

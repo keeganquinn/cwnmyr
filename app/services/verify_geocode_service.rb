@@ -2,6 +2,7 @@
 
 # Service to verify geocoding results.
 class VerifyGeocodeService
+  # Do the thing.
   def call
     Node.where.not(address: nil).map do |node|
       next if node.address.blank?
@@ -9,6 +10,8 @@ class VerifyGeocodeService
       check_range(node, node.zone.latitude, node.zone.longitude) || next
     end.compact
   end
+
+  protected
 
   def check_range(node, expected_latitude, expected_longitude)
     return unless node.latitude && node.longitude

@@ -4,10 +4,12 @@
 class EventsController < ApplicationController
   after_action :verify_authorized
 
+  # Index action.
   def index
     @events = authorize Event.all
   end
 
+  # Show action.
   def show
     @event = authorize Event.find(params[:id])
     serve_image if params[:format] == 'jpg'

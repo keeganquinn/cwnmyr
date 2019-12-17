@@ -61,6 +61,7 @@ class PopulateOptionsService
     { code: 'test', name: 'Testing', color: 'orange', ordinal: 600 }
   ].freeze
 
+  # Do the thing.
   def call
     [
       *GROUPS.map { |vals| make_one Group, vals },
@@ -72,6 +73,8 @@ class PopulateOptionsService
       *ZONES.map { |vals| make_one Zone, vals }
     ]
   end
+
+  protected
 
   def make_one(klass, vals)
     item = klass.find_or_create_by code: vals[:code]

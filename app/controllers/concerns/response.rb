@@ -2,6 +2,7 @@
 
 # This concern includes methods to construct responses to common request types.
 module Response
+  # Save a thing and render an appropriate response based on validation.
   def save_and_respond(thing, status, msg)
     if request.format.html? || request.format.js?
       if thing.save
@@ -15,6 +16,7 @@ module Response
     end
   end
 
+  # Destroy a thing and render an appropriate response.
   def destroy_and_respond(thing, parent)
     thing.destroy
     if request.format.html? || request.format.js?

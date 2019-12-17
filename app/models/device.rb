@@ -24,6 +24,7 @@ class Device < ApplicationRecord
                       message: 'contains unacceptable characters',
                       allow_blank: true
 
+  # Canonical identifier.
   def to_param
     return unless id
 
@@ -41,18 +42,22 @@ class Device < ApplicationRecord
     rgl
   end
 
+  # Locate the first public interface.
   def pub
     interfaces.where(code: 'pub').first
   end
 
+  # Locate the first private interface.
   def priv
     interfaces.where(code: 'priv').first
   end
 
+  # Return true if linked to a DeviceType with a configured BuildProvider.
   def can_build?
     device_type&.build_provider&.can_build?
   end
 
+  # Generate build configuration data.
   def build_config
     props = device_properties.with_config.map(&:device_property_type)
     (device_type&.config || '') + "\n" + props.map(&:config).join("\n")

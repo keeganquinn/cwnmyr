@@ -42,29 +42,35 @@ class Node < ApplicationRecord
 
   scope :ungrouped, -> { where(group_id: nil) }
 
+  # Reset any existing geocode data.
   def geocode_reset
     self.latitude = nil
     self.longitude = nil
   end
 
+  # Return true if the record should be geocoded.
   def should_geocode?
     address.present? && (address_changed? || !latitude || !longitude)
   end
 
+  # Return true if the geocode data should be reset.
   def should_geocode_reset?
     !address.present?
   end
 
+  # Canonical identifier.
   def to_param
     return unless id
 
     [id, code].join('-')
   end
 
+  # URL to obtain driving directions.
   def directions_url
     "#{DIR_URL}#{URI.encode_www_form_component(address)}"
   end
 
+  # URL to a Twitter feed.
   def twitter_url
     "#{TWITTER_BASE}/#{twitter}" unless twitter.blank?
   end
@@ -77,19 +83,23 @@ class Node < ApplicationRecord
     rgl
   end
 
+  # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
     self.zone ||= Zone.default
   end
 
+  # Version stamp for the attached logo.
   def logo_stamp
     logo.blob.created_at.to_i if logo.attached?
   end
 
+  # Display-formatted code.
   def display_code
     "Node#{code}"
   end
 
+  # Display-formatted name.
   def display_name
     "#{display_code}: #{name}"
   end

@@ -43,6 +43,7 @@ class ZoneDashboard < Administrate::BaseDashboard
     maskicon_color maskicon_svg mstile_150 mstile_color touchicon_180
   ].freeze
 
+  # Display representation of the resource.
   def display_resource(zone)
     "Zone ##{zone.to_param}"
   end

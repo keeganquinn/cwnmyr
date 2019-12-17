@@ -26,6 +26,7 @@ class ContactDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[code name user group hidden email phone notes].freeze
 
+  # Display representation of the resource.
   def display_resource(contact)
     "Contact ##{contact.to_param}"
   end

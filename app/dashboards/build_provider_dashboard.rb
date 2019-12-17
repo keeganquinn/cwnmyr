@@ -24,6 +24,7 @@ class BuildProviderDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[code name url server job].freeze
 
+  # Display representation of the resource.
   def display_resource(build_provider)
     "Build Provider ##{build_provider.id}"
   end

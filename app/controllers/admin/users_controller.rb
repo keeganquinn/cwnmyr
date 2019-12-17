@@ -3,6 +3,8 @@
 module Admin
   # Administrate controller for the User model.
   class UsersController < Admin::ApplicationController
+    # Wrap the update action to prevent User passwords from being
+    # accidentally overwritten.
     def update
       if params[:user][:password].blank?
         params[:user].delete(:password)

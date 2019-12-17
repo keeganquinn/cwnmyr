@@ -3,10 +3,12 @@
 module Users
   # OmniAuth controller for Devise.
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    # Facebook authentication callback.
     def facebook
       request_for 'Facebook'
     end
 
+    # Google authentication callback.
     def google_oauth2
       request_for 'Google'
     end

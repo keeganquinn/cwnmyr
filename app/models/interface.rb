@@ -48,6 +48,7 @@ class Interface < ApplicationRecord
 
   before_validation :set_defaults
 
+  # Canonical identifier.
   def to_param
     return unless id
 
@@ -60,15 +61,17 @@ class Interface < ApplicationRecord
     NetAddr::IPv4Net.parse address_ipv4 unless address_ipv4.blank?
   end
 
-  # Extract the network address from the NetAddr representation.
+  # Extract the IPv4 network address from the NetAddr representation.
   def ipv4_net
     ipv4_cidr&.network&.to_s
   end
 
+  # Extract the IPv4 network mask from the NetAddr representation.
   def ipv4_masklen
     ipv4_cidr&.netmask&.prefix_len
   end
 
+  # Extract the IPv4 address from the stored representation.
   def ipv4_address_nomask
     address_ipv4&.split('/')&.first
   end
@@ -83,6 +86,7 @@ class Interface < ApplicationRecord
     end
   end
 
+  # Generate a graph of IPv4 neighbors.
   def graph(rgl = RGL::AdjacencyGraph.new)
     ipv4_neighbors.each do |neighbor|
       next unless neighbor.device
@@ -93,6 +97,7 @@ class Interface < ApplicationRecord
     rgl
   end
 
+  # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
   end

@@ -37,6 +37,7 @@ class User < ApplicationRecord
          omniauth_providers: Devise.active_providers
   mailkick_user
 
+  # Locate a User from a provided set of OmniAuth credentials.
   def self.from_omniauth(auth)
     return unless auth&.info&.email
 
@@ -46,17 +47,20 @@ class User < ApplicationRecord
     end
   end
 
+  # Canonical identifier.
   def to_param
     return unless id
 
     code && [id, code].join('-') || id.to_s
   end
 
+  # Set default values.
   def set_defaults
     self.code = name.parameterize if name
     self.role ||= :user
   end
 
+  # Return true if the user has a visible profile.
   def visible?
     !code.blank? && !spam
   end

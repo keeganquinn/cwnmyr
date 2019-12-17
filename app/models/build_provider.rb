@@ -10,10 +10,12 @@ class BuildProvider < ApplicationRecord
   validates_presence_of :url
   validates :url, format: URI.regexp(%w[http https]), allow_blank: true
 
+  # Return true if this provider is able to produce builds for Devices.
   def can_build?
     mode.present? || (server.present? && job.present?)
   end
 
+  # Build an image for a Device.
   def build(device)
     build_number = queue_build(device.to_param)
     return unless build_number
@@ -23,6 +25,7 @@ class BuildProvider < ApplicationRecord
                          url: "#{url}#{build_number}"
   end
 
+  # Queue a build request.
   def queue_build(device_id)
     return queue_build_pass(device_id) if mode == 'pass'
     return queue_build_fail(device_id) if mode == 'fail'
@@ -38,10 +41,12 @@ class BuildProvider < ApplicationRecord
     end
   end
 
+  # Stub method to simulate a successfully queued build.
   def queue_build_pass(_device_id)
     1
   end
 
+  # Stub method to simulate an unsuccessfully queued build.
   def queue_build_fail(_device_id)
     nil
   end

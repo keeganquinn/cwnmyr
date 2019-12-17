@@ -49,6 +49,7 @@ class InterfaceDashboard < Administrate::BaseDashboard
     beamwidth_h beamwidth_v azimuth elevation polarity
   ].freeze
 
+  # Display representation of the resource.
   def display_resource(interface)
     "Interface ##{interface.to_param}"
   end

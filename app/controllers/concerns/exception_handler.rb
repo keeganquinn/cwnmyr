@@ -9,6 +9,7 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   end
 
+  # Render an appropriate response for an record invalid exception.
   def record_invalid(error)
     raise unless request.format.json? || request.format.xml?
 
@@ -22,6 +23,7 @@ module ExceptionHandler
     end
   end
 
+  # Render an appropriate response for a record not found exception.
   def record_not_found(error)
     raise unless request.format.json? || request.format.xml?
 

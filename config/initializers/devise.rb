@@ -4,6 +4,7 @@
 module Devise
   @@active_providers = []
 
+  # List of active authentication providers.
   def self.active_providers
     @@active_providers
   end

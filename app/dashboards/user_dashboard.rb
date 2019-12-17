@@ -47,6 +47,7 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[email password password_confirmation
                        name role body spam groups].freeze
 
+  # Display representation of the resource.
   def display_resource(user)
     user.email
   end

@@ -25,6 +25,7 @@ class NetworkDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[code name body network_ipv4 network_ipv6
                        allow_neighbors].freeze
 
+  # Display representation of the resource.
   def display_resource(network)
     "Network ##{network.to_param}"
   end

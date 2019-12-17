@@ -15,6 +15,7 @@ class DeviceBuild < ApplicationRecord
 
   before_validation :set_defaults
 
+  # Set default values.
   def set_defaults
     self.title ||= "Build ##{build_number}" if build_number
   end

@@ -24,6 +24,7 @@ class DeviceTypeDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[code name body build_provider config].freeze
 
+  # Display representation of the resource.
   def display_resource(device_type)
     "Device Type ##{device_type.to_param}"
   end

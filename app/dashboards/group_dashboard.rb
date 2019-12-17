@@ -23,6 +23,7 @@ class GroupDashboard < Administrate::BaseDashboard
 
   FORM_ATTRIBUTES = %i[code name body users].freeze
 
+  # Display representation of the resource.
   def display_resource(group)
     "Group ##{group.to_param}"
   end

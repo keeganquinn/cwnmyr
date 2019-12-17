@@ -4,12 +4,14 @@ LOGO_BASE = 'https://personaltelco.net/splash/images/nodes'
 
 # Service to import data from legacy system.
 class ImportLegacyDataService
+  # Initialize the service with an admin User, a Zone, and a list of Node data.
   def initialize(nodes = nil)
     @user = User.admin.first
     @zone = Zone.default
     @nodes = nodes || FetchLegacyDataService.new(@zone).call
   end
 
+  # Do the thing.
   def call
     @nodes.map do |value|
       node = if value['node'].starts_with?('Test')
@@ -24,6 +26,8 @@ class ImportLegacyDataService
       node
     end
   end
+
+  protected
 
   def build_node(value)
     node = Node.find_or_initialize_by zone: @zone, code: value['node']

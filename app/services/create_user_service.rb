@@ -8,6 +8,7 @@ class CreateUserService
     password_confirmation: Rails.application.secrets.user_password
   }.freeze
 
+  # Do the thing.
   def call
     return User.user.first if User.user.count.positive?
 
