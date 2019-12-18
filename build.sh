@@ -17,7 +17,7 @@ set -ex
     echo 'BUNDLE_WITHOUT: "production"'
 ) > .bundle/config
 bundle install
-yarn install
+yarn install --frozen-lockfile
 
 
 rm -rf checkstyle-*.xml coverage coverage-js junit.xml rspec.xml \
