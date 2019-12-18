@@ -138,6 +138,7 @@ GEM
     character_set (1.4.0-java)
       range_compressor (~> 1.0)
     chartkick (3.3.0)
+    cinch (2.3.4)
     client_side_validations (16.0.3)
       jquery-rails (~> 4.3)
       js_regex (~> 3.1)
@@ -598,6 +599,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capybara
+  cinch
   client_side_validations
   client_side_validations-simple_form
   cocoon
