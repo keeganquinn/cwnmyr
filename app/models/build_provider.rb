@@ -37,7 +37,7 @@ class BuildProvider < ApplicationRecord
     begin
       api.job.build job, { id: device_id }, opts
     rescue JenkinsApi::Exceptions::ForbiddenWithCrumb
-      return
+      nil
     end
   end
 
