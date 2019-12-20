@@ -30,9 +30,4 @@ describe 'Node show page', type: :feature do
     visit node_path(node.code)
     expect(page).to have_content node.name
   end
-
-  it 'indicates when a node is not found' do
-    visit node_path('abcde')
-    expect(page).to have_content 'Not found'
-  end
 end
