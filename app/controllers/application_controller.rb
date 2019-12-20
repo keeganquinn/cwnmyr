@@ -3,7 +3,7 @@
 # This class is parent to all controllers in the application.
 class ApplicationController < ActionController::Base
   include ExceptionHandler
-  include Pundit
+  include PunditHelper
   include Response
 
   protect_from_forgery with: :null_session
