@@ -108,25 +108,23 @@ class ImportLegacyDataService
   def build_iface_pub(device, value)
     return if value['pubaddr'].blank?
 
-    ptpnet = Network.find_by code: 'ptpnet'
-    mask = value['pubmasklen'] || '24'
-    iface = Interface.find_or_initialize_by device: device,
-                                            name: 'Public Network'
-    iface.code = 'pub'
-    iface.network = ptpnet
-    iface.address_ipv4 = "#{value['pubaddr']}/#{mask}"
+    iface = Interface.find_or_initialize_by device: device, code: 'pub'
+    iface.assign_attributes(
+      name: 'Public Network',
+      network: Network.find_by(code: 'ptpnet'),
+      address_ipv4: "#{value['pubaddr']}/#{value['pubmasklen'] || '24'}"
+    )
     iface.save!
   end
 
   def build_iface_priv(device, value)
     return if value['privaddr'].blank?
 
-    mask = value['privmasklen'] || '24'
-    iface = Interface.find_or_initialize_by device: device,
-                                            name: 'Private Network'
-    iface.code = 'priv'
-    iface.network = nil
-    iface.address_ipv4 = "#{value['privaddr']}/#{mask}"
+    iface = Interface.find_or_initialize_by device: device, code: 'priv'
+    iface.assign_attributes(
+      name: 'Private Network',
+      address_ipv4: "#{value['privaddr']}/#{value['privmasklen'] || '24'}"
+    )
     iface.save!
   end
 end
