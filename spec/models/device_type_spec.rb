@@ -3,7 +3,7 @@
 describe DeviceType do
   subject(:device_type) { build_stubbed(:device_type) }
 
-  it { is_expected.to belong_to(:build_provider) }
+  it { is_expected.to belong_to(:build_provider).optional }
   it { is_expected.to have_many(:devices) }
   it { is_expected.to have_many(:device_builds) }
 

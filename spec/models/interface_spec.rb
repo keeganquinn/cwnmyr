@@ -4,7 +4,7 @@ describe Interface do
   subject(:interface) { build_stubbed :interface }
 
   it { is_expected.to belong_to(:device) }
-  it { is_expected.to belong_to(:network) }
+  it { is_expected.to belong_to(:network).optional }
 
   it { is_expected.to respond_to(:code) }
   it { is_expected.to respond_to(:name) }

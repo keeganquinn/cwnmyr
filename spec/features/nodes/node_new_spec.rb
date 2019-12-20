@@ -2,18 +2,19 @@
 
 describe 'Node new page', type: :feature do
   let(:current_user) { create :user }
-  let(:zone) { create :zone }
 
   before do
-    create :status
+    create :zone, default: true
+    create :status, name: 'Active'
     login_as current_user
-    visit new_node_path(zone: zone)
+    visit new_node_path
   end
 
   it { expect(page).to have_content 'New Node' }
 
   it 'allows a node to be created' do
     fill_in 'node_name', with: 'Spec Node'
+    select 'Active', from: 'node_status_id'
     click_button 'Create'
     expect(page).to have_content 'Spec Node'
   end

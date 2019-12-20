@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 describe DeviceProperty do
-  subject(:device_property) { build_stubbed(:device_property) }
+  subject(:device_property) { build_stubbed(:device_property, device: device) }
 
+  let(:device) { build_stubbed(:device) }
   let(:device_property_type) { device_property.device_property_type }
 
   it { is_expected.to belong_to(:device) }

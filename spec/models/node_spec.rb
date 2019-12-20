@@ -3,10 +3,10 @@
 describe Node do
   subject(:node) { build_stubbed(:node) }
 
-  it { is_expected.to belong_to(:contact) }
+  it { is_expected.to belong_to(:contact).optional }
   it { is_expected.to belong_to(:status) }
-  it { is_expected.to belong_to(:user) }
-  it { is_expected.to belong_to(:group) }
+  it { is_expected.to belong_to(:user).optional }
+  it { is_expected.to belong_to(:group).optional }
   it { is_expected.to belong_to(:zone) }
   it { is_expected.to have_many(:devices) }
 

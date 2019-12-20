@@ -4,7 +4,7 @@
 class DeviceType < ApplicationRecord
   has_paper_trail
 
-  belongs_to :build_provider
+  belongs_to :build_provider, optional: true
   has_many :devices
   has_many :device_builds
 

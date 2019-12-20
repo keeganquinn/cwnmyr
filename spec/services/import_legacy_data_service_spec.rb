@@ -3,7 +3,12 @@
 describe ImportLegacyDataService do
   subject(:service) { described_class }
 
-  before { create :zone, default: true }
+  before do
+    create :zone, default: true
+    create :user, :admin
+    create :status, code: 'active'
+    create :status, code: 'retired'
+  end
 
   node_data = [
     {
@@ -44,7 +49,8 @@ describe ImportLegacyDataService do
       'updated' => 12_347
     }, {
       'node' => 'TestSomething',
-      'nodename' => 'Test devices should be linked to Klickitat'
+      'nodename' => 'Test devices should be linked to Klickitat',
+      'status' => 'active'
     }
   ].freeze
 
