@@ -18,8 +18,6 @@ gem 'dotenv-rails'
 gem 'hamlit-rails'
 gem 'image_processing'
 gem 'jbuilder'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
 gem 'pundit'
 gem 'redcarpet'
 gem 'simple_form'
@@ -41,6 +39,9 @@ gem 'jenkins_api_client'
 gem 'mailkick'
 gem 'netaddr'
 gem 'notable'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 gem 'paper_trail'
 gem 'pg_query'
 gem 'pghero'
@@ -50,6 +51,7 @@ gem 'rmagick'
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'capistrano', require: false
   gem 'capistrano-bundler', require: false
@@ -61,10 +63,6 @@ group :development do
   gem 'haml_lint', require: false
   gem 'html2haml', require: false
   gem 'listen'
-  gem 'rails_layout'
-  gem 'rb-fchange', require: false
-  gem 'rb-fsevent', require: false
-  gem 'rb-inotify', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
@@ -76,7 +74,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter', require: false
   gem 'rubocop-checkstyle_formatter', require: false
@@ -86,10 +83,10 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'launchy'
-  gem 'poltergeist'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
+  gem 'webdrivers'
 end
