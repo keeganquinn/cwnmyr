@@ -14,7 +14,7 @@ ssh-add -l >/dev/null || ssh-add
     echo 'BUNDLE_WITHOUT: "production"'
 ) > .bundle/config
 bundle install
-yarn install
+yarn install --frozen-lockfile
 
 
 rm -f db/live.sql db/live.sql.gz
