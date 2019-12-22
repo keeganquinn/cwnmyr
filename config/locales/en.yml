@@ -18,8 +18,9 @@ en:
   sign_in: Sign In
   sign_out: Sign Out
   signed_in: Signed In
-  sign_in_facebook: Sign In with Facebook
-  sign_in_google_oauth2: Sign In with Google
+  auth_facebook: Sign In with Facebook
+  auth_google_oauth2: Sign In with Google
+  auth_twitter: Sign In with Twitter
   access_denied: Access denied.
   account: Account
   create: Create

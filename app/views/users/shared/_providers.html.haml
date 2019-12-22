@@ -1,6 +1,11 @@
-- if devise_mapping.omniauthable?
-  %ul.mt-3.list-group.list-group-horizontal
-    - resource_class.omniauth_providers.each do |provider|
+%ul.mt-3.list-group.list-group-horizontal.small
+  - if controller_name != 'sessions'
+    %li.list-group-item
+      = link_to 'Sign In', new_session_path(resource_name)
+  - if devise_mapping.registerable? && controller_name != 'registrations'
+    %li.list-group-item
+      = link_to 'Sign Up', new_registration_path(resource_name)
+  - if devise_mapping.omniauthable?
+    - resource_class.omniauth_providers.each do |pro|
       %li.list-group-item
-        = link_to t("sign_in_#{provider}".to_sym),
-          omniauth_authorize_path(resource_name, provider)
+        = link_to t("auth_#{pro}"), omniauth_authorize_path(resource_name, pro)
