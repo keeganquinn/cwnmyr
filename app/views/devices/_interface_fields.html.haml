@@ -1,34 +1,30 @@
 .nested-fields.border.border-dark.rounded.mb-2.p-2
   .row
     .col-md-6
-      = f.input :code, placeholder: 'eth0', wrapper_html: { class: 'mb-1' }
+      = f.input :code, placeholder: 'eth0'
       .mb-3.text-muted
         Unique identifier for the interface. Use the device's internal
         identifier when available.
     .col-md-6
-      = f.input :name, placeholder: 'Public Network',
-        wrapper_html: { class: 'mb-1' }
+      = f.input :name, placeholder: 'Public Network'
       .mb-3.text-muted
         Descriptive name for the interface.
 
   .row
     .col-md-6
-      = f.input :address_ipv4, placeholder: '10.0.0.1/24',
-        wrapper_html: { class: 'mb-1' }
+      = f.input :address_ipv4, placeholder: '10.0.0.1/24'
       .mb-3.text-muted
         CIDR-masked dotted quad.
     .col-md-6
-      = f.input :address_ipv6, placeholder: 'fe80::1/64',
-        wrapper_html: { class: 'mb-1' }
+      = f.input :address_ipv6, placeholder: 'fe80::1/64'
       .mb-3.text-muted
         CIDR-masked IPv6 address.
     .col-md-6
-      = f.input :address_mac, placeholder: 'ff:ff:ff:ff:ff:ff',
-        wrapper_html: { class: 'mb-1' }
+      = f.input :address_mac, placeholder: 'ff:ff:ff:ff:ff:ff'
       .mb-3.text-muted
         Colon-delimited IEEE 802 hardware address.
     .col-md-6
-      = f.association :network, wrapper_html: { class: 'mb-1' }
+      = f.association :network
       .mb-3.text-muted
         Select only if the interface is participating in a wide-area network.
 

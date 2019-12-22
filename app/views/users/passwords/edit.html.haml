@@ -4,8 +4,7 @@
 
   .row
     .col-md-6
-      = f.input :password, label: 'New Password',
-        wrapper_html: { class: 'mb-1' }
+      = f.input :password, label: 'New Password'
       - if @minimum_password_length
         .mb-3.text-muted (#{@minimum_password_length} characters minimum)
     .col-md-6

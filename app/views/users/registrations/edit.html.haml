@@ -31,14 +31,13 @@
 
     .row
       .col-md-6
-        = f.input :password, label: 'New Password',
-          wrapper_html: { class: 'mb-1' }
+        = f.input :password, label: 'New Password'
         .mb-3.text-muted
           (leave blank if you don't want to change)
       .col-md-6
         = f.input :password_confirmation
 
-    = f.input :current_password, wrapper_html: { class: 'mb-1' }
+    = f.input :current_password
     .mb-3.text-muted (we need your current password to confirm your changes)
 
     = f.submit 'Update'
