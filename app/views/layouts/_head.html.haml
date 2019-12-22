@@ -7,26 +7,12 @@
 = csrf_meta_tags
 = csp_meta_tag
 
-- if zone&.touchicon_180&.attached?
-  %link{ rel: 'apple-touch-icon', sizes: '180x180',
-         href: '/apple-touch-icon.png' }
-
-- if zone&.favicon_png32&.attached?
-  %link{ rel: 'icon', type: 'image/png', sizes: '32x32',
-         href: '/favicon-32x32.png' }
-
-- if zone&.favicon_png16&.attached?
-  %link{ rel: 'icon', type: 'image/png', sizes: '16x16',
-         href: '/favicon-16x16.png' }
-
 %link{ rel: 'manifest', href: '/site.webmanifest' }
 
-- if zone&.maskicon_color&.present?
-  %link{ rel: 'mask-icon', href: '/safari-pinned-tab.svg',
-         color: zone.maskicon_color }
+= touchicon_180
+= favicon_png32
+= favicon_png16
 
-- if zone&.mstile_color&.present?
-  %meta{ name: 'msapplication-TileColor', content: zone.mstile_color }
-
-- if zone&.chrome_themecolor&.present?
-  %meta{ name: 'theme-color', content: zone.chrome_themecolor }
+= maskicon_color
+= mstile_color
+= chrome_themecolor
