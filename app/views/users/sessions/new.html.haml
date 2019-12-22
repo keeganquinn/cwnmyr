@@ -1,7 +1,6 @@
 %h2 Sign In
 
-= simple_form_for resource, as: resource_name,
-  url: session_path(resource_name), turbolinks_form: true do |f|
+= turbo_form resource, url: user_session_path do |f|
 
   = f.input :email, required: false
   = f.input :password

@@ -1,8 +1,6 @@
 %h2 Change Password
 
-= simple_form_for resource, as: resource_name,
-  url: password_path(resource_name), method: :put,
-  turbolinks_form: true do |f|
+= turbo_form resource, url: user_password_path, method: :put do |f|
 
   .row
     .col-md-6

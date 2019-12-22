@@ -4,9 +4,7 @@
   Didn't receive your confirmation message? Enter your email address here to
   request a new one.
 
-= simple_form_for resource, as: resource_name,
-  url: confirmation_path(resource_name), method: :post,
-  turbolinks_form: true do |f|
+= turbo_form resource, url: confirmation_path(resource_name) do |f|
 
   = f.input :email, required: false
   = f.submit 'Resend Confirmation'

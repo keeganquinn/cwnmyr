@@ -1,8 +1,3 @@
 - if policy(record).update?
-  %p
-    = link_to t(:edit), polymorphic_url(record, action: :edit),
-      class: 'btn btn-warning'
-    = link_to t(:delete), url_for(record), method: :delete, remote: true,
-      class: 'btn btn-danger',
-      data: { confirm: t(:confirm_delete,
-        thing: record.model_name.human.downcase) }
+  = btn t(:edit), polymorphic_url(record, action: :edit), 'warning'
+  = btn_del t(:delete), url_for(record), confirm_thing: record

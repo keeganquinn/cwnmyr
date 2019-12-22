@@ -29,10 +29,10 @@ Rails.application.routes.draw do
             :statuses, :users
   resources :devices do
     member do
+      get 'build'
       get 'build_config'
       get 'conf'
       get 'graph'
-      post 'build'
     end
   end
   resources :nodes do

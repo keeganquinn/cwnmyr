@@ -1,8 +1,6 @@
 %h2 Request Unlock
 
-= simple_form_for resource, as: resource_name,
-  url: unlock_path(resource_name), method: :post,
-  turbolinks_form: true do |f|
+= turbo_form resource, url: user_unlock_path do |f|
 
   = f.input :email, required: false
   = f.submit 'Request Unlock'

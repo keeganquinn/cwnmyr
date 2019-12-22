@@ -6,8 +6,7 @@
 
   %ul
     - Administrate::Namespace.new(namespace).resources.each do |resource|
-      %li= link_to display_resource_name(resource), [namespace, resource.path],
-        class: "navigation__link navigation__link--#{nav_link_state(resource)}"
+      %li= link_to_resource namespace, resource
 
   %hr/
 

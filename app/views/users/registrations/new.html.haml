@@ -1,8 +1,6 @@
 %h2 Sign Up
 
-= simple_form_for resource, as: resource_name,
-  url: registration_path(resource_name),
-  turbolinks_form: true, validate: true do |f|
+= valid_form resource, url: user_registration_path do |f|
 
   = f.input :email, required: false
 
