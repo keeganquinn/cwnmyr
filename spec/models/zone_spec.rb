@@ -36,7 +36,7 @@ describe Zone do
   end
 
   describe 'with images' do
-    subject(:zone) { build(:zone, :with_images) }
+    subject(:zone) { create(:zone, :with_images) }
 
     it { expect(zone.nav_logo_stamp).to be >= 0 }
   end
