@@ -56,4 +56,4 @@
     - @device.device_builds.each do |device_build|
       %li= link_to device_build.title, device_build.url, target: :_blank
     - if policy(@device).build?
-      %li= btn t(:start_new_build), build_device_path(@device)
+      %li= post_to t(:start_new_build), build_device_path(@device)

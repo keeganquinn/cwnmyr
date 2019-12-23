@@ -101,4 +101,9 @@ module ApplicationHelper
 
     content_tag :div, '', id: 'map', data: data
   end
+
+  # Remote link tag.
+  def post_to(label, target)
+    link_to label, target, method: :post, remote: true
+  end
 end
