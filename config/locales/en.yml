@@ -63,6 +63,8 @@ en:
   unlock_instructions: "Unlock Instructions"
   email_changed: "Email Changed"
   password_change: "Password Change"
+  cancel_account: "Cancel Account"
+  cancel_confirm: "Are you sure you want to cancel your account?"
   nodes_numbered:
     one: "1 node"
     other: "%{count} nodes"
