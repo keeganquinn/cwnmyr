@@ -36,7 +36,7 @@ rm -rf checkstyle-*.xml coverage coverage-js junit.xml rspec.xml \
 }
 
 yarn -s test || true
-
+yarn -s jsonlint || true
 yarn -s pkglint || true
 
 yarn -s lint --format node_modules/eslint-formatter-checkstyle-* \

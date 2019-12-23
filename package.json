@@ -10,6 +10,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint app config *.js",
+    "jsonlint": "jsonlint -q .*.json *.json",
     "pkglint": "npmPkgJsonLint .",
     "test": "jest --coverage"
   },
@@ -49,6 +50,7 @@
     "jest": "^24.9.0",
     "jest-google-maps-mock": "^1.0.2",
     "jest-junit": "^10.0.0",
+    "jsonlint": "^1.6.3",
     "npm-package-json-lint": "^4.5.0",
     "npm-package-json-lint-config-default": "^2.0.0",
     "webpack-dev-server": "^3.10.1"
