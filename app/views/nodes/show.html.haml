@@ -18,10 +18,7 @@
       %p= t :hours, hours: @node.hours
 
     - if @node.latitude && @node.longitude
-      #map{ 'data-markers': node_path(@node, format: :json),
-            'data-zoom': @node.zone&.zoom_default,
-            'data-max-zoom': @node.zone&.zoom_max,
-            'data-min-zoom': @node.zone&.zoom_min }
+      = map_tag @node
       .text-muted.text-right
         = link_to t(:get_directions), @node.directions_url, target: :_blank
 
@@ -59,8 +56,7 @@
               (#{device.interfaces.count} interfaces)
         - if policy(@node).update?
           %li
-            = link_to t(:new_h, thing: Device.model_name.human),
-              new_device_path(node: @node)
+            = link_to t(:new_device), new_device_path(node: @node)
 
     - if @node.graph&.edges&.count&.positive?
       %h3.mt-3= t('.network_diagram')

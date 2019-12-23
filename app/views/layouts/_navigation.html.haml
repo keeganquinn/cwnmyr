@@ -3,10 +3,7 @@
     - if zone&.nav_logo&.attached?
       = link_to nav_logo_tag, top_link
     = link_to default_title, top_link, class: 'navbar-brand'
-    %button.navbar-toggler{ 'data-target': '#navbar-collapse',
-                            'data-toggle': 'collapse', type: 'button',
-                            'aria-label': t(:toggle_navigation) }
-      %span.navbar-toggler-icon/
+    = navbar_collapse_control
     .collapse.navbar-collapse#navbar-collapse
       %ul.navbar-nav.ml-auto
         = render 'layouts/nav_links_for_auth'

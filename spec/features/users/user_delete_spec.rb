@@ -14,7 +14,7 @@ describe 'User delete', :devise, type: :feature do
   it 'user can delete own account' do
     login_as current_user
     visit edit_user_registration_path(current_user)
-    click_button 'Cancel Account'
+    click_link 'Cancel Account'
     expect(page).to have_content I18n.t 'devise.registrations.destroyed'
   end
 end

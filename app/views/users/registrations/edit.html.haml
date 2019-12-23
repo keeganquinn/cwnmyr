@@ -5,8 +5,7 @@
     Information in this section will be available to the public. Leave these
     fields blank if you do not wish to have a public profile.
 
-  = simple_form_for current_user, url: user_path(current_user),
-    turbolinks_form: true, validate: true do |f|
+  = valid_form current_user, url: user_path(current_user) do |f|
 
     = f.input :name
     = f.input :body
@@ -20,9 +19,7 @@
     Your email address and password will always remain private whether you
     have a public profile or not.
 
-  = simple_form_for resource, as: resource_name,
-    url: registration_path(resource_name), method: :put,
-    turbolinks_form: true, validate: true do |f|
+  = valid_form resource, url: registration_path(resource_name) do |f|
 
     = f.input :email, required: false
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -49,5 +46,4 @@
     Unhappy? You may cancel your account at any time. This action cannot be
     undone.
 
-  = button_to 'Cancel Account', registration_path(resource_name),
-    data: { confirm: 'Are you sure?' }, method: :delete, remote: true
+  = btn_del t(:cancel_account), user_registration_path, t(:cancel_confirm)
