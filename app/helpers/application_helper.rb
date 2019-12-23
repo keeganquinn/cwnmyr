@@ -66,6 +66,12 @@ module ApplicationHelper
     { sortable: 'true', sorter: 'linkSort' }
   end
 
+  # Select from a range of recent years.
+  def year_select(form, attr)
+    form.input attr,
+               include_blank: true, start_year: 2000, end_year: Time.now.year
+  end
+
   # Top link for the current page.
   def top_link
     current_page?(root_path) ? browse_path : root_path
@@ -83,63 +89,16 @@ module ApplicationHelper
   end
 
   # Map tag.
-  def map_tag
+  def map_tag(node = nil)
     data = {
-      markers: root_path(format: :json),
-      center: 'disco',
-      zoom: zone&.zoom_default,
-      max_zoom: zone&.zoom_max,
-      min_zoom: zone&.zoom_min
+      markers:
+        node ? node_path(node, format: :json) : root_path(format: :json),
+      center: node ? nil : 'disco',
+      zoom: (node&.zone || zone)&.zoom_default,
+      max_zoom: (node&.zone || zone)&.zoom_max,
+      min_zoom: (node&.zone || zone)&.zoom_min
     }
 
     content_tag :div, '', id: 'map', data: data
-  end
-
-  # Remote link with delete method.
-  def link_del(label, target, **kwargs)
-    link_to label, target, method: :delete, remote: true, **kwargs
-  end
-
-  # Link with Turbolinks disabled.
-  def link_ntl(label, target, **kwargs)
-    link_to label, target, data: { turbolinks: 'false' }, **kwargs
-  end
-
-  # Wrap link_to with support for Administrate::Namespace resources.
-  def link_to_resource(namespace, resource)
-    cls = "navigation__link navigation__link--#{nav_link_state(resource)}"
-    link_to display_resource_name(resource), [namespace, resource.path],
-            class: cls
-  end
-
-  # Turbolinks form wrapper.
-  def turbo_form(resource, **kwargs)
-    simple_form_for resource, turbolinks_form: true, **kwargs do |form|
-      yield form
-    end
-  end
-
-  # Turbolinks form wrapper with client validation.
-  def valid_form(resource, **kwargs)
-    turbo_form resource, validate: true, **kwargs do |form|
-      yield form
-    end
-  end
-
-  # Bootstrap button.
-  def btn(label, target, type = nil, **kwargs)
-    klass = ['btn']
-    klass << "btn-#{type}" if type.present?
-    link_to label, target, class: klass.join(' '), **kwargs
-  end
-
-  # Bootstrap button with delete method and confirmation dialog.
-  def btn_del(label, target, confirm = nil, confirm_thing: nil)
-    data = { confirm: confirm }
-    if confirm_thing
-      thing = confirm_thing.model_name.human.downcase
-      data[:confirm] = t(:confirm_delete, thing: thing)
-    end
-    btn label, target, 'danger', method: :delete, remote: true, data: data
   end
 end
