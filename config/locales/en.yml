@@ -1,7 +1,9 @@
 en:
   cwnmyr: cwnmyr
   tagline: Community Wireless Network Management System
+  ptp: Personal Telco Project
   get_directions: Get Directions
+  toggle_navigation: Toggle Navigation
   logo: Logo
   kml: KML
   json: JSON
@@ -13,6 +15,7 @@ en:
   nagios_internal: Nagios Configuration (Internal)
   smokeping_external: SmokePing Configuration (External)
   smokeping_internal: SmokePing Configuration (Internal)
+  join_us: Join Us
   sign_up: Sign Up
   forgot: Forgot password?
   sign_in: Sign In
