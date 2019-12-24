@@ -9,7 +9,7 @@
   "repository": "https://github.com/keeganquinn/cwnmyr.git",
   "private": true,
   "scripts": {
-    "lint": "eslint app config *.js",
+    "lint": "eslint --ext js,js.erb app config *.js",
     "jsonlint": "jsonlint -q .*.json *.json",
     "pkglint": "npmPkgJsonLint .",
     "test": "jest --coverage"
