@@ -5,6 +5,7 @@ describe Device do
 
   it { is_expected.to belong_to(:node) }
   it { is_expected.to belong_to(:device_type).optional }
+  it { is_expected.to have_many(:authorized_hosts) }
   it { is_expected.to have_many(:interfaces) }
   it { is_expected.to have_many(:device_builds) }
   it { is_expected.to have_many(:device_properties) }

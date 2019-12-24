@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_19_101427) do
+ActiveRecord::Schema.define(version: 2019_12_24_092805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(version: 2019_12_19_101427) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "authorized_hosts", force: :cascade do |t|
+    t.integer "device_id"
+    t.string "name"
+    t.string "address_mac"
+    t.string "address_ipv4"
+    t.string "address_ipv6"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "blazer_audits", force: :cascade do |t|

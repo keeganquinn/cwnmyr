@@ -42,4 +42,18 @@
     = link_to_add_association f, :device_properties do
       = t(:add_h, thing: DeviceProperty.model_name.human)
 
+%h3 Authorized Hosts
+
+%p
+  Known hosts that are frequently connected to a device can be pre-authorized,
+  so that they are not captured by the captive portal.
+
+#authorized-hosts
+  = f.simple_fields_for :authorized_hosts do |authorized_host|
+    = render 'authorized_host_fields', f: authorized_host
+  .links.mb-3
+    &middot;
+    = link_to_add_association f, :authorized_hosts do
+      = t(:add_h, thing: AuthorizedHost.model_name.human)
+
 = hidden_field_tag :authenticity_token, form_authenticity_token

@@ -45,9 +45,19 @@
         #{h(device_property.device_property_type&.name)}:
         = h device_property.display_value
 
-  - if @device.graph&.edges&.count&.positive?
-    %h2= t('.network_diagram')
-    %p= image_tag graph_device_path(@device, format: :png)
+- unless @device.authorized_hosts.empty?
+  %h2= AuthorizedHost.model_name.human(count: 2)
+
+  %ul
+    - @device.authorized_hosts.each do |authorized_host|
+      %li
+        #{authorized_host.name}: #{authorized_host.address_mac}
+        #{authorized_host.address_ipv4} #{authorized_host.address_ipv6}
+
+- if @device.graph&.edges&.count&.positive?
+  %h2= t('.network_diagram')
+
+  %p= image_tag graph_device_path(@device, format: :png)
 
 - if !@device.device_builds.empty? || policy(@device).build?
   %h2= DeviceBuild.model_name.human(count: 2)

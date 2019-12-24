@@ -1,0 +1,22 @@
+.nested-fields.border.border-dark.rounded.mb-2.p-2
+  .row
+    .col-md-6
+      = f.input :name, placeholder: 'Wired Machine'
+      .mb-3.text-muted
+        Descriptive name for the host.
+
+  .row
+    .col-md-6
+      = f.input :address_ipv4, placeholder: '10.0.0.2/24'
+    .col-md-6
+      = f.input :address_ipv6, placeholder: 'fe80::2/64'
+    .col-md-6
+      = f.input :address_mac, placeholder: 'ff:ff:ff:ff:ff:ff'
+      .mb-3.text-muted
+        Colon-delimited IEEE 802 hardware address.
+
+  .clearfix
+    .float-right
+      &middot;
+      = link_to_remove_association f do
+        = t(:remove_h, thing: AuthorizedHost.model_name.human)

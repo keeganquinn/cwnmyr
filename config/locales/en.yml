@@ -73,6 +73,9 @@ en:
     other: "%{count} devices"
   activerecord:
     models:
+      authorized_host:
+        one: Authorized Host
+        other: Authorized Hosts
       contact:
         one: Contact
         other: Contacts

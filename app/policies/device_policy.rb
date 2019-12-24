@@ -42,6 +42,8 @@ class DevicePolicy < ApplicationPolicy
   # Permitted attributes for updates.
   def permitted_attributes
     [:node_id, :name, :device_type_id, :body,
+     authorized_hosts_attributes:
+       %i[id name address_mac address_ipv6 address_ipv4 comment _destroy],
      interfaces_attributes: %i[id code name network_id address_ipv6 address_ipv4
                                address_mac _destroy],
      device_properties_attributes: %i[id device_property_type_id
