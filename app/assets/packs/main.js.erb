@@ -3,22 +3,25 @@
 import MapBuilder from 'components/map_builder';
 
 import ahoy from 'ahoy.js';
-import '<%= File.join(Gem.loaded_specs['cocoon'].full_gem_path, 'app', 'assets', 'javascripts', 'cocoon') %>';
+import '<%= File.join(Gem.loaded_specs["cocoon"].full_gem_path, "app", "assets", "javascripts", "cocoon") %>';
 import {} from 'jquery-ujs';
 
-var Turbolinks = require('turbolinks');
+const Turbolinks = require('turbolinks');
+
 Turbolinks.start();
 
-require('<%= File.join(Gem.loaded_specs['turbolinks-form'].full_gem_path, 'app', 'assets', 'javascripts', 'turbolinks-form-core') %>');
+const $ = require('jquery');
+
+require('<%= File.join(Gem.loaded_specs["turbolinks-form"].full_gem_path, "app", "assets", "javascripts", "turbolinks-form-core") %>');
 require('styles/page.css.scss');
 require('bootstrap/dist/js/bootstrap.js');
 require('bootstrap-table/dist/bootstrap-table.js');
-require('<%= File.join(Gem.loaded_specs['client_side_validations'].full_gem_path, 'vendor', 'assets', 'javascripts', 'rails.validations') %>');
-require('<%= File.join(Gem.loaded_specs['client_side_validations-simple_form'].full_gem_path, 'vendor', 'assets', 'javascripts', 'rails.validations.simple_form.bootstrap4') %>');
+require('<%= File.join(Gem.loaded_specs["client_side_validations"].full_gem_path, "vendor", "assets", "javascripts", "rails.validations") %>');
+require('<%= File.join(Gem.loaded_specs["client_side_validations-simple_form"].full_gem_path, "vendor", "assets", "javascripts", "rails.validations.simple_form.bootstrap4") %>');
 
-window.linkSort = (a, b) => {
-  a = $(a).text();
-  b = $(b).text();
+window.linkSort = (l, r) => {
+  const a = $(l).text();
+  const b = $(r).text();
 
   if (a < b) return -1;
   if (a > b) return 1;
@@ -26,7 +29,7 @@ window.linkSort = (a, b) => {
   return 0;
 };
 
-var mb = new MapBuilder();
+const mb = new MapBuilder();
 mb.prepare();
 
 document.addEventListener('turbolinks:load', () => {
