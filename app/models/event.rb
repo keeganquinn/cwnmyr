@@ -10,4 +10,11 @@ class Event < ApplicationRecord
   has_one_attached :image
 
   validates_presence_of :name
+
+  before_validation :set_defaults
+
+  # Set default values.
+  def set_defaults
+    self.uuid ||= SecureRandom.uuid
+  end
 end

@@ -27,11 +27,18 @@ class Device < ApplicationRecord
                       message: 'contains unacceptable characters',
                       allow_blank: true
 
+  before_validation :set_defaults
+
   # Canonical identifier.
   def to_param
     return unless id
 
     [id, name].join('-')
+  end
+
+  # Set default values.
+  def set_defaults
+    self.uuid ||= SecureRandom.uuid
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this

@@ -58,6 +58,7 @@ class User < ApplicationRecord
   def set_defaults
     self.code = name.parameterize if name
     self.role ||= :user
+    self.uuid ||= SecureRandom.uuid
   end
 
   # Return true if the user has a visible profile.

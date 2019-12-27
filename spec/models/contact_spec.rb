@@ -4,7 +4,7 @@ describe Contact do
   subject(:contact) { build_stubbed(:contact) }
 
   it { is_expected.to have_many(:nodes) }
-  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:user).optional }
   it { is_expected.to belong_to(:group).optional }
 
   it { is_expected.to respond_to(:code) }
@@ -17,7 +17,6 @@ describe Contact do
   it { is_expected.to validate_length_of(:code) }
   it { is_expected.to validate_length_of(:name) }
   it { is_expected.to allow_value('user@example.com').for(:email) }
-  it { is_expected.not_to allow_value('not-an-email').for(:email) }
 
   it { is_expected.to be_valid }
 

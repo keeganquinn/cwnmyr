@@ -27,5 +27,6 @@ class Status < ApplicationRecord
   # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
+    self.uuid ||= SecureRandom.uuid
   end
 end

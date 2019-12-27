@@ -55,6 +55,7 @@ class Zone < ApplicationRecord
     self.code = name.parameterize if code.blank? && name
     self.last_import ||= 0
     self.last_event_import ||= 0
+    self.uuid ||= SecureRandom.uuid
   end
 
   # Version stamp for the attached navigation logo.

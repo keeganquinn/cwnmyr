@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_092805) do
+ActiveRecord::Schema.define(version: 2019_12_27_040719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.text "notes"
     t.integer "user_id"
     t.integer "group_id"
+    t.uuid "uuid"
     t.index ["code"], name: "index_contacts_on_code"
     t.index ["group_id"], name: "index_contacts_on_group_id"
     t.index ["hidden"], name: "index_contacts_on_hidden"
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "uuid"
     t.index ["device_type_id"], name: "index_devices_on_device_type_id"
     t.index ["name"], name: "index_devices_on_name"
     t.index ["node_id"], name: "index_devices_on_node_id"
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "uuid"
   end
 
   create_table "groups", id: :serial, force: :cascade do |t|
@@ -276,6 +279,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "uuid"
     t.index ["code"], name: "index_groups_on_code", unique: true
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
@@ -315,6 +319,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.string "polarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "uuid"
     t.index ["code"], name: "index_interfaces_on_code"
     t.index ["device_id"], name: "index_interfaces_on_device_id"
     t.index ["name"], name: "index_interfaces_on_name"
@@ -343,6 +348,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.string "network_ipv4"
     t.string "network_ipv6"
     t.boolean "allow_neighbors"
+    t.uuid "uuid"
     t.index ["code"], name: "index_networks_on_code", unique: true
     t.index ["name"], name: "index_networks_on_name", unique: true
   end
@@ -368,6 +374,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.string "twitter"
     t.string "wiki"
     t.date "live_date"
+    t.uuid "uuid"
     t.index ["code"], name: "index_nodes_on_code", unique: true
     t.index ["contact_id"], name: "index_nodes_on_contact_id"
     t.index ["group_id"], name: "index_nodes_on_group_id"
@@ -413,6 +420,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.datetime "updated_at", null: false
     t.boolean "default_display"
     t.integer "ordinal"
+    t.uuid "uuid"
     t.index ["code"], name: "index_statuses_on_code", unique: true
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
@@ -464,6 +472,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.boolean "spam"
+    t.uuid "uuid"
     t.index ["code"], name: "index_users_on_code"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -503,6 +512,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_092805) do
     t.string "maskicon_color"
     t.string "mstile_color"
     t.bigint "last_event_import"
+    t.uuid "uuid"
     t.index ["code"], name: "index_zones_on_code", unique: true
     t.index ["name"], name: "index_zones_on_name", unique: true
   end

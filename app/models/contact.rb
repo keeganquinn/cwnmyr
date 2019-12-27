@@ -4,7 +4,7 @@
 class Contact < ApplicationRecord
   has_paper_trail
   has_many :nodes
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :group, optional: true
 
   validates_presence_of :code
@@ -14,11 +14,6 @@ class Contact < ApplicationRecord
                       message: 'contains unacceptable characters',
                       allow_blank: true
   validates_presence_of :name
-  validates_format_of :email,
-                      with: /\A([\w\-\.\#\$%&!?*\'=(){}|~_]+)
-                            @([0-9a-zA-Z\-\.\#\$%&!?*\'=(){}|~]+)+\z/x,
-                      message: 'must be a valid email address',
-                      allow_blank: true
 
   before_validation :set_defaults
 
@@ -34,5 +29,6 @@ class Contact < ApplicationRecord
   # Set default values.
   def set_defaults
     self.code = name.parameterize if code.blank? && name
+    self.uuid ||= SecureRandom.uuid
   end
 end
