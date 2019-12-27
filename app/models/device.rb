@@ -6,7 +6,7 @@ require_dependency 'dot_diskless'
 class Device < ApplicationRecord
   has_paper_trail
 
-  belongs_to :node
+  belongs_to :node, optional: true
   belongs_to :device_type, optional: true
   has_many :authorized_hosts, inverse_of: :device
   has_many :interfaces, inverse_of: :device

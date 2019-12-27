@@ -3,7 +3,7 @@
 describe Device do
   subject(:device) { build_stubbed(:device) }
 
-  it { is_expected.to belong_to(:node) }
+  it { is_expected.to belong_to(:node).optional }
   it { is_expected.to belong_to(:device_type).optional }
   it { is_expected.to have_many(:authorized_hosts) }
   it { is_expected.to have_many(:interfaces) }
