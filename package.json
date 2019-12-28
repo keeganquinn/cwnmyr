@@ -40,7 +40,7 @@
     "postcss-preset-env": "^6.7.0",
     "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.41.4"
+    "webpack": "^4.41.5"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
