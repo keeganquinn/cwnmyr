@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
+  get '/users/confirm', to: 'users#confirm', as: 'confirm_user'
+  get '/users/deny', to: 'users#deny', as: 'deny_user'
+  get '/users/revoke', to: 'users#revoke', as: 'revoke_user'
+
   resources :contacts, :device_types, :events, :groups, :networks,
             :statuses, :users
   resources :devices do

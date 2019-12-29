@@ -11,7 +11,7 @@ class CinchBotService
     channels: ENV['IRC_CHANNEL'].blank? ? ['#devbots'] : [ENV['IRC_CHANNEL']]
   }.freeze
 
-  CINCH_PLUGINS = [].freeze
+  CINCH_PLUGINS = [AuthConfirm, AuthRequest].freeze
 
   # Start the bot.
   def call

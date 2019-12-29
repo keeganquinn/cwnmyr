@@ -12,6 +12,21 @@ class UserPolicy < ApplicationPolicy
     @record == @user
   end
 
+  # Check policy for confirm action.
+  def confirm?
+    update?
+  end
+
+  # Check policy for deny action.
+  def deny?
+    update?
+  end
+
+  # Check policy for revoke action.
+  def revoke?
+    update?
+  end
+
   # Permitted attributes for updates.
   def permitted_attributes
     %i[name body]

@@ -27,4 +27,34 @@ class UsersController < ApplicationController
     @user.assign_attributes permitted_attributes(@user)
     save_and_respond @user, :ok, :update_success
   end
+
+  # Confirm host mask authorization request.
+  def confirm
+    authorize current_user
+    current_user.hostmask = current_user.unconfirmed_hostmask
+    current_user.unconfirmed_hostmask = nil
+    current_user.hostmask_confirmed_at = Time.now
+    current_user.save!
+
+    redirect_to edit_user_registration_path
+  end
+
+  # Deny host mask authorization request.
+  def deny
+    authorize current_user
+    current_user.unconfirmed_hostmask = nil
+    current_user.save!
+
+    redirect_to edit_user_registration_path
+  end
+
+  # Revoke host mask authorization.
+  def revoke
+    authorize current_user
+    current_user.hostmask = nil
+    current_user.hostmask_confirmed_at = nil
+    current_user.save!
+
+    redirect_to edit_user_registration_path
+  end
 end
