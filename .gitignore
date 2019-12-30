@@ -12,6 +12,8 @@
 /checkstyle-*.xml
 /coverage/
 /coverage-js/
+/doc/
+/jsdoc/
 /junit.xml
 /rspec.xml
 

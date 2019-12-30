@@ -20,7 +20,7 @@ bundle install
 yarn install --frozen-lockfile
 
 
-rm -rf checkstyle-*.xml coverage coverage-js junit.xml rspec.xml \
+rm -rf checkstyle-*.xml coverage coverage-js doc jsdoc junit.xml rspec.xml \
    log/* public/assets tmp/*
 
 [ "${build}" != "current" ] && {
@@ -36,6 +36,7 @@ rm -rf checkstyle-*.xml coverage coverage-js junit.xml rspec.xml \
 }
 
 yarn -s test || true
+yarn -s jsdoc || true
 yarn -s jsonlint || true
 yarn -s pkglint || true
 
@@ -48,6 +49,8 @@ bundle exec rubocop --require rubocop/formatter/checkstyle_formatter \
 
 bundle exec haml-lint app --reporter checkstyle \
        > checkstyle-haml-lint.xml || true
+
+bundle exec yard || true
 
 bundle exec rake db:create db:environment:set db:schema:load RAILS_ENV=test
 

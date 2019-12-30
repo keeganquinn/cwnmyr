@@ -10,6 +10,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext js,js.erb app config *.js",
+    "jsdoc": "jsdoc -r app -d jsdoc",
     "jsonlint": "jsonlint -q .*.json *.json",
     "pkglint": "npmPkgJsonLint .",
     "test": "jest --coverage"
@@ -50,6 +51,7 @@
     "jest": "^24.9.0",
     "jest-google-maps-mock": "^1.0.3",
     "jest-junit": "^10.0.0",
+    "jsdoc": "^3.6.3",
     "jsonlint": "^1.6.3",
     "npm-package-json-lint": "^4.5.0",
     "npm-package-json-lint-config-default": "^2.0.0",
