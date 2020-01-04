@@ -9,6 +9,9 @@ cc_test_reporter=https://codeclimate.com/downloads/test-reporter/test-reporter-l
 
 set -ex
 
+find . -maxdepth 2 -name '*.sh' -print0 | xargs -0 -n1 -t shellcheck
+
+
 [ -d .bundle ] || mkdir -p .bundle
 [ -f .bundle/config ] || (
     echo '---'
