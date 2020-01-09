@@ -12,19 +12,19 @@ See also: http://personaltelco.net/wiki/CwnmyrProject
 
 This is a Rails application, developed with PostgreSQL as a database. It can
 be run in any server or container that supports Rails, and should work with
-any other DBMS supported by Rails.
+any Ruby and DBMS supported by Rails.
 
 In addition to the Ruby and JavaScript dependencies, which are described in
-Gemfile and package.json, GraphViz must be installed.
+`Gemfile` and `package.json`, GraphViz must be installed.
 
 
 Status
 ------
 
-This software is partially functional, with continued development ongoing.
-Several public-facing live instances of the app are now operational.
+This software is running in production, with continued development ongoing as
+time and resources allow. Several public-facing live instances are operational.
 
- * Personal Telco live instance: https://cwnmyr.personaltelco.net/
+ * Personal Telco live instance: https://nodes.personaltelco.net/
  * Staging deployment: https://cwnmyr-staging.quinn.tk/
 
 Feedback, bug reports, and pull requests are very welcome.
