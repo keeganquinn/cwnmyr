@@ -15,6 +15,7 @@ class CinchBotService
 
   # Start the bot.
   def call
+    bot.loggers.level = Rails.env.production? ? :warn : :log
     bot.start
   end
 
