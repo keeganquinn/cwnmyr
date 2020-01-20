@@ -11,7 +11,7 @@ describe 'Device build feature', type: :feature do
   end
 
   describe 'build started' do
-    let(:build_provider) { create :build_provider }
+    let(:build_provider) { create :build_provider, active: true }
     let(:device_type) { create :device_type, build_provider: build_provider }
     let(:device) { create :device, device_type: device_type, node: node }
 
@@ -19,7 +19,7 @@ describe 'Device build feature', type: :feature do
   end
 
   describe 'build not available' do
-    let(:build_provider) { create :build_provider, mode: 'fail' }
+    let(:build_provider) { create :build_provider, active: true, mode: 'fail' }
     let(:device_type) { create :device_type, build_provider: build_provider }
     let(:device) { create :device, device_type: device_type, node: node }
 
