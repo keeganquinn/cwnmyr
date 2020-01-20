@@ -15,6 +15,9 @@
 
 = markdown @device.body
 
+- if @device.image.attached?
+  %p= image_tag device_path(@device, format: 'jpg', _v: @device.image_stamp)
+
 - unless @device.interfaces.empty?
   %h2= Interface.model_name.human(count: 2)
 

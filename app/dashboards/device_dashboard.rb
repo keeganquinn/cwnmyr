@@ -10,6 +10,7 @@ class DeviceDashboard < Administrate::BaseDashboard
     name: Field::String,
     device_type: Field::BelongsTo,
     body: Field::Text,
+    image: Field::ActiveStorage,
     authorized_hosts: Field::HasMany,
     interfaces: Field::HasMany,
     device_builds: Field::HasMany,
@@ -21,11 +22,11 @@ class DeviceDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[node name device_type].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    node name device_type body authorized_hosts interfaces
+    node name device_type body image authorized_hosts interfaces
     device_builds device_properties created_at updated_at
   ].freeze
 
-  FORM_ATTRIBUTES = %i[node name device_type body].freeze
+  FORM_ATTRIBUTES = %i[node name device_type body image].freeze
 
   # Display representation of the resource.
   def display_resource(device)

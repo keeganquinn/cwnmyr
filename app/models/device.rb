@@ -12,6 +12,7 @@ class Device < ApplicationRecord
   has_many :interfaces, inverse_of: :device
   has_many :device_builds, inverse_of: :device
   has_many :device_properties, inverse_of: :device
+  has_one_attached :image
 
   accepts_nested_attributes_for :authorized_hosts,
                                 reject_if: :all_blank, allow_destroy: true
@@ -26,6 +27,7 @@ class Device < ApplicationRecord
                       with: /\A[a-z][-a-z0-9]+\z/,
                       message: 'contains unacceptable characters',
                       allow_blank: true
+  validates :image, content_type: { allow: ['image/jpeg'] }
 
   before_validation :set_defaults
 
@@ -39,6 +41,11 @@ class Device < ApplicationRecord
   # Set default values.
   def set_defaults
     self.uuid ||= SecureRandom.uuid
+  end
+
+  # Version stamp for the attached image.
+  def image_stamp
+    image.blob.created_at.to_i if image.attached?
   end
 
   # This method constructs an RGL::AdjacencyGraph instance based on this
