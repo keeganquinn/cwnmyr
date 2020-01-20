@@ -12,7 +12,7 @@ class BuildProvider < ApplicationRecord
 
   # Return true if this provider is able to produce builds for Devices.
   def can_build?
-    mode.present? || (server.present? && job.present?)
+    active? && (mode.present? || (server.present? && job.present?))
   end
 
   # Build an image for a Device.
