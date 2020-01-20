@@ -29,6 +29,6 @@ class UserPolicy < ApplicationPolicy
 
   # Permitted attributes for updates.
   def permitted_attributes
-    %i[name body]
+    %i[name body authorized_keys]
   end
 end
