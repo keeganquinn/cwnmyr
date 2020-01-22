@@ -1,17 +1,17 @@
 .nested-fields.border.border-dark.rounded.mb-2.p-2
   .row
     .col-md-6
-      = f.input :name, placeholder: 'Wired Machine'
+      = f.input :name
       .mb-3.text-muted
         Descriptive name for the host.
 
   .row
     .col-md-6
-      = f.input :address_ipv4, placeholder: '10.0.0.2/24'
+      = f.input :address_ipv4
     .col-md-6
-      = f.input :address_ipv6, placeholder: 'fe80::2/64'
+      = f.input :address_ipv6
     .col-md-6
-      = f.input :address_mac, placeholder: 'ff:ff:ff:ff:ff:ff'
+      = f.input :address_mac
       .mb-3.text-muted
         Colon-delimited IEEE 802 hardware address.
 

@@ -5,7 +5,7 @@
 
 = f.association :node, collection: current_user.nodes.order(:name)
 
-= f.input :name, placeholder: 'darkstar'
+= f.input :name
 .mb-3.text-muted
   Unique identifier for this device. Must be lowercase. Dashes
   and numbers are allowed after the first character.
