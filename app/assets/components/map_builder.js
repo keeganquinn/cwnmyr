@@ -52,6 +52,47 @@ class MapBuilder {
       zoom: parseInt(this.elMap.dataset.zoom, 10) || 17,
     });
 
+    if (navigator.geolocation) {
+      // Disable user geolocation; it is annoying and unhelpful as a default.
+      // This should be reimplemented as a configurable option.
+      // navigator.geolocation.getCurrentPosition(this.handlePosition)
+    }
+
+    if (this.data.node) {
+      this.renderNode(this.data.node);
+    } else if (this.data.statuses) {
+      this.renderStatuses(this.data.statuses);
+    } else if (this.data.zone && this.data.zone.statuses) {
+      this.renderStatuses(this.data.zone.statuses);
+    }
+
+    this.gMap.fitBounds(this.gBounds);
+    this.gMap.panToBounds(this.gBounds);
+    this.handleResize();
+  }
+
+  handleResize() {
+    if (!this.elMap || !this.big) return;
+
+    this.elMap.style.height = `${window.innerHeight - 56}px`;
+    window.scrollTo(0, 0);
+  }
+
+  handlePosition(position) {
+    this.posMarker = new google.maps.Marker({
+      icon: 'position_small.png',
+      map: this.gMap,
+      position: new google.maps.LatLng(
+        position.coords.latitude, position.coords.longitude,
+      ),
+      title: 'Current Location',
+    });
+    if (this.elMap.dataset.center) {
+      this.gMap.setCenter(this.posMarker.position);
+    }
+  }
+
+  renderStatuses(statuses) {
     this.elStatus = document.createElement('div');
     this.elStatus.style.background = '#fff';
     this.elStatus.style.border = '1px solid #000';
@@ -81,54 +122,13 @@ class MapBuilder {
     this.elStatus.append(this.elBtnHide);
     this.elStatus.append(document.createElement('br'));
 
-    if (navigator.geolocation) {
-      // Disable user geolocation; it is annoying and unhelpful as a default.
-      // This should be reimplemented as a configurable option.
-      // navigator.geolocation.getCurrentPosition(this.handlePosition)
-    }
-
-    if (this.data.node) {
-      this.renderNode(this.data.node);
-    } else if (this.data.statuses) {
-      this.data.statuses.forEach((status) => {
-        this.renderStatus(status);
-      });
-      this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
-        this.elStatus,
-      );
-    } else if (this.data.zone && this.data.zone.statuses) {
-      this.data.zone.statuses.forEach((status) => {
-        this.renderStatus(status);
-      });
-      this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
-        this.elStatus,
-      );
-    }
-
-    this.gMap.fitBounds(this.gBounds);
-    this.gMap.panToBounds(this.gBounds);
-    this.handleResize();
-  }
-
-  handleResize() {
-    if (!this.elMap || !this.big) return;
-
-    this.elMap.style.height = `${window.innerHeight - 56}px`;
-    window.scrollTo(0, 0);
-  }
-
-  handlePosition(position) {
-    this.posMarker = new google.maps.Marker({
-      icon: 'position_small.png',
-      map: this.gMap,
-      position: new google.maps.LatLng(
-        position.coords.latitude, position.coords.longitude,
-      ),
-      title: 'Current Location',
+    statuses.forEach((status) => {
+      this.renderStatus(status);
     });
-    if (this.elMap.dataset.center) {
-      this.gMap.setCenter(this.posMarker.position);
-    }
+
+    this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+      this.elStatus,
+    );
   }
 
   renderStatus(status) {

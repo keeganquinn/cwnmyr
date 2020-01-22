@@ -72,8 +72,8 @@ describe('MapBuilder', () => {
         });
       });
 
-      it('creates a status display', () => {
-        expect(mapBuilder.elStatus).toBeTruthy();
+      it('does not create a status display', () => {
+        expect(mapBuilder.elStatus).toBeFalsy();
       });
 
       it('creates a marker that can be clicked', () => {
