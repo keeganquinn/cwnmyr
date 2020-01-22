@@ -6,6 +6,8 @@ require 'administrate/base_dashboard'
 class DeviceDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    user: Field::BelongsTo,
+    group: Field::BelongsTo,
     node: Field::BelongsTo,
     name: Field::String,
     device_type: Field::BelongsTo,
@@ -19,14 +21,14 @@ class DeviceDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[node name device_type].freeze
+  COLLECTION_ATTRIBUTES = %i[user group node name device_type].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    node name device_type body image authorized_hosts interfaces
+    user group node name device_type body image authorized_hosts interfaces
     device_builds device_properties created_at updated_at
   ].freeze
 
-  FORM_ATTRIBUTES = %i[node name device_type body image].freeze
+  FORM_ATTRIBUTES = %i[user group node name device_type body image].freeze
 
   # Display representation of the resource.
   def display_resource(device)

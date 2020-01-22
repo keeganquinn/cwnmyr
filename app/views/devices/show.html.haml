@@ -13,6 +13,19 @@
     #{DeviceType.model_name.human}:
     = link_to @device.device_type.name, url_for(@device.device_type)
 
+%p.small
+  - unless @device.group.blank?
+    Managed By:
+    = link_to @device.group.name, url_for(@device.group)
+    %br/
+  - if @device.group.blank? && @device.user&.visible?
+    Owner:
+    = link_to @device.user.name, url_for(@device.user)
+    %br/
+  = t :created, date: @device.created_at.localtime.to_s
+  %br/
+  = t :updated, date: @device.updated_at.localtime.to_s
+
 = markdown @device.body
 
 - if @device.image.attached?

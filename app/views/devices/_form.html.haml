@@ -3,12 +3,21 @@
   available to the public. Please be sure not to include any information
   you wish to remain private.
 
+= f.association :node, collection: current_user.nodes.order(:name)
+
 = f.input :name, placeholder: 'darkstar'
 .mb-3.text-muted
   Unique identifier for this device. Must be lowercase. Dashes
   and numbers are allowed after the first character.
 
-= f.association :device_type, collection: DeviceType.all.order(:name)
+.row
+  .col-6
+    = f.association :device_type, collection: DeviceType.all.order(:name)
+  .col-6
+    = f.association :group
+
+- if current_user.admin?
+  = f.association :user
 
 = f.input :body
 

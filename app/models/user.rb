@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :groups, uniq: true
   has_many :contacts
+  has_many :devices
   has_many :nodes
   has_many :notable_requests, class_name: 'Notable::Request'
   has_many :visits, class_name: 'Ahoy::Visit'

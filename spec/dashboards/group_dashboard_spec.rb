@@ -6,7 +6,7 @@ describe GroupDashboard do
   let(:group) { build_stubbed :group }
 
   it 'defines attribute types' do
-    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(9)
+    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(10)
   end
 
   it 'defines collection attributes' do
@@ -14,7 +14,7 @@ describe GroupDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(8)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(9)
   end
 
   it 'defines form attributes' do

@@ -6,6 +6,8 @@ require_dependency 'dot_diskless'
 class Device < ApplicationRecord
   has_paper_trail
 
+  belongs_to :user, optional: true
+  belongs_to :group, optional: true
   belongs_to :node, optional: true
   belongs_to :device_type, optional: true
   has_many :authorized_hosts, inverse_of: :device
@@ -30,6 +32,9 @@ class Device < ApplicationRecord
   validates :image, content_type: { allow: ['image/jpeg'] }
 
   before_validation :set_defaults
+
+  scope :unassigned, -> { where(node_id: nil) }
+  scope :ungrouped, -> { unassigned.where(group_id: nil) }
 
   # Canonical identifier.
   def to_param

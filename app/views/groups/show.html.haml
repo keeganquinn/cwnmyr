@@ -33,6 +33,13 @@
         %br/
         = t :updated, date: @group.updated_at.localtime.to_s
 
+      - unless @group.devices.unassigned.empty?
+        %h2= t Device.model_name.human.pluralize
+
+        %ul
+          - @group.devices.unassigned.order(name: :asc).each do |device|
+            %li= link_to h(device.name), url_for(device)
+
       - unless @group.users.visible.empty?
         %h2= t User.model_name.human.pluralize
 

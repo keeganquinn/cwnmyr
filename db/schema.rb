@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_204626) do
+ActiveRecord::Schema.define(version: 2020_01_22_073457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -252,6 +252,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_204626) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "uuid"
+    t.integer "user_id"
+    t.integer "group_id"
     t.index ["device_type_id"], name: "index_devices_on_device_type_id"
     t.index ["name"], name: "index_devices_on_name"
     t.index ["node_id"], name: "index_devices_on_node_id"

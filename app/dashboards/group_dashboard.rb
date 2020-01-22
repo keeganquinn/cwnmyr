@@ -10,6 +10,7 @@ class GroupDashboard < Administrate::BaseDashboard
     name: Field::String,
     body: Field::Text,
     contacts: Field::HasMany,
+    devices: Field::HasMany,
     nodes: Field::HasMany,
     users: Field::HasMany,
     created_at: Field::DateTime,
@@ -18,7 +19,7 @@ class GroupDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = %i[code name].freeze
 
-  SHOW_PAGE_ATTRIBUTES = %i[code name body contacts nodes users
+  SHOW_PAGE_ATTRIBUTES = %i[code name body contacts devices nodes users
                             created_at updated_at].freeze
 
   FORM_ATTRIBUTES = %i[code name body users].freeze

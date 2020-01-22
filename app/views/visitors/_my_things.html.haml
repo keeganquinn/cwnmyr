@@ -10,6 +10,17 @@
     - current_user.nodes.ungrouped.order(name: :asc).each do |node|
       %li= link_to h(node.name), url_for(node)
 
+%h2= t '.my_devices'
+
+.small.text-muted.pb-1
+  = link_to 'Create Device', new_device_path
+  (#{t(:owned_numbered, count: current_user.devices.ungrouped.count)})
+
+- unless current_user.devices.ungrouped.empty?
+  %ul
+    - current_user.devices.ungrouped.order(name: :asc).each do |device|
+      %li= link_to h(device.name), url_for(device)
+
 %h2= t '.my_contacts'
 
 .small.text-muted.pb-1

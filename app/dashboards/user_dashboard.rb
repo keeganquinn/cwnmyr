@@ -32,6 +32,7 @@ class UserDashboard < Administrate::BaseDashboard
     spam: Field::Boolean,
     groups: Field::HasMany,
     contacts: Field::HasMany,
+    devices: Field::HasMany,
     nodes: Field::HasMany
   }.freeze
 
@@ -42,7 +43,7 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at sign_in_count current_sign_in_at last_sign_in_at
     current_sign_in_ip last_sign_in_ip created_at updated_at
     confirmation_token confirmed_at confirmation_sent_at unconfirmed_email
-    code name role body authorized_keys spam groups contacts nodes
+    code name role body authorized_keys spam groups contacts devices nodes
   ].freeze
 
   FORM_ATTRIBUTES = %i[email password password_confirmation

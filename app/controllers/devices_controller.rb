@@ -18,7 +18,7 @@ class DevicesController < ApplicationController
 
   # New action.
   def new
-    @device = authorize Device.new(node_id: params[:node])
+    @device = authorize Device.new(user_id: current_user.id)
   end
 
   # Create action.

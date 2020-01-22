@@ -5,6 +5,9 @@
 = simple_form_for @device, turbolinks_form: true, validate: true do |f|
   = render partial: 'form', locals: { f: f }
 
-  = f.input :node_id, as: :hidden
+  = f.input :user_id, as: :hidden
   = f.submit t(:create), id: 'device_create', class: 'btn btn-primary'
-  = link_to t(:cancel), node_path(@device.node), class: 'btn btn-warning'
+  - if @device.node.present?
+    = link_to t(:cancel), node_path(@device.node), class: 'btn btn-warning'
+  - else
+    = link_to t(:cancel), browse_path, class: 'btn btn-warning'
