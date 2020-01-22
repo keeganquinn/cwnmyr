@@ -18,6 +18,9 @@
   .col-6
     = f.association :group
 
+- if current_user.admin?
+  = f.association :user
+
 = f.input :body
 .mb-3.text-muted Description of the node. Any relevant information can go here.
 
