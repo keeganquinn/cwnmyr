@@ -4,6 +4,7 @@ class MapBuilder {
   constructor() {
     this.elBtnHide = null;
     this.elBtnShow = null;
+    this.elBtnPosition = null;
     this.elMap = null;
     this.elStatus = null;
 
@@ -52,12 +53,6 @@ class MapBuilder {
       zoom: parseInt(this.elMap.dataset.zoom, 10) || 17,
     });
 
-    if (navigator.geolocation) {
-      // Disable user geolocation; it is annoying and unhelpful as a default.
-      // This should be reimplemented as a configurable option.
-      // navigator.geolocation.getCurrentPosition(this.handlePosition)
-    }
-
     if (this.data.node) {
       this.renderNode(this.data.node);
     } else if (this.data.statuses) {
@@ -80,7 +75,6 @@ class MapBuilder {
 
   handlePosition(position) {
     this.posMarker = new google.maps.Marker({
-      icon: 'position_small.png',
       map: this.gMap,
       position: new google.maps.LatLng(
         position.coords.latitude, position.coords.longitude,
@@ -125,6 +119,18 @@ class MapBuilder {
     statuses.forEach((status) => {
       this.renderStatus(status);
     });
+
+    if (navigator.geolocation) {
+      this.elBtnPosition = document.createElement('input');
+      this.elBtnPosition.setAttribute('type', 'button');
+      this.elBtnPosition.setAttribute('value', 'current location');
+      this.elBtnPosition.onclick = () => {
+        navigator.geolocation.getCurrentPosition(
+          this.handlePosition.bind(this),
+        );
+      };
+      this.elStatus.append(this.elBtnPosition);
+    }
 
     this.gMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(
       this.elStatus,
