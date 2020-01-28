@@ -1,7 +1,7 @@
 cwnmyr
 ======
 
-[![Build Status](https://jenkins.quinn.tk/job/cwnmyr/badge/icon)](https://jenkins.quinn.tk/job/cwnmyr/)
+[![Build Status](https://ci.quinn.tk/job/cwnmyr/badge/icon)](https://ci.quinn.tk/job/cwnmyr/)
 [![Code Climate](https://codeclimate.com/github/keeganquinn/cwnmyr/badges/gpa.svg)](https://codeclimate.com/github/keeganquinn/cwnmyr)
 [![Documentation Status](http://inch-ci.org/github/keeganquinn/cwnmyr.svg?branch=master)](http://inch-ci.org/github/keeganquinn/cwnmyr)
 
