@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-# Automated build script for cwnmyr. Intended for continuous integration use.
+# Automated build script. Intended for continuous integration use.
 
 build=${BUILD_NUMBER:-"current"}
-
-export CC_TEST_REPORTER_ID=32acafd5a9567429a9c6a9c05745fce5e139ce8eb412e6a5e424461f070f0dfa
-cc_test_reporter=https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
 
 set -ex
 
@@ -25,18 +22,6 @@ yarn install --frozen-lockfile
 
 rm -rf checkstyle-*.xml coverage coverage-js doc jsdoc junit.xml rspec.xml \
    log/* public/assets tmp/*
-
-[ "${build}" != "current" ] && {
-    curl -L "${cc_test_reporter}" > ./cc-test-reporter
-    chmod +x ./cc-test-reporter
-    ./cc-test-reporter before-build
-    report() {
-        rc=$?
-        ./cc-test-reporter after-build --exit-code $rc
-        exit $rc
-    }
-    trap report INT TERM
-}
 
 yarn -s test || true
 yarn -s jsdoc || true
@@ -58,9 +43,5 @@ bundle exec yard || true
 bundle exec rake db:create db:environment:set db:schema:load RAILS_ENV=test
 
 bundle exec rake spec BUILD_NUMBER="${build}" || true
-
-[ "${build}" != "current" ] && {
-    ./cc-test-reporter after-build --exit-code 0
-}
 
 exit 0
