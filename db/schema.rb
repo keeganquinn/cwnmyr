@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_073457) do
+ActiveRecord::Schema.define(version: 2020_01_29_232716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -520,6 +520,10 @@ ActiveRecord::Schema.define(version: 2020_01_22_073457) do
     t.string "mstile_color"
     t.bigint "last_event_import"
     t.uuid "uuid"
+    t.string "org_name"
+    t.string "org_url"
+    t.string "privacy_url"
+    t.string "terms_url"
     t.index ["code"], name: "index_zones_on_code", unique: true
     t.index ["name"], name: "index_zones_on_name", unique: true
   end

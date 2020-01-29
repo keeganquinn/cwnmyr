@@ -9,6 +9,10 @@ class ZoneDashboard < Administrate::BaseDashboard
     code: Field::String,
     name: Field::String,
     body: Field::Text,
+    org_name: Field::String,
+    org_url: Field::String,
+    privacy_url: Field::String,
+    terms_url: Field::String,
     nav_logo: Field::ActiveStorage,
     chromeicon_192: Field::ActiveStorage,
     chromeicon_512: Field::ActiveStorage,
@@ -31,15 +35,17 @@ class ZoneDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[code name].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
-    code name body nav_logo chromeicon_192 chromeicon_512 chrome_themecolor
-    chrome_bgcolor chrome_display favicon_ico favicon_png16 favicon_png32
+    code name body org_name org_url privacy_url terms_url nav_logo
+    chromeicon_192 chromeicon_512 chrome_themecolor chrome_bgcolor
+    chrome_display favicon_ico favicon_png16 favicon_png32
     maskicon_color maskicon_svg mstile_150 mstile_color touchicon_180 nodes
     created_at updated_at
   ].freeze
 
   FORM_ATTRIBUTES = %i[
-    code name body nav_logo chromeicon_192 chromeicon_512 chrome_themecolor
-    chrome_bgcolor chrome_display favicon_ico favicon_png16 favicon_png32
+    code name body org_name org_url privacy_url terms_url nav_logo
+    chromeicon_192 chromeicon_512 chrome_themecolor chrome_bgcolor
+    chrome_display favicon_ico favicon_png16 favicon_png32
     maskicon_color maskicon_svg mstile_150 mstile_color touchicon_180
   ].freeze
 

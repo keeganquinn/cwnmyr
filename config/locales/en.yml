@@ -32,6 +32,8 @@ en:
   cancel: Cancel
   delete: Delete
   search: Search
+  privacy_policy: Privacy Policy
+  terms_of_use: Terms of Use
   code: "Code: %{code}"
   zone: "Zone: %{zone}"
   node: "Node: %{node}"
@@ -141,6 +143,12 @@ en:
         password: Password
         password_confirmation: Password Confirmation
         authorized_keys: Authorized SSH Keys
+      zone:
+        org_name: Organization Name
+        org_url: Organization URL
+        privacy_url: Privacy Policy URL
+        terms_url: Terms of Use URL
+        nav_logo: Navigation Logo
   devise:
     confirmations:
       new:

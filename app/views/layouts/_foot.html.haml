@@ -1,5 +1,12 @@
-cwnmyr
-&middot;
-= link_to 'GitHub', 'https://github.com/keeganquinn/cwnmyr', target: :_blank
-&middot;
-= link_to t(:ptp), 'https://personaltelco.net/', target: :_blank
+Powered by
+= link_to 'cwnmyr', 'https://github.com/keeganquinn/cwnmyr', target: :_blank
+- if zone&.org_url&.present?
+  &middot;
+  Operated by
+  = link_to zone.org_name, zone.org_url, target: :_blank
+- if zone&.privacy_url&.present?
+  &middot;
+  = link_to t(:privacy_policy), zone.privacy_url, target: :_blank
+- if zone&.terms_url&.present?
+  &middot;
+  = link_to t(:terms_of_use), zone.terms_url, target: :_blank

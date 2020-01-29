@@ -6,7 +6,7 @@ describe ZoneDashboard do
   let(:zone) { build_stubbed :zone }
 
   it 'defines attribute types' do
-    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(21)
+    expect(dashboard.const_get(:ATTRIBUTE_TYPES).length).to eq(25)
   end
 
   it 'defines collection attributes' do
@@ -14,11 +14,11 @@ describe ZoneDashboard do
   end
 
   it 'defines show page attributes' do
-    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(20)
+    expect(dashboard.const_get(:SHOW_PAGE_ATTRIBUTES).length).to eq(24)
   end
 
   it 'defines form attributes' do
-    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(17)
+    expect(dashboard.const_get(:FORM_ATTRIBUTES).length).to eq(21)
   end
 
   it '#display_resource returns a string' do
