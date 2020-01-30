@@ -53,7 +53,11 @@ module ApplicationHelper
 
   # Title for the current page, or the default title if none is set.
   def page_title
-    content_for?(:title) ? content_for(:title) : default_title
+    if content_for?(:meta_title)
+      "#{content_for(:meta_title)} - #{default_title}"
+    else
+      content_for?(:title) ? content_for(:title) : default_title
+    end
   end
 
   # UI options to make an HTML table searchable.
