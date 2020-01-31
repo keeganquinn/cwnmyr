@@ -16,7 +16,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@babel/core": "^7.8.3",
+    "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -24,7 +24,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/plugin-transform-regenerator": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "@client-side-validations/client-side-validations": "^0.1.1",
     "@rails/webpacker": "^4.2.2",
     "ahoy.js": "^0.3.4",
@@ -53,7 +53,7 @@
     "jest-junit": "^10.0.0",
     "jsdoc": "^3.6.3",
     "jsonlint": "^1.6.3",
-    "npm-package-json-lint": "^4.5.0",
+    "npm-package-json-lint": "^4.5.1",
     "npm-package-json-lint-config-default": "^2.0.0",
     "webpack-dev-server": "^3.10.1"
   }
