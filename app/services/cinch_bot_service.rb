@@ -15,8 +15,20 @@ class CinchBotService
 
   # Start the bot.
   def call
+    trap_signals
     bot.loggers.level = Rails.env.production? ? :warn : :log
     bot.start
+  end
+
+  # Trap SIGINT and SIGTERM.
+  def trap_signals
+    Signal.trap('INT') { Thread.new { quit } }
+    Signal.trap('TERM') { Thread.new { quit } }
+  end
+
+  # Stop the bot.
+  def quit
+    bot.quit 'Bot shutting down.'
   end
 
   # Initialize a Cinch bot instance.
