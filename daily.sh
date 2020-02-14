@@ -9,7 +9,7 @@ eval "$(rbenv init -)"
 
 set -e
 
-cwnmyr="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd "${cwnmyr}"
+current="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd "${current}"
 
 bundle exec rake db:seed
