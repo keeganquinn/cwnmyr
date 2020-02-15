@@ -11,5 +11,6 @@ set :foreman_init_system, 'systemd'
 set :foreman_export_path, '/etc/systemd/system'
 set :foreman_options,
     user: 'deploy',
+    root: '/srv/rails/cwnmyr/current',
     env: '.env.production',
     formation: 'all=1,release=0'
