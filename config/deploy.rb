@@ -40,9 +40,16 @@ namespace :deploy do
       execute "ln -s /etc/rails/#{fetch(:application)}.env #{target}"
     end
   end
+  task :restart do
+    on roles(:app) do
+      execute "kill -s SIGUSR1 $(cat #{shared_path}/puma.pid) || " \
+              "sudo systemctl restart #{fetch(:application)}-web.target"
+      execute "sudo systemctl restart #{fetch(:application)}-bot.target"
+    end
+  end
 end
 
 after :'deploy:symlink:linked_dirs', :'deploy:symlink_env'
 
 after :'deploy:publishing', :'foreman:export'
-after :'deploy:publishing', :'foreman:restart'
+after :'deploy:publishing', :'deploy:restart'
