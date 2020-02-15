@@ -23,7 +23,7 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 
 # Location of the PID file that Puma will write.
 #
-pidfile ENV.fetch('PIDFILE') { 'puma.pid' }
+pidfile ENV.fetch('PIDFILE') { "#{Rails.root}/tmp/puma.pid" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
