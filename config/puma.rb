@@ -25,6 +25,11 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 #
 pidfile ENV.fetch('PIDFILE') { "#{Rails.root}/tmp/puma.pid" }
 
+# Directory to start application from. Needed to work around issues
+# with symbolic links and phased restarts.
+#
+directory ENV.fetch('APP_DIR') if ENV.include?('APP_DIR')
+
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
