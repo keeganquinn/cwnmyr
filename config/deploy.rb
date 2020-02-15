@@ -31,6 +31,26 @@ end
 desc 'Create a database backup remote database data'
 task backup: 'db:remote:backup'
 
+namespace :web do
+  desc 'Enable maintenance mode'
+  task :lock do
+    on primary :app do
+      within release_path do
+        execute :touch, 'tmp/maintenance.txt'
+      end
+    end
+  end
+
+  desc 'Disable maintenance mode'
+  task :unlock do
+    on primary :app do
+      within release_path do
+        execute :rm, '-f tmp/maintenance.txt'
+      end
+    end
+  end
+end
+
 namespace :deploy do
   desc 'Symlink environment'
   task :symlink_env do
