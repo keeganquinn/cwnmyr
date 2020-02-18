@@ -14,6 +14,11 @@ class CinchBotService
   CINCH_PLUGINS = [AuthConfirm, AuthRequest].freeze
 
   # Start the bot.
+  def self.start
+    new.call
+  end
+
+  # Do the thing.
   def call
     trap_signals
     bot.loggers.level = Rails.env.production? ? :warn : :log

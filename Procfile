@@ -1,3 +1,3 @@
 web: bundle exec puma -C config/puma.rb
-bot: bundle exec rails runner CinchBotService.new.call
+cinch: bundle exec rails runner CinchBotService.start
 release: bundle exec rake db:migrate

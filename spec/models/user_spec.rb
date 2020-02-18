@@ -4,9 +4,12 @@ describe User do
   subject(:user) { build_stubbed(:user) }
 
   it { is_expected.to have_and_belong_to_many(:groups) }
+  it { is_expected.to have_many(:authorizations) }
   it { is_expected.to have_many(:contacts) }
   it { is_expected.to have_many(:devices) }
   it { is_expected.to have_many(:nodes) }
+  it { is_expected.to have_many(:notable_requests) }
+  it { is_expected.to have_many(:visits) }
 
   it { is_expected.to respond_to(:email) }
   it { is_expected.to respond_to(:code) }

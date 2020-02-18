@@ -31,30 +31,21 @@ class UsersController < ApplicationController
   # Confirm host mask authorization request.
   def confirm
     authorize current_user
-    current_user.hostmask = current_user.unconfirmed_hostmask
-    current_user.unconfirmed_hostmask = nil
-    current_user.hostmask_confirmed_at = Time.now
-    current_user.save!
+    authorization = current_user.authorizations.find params[:id]
+    authorization.confirmed_at = Time.now
+    authorization.save!
 
-    redirect_to edit_user_registration_path
-  end
-
-  # Deny host mask authorization request.
-  def deny
-    authorize current_user
-    current_user.unconfirmed_hostmask = nil
-    current_user.save!
-
+    flash[:notice] = 'Authorization confirmed.'
     redirect_to edit_user_registration_path
   end
 
   # Revoke host mask authorization.
   def revoke
     authorize current_user
-    current_user.hostmask = nil
-    current_user.hostmask_confirmed_at = nil
-    current_user.save!
+    authorization = current_user.authorizations.find params[:id]
+    authorization.destroy
 
+    flash[:notice] = 'Authorization revoked.'
     redirect_to edit_user_registration_path
   end
 end

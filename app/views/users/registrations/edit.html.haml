@@ -42,21 +42,28 @@
 
     = f.submit 'Update'
 
-- if current_user.hostmask || current_user.unconfirmed_hostmask
+- unless current_user.authorizations.empty?
   .border.border-secondary.rounded.pl-2.pr-2.mt-4
-    %h2 Host Mask Authorization
+    %h2 Authorizations
 
-    - if current_user.hostmask
-      %p Current authorized host mask: #{current_user.hostmask}
-
-      %p= btn t(:revoke_auth), revoke_user_path, 'secondary'
-
-    - if current_user.unconfirmed_hostmask
-      %p Unconfirmed host mask: #{current_user.unconfirmed_hostmask}
-
-      %p
-        = btn t(:confirm_auth_request), confirm_user_path, 'secondary'
-        = btn t(:deny_auth_request), deny_user_path, 'warning'
+    %table.table
+      %thead
+        %tr
+          %th Provider
+          %th Identifier
+          %th Confirmation
+      %tbody
+        - current_user.authorizations.each do |authorization|
+          %tr
+            %td= t authorization.provider.to_sym
+            %td= authorization.uid
+            %td
+              - if authorization.confirmed_at.blank?
+                = btn t(:confirm), confirm_authorization_path(authorization)
+              - else
+                = authorization.confirmed_at
+            %td
+              = btn t(:revoke), revoke_authorization_path(authorization)
 
 .border.border-danger.rounded.p-2.mt-4
   %h2 Cancel Account

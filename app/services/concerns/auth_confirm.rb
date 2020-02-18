@@ -9,10 +9,9 @@ class AuthConfirm < ApplicationPlugin
   # Do the thing.
   def respond
     if current_user
-      msg.reply "Hello #{msg.user.nick}, " \
-                "you have confirmed authorization for #{hostmask}."
+      reply "You have confirmed authorization for #{hostmask}."
     else
-      msg.reply "No authorization found for #{hostmask}."
+      reply "No authorization found for #{hostmask}."
     end
   end
 end

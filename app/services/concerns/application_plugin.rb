@@ -4,6 +4,11 @@
 class ApplicationPlugin
   attr_reader :msg
 
+  # Command prefix.
+  def prefix
+    ENV['IRC_PREFIX'] || '@'
+  end
+
   # Determine the hostmask of the current command.
   def hostmask
     "#{msg.user.user}@#{msg.user.host}" if msg&.user
@@ -11,17 +16,29 @@ class ApplicationPlugin
 
   # Locate the current authorized User.
   def current_user
-    User.find_by hostmask: hostmask if hostmask
+    return unless hostmask
+
+    Authorization.confirmed.find_by(provider: 'cinch', uid: hostmask)&.user
   end
 
   # Handle a matched request.
-  def execute(message)
+  def execute(message, *args)
     @msg = message
-    respond
+    respond(*args)
   end
 
   # Handle a listener request.
   def listen(message)
     execute message
+  end
+
+  # Send a directed response.
+  def reply(txt)
+    msg.reply msg&.user&.nick ? "#{msg.user.nick}: #{txt}" : txt
+  end
+
+  # Send a response to unauthorized requests.
+  def not_authorized
+    reply "You are not authorized. Try #{prefix}auth <email>"
   end
 end

@@ -26,6 +26,10 @@ en:
   auth_facebook: Sign In with Facebook
   auth_google_oauth2: Sign In with Google
   auth_twitter: Sign In with Twitter
+  facebook: Facebook
+  google_oauth2: Google
+  twitter: Twitter
+  cinch: IRC
   access_denied: Access denied.
   account: Account
   create: Create

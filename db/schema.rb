@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_232716) do
+ActiveRecord::Schema.define(version: 2020_02_17_161215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_232716) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "confirmed_at"
   end
 
   create_table "authorized_hosts", force: :cascade do |t|
@@ -476,9 +477,6 @@ ActiveRecord::Schema.define(version: 2020_01_29_232716) do
     t.datetime "locked_at"
     t.boolean "spam"
     t.uuid "uuid"
-    t.string "hostmask"
-    t.datetime "hostmask_confirmed_at"
-    t.string "unconfirmed_hostmask"
     t.text "authorized_keys"
     t.index ["code"], name: "index_users_on_code"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
