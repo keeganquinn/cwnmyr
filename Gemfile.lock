@@ -103,11 +103,11 @@ GEM
       chartkick (>= 3.2)
       railties (>= 5)
       safely_block (>= 0.1.1)
-    bootsnap (1.4.5)
+    bootsnap (1.4.6)
       msgpack (~> 1.0)
-    bootsnap (1.4.5-java)
+    bootsnap (1.4.6-java)
       msgpack (~> 1.0)
-    brakeman (4.7.2)
+    brakeman (4.8.0)
     builder (3.2.4)
     byebug (11.1.1)
     capistrano (3.12.0)
@@ -432,7 +432,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.5.0)
-    regexp_parser (1.6.0)
+    regexp_parser (1.7.0)
     regexp_property_values (1.0.0)
     regexp_property_values (1.0.0-java)
       range_compressor (~> 1.0)
@@ -441,6 +441,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     rgl (0.5.6)
       lazy_priority_queue (~> 0.1.0)
       stream (~> 0.5.2)
@@ -468,11 +469,12 @@ GEM
     rspec-support (3.9.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.79.0)
+    rubocop (0.80.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-checkstyle_formatter (0.4.0)
@@ -507,15 +509,15 @@ GEM
       rubyzip (>= 1.2.2)
     sexp_processor (4.14.1)
     shellany (0.0.1)
-    shoulda-matchers (4.2.0)
+    shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.18.2)
+    simplecov (0.18.4)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
-    simplecov-html (0.12.0)
+    simplecov-html (0.12.1)
     simplecov-rcov (0.2.3)
       simplecov (>= 0.4.1)
     socksify (1.7.1)
@@ -652,7 +654,6 @@ DEPENDENCIES
   rubocop-rspec
   shoulda-matchers
   simple_form
-  simplecov
   simplecov-rcov
   spring
   spring-commands-rspec
