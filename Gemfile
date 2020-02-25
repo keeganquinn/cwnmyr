@@ -86,7 +86,6 @@ group :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false
   gem 'webdrivers'
 end
