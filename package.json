@@ -26,7 +26,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@client-side-validations/client-side-validations": "^0.1.2",
-    "@rails/webpacker": "^5.0.0",
+    "@rails/webpacker": "^5.0.1",
     "ahoy.js": "^0.3.4",
     "babel-plugin-dynamic-import-node": "^2.3.0",
     "babel-plugin-macros": "^2.8.0",
@@ -41,14 +41,14 @@
     "postcss-preset-env": "^6.7.0",
     "rails-erb-loader": "^5.5.2",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.42.0"
+    "webpack": "^4.42.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
-    "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.2.4",
     "jest-google-maps-mock": "^1.0.3",
     "jest-junit": "^10.0.0",
     "jsdoc": "^3.6.3",
