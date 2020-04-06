@@ -48,7 +48,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
     "eslint-plugin-import": "^2.20.2",
-    "jest": "^25.2.4",
+    "jest": "^25.2.7",
     "jest-google-maps-mock": "^1.0.3",
     "jest-junit": "^10.0.0",
     "jsdoc": "^3.6.3",
