@@ -11,6 +11,12 @@ AllCops:
     - vendor/**/*
   TargetRubyVersion: 2.5
 
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
 Metrics/BlockLength:
   Enabled: false
 
