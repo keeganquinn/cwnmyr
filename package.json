@@ -32,7 +32,7 @@
     "babel-plugin-macros": "^2.8.0",
     "bootstrap": "^4.4.1",
     "bootstrap-table": "^1.16.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ujs": "^1.2.2",
     "js-yaml": "^3.13.1",
     "popper.js": "^1.16.1",
@@ -51,10 +51,10 @@
     "jest": "^25.2.7",
     "jest-google-maps-mock": "^1.0.3",
     "jest-junit": "^10.0.0",
-    "jsdoc": "^3.6.3",
+    "jsdoc": "^3.6.4",
     "jsonlint": "^1.6.3",
-    "npm-package-json-lint": "^4.6.0",
-    "npm-package-json-lint-config-default": "^2.0.0",
+    "npm-package-json-lint": "^5.0.0",
+    "npm-package-json-lint-config-default": "^3.0.0",
     "webpack-dev-server": "^3.10.3"
   }
 }
