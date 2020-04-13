@@ -17,19 +17,19 @@ find . -maxdepth 2 -name '*.sh' -print0 | xargs -0 -n1 -t shellcheck
     echo 'BUNDLE_WITHOUT: "production"'
 ) > .bundle/config
 bundle install
-yarn install --frozen-lockfile
+npm install --frozen-lockfile
 
 
 rm -rf checkstyle-*.xml coverage coverage-js doc jsdoc junit.xml rspec.xml \
    log/* public/assets tmp/*
 
-yarn -s test || true
-yarn -s jsdoc || true
-yarn -s jsonlint || true
-yarn -s pkglint || true
+npm -s test || true
+npm -s run jsdoc || true
+npm -s run jsonlint || true
+npm -s run pkglint || true
 
-yarn -s lint --format node_modules/eslint-formatter-checkstyle-* \
-     > checkstyle-eslint.xml || true
+npm -s run lint -- --format node_modules/eslint-formatter-checkstyle-* \
+    > checkstyle-eslint.xml || true
 
 bundle exec rubocop --require rubocop/formatter/checkstyle_formatter \
        --format RuboCop::Formatter::CheckstyleFormatter \

@@ -4,7 +4,7 @@
 
 set -e
 
-yarn upgrade --latest
+npm update
 bundle update
 
 exec ./build.sh
