@@ -11,6 +11,9 @@ AllCops:
     - vendor/**/*
   TargetRubyVersion: 2.5
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 Lint/RaiseException:
   Enabled: true
 
@@ -25,6 +28,9 @@ Style/ClassVars:
     - config/initializers/devise.rb
 
 Style/DocumentationMethod:
+  Enabled: true
+
+Style/ExponentialNotation:
   Enabled: true
 
 Style/HashEachMethods:
