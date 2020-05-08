@@ -4,10 +4,11 @@ import MapBuilder from 'components/map_builder';
 
 import ahoy from 'ahoy.js';
 import '<%= File.join(Gem.loaded_specs["cocoon"].full_gem_path, "app", "assets", "javascripts", "cocoon") %>';
-import {} from 'jquery-ujs';
+
+const Rails = require('rails-ujs');
+Rails.start();
 
 const Turbolinks = require('turbolinks');
-
 Turbolinks.start();
 
 const $ = require('jquery');
@@ -33,7 +34,7 @@ const mb = new MapBuilder();
 mb.prepare();
 
 document.addEventListener('turbolinks:load', () => {
-  $.rails.refreshCSRFTokens();
+  Rails.refreshCSRFTokens();
   ahoy.trackView();
   mb.initMap();
   $('[data-toggle="table"]').bootstrapTable();
