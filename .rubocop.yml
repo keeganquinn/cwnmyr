@@ -9,7 +9,7 @@ AllCops:
     - db/schema.rb
     - node_modules/**/*
     - vendor/**/*
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
 
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
@@ -18,6 +18,9 @@ Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
 Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
 Lint/RaiseException:
@@ -46,6 +49,12 @@ Style/HashTransformKeys:
   Enabled: true
 
 Style/HashTransformValues:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
   Enabled: true
 
 Style/SlicingWithRange:
