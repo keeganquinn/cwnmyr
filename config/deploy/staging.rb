@@ -13,4 +13,4 @@ set :foreman_options,
     user: 'deploy',
     root: '/srv/rails/cwnmyr/current',
     env: '.env.production',
-    formation: 'all=1,release=0'
+    formation: 'all=1,cinch=0,release=0'

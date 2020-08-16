@@ -64,7 +64,6 @@ namespace :deploy do
     on roles(:app) do
       execute "kill -s SIGUSR1 $(cat #{shared_path}/puma.pid) || " \
               "sudo systemctl restart #{fetch(:application)}-web.1"
-      execute "sudo systemctl restart #{fetch(:application)}-cinch.1"
     end
   end
 end
