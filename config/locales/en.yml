@@ -29,7 +29,6 @@ en:
   facebook: Facebook
   google_oauth2: Google
   twitter: Twitter
-  cinch: IRC
   access_denied: Access denied.
   account: Account
   create: Create

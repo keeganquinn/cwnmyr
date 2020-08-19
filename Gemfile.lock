@@ -142,7 +142,6 @@ GEM
     chartkick (3.4.0)
     chef-utils (16.3.45)
     childprocess (3.0.0)
-    cinch (2.3.4)
     client_side_validations (17.0.0)
       js_regex (~> 3.1)
       rails (>= 5.0.0.1, < 6.1)
@@ -611,7 +610,6 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capybara
-  cinch
   client_side_validations
   client_side_validations-simple_form
   cocoon
